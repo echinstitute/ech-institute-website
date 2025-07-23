@@ -12,7 +12,7 @@ export default function Home() {
               Herding Knowledge, Building Community, Homesteading Ethereum!
             </h2>
             <p className="text-lg lg:text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-              We are a 501(c)3 nonprofit organization focused on providing education and resources to the Ethereum community.
+              We are a 501(c)(3) nonprofit organization dedicated to advancing education and fostering community building within the decentralized ecosystem.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

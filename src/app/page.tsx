@@ -9,7 +9,7 @@ export default function Home() {
               ECH Institute
             </h1>
             <h2 className="text-2xl lg:text-3xl text-[#F5A51D] font-semibold mb-6">
-              Herding Knowledge, Building Community, Homesteading Ethereum!
+              Education, Community Building, Homesteading Ethereum!
             </h2>
             <p className="text-lg lg:text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
               We are a 501(c)(3) nonprofit organization dedicated to advancing education and fostering community building within the decentralized ecosystem.

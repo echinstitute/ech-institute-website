@@ -136,7 +136,7 @@ export function DonationCard() {
       <CardHeader className='text-center'>
         <CardTitle>Make a Donation</CardTitle>
         <CardDescription>
-          Donate to the Ethereum Cat Herders at: <br /> <span className="text-[10px]">{DONATION_ADDRESS}</span>.
+          Donate to ECH Institute at: <br /> <span className="text-[10px]">{DONATION_ADDRESS}</span>.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Web3Provider } from "@/providers/Web3Provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
   title: "ECH Institute",
   description: "ECH Institute is a 501(c)3 nonprofit organization focused on providing education and resources to the Ethereum community.",
   icons: {
-    icon: "/ech_full_logo.png",
+    icon: "/assets/ech_full_logo.png",
   },
 };
 
@@ -32,11 +34,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-          <Header />
-          {children}
-          <Footer />
-        </div>
+        <Web3Provider>
+          <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+          <Toaster />
+        </Web3Provider>
       </body>
     </html>
   );

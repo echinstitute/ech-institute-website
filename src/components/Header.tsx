@@ -6,7 +6,7 @@ export default function Header() {
       <div className="flex justify-center items-center gap-14 py-6 px-10 text-black">
         <Link href="/" className="hover:text-gray-500">Home</Link>
         <Link href="https://www.ethcatherders.com/about" className="hover:text-gray-500">About</Link>
-        <Link href="https://www.ethcatherders.com/donate" className="hover:text-gray-500">Donate</Link>
+        <Link href="/donate" className="hover:text-gray-500">Donate</Link>
       </div>
     </header>
   );

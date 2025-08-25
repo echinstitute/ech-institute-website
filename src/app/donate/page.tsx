@@ -15,7 +15,7 @@ export default function DonatePage() {
           
           <div className="space-y-6">
             <p className="text-lg">
-              Thank you for your support in helping Ethereum Cat Herders achieve our mission in education, community building and homesteading the Ethereum ecosystem.
+              Thank you for your support in helping ECH Institute achieve our mission in education, community building and homesteading the Ethereum ecosystem.
             </p>
             
             <p className="text-lg">
@@ -183,23 +183,6 @@ export default function DonatePage() {
             </Button>
           </Link>
         </div>
-        
-        {/* <div className="bg-white p-8 box-black-bg rounded-xl border-2 border-black flex flex-col justify-between h-full">
-          <div>
-            <h3 className="text-2xl font-antonio mb-4">Octant Epoch 1 - 5</h3>
-            <p className="text-gray-600 mb-4">
-              Ethereum Cat Herders participate in Octant Epoch rounds that occur every 90 days. We received significant funding over the last 5 rounds.
-            </p>
-          </div>
-          <Link 
-            href="#"
-            className="inline-flex items-center text-darkGray hover:underline"
-          >
-            <Button className="bg-[#3c3c3c] text-white px-6 py-3 rounded-lg">
-              View our Octant updates
-            </Button>
-          </Link>
-        </div> */}
       </div>
 
       <div className="my-16">
@@ -214,7 +197,7 @@ export default function DonatePage() {
           For any questions regarding donations, funding expenses, compliance, or tax deductibility, please contact us at team@ethcatherders.com.
         </p>
         <p className="text-xs mb-2">
-          Thank you for supporting Ethereum Cat Herders and our mission to advance the Ethereum ecosystem! 🚀
+          Thank you for supporting ECH Institute and our mission to advance the Ethereum ecosystem! 🚀
         </p>
       </div>
     </main>

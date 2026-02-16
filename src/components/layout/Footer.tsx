@@ -53,54 +53,46 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full border-t border-[#ced2d9]" style={{ backgroundColor: '#3d3d3d' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-4 sm:pb-6 lg:pb-8">
+    <footer className="footer-main">
+      <div className="footer-container">
         {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
-          {/* Brand Section - col-6 */}
-          <div className="md:col-span-6 lg:col-span-6">
-            <div className="mb-3 sm:mb-4">
-              <div className="mb-2 sm:mb-3 flex items-center gap-2 sm:gap-3">
+        <div className="footer-grid">
+          {/* Brand Section */}
+          <div className="footer-brand">
+            <div className="footer-brand-content">
+              <div className="footer-logo-title">
                 <Image
                   src="/assets/ech_full_logo.png"
                   alt="ECH Institute Logo"
                   width={48}
                   height={48}
-                  className="h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 object-contain flex-shrink-0"
-                  style={{ background: 'transparent'}}
+                  className="footer-logo"
                 />
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-0 leading-tight">
-                  ECH Institute
-                </h2>
+                <h2 className="footer-title">ECH Institute</h2>
               </div>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-3 sm:mb-4 leading-relaxed">
+              <p className="footer-tagline">
                 Herding Knowledge, Building Community, Homesteading Ethereum!
               </p>
-              {/* Paws Image - Responsive with reduced height */}
-              <div className="mb-2 sm:mb-3 w-full max-w-xs sm:max-w-sm lg:max-w-md">
+              {/* Paws Image */}
+              <div className="footer-paws">
                 <Image
                   src="/assets/images/paws.png"
                   alt="Paws"
                   width={300}
                   height={100}
-                  className="w-full h-auto object-contain max-h-20 sm:max-h-24 lg:max-h-28"
-                  style={{ filter: 'brightness(0) invert(1)' }}
+                  className="footer-paws-image"
                 />
               </div>
             </div>
           </div>
 
-          {/* Links Section - col-2 */}
-          <div className="md:col-span-3 lg:col-span-2 mt-4 md:mt-0">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">Links</h3>
-            <ul className="space-y-1.5 sm:space-y-2 list-none pl-0">
+          {/* Links Section */}
+          <div className="footer-links-section">
+            <h3 className="footer-section-title">Links</h3>
+            <ul className="footer-links-list">
               {footerLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-white hover:text-white/80 transition-colors text-sm sm:text-base md:text-lg no-underline focus:outline-none focus-visible:outline-none block"
-                    style={{ color: 'white', textDecoration: 'none' }}
-                  >
+                  <Link href={link.href} className="footer-link">
                     {link.name}
                   </Link>
                 </li>
@@ -108,36 +100,26 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Follow Us Section - col-4 */}
-          <div className="md:col-span-3 lg:col-span-4 mt-4 md:mt-0">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">Follow Us</h3>
-            <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
-              {socialLinks.map((social) => {
-                return (
+          {/* Follow Us Section */}
+          <div className="footer-social-section">
+            <h3 className="footer-section-title">Follow Us</h3>
+            <div className="footer-social-icons">
+              {socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border border-white/50 p-2 sm:p-2.5 lg:p-3 rounded-full text-white hover:border-white hover:bg-white/10 transition-all focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 no-underline flex items-center justify-center [&_svg]:text-white [&_svg]:fill-white [&_svg]:stroke-white"
+                  className="footer-social-icon"
                     aria-label={social.name}
-                    tabIndex={0}
-                    style={{ color: 'white' }}
                   >
-                    <span className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 flex items-center justify-center [&_svg]:w-full [&_svg]:h-full">
                       {social.svg}
-                    </span>
                   </a>
-                );
-              })}
+              ))}
             </div>
-            <div className="mt-3 sm:mt-4">
-              <h4 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">Email Us</h4>
-              <a
-                href="mailto:team@ethcatherders.com"
-                className="text-white hover:text-white/80 transition-colors text-base sm:text-lg md:text-xl lg:text-xl break-all no-underline focus:outline-none focus-visible:outline-none block"
-                style={{ color: 'white', textDecoration: 'none' }}
-              >
+            <div className="footer-email-section">
+              <h4 className="footer-section-title">Email Us</h4>
+              <a href="mailto:team@ethcatherders.com" className="footer-email">
                 team@ethcatherders.com
               </a>
             </div>
@@ -145,16 +127,14 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/20 my-3 sm:my-4 lg:my-5"></div>
+        <div className="footer-divider"></div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-2 sm:gap-3 text-center sm:text-left py-2 sm:py-3">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-3 text-xs sm:text-sm md:text-base text-white/90 max-w-2xl">
-            <span className="text-center sm:text-left leading-relaxed">
-              All content and resources on our website are for educational purposes only.
-            </span>
+        <div className="footer-bottom">
+          <div className="footer-disclaimer">
+            <span>All content and resources on our website are for educational purposes only.</span>
           </div>
-          <div className="text-xs sm:text-sm md:text-base text-white/90 whitespace-nowrap">
+          <div className="footer-copyright">
             <span>&copy; {currentYear} ECH Institute, Inc.</span>
           </div>
         </div>

@@ -267,7 +267,7 @@ const menuItems: MenuConfig = {
         title: 'MEET THE HERDERS',
         description: 'Meet our team',
         icon: UserCircle,
-        link: 'https://www.ethcatherders.com/about',
+        link: '/about',
       },
       {
         title: 'GET INVOLVED',
@@ -307,7 +307,7 @@ const menuItems: MenuConfig = {
     title: 'DONATE',
     description: 'Support our mission',
     icon: Heart,
-    link: 'https://www.ethcatherders.com/donate',
+    link: '/donate',
   },
 };
 
@@ -318,6 +318,8 @@ const menuItems: MenuConfig = {
 // List of pages that exist in this project
 const existingPages = [
   '/',
+  '/donate',
+  '/about',
 ];
 
 export default function Navigation() {
@@ -401,6 +403,11 @@ export default function Navigation() {
     setOpenMobileMenu(null);
     setOpenMobileSubMenu(null);
     document.body.style.overflow = '';
+    
+    // Close desktop dropdown menu
+    setHoveredMenu(null);
+    setHoveredSection(null);
+    setClickedSection(null);
     
     // Handle hash links only
     if (href.includes('#')) {
@@ -693,6 +700,11 @@ export default function Navigation() {
                     );
                   }
                   
+                  // Determine if item is active or hovered
+                  const isActive = pathname === item.link;
+                  const isHovered = hoveredNavItem === key;
+                  const shouldBeBlack = isActive || isHovered;
+                  
                   return (
                     <Link
                       key={key}
@@ -702,10 +714,13 @@ export default function Navigation() {
                         if (item.link.includes('#')) {
                           handleLinkClick(e, item.link);
                         } else {
-                          // Just close mobile menu for regular links
+                          // Close mobile menu and desktop dropdown for regular links
                           setIsMenuOpen(false);
                           setOpenMobileMenu(null);
                           setOpenMobileSubMenu(null);
+                          setHoveredMenu(null);
+                          setHoveredSection(null);
+                          setClickedSection(null);
                           document.body.style.overflow = '';
                         }
                       }}
@@ -719,12 +734,10 @@ export default function Navigation() {
                       onMouseLeave={() => {
                         setHoveredNavItem(null);
                       }}
+                      data-nav-active={isActive ? 'true' : 'false'}
+                      data-nav-hovered={isHovered ? 'true' : 'false'}
                       className={cn(
-                        'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-md px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
-                        'visited:text-[#4c5663] active:text-[#4c5663]',
-                        pathname === item.link || hoveredNavItem === key
-                          ? 'text-black visited:text-black active:text-black'
-                          : 'text-[#4c5663] hover:!text-black visited:text-[#4c5663] active:text-[#4c5663]'
+                        'nav-link-item font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-md px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl'
                       )}
                       style={{ 
                         fontFamily: 'var(--font-family-nav)', 
@@ -733,8 +746,7 @@ export default function Navigation() {
                     >
                       <span 
                         className={cn(
-                          'font-bold uppercase visited:text-[#4c5663] active:text-[#4c5663] text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl transition-colors',
-                          pathname === item.link || hoveredNavItem === key ? 'text-black visited:text-black active:text-black' : 'text-[#4c5663] hover:!text-black'
+                          'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl transition-colors'
                         )}
                         style={{ 
                           fontFamily: 'var(--font-family-nav)'

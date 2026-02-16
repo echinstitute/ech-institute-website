@@ -132,7 +132,7 @@ export function DonationCard() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto mt-8">
       <CardHeader className='text-center'>
         <CardTitle>Make a Donation</CardTitle>
         <CardDescription>

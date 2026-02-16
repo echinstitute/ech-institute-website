@@ -48,7 +48,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="home-page">
       {/* Hero Section */}
       <section className="hero" id="hero">
         <div className="hero-bg"></div>
@@ -458,6 +458,6 @@ export default function Home() {
           <MembersSlider />
         </div>
       </section> */}
-    </>
+    </div>
   );
 }

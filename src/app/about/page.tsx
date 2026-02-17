@@ -180,85 +180,67 @@ export default function AboutPage() {
               <div className="timelineLine"></div>
               
               <div className="timelineItems">
-                {/* 2019 - ECH Formation */}
-                <div className="timelineItem">
-                  <div className="timelineIcon">
-                    <Calendar className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="timelineContent">
-                    <div className="timelineHeader">
-                      <h3 className="timelineTitle">January 2019</h3>
-                      <span className="badge badgeYellow">ECH Formation</span>
-                    </div>
-                    <p className="timelineDescription">
-                      The Ethereum Cat Herders (ECH) group was formed to support the Ethereum community through decentralized project management and coordination.
-                    </p>
-                    <div className="timelineMilestone">
-                      <p>
-                        <strong>Ethereum Milestone:</strong> Ethereum was transitioning through major upgrades, and the community needed better coordination mechanisms for protocol changes.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 2019 - ECH Institution */}
-                <div className="timelineItem">
-                  <div className="timelineIcon">
-                    <Building2 className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="timelineContent">
-                    <div className="timelineHeader">
-                      <h3 className="timelineTitle">2019</h3>
-                      <span className="badge badgeYellow">ECH to ECH Institution</span>
-                    </div>
-                    <p className="timelineDescription">
-                      ECH evolved from an informal group into a more structured organization, becoming ECH Institution to better serve the Ethereum ecosystem with formalized processes and governance.
-                    </p>
-                    <div className="timelineMilestone">
-                      <p>
-                        <strong>Ethereum Milestone:</strong> Istanbul upgrade (December 2019) - The community needed more structured support for coordinating complex network upgrades.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Registered Nonprofit */}
-                <div className="timelineItem">
-                  <div className="timelineIcon">
-                    <CheckCircle2 className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="timelineContent">
-                    <div className="timelineHeader">
-                      <h3 className="timelineTitle">Registered Nonprofit</h3>
-                      <span className="badge badgeGreen">501(c)(3)</span>
-                    </div>
-                    <p className="timelineDescription">
-                      ECH Institute became a registered 501(c)(3) tax-exempt charitable organization, formalizing its commitment to serving as a neutral public good for the Ethereum ecosystem.
-                    </p>
-                    <div className="timelineMilestone">
-                      <p>
-                        <strong>Ethereum Milestone:</strong> The Merge (September 2022) - Ethereum&apos;s transition to Proof of Stake required enhanced coordination and governance support, leading to the formalization of ECH Institute as a nonprofit entity.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Today */}
+                {/* Today (2026) */}
                 <div className="timelineItem">
                   <div className="timelineIcon">
                     <Target className="w-8 h-8 text-white" />
                   </div>
                   <div className="timelineContent">
                     <div className="timelineHeader">
-                      <h3 className="timelineTitle">Today</h3>
-                      <span className="badge badgeBlue">Active</span>
+                      <h3 className="timelineTitle">Today (2026)</h3>
+                      <span className="badge badgeBlue">Active & Operational</span>
                     </div>
                     <p className="timelineDescription">
-                      ECH Institute continues to support Ethereum&apos;s protocol governance and coordination, helping the network scale responsibly, transparently, and sustainably as global public infrastructure.
+                      The ECH Institute serves as the primary decentralized project management and coordination layer for the Ethereum network. It is currently responsible for managing the technical roadmap for upcoming network upgrades, facilitating the All Core Devs (ACD) meetings, and expanding the PEEPanEIP educational platform.
                     </p>
                     <div className="timelineMilestone">
                       <p>
-                        <strong>Current Focus:</strong> Supporting ongoing protocol upgrades, facilitating community consensus, and ensuring Ethereum remains decentralized and accessible as it continues to evolve.
+                        <strong>Mission:</strong> Ensuring Ethereum remains a transparent, decentralized, and accessible global public infrastructure.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2025 - Full Institutional Maturity */}
+                <div className="timelineItem">
+                  <div className="timelineIcon">
+                    <Building2 className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="timelineContent">
+                    <div className="timelineHeader">
+                      <h3 className="timelineTitle">2025</h3>
+                      <span className="badge badgeYellow">Full Institutional Maturity</span>
+                    </div>
+                    <p className="timelineDescription">
+                      Following its legal registration, the ECH Institute established a formalized board and governance structure. This allowed the organization to manage larger ecosystem grants and professionalize the support provided to Ethereum Improvement Proposal (EIP) authors and core developers.
+                    </p>
+                    <div className="timelineMilestone">
+                      <p>
+                        <strong>Key Focus:</strong> Scaling protocol governance and enhancing transparency in the decision-making processes for Ethereum&apos;s Layer 1.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2024 - 501(c)(3) Registration */}
+                <div className="timelineItem">
+                  <div className="timelineIcon">
+                    <CheckCircle2 className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="timelineContent">
+                    <div className="timelineHeader">
+                      <h3 className="timelineTitle">2024</h3>
+                      <span className="badge badgeGreen">501(c)(3) Nonprofit Registration</span>
+                    </div>
+                    <p className="timelineDescription">
+                      This year marked the official legal birth of the ECH Institute as a registered 501(c)(3) tax-exempt charitable organization.
+                    </p>
+                    <div className="timelineMilestone">
+                      <p>
+                        <strong>Significance:</strong> Moving to a registered nonprofit status was essential to establish the Institute as a neutral public good. This legal foundation ensures that the organization operates for the benefit of the entire community, independent of private corporate interests.
+                      </p>
+                      <p style={{ marginTop: '12px' }}>
+                        <strong>Transition:</strong> The organization shifted all operations from the previous informal &quot;Cat Herders&quot; model to the structured, institutional framework of the ECH Institute.
                       </p>
                     </div>
                   </div>
@@ -318,10 +300,10 @@ export default function AboutPage() {
             </div>
             <div className="ctaBox">
               <p>
-                <strong>Want to help the Ethereum Cat Herders?</strong>
+                <strong>Want to help the ECH Institute?</strong>
               </p>
               <p>
-                There&apos;s plenty of opportunities to weigh in the Ethereum Cat Herders, help with documenting meeting notes, writing blogs, make community outreach, participate in process improvements, and even earn bounty.
+                There&apos;s plenty of opportunities to weigh in the ECH Institute, help with documenting meeting notes, writing blogs, make community outreach, participate in process improvements, and even earn bounty.
               </p>
               <div className="ctaButtons">
                 <Link href="https://discord.com/invite/Nz6rtfJ8Cu" target="_blank" rel="noopener noreferrer">

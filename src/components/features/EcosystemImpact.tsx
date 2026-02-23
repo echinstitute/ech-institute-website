@@ -14,14 +14,14 @@ interface ImpactMetric {
 const impactData: ImpactMetric[] = [
   {
     category: 'Protocol Coordination',
-    metric: '98+ EIPIP Meetings',
+    metric: '120+ EIPIP Meetings',
     context: 'Facilitated for Ethereum governance and ACD implementer sessions.',
     icon: <Users className="w-8 h-8" />,
     color: 'from-blue-500 to-blue-600'
   },
   {
     category: 'Education & Media',
-    metric: '158+ PEEPanEIP Videos',
+    metric: '150+ PEEPanEIP Videos',
     context: 'Technical deep-dives explaining critical network upgrades to the community.',
     icon: <Video className="w-8 h-8" />,
     color: 'from-purple-500 to-purple-600'
@@ -35,14 +35,14 @@ const impactData: ImpactMetric[] = [
   },
   {
     category: 'Onboarding',
-    metric: '50+ EIP Office Hours',
+    metric: '90+ EIP Office Hours',
     context: 'Providing direct guidance and technical review for EIP authors.',
     icon: <BookOpen className="w-8 h-8" />,
     color: 'from-orange-500 to-orange-600'
   },
   {
     category: 'Diversity',
-    metric: '2+ WiEP Cohorts',
+    metric: '4+ WiEP Cohorts',
     context: 'Advancing gender diversity in protocol engineering via specialized study groups.',
     icon: <Heart className="w-8 h-8" />,
     color: 'from-pink-500 to-pink-600'

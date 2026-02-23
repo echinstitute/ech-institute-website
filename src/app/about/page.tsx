@@ -238,9 +238,9 @@ export default function AboutPage() {
                     <div className="timelineMilestone">
                       <p>
                         <strong>Significance:</strong> Moving to a registered nonprofit status was essential to establish the Institute as a neutral public good. This legal foundation ensures that the organization operates for the benefit of the entire community, independent of private corporate interests.
-                      </p>
+                    </p>
                       <p style={{ marginTop: '12px' }}>
-                        <strong>Transition:</strong> The organization shifted all operations from the previous informal &quot;Cat Herders&quot; model to the structured, institutional framework of the ECH Institute.
+                        <strong>Transition:</strong> The organization shifted all operations to the structured, institutional framework of the ECH Institute.
                       </p>
                     </div>
                   </div>

@@ -16,14 +16,14 @@ const cards: Card[] = [
     id: 1,
     name: 'Tim Beiko',
     image: 'https://pbs.twimg.com/profile_images/1082093593840349184/P2B7Qiyn_400x400.jpg',
-    message: 'Wanted to share I think @EthCatHerders are awesome: they help make ACD and other things accessible to more folks with transcripts, blog posts, and video series.',
+    message: 'Wanted to share I think ECH Institute is awesome: they help make ACD and other things accessible to more folks with transcripts, blog posts, and video series.',
     twitter: 'https://twitter.com/TimBeiko',
   },
   {
     id: 2,
     name: 'Udi Wertheimer',
     image: '/assets/profiles/udi.png',
-    message: 'You guys are doing a great job with the Ethereum Cat Herders so keep doing it. It\'s really cool.',
+    message: 'You guys are doing a great job with the ECH Institute so keep doing it. It\'s really cool.',
     twitter: 'https://twitter.com/udiWertheimer',
   },
   {
@@ -44,7 +44,7 @@ const cards: Card[] = [
     id: 5,
     name: 'Griff Green',
     image: '/assets/profiles/griff.png',
-    message: 'Givethio - "Love you Cat Herders! MEEEEOOW"',
+    message: 'Givethio - "Love you ECH Institute! Keep up the great work!"',
     twitter: 'https://twitter.com/thegrifft',
   },
   {

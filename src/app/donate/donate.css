@@ -2,6 +2,52 @@
    ECH Institute - Donate Page Styles
    ========================================== */
 
+/* Critical styles to prevent FOUC */
+.donate-page {
+  min-height: 100vh;
+}
+
+.donate-page section {
+  background-color: white;
+}
+
+/* Ensure borders are visible immediately */
+.donate-page [class*="border-2"] {
+  border-width: 2px !important;
+}
+
+.donate-page [class*="border-gray-200"] {
+  border-color: rgb(229 231 235) !important;
+}
+
+.donate-page [class*="border-gray-300"] {
+  border-color: rgb(209 213 219) !important;
+}
+
+.donate-page [class*="rounded-2xl"] {
+  border-radius: 1rem !important;
+}
+
+.donate-page [class*="rounded-lg"] {
+  border-radius: 0.5rem !important;
+}
+
+/* Ensure gradients are visible */
+.donate-page [class*="bg-gradient-to-br"] {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important;
+}
+
+.donate-page [class*="from-yellow-50"] {
+  --tw-gradient-from: #fefce8 !important;
+  --tw-gradient-to: rgb(254 252 232 / 0) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.donate-page [class*="via-white"] {
+  --tw-gradient-to: rgb(255 255 255 / 0) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #ffffff, var(--tw-gradient-to) !important;
+}
+
 /* ==========================================
    RainbowKit Wallet Modal Styles
    ========================================== */

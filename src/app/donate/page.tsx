@@ -5,7 +5,6 @@ import Link from "next/link";
 import { DonationCard } from "@/components/features/DonationCard";
 import { FundingVisualization } from "@/components/features/FundingVisualization";
 import { EcosystemImpact } from "@/components/features/EcosystemImpact";
-import './donate.css';
 
 export default function DonatePage() {
   return (

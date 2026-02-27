@@ -51,8 +51,8 @@ const impactData: ImpactMetric[] = [
 
 export function EcosystemImpact() {
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl p-6 md:p-8 lg:p-12">
-      <div className="mb-6 md:mb-8">
+    <div className="bg-white border-2 border-gray-200 rounded-2xl p-4 md:p-5 lg:p-6">
+      <div className="mb-3 md:mb-4">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-antonio font-bold mb-3 md:mb-4">
           I. Our Ecosystem Impact (By the Numbers)
         </h2>

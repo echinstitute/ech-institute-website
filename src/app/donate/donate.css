@@ -11,6 +11,126 @@
   background-color: white;
 }
 
+/* Hero Section - Critical CSS to prevent loading delay */
+.donate-page .donate-hero-section {
+  position: relative;
+}
+
+/* Ensure hero content is visible immediately */
+.donate-page .donate-hero-section > div {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .donate-page .donate-hero-section > div {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .donate-page .donate-hero-section > div {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .donate-page .donate-hero-section > div {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .donate-page .donate-hero-section > div {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Hero text container */
+.donate-page .donate-hero-section > div > div {
+  text-align: center;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hero heading styles */
+.donate-page .donate-hero-section h2 {
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #374151;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .donate-page .donate-hero-section h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .donate-page .donate-hero-section h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .donate-page .donate-hero-section h2 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+/* Hero paragraph styles */
+.donate-page .donate-hero-section p {
+  font-size: 1rem;
+  line-height: 1.75rem;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .donate-page .donate-hero-section p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .donate-page .donate-hero-section p {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+/* Hero text spacing */
+.donate-page .donate-hero-section > div > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .donate-page .donate-hero-section > div > div > div {
+    gap: 1.25rem;
+  }
+}
+
 /* Ensure borders are visible immediately */
 .donate-page [class*="border-2"] {
   border-width: 2px !important;

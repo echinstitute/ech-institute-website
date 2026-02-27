@@ -78,6 +78,12 @@ const menuItems: MenuConfig = {
         link: 'https://www.ethcatherders.com/upgrades',
         subItems: [
           {
+            title: 'UPGRADES TIMELINE',
+            description: 'View complete upgrade timeline',
+            icon: ArrowUpRight,
+            link: 'https://www.ethcatherders.com/upgrades',
+          },
+          {
             title: 'GLAMSTERDAM',
             description: '2026 - Major network upgrade featuring Block-level Access Lists',
             icon: ArrowUpRight,
@@ -203,12 +209,7 @@ const menuItems: MenuConfig = {
             icon: ArrowUpRight,
             link: 'https://www.ethcatherders.com/upgrades',
           },
-          {
-            title: 'ALL UPGRADES',
-            description: 'View complete upgrade timeline',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
+        
         ],
       },
       {
@@ -255,7 +256,7 @@ const menuItems: MenuConfig = {
         title: 'EVENTS & TALKS',
         description: 'Upcoming events and talks',
         icon: Calendar,
-        link: 'https://www.ethcatherders.com/events',
+        link: '/events',
       },
       {
         title: 'BLOGS',
@@ -320,6 +321,7 @@ const existingPages = [
   '/',
   '/donate',
   '/about',
+  '/events',
 ];
 
 export default function Navigation() {

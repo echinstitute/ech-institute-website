@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   experimental: {
     webpackBuildWorker: true,
   },
+  // Disable Turbopack to prevent SST file errors
+  // Use --webpack flag in build command instead
   webpack: (config, { isServer, webpack }) => {
     // Fix for webpack runtime errors
     if (!isServer) {
@@ -31,8 +33,6 @@ const nextConfig: NextConfig = {
     
     return config;
   },
-  // Add empty turbopack config to silence the warning
-  turbopack: {},
 };
 
 export default nextConfig;

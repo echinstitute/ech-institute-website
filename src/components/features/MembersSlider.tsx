@@ -38,7 +38,7 @@ const members: Member[] = [
     id: 3,
     name: "georgeh",
     description: "",
-    twitter: "",
+    twitter: "https://x.com/georgeh0x",
     github: "https://github.com/geovgy",
     image: "https://avatars.githubusercontent.com/u/54918343?v=4",
     role: "active"

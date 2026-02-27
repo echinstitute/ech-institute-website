@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Calendar,
   MapPin,
@@ -431,10 +432,16 @@ export default function EventsPage() {
                             }
                           }}
                         >
-                          <img
+                          <Image
                             src={photo.src}
                             alt={photo.alt}
+                            width={400}
+                            height={300}
                             className="photo-image"
+                            loading="lazy"
+                            quality={85}
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               target.style.display = 'none';
@@ -498,11 +505,15 @@ export default function EventsPage() {
                           title={`${event.title} Recap`}
                         ></iframe>
                       ) : (
-                        <img
+                        <Image
                           key={`${event.id}-thumbnail`}
                           src={getYouTubeThumbnailUrl(event.recapVideo)}
                           alt={`${event.title} Recap Thumbnail`}
+                          width={640}
+                          height={360}
                           className="recap-video-thumbnail"
+                          loading="lazy"
+                          quality={85}
                         />
                       )}
                     </div>
@@ -540,10 +551,14 @@ export default function EventsPage() {
               </>
             )}
             <div className="image-modal-content">
-              <img
+              <Image
                 src={modalImages[currentImageIndex].src}
                 alt={modalImages[currentImageIndex].alt}
+                width={1200}
+                height={800}
                 className="image-modal-image"
+                quality={90}
+                priority={currentImageIndex === 0}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';

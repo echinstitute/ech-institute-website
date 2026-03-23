@@ -135,7 +135,8 @@ export default function EventsPage() {
       badge: 'Recently Completed',
       badgeType: 'featured',
       tags: ['DEVCONNECT ARG', 'WORLD\'S FAIR', 'LATAM', 'EIP SUMMIT'],
-      title: 'Devconnect Argentina 2025 (EIP Summit)',
+      title: 'Devconnect Argentina 2025',
+      subtitle: '(EIP Summit)',
       location: 'Buenos Aires, Argentina · La Rural',
       date: 'Nov 17–22, 2025',
       echFootprint: '5 ECH-led activations',
@@ -200,7 +201,8 @@ export default function EventsPage() {
       badge: 'Key Event',
       badgeType: 'featured',
       tags: ['DEVCON 7', 'TALKS', 'COMMUNITY HUB', 'GOVERNANCE'],
-      title: 'Devcon 7 Southeast Asia (Bangkok)',
+      title: 'Devcon 7 Southeast Asia',
+      subtitle: '(Bangkok)',
       location: 'Bangkok, Thailand · QSNCC',
       date: 'Nov 12–15, 2024',
       echFootprint: '5 ECH-led activations',
@@ -255,6 +257,7 @@ export default function EventsPage() {
       badgeType: 'featured',
       tags: ['HACKATHON', 'TALKS', 'NETWORKING', 'STANDARDIZATION'],
       title: 'ETH Singapore 2024',
+      subtitle: '(Pragma)',
       location: 'Singapore · Marina Bay Sands & Fullerton Hotel (Pragma)',
       date: 'Sep 19–22, 2024',
       echFootprint: '5 ECH-led activations',
@@ -331,7 +334,7 @@ export default function EventsPage() {
                   className={`events-side-nav-item ${activeEventId === event.id ? 'is-active' : ''}`}
                 >
                   <span className="events-side-nav-year">{event.year}</span>
-                  <span className="events-side-nav-title">{event.title}</span>
+                  <span className="events-side-nav-title text-center">{event.title} <br /> {event.subtitle}</span>
                 </button>
               ))}
             </div>

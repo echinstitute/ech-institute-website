@@ -4,22 +4,19 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import {
-  Users,
-  Home,
   Heart,
   FileText,
-  TestTube,
-  ArrowUpRight,
   Menu,
   X,
-  GraduationCap,
+  Home,
   Calendar,
-  FileEdit,
   UserCircle,
   Mic,
-  CalendarDays,
-  ClipboardList,
   ChevronRight,
+  BookOpen,
+  Radio,
+  Code,
+  GraduationCap,
 } from 'lucide-react';
 // ThemeToggle commented out - not currently used
 // import { ThemeToggle } from './ThemeToggle';
@@ -53,254 +50,79 @@ interface MenuConfig {
 }
 
 const menuItems: MenuConfig = {
-  education: {
-    title: 'EDUCATION',
-    description: 'Learn about Ethereum protocol',
-    icon: GraduationCap,
-    link: '/education',
-    subItems: [
-      {
-        title: 'EIPS',
-        description: 'Ethereum Improvement Proposals',
-        icon: FileText,
-        link: 'https://www.ethcatherders.com/eip',
-      },
-      {
-        title: 'TESTNETS',
-        description: 'Ethereum test networks',
-        icon: TestTube,
-        link: 'https://www.ethcatherders.com/testnets',
-      },
-      {
-        title: 'UPGRADES',
-        description: 'Ethereum protocol upgrades',
-        icon: ArrowUpRight,
-        link: 'https://www.ethcatherders.com/upgrades',
-        subItems: [
-          {
-            title: 'UPGRADES TIMELINE',
-            description: 'View complete upgrade timeline',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'GLAMSTERDAM',
-            description: '2026 - Major network upgrade featuring Block-level Access Lists',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'FUSAKA',
-            description: 'December 3, 2025 - Major improvements to scalability and user experience',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'PECTRA',
-            description: 'May 7, 2025 - Major improvements to staking and validator experience',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'DENCUN',
-            description: 'March 13, 2024 - Introduced proto-danksharding (EIP-4844), blob transactions',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'SHAPELLA',
-            description: 'April 12, 2023 - Enabled staking withdrawals and validator exits',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'THE MERGE',
-            description: 'September 15, 2022 - Merged Ethereum mainnet with Beacon Chain',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'GRAY GLACIER',
-            description: 'June 30, 2022 - Delayed the difficulty bomb by 100,000 blocks',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'ARROW GLACIER',
-            description: 'December 9, 2021 - Delayed the difficulty bomb by 10,700,000 blocks',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'LONDON',
-            description: 'August 5, 2021 - Introduced EIP-1559 fee market change and base fee burning',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'BERLIN',
-            description: 'April 15, 2021 - Optimized gas costs for certain EVM operations',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'MUIR GLACIER',
-            description: 'January 2, 2020 - Delayed the difficulty bomb by 4,000,000 blocks',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'ISTANBUL',
-            description: 'December 8, 2019 - Improved denial-of-service attack resilience',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'PETERSBURG',
-            description: 'February 28, 2019 - Removed EIP-1283 from Constantinople',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'CONSTANTINOPLE',
-            description: 'February 28, 2019 - Optimized gas costs and prepared for Proof of Stake',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'BYZANTIUM',
-            description: 'October 16, 2017 - Reduced block rewards and improved privacy features',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'SPURIOUS DRAGON',
-            description: 'November 23, 2016 - Additional DoS attack mitigations and state clearing',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'TANGERINE WHISTLE',
-            description: 'October 18, 2016 - Emergency hard fork to address denial-of-service attacks',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'THE DAO FORK',
-            description: 'July 20, 2016 - Emergency hard fork to reverse The DAO hack',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'HOMESTEAD',
-            description: 'March 14, 2016 - First planned hard fork, improved transaction processing',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'FRONTIER THAWING',
-            description: 'September 7, 2015 - Thawed the Frontier network, allowing transactions',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-          {
-            title: 'FRONTIER',
-            description: 'July 30, 2015 - Initial Ethereum mainnet launch',
-            icon: ArrowUpRight,
-            link: 'https://www.ethcatherders.com/upgrades',
-          },
-        
-        ],
-      },
-      {
-        title: 'LEARN2EARN',
-        description: 'Educational content',
-        icon: GraduationCap,
-        link: 'https://l2e.ethereumcatherders.com/',
-      },
-    ],
+  home: {
+    title: 'HOME',
+    description: 'Back to home',
+    icon: Home,
+    link: '/',
+  },
+  about: {
+    title: 'ABOUT',
+    description: 'Learn about ECH Institute',
+    icon: UserCircle,
+    link: '/about',
   },
   community: {
     title: 'COMMUNITY',
-    description: 'Join our community',
-    icon: Users,
-    link: '/community',
+    description: 'Blog, reports, events & podcast',
+    icon: FileText,
+    link: '#',
     subItems: [
       {
-        title: 'PODCASTS',
-        description: 'Listen to our podcasts',
+        title: 'PODCAST',
+        description: 'Media hub & podcast series',
         icon: Mic,
-        link: '/community/podcasts',
+        link: '/podcast',
         subItems: [
           {
-            title: 'PEEPANEIP',
-            description: 'Peepaneip podcast content',
+            title: 'PODCAST',
+            description: 'Media hub & coordination gateway',
             icon: Mic,
-            link: 'https://www.ethcatherders.com/peepaneip',
+            link: '/podcast',
           },
           {
-            title: 'ECOSYSTEM PROJECT DEMO',
-            description: 'Ecosystem project demonstrations',
-            icon: Mic,
-            link: '/community/podcasts/ecosystem-project-demo',
+            title: 'PEEPanEIP',
+            description: 'Protocol deep-dive EIP archive',
+            icon: BookOpen,
+            link: '/podcast/peepaneip',
           },
           {
-            title: 'AUDIO PODCAST',
-            description: 'Audio podcast episodes',
-            icon: Mic,
-            link: '/community/podcasts/audio',
+            title: 'FUSAKA FILES',
+            description: 'Strategic & enterprise scaling series',
+            icon: Radio,
+            link: '/podcast/fusaka-files',
+          },
+          {
+            title: 'EPD',
+            description: 'Ecosystem Project Demo hub',
+            icon: Code,
+            link: '/podcast/epd',
+          },
+          {
+            title: 'WiEP',
+            description: 'Women in Ethereum Protocol study groups',
+            icon: GraduationCap,
+            link: '/podcast/wiep',
           },
         ],
       },
       {
-        title: 'EVENTS & TALKS',
-        description: 'Upcoming events and talks',
+        title: 'EVENTS',
+        description: 'Upcoming events',
         icon: Calendar,
         link: '/events',
       },
       {
-        title: 'BLOGS',
-        description: 'Read our latest blogs',
-        icon: FileEdit,
-        link: 'https://blog.ethcatherders.com/',
-      },
-      {
-        title: 'MEET THE HERDERS',
-        description: 'Meet our team',
-        icon: UserCircle,
-        link: '/about',
-      },
-      {
-        title: 'GET INVOLVED',
-        description: 'Join our community',
-        icon: Users,
-        link: 'https://www.ethcatherders.com/join',
-      },
-    ],
-  },
-  homestead: {
-    title: 'HOMESTEAD',
-    description: 'Ethereum Homestead',
-    icon: Home,
-    link: '/homestead',
-    subItems: [
-      {
-        title: 'CALENDAR',
-        description: 'Events calendar',
-        icon: CalendarDays,
-        link: 'https://www.ethcatherders.com/calendar',
-      },
-      {
-        title: 'SURVEYS',
-        description: 'Community surveys',
-        icon: ClipboardList,
-        link: 'https://www.ethcatherders.com/surveys',
-      },
-      {
-        title: 'MEETINGS AND NOTES',
-        description: 'Meeting notes and minutes',
+        title: 'BLOG',
+        description: 'Latest blog posts',
         icon: FileText,
-        link: 'https://www.ethcatherders.com/meetings',
+        link: 'https://blog.echinstitute.org.com/',
+      },
+      {
+        title: 'FIRST ANNUAL REPORT',
+        description: 'ECH Institute first annual report',
+        icon: FileText,
+        link: '/reports/First_Annual_Report_ECH_Institute_Inc.pdf',
       },
     ],
   },
@@ -315,14 +137,6 @@ const menuItems: MenuConfig = {
 // ==========================================
 // NAVIGATION COMPONENT
 // ==========================================
-
-// List of pages that exist in this project
-const existingPages = [
-  '/',
-  '/donate',
-  '/about',
-  '/events',
-];
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -372,26 +186,11 @@ export default function Navigation() {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMenuOpen]);
 
-  // Check if a page exists in the current project
-  const pageExists = (link: string) => {
-    // If link is already a full URL (starts with http), it's external
-    if (link.startsWith('http://') || link.startsWith('https://')) {
-      return false;
-    }
-    return existingPages.includes(link);
-  };
+  // Internal links stay on this site; only full URLs are external
+  const isExternalLink = (link: string) =>
+    link.startsWith('http://') || link.startsWith('https://');
 
-  // Get the actual URL - use old website if page doesn't exist
-  const getLinkUrl = (link: string) => {
-    // If link is already a full URL, return it as is
-    if (link.startsWith('http://') || link.startsWith('https://')) {
-      return link;
-    }
-    if (pageExists(link)) {
-      return link;
-    }
-    return `https://www.ethcatherders.com${link}`;
-  };
+  const getLinkUrl = (link: string) => link;
   
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
@@ -635,10 +434,10 @@ export default function Navigation() {
                       onMouseEnter={() => handleMenuEnter(key)}
                       onMouseLeave={handleMenuLeave}
                       className={cn(
-                        'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-md px-2 xl:px-3 py-2 flex items-center focus:outline-none focus-visible:outline-none focus:ring-0 no-underline whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
+                        'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center focus:outline-none focus-visible:outline-none focus:ring-0 no-underline whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
                         hoveredMenu === key
-                          ? 'text-black'
-                          : 'text-[#4c5663] hover:text-black'
+                          ? 'bg-gray-100 text-black'
+                          : 'text-[#4c5663] hover:bg-gray-100 hover:text-black'
                       )}
                       style={{ textDecoration: 'none', fontFamily: 'var(--font-family-nav)' }}
                     >
@@ -657,7 +456,7 @@ export default function Navigation() {
                   );
                 } else {
                   const linkUrl = getLinkUrl(item.link);
-                  const isExternal = !pageExists(item.link);
+                  const isExternal = isExternalLink(item.link);
                   
                   if (isExternal) {
                     return (
@@ -676,11 +475,11 @@ export default function Navigation() {
                           setHoveredNavItem(null);
                         }}
                         className={cn(
-                          'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-md px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
+                          'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
                           'visited:text-[#4c5663] active:text-[#4c5663]',
                           hoveredNavItem === key
-                            ? 'text-black visited:text-black active:text-black'
-                            : 'text-[#4c5663] hover:!text-black visited:text-[#4c5663] active:text-[#4c5663]'
+                            ? 'bg-gray-100 text-black visited:text-black active:text-black'
+                            : 'text-[#4c5663] hover:bg-gray-100 hover:!text-black visited:text-[#4c5663] active:text-[#4c5663]'
                         )}
                         style={{ 
                           fontFamily: 'var(--font-family-nav)', 
@@ -739,7 +538,9 @@ export default function Navigation() {
                       data-nav-active={isActive ? 'true' : 'false'}
                       data-nav-hovered={isHovered ? 'true' : 'false'}
                       className={cn(
-                        'nav-link-item font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-md px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl'
+                        'nav-link-item font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
+                        isActive && 'bg-gray-100 text-black',
+                        !isActive && 'text-[#4c5663] hover:bg-gray-100 hover:text-black'
                       )}
                       style={{ 
                         fontFamily: 'var(--font-family-nav)', 
@@ -748,7 +549,8 @@ export default function Navigation() {
                     >
                       <span 
                         className={cn(
-                          'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl transition-colors'
+                          'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl transition-colors',
+                          shouldBeBlack ? 'text-black' : 'text-[#4c5663]'
                         )}
                         style={{ 
                           fontFamily: 'var(--font-family-nav)'
@@ -793,7 +595,7 @@ export default function Navigation() {
                     document.body.style.overflow = '';
                   }
                 }}
-                className="block lg:hidden p-2 rounded-md hover:bg-[#f0f2f5] transition-colors text-black z-[100] relative flex-shrink-0"
+                className="block lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors text-black z-[100] relative flex-shrink-0"
                 aria-label="Toggle menu"
                 type="button"
                 aria-expanded={isMenuOpen}
@@ -829,7 +631,7 @@ export default function Navigation() {
             >
               <div className={cn(
                 "container max-w-[1400px] mx-auto px-4",
-                hoveredMenu === 'education' || hoveredMenu === 'community' ? 'py-8' : 'py-6'
+                'py-4'
               )}>
                 <div className="flex gap-8">
                   {/* LEFT: Fixed width menu list - showing all sub-items of current menu */}
@@ -880,7 +682,7 @@ export default function Navigation() {
                             ) : (
                               (() => {
                                 const linkUrl = getLinkUrl(subItem.link);
-                                const isExternal = !pageExists(subItem.link);
+                                const isExternal = isExternalLink(subItem.link);
                                 
                                 if (isExternal) {
                                   return (
@@ -937,7 +739,8 @@ export default function Navigation() {
                     </div>
                   </div>
 
-                  {/* RIGHT: Dynamic sub-items grid - showing nested sub-items if any */}
+                  {/* RIGHT: Only show when at least one sub-item has nested sub-items */}
+                  {currentMenu.subItems.some((s) => 'subItems' in s && s.subItems && s.subItems.length > 0) && (
                   <div className="flex-1 border-l border-[#e2e8f0] pl-8 max-h-[calc(100vh-12rem)] overflow-y-auto mega-menu-scroll" style={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
                     {(() => {
                       // Find the hovered or clicked sub-item that has nested sub-items
@@ -951,9 +754,9 @@ export default function Navigation() {
                       
                       if (!activeSection || !hasNestedSubItems) {
                         return (
-                          <div className="flex items-center justify-center min-h-[300px] py-4">
+                          <div className="flex items-center justify-center min-h-[120px] py-2">
                             <p className="text-[#64748b] text-sm">
-                              {activeSection ? 'Hover over a menu item to see options' : 'Select a category to view options'}
+                              Hover over a menu item to see options
                             </p>
                           </div>
                         );
@@ -974,7 +777,7 @@ export default function Navigation() {
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pb-2">
                             {nestedSubItems.map((nestedItem: SubMenuItem, nestedIndex: number) => {
                               const linkUrl = getLinkUrl(nestedItem.link);
-                              const isExternal = !pageExists(nestedItem.link);
+                              const isExternal = isExternalLink(nestedItem.link);
                               
                               if (isExternal) {
                                 return (
@@ -1026,6 +829,7 @@ export default function Navigation() {
                       );
                     })()}
                   </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -1054,8 +858,8 @@ export default function Navigation() {
             style={{ top: `${navbarHeight}px`, display: 'block', visibility: 'visible', pointerEvents: 'auto' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="container max-w-7xl mx-auto px-2 sm:px-4 py-6">
-              <div className="space-y-1">
+            <div className="container max-w-7xl mx-auto px-2 sm:px-4 pt-8 pb-8">
+              <div className="space-y-1 pt-2 pb-4">
                 {Object.entries(menuItems).map(([key, item]) => (
                   <div key={key} className="border-b border-[#e2e8f0] last:border-0">
                     {item.subItems && item.subItems.length > 0 ? (
@@ -1065,7 +869,7 @@ export default function Navigation() {
                           onClick={() => {
                             setOpenMobileMenu(openMobileMenu === key ? null : key);
                           }}
-                          className="w-full flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-[#f0f2f5] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0"
+                          className="w-full flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0"
                         >
                           <div className="w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
                             <item.icon className="h-5 w-5" />
@@ -1092,7 +896,7 @@ export default function Navigation() {
                               const subMenuKey = `${key}-${index}`;
                               const hasNestedSubItems = 'subItems' in subItem && subItem.subItems && subItem.subItems.length > 0;
                               const linkUrl = getLinkUrl(subItem.link);
-                              const isExternal = !pageExists(subItem.link);
+                              const isExternal = isExternalLink(subItem.link);
                               
                               // If sub-item has nested sub-items, make it a button
                               if (hasNestedSubItems) {
@@ -1102,7 +906,7 @@ export default function Navigation() {
                                       onClick={() => {
                                         setOpenMobileSubMenu(openMobileSubMenu === subMenuKey ? null : subMenuKey);
                                       }}
-                                      className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[#f0f2f5] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 text-left"
+                                      className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 text-left"
                                     >
                                       <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
                                         <subItem.icon className="h-4 w-4" />
@@ -1127,7 +931,7 @@ export default function Navigation() {
                                       <div className="pl-8 space-y-1 mt-1">
                                         {subItem.subItems.map((nestedItem, nestedIndex) => {
                                           const nestedLinkUrl = getLinkUrl(nestedItem.link);
-                                          const isNestedExternal = !pageExists(nestedItem.link);
+                                          const isNestedExternal = isExternalLink(nestedItem.link);
                                           
                                           if (isNestedExternal) {
                                             return (
@@ -1139,7 +943,7 @@ export default function Navigation() {
                                                 onClick={(e) => {
                                                   handleLinkClick(e, nestedItem.link);
                                                 }}
-                                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#f0f2f5] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
+                                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                               >
                                                 <div className="w-6 h-6 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
                                                   <nestedItem.icon className="h-3 w-3" />
@@ -1163,7 +967,7 @@ export default function Navigation() {
                                               onClick={(e) => {
                                                 handleLinkClick(e, nestedItem.link);
                                               }}
-                                              className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#f0f2f5] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
+                                              className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                             >
                                               <div className="w-6 h-6 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
                                                 <nestedItem.icon className="h-3 w-3" />
@@ -1196,7 +1000,7 @@ export default function Navigation() {
                                     onClick={(e) => {
                                       handleLinkClick(e, subItem.link);
                                     }}
-                                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#f0f2f5] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
+                                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                     style={{ textDecoration: 'none' }}
                                   >
                                     <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
@@ -1221,7 +1025,7 @@ export default function Navigation() {
                                   onClick={(e) => {
                                     handleLinkClick(e, subItem.link);
                                   }}
-                                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#f0f2f5] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
+                                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                   style={{ textDecoration: 'none' }}
                                 >
                                   <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
@@ -1246,11 +1050,14 @@ export default function Navigation() {
                         href={item.link}
                         onClick={(e) => handleLinkClick(e, item.link)}
                         className={cn(
-                          'flex items-center gap-3 py-4 hover:bg-[#f0f2f5] transition-colors rounded-lg px-2 group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline',
-                          pathname === item.link ? 'bg-[#fefbd6]' : ''
+                          'flex items-center gap-3 py-4 hover:bg-gray-100 transition-colors rounded-lg px-2 group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline',
+                          pathname === item.link ? 'bg-gray-100' : ''
                         )}
                       >
-                        <div className="w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                        <div className={cn(
+                          'w-10 h-10 rounded-md bg-transparent flex items-center justify-center flex-shrink-0 transition-colors',
+                          pathname === item.link ? 'text-[#facc14]' : 'text-black group-hover:text-[#facc14]'
+                        )}>
                           <item.icon className="h-5 w-5" />
                         </div>
                         <div>

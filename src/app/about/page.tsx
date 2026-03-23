@@ -1,16 +1,29 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Users, X, CheckCircle2, Calendar, Building2, Target, Heart, Sparkles } from 'lucide-react';
-import MembersSlider from '@/components/features/MembersSlider';
-import './about.css';
+import { Users, CheckCircle2, Building2, Target, Heart, Sparkles, Video, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const BOARD_MEMBERS = [
+  { id: '1', name: 'Pooja Ranjan', position: 'President', image: '/assets/profiles/Pooja Ranjan.png', bio: 'Leads ECH Institute coordination and hosts PEEPanEIP. Focuses on EIP education and community consensus.' },
+  { id: '2', name: 'George Hervey', position: 'Vice President', image: '/assets/profiles/George Hervey.png', bio: 'Board member supporting ECH Institute governance and ecosystem coordination.' },
+  { id: '3', name: 'Hudson Jameson', position: 'Treasurer', image: '/assets/profiles/Hudson Jameson.jpg', bio: 'Veteran Ethereum contributor. Supports protocol governance and institutional transparency.' },
+  { id: '4', name: 'Meenakshi Singh', position: 'Secretary', image: '/assets/profiles/Meenakshi Singh.jpg', bio: 'Board member contributing to ECH Institute strategy and community initiatives.' },
+];
+
+const PEOPLE_CARDS = [
+  { icon: Sparkles, title: 'Core Contributors', desc: 'Manage major initiatives and the EIP process.' },
+  { icon: Users, title: 'Community Coordinators', desc: 'Organize meetings and ensure documentation, such as ACD notes, is archived in the ethereum/pm repository.' },
+  { icon: Target, title: 'Technical Writers', desc: 'Create documentation and translate complex technical protocol information into accessible blogs and resources.' },
+  { icon: Video, title: 'Multimedia Producers', desc: 'Responsible for recording, editing, and livestreaming educational content and animated shorts.' },
+  { icon: Heart, title: 'Outreach Specialists', desc: 'Engage with the community and manage partnerships for events like Devcon and EthDenver.' },
+];
 
 export default function AboutPage() {
+  const [selectedMemberId, setSelectedMemberId] = useState<string | null>(null);
+  const [peopleCarouselIndex, setPeopleCarouselIndex] = useState(0);
   useEffect(() => {
-    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e: Event) {
         e.preventDefault();
@@ -19,10 +32,7 @@ export default function AboutPage() {
           const target = document.querySelector(href);
           if (target) {
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80;
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
           }
         }
       });
@@ -30,49 +40,43 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <main className="pt-16 lg:pt-24 about-page">
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="heroContainer">
-          <div className="heroContent">
-            <div className="heroText">
-              <h1 className="heroTitle">
-                About ECH Institute
-              </h1>
-              <p className="heroDescription">
-                The ECH Institute are a group of individuals working together to support the Ethereum community through tasks that are best described as decentralized project management, team coordination, and information dissemination projects.
-              </p>
+    <main className="min-h-screen bg-white pt-16 lg:pt-24">
+      {/* Hero - no background color per request */}
+      <section className="mb-16 py-8 px-4 md:py-16 md:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col items-center gap-8">
+            <div className="w-full text-center max-w-[900px]">
+              <h1 className="global-hero-title mb-6">About ECH Institute</h1>
+              <p className="global-body-lg max-w-4xl mx-auto">
+              ECH Institute Inc. is a 501(c)(3) non-profit organization that transitioned to a formalized institutional steward on July 11, 2024. We are a group of individuals working together to support the Ethereum community through decentralized project management, coordination, and technical education as a neutral public good.              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Who We Are Section with Image */}
-      <section id="who-we-are" className="section">
-        <div className="sectionContainer">
-          <div className="sectionWithImage">
-            <div className="sectionImage">
+      {/* Who We Are */}
+      <section id="who-we-are" className="py-4 px-4 md:py-8 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
+            <div className="shrink-0 w-full max-w-[200px] sm:max-w-[250px] lg:max-w-[300px] lg:w-[30%] flex justify-center items-center mx-auto lg:mx-0">
               <Image
                 src="/assets/ech_full_logo.png"
                 alt="ECH Institute Logo"
                 width={300}
                 height={300}
-                className="image"
+                className="w-full h-auto object-contain max-w-[180px] max-h-[180px] sm:max-w-[220px] sm:max-h-[220px] lg:max-w-[300px] lg:max-h-[300px]"
               />
             </div>
-            <div className="sectionContentWrapper">
-              <div className="sectionHeader">
-                {/* <div className="iconContainer">
-                  <Users className="w-6 h-6 text-yellow-600" />
-                </div> */}
-                <h2 className="sectionTitle">Who We Are</h2>
+            <div className="flex-1">
+              <div className="flex items-center gap-4 mb-6">
+                <h2 className="global-section-title">Who We Are</h2>
               </div>
-              <div className="sectionContent">
+              <div className="global-body-lg space-y-4">
                 <p>
-                  Since coming on the scene in January 2019, we help coordinate EIPs for network upgrades, pre and post communication needed for successful deployment of network upgrades, community consensus gathering, community funding, and many other tasks.
+                  The evolution of decentralized protocol governance has necessitated structured, neutral entities capable of bridging core technical research and community-wide implementation. Since our beginnings in January 2019, we have helped coordinate EIPs for network upgrades, pre- and post-deployment communication for successful hard forks, community consensus gathering, community funding, and related coordination tasks.
                 </p>
                 <p>
-                  ECH Institute is uniquely positioned at the intersection of People, Process and Protocol. It operates to support Ethereum&apos;s governance participation, and protocol‑coordination infrastructure. As a neutral public good, it ensures the protocol remains accessible and decentralized as it scales.
+                  ECH Institute is uniquely positioned at the intersection of People, Process, and Protocol. It operates to support Ethereum&apos;s governance participation and protocol-coordination infrastructure. As a neutral public good, it ensures the protocol remains accessible and decentralized as it scales.
                 </p>
               </div>
             </div>
@@ -80,170 +84,101 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* What We Do Section */}
-      <section id="what-we-do" className="section sectionAlt">
-        <div className="sectionContainer">
-          <div className="sectionHeader">
-            {/* <div className="iconContainer">
-              <Target className="w-6 h-6 text-yellow-600" />
-            </div> */}
-            <h2 className="sectionTitle">What We Do</h2>
+      {/* What We Do - Core Operational Mandate */}
+      <section id="what-we-do" className="py-4 px-4 md:py-8 md:px-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-6">
+            <h2 className="global-section-title">Core Operational Mandate: What We Do</h2>
           </div>
-          <div className="grid">
-            <div className="gridItem">
-              <CheckCircle2 className="gridItemIcon" />
-              <div className="gridItemContent">
-                <h3>EIP Coordination</h3>
-                <p>Coordinate Ethereum Improvement Proposals (EIPs) for network upgrades and protocol changes.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            {[
+              { title: 'Educational Content Production', desc: 'Producing technical content to expand community knowledge: the PEEPanEIP video series to simplify EIPs, animated shorts for complex concepts, and the Learn2earn platform to incentivize protocol learning.' },
+              { title: 'Technical Onboarding (WiEP)', desc: 'Facilitating the Women in Ethereum Protocol (WiEP) study groups to onboard and train underrepresented developers for core protocol contribution.' },
+              { title: 'EIP Coordination', desc: 'Managing the lifecycle of Ethereum Improvement Proposals and shepherding them from initial drafts to finalization.' },
+              { title: 'Network Upgrade Communication', desc: 'Facilitating the essential pre- and post-deployment communication for successful hard forks such as Pectra and Fusaka.' },
+              { title: 'Community Consensus Gathering', desc: 'Building consensus across a decentralized community on critical protocol decisions through meetings and forums.' },
+              { title: 'Information Dissemination', desc: 'Sharing technical updates on governance and protocol changes, including hosting and documenting the All Core Devs (ACD) meetings.' },
+              { title: 'Community Funding & Public Goods', desc: 'Managing and coordinating funding initiatives and promoting open-source tooling through the Ecosystem Project Demo (EPD) series.' },
+              { title: 'Decentralized Project Management', desc: 'Providing the coordination layer for diverse Ethereum ecosystem initiatives—the "operating system" for organizational tasks.' },
+            ].map((item) => (
+              <div key={item.title} className="global-card flex items-start gap-3">
+                <CheckCircle2 className="global-icon-yellow w-6 h-6 shrink-0 mt-1" />
+                <div>
+                  <h3 className="global-card-title">{item.title}</h3>
+                  <p className="global-body">{item.desc}</p>
+                </div>
               </div>
-            </div>
-            <div className="gridItem">
-              <CheckCircle2 className="gridItemIcon" />
-              <div className="gridItemContent">
-                <h3>Network Upgrade Communication</h3>
-                <p>Facilitate pre and post-communication needed for successful deployment of network upgrades.</p>
-              </div>
-            </div>
-            <div className="gridItem">
-              <CheckCircle2 className="gridItemIcon" />
-              <div className="gridItemContent">
-                <h3>Community Consensus Gathering</h3>
-                <p>Help build consensus within the Ethereum community on important protocol decisions.</p>
-              </div>
-            </div>
-            <div className="gridItem">
-              <CheckCircle2 className="gridItemIcon" />
-              <div className="gridItemContent">
-                <h3>Community Funding</h3>
-                <p>Coordinate and manage community funding initiatives for public goods and protocol development.</p>
-              </div>
-            </div>
-            <div className="gridItem">
-              <CheckCircle2 className="gridItemIcon" />
-              <div className="gridItemContent">
-                <h3>Information Dissemination</h3>
-                <p>Share critical information about Ethereum protocol changes, upgrades, and governance processes.</p>
-              </div>
-            </div>
-            <div className="gridItem">
-              <CheckCircle2 className="gridItemIcon" />
-              <div className="gridItemContent">
-                <h3>Decentralized Project Management</h3>
-                <p>Provide decentralized project management and team coordination for Ethereum ecosystem initiatives.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* What We Don't Do Section */}
-      <section id="what-we-dont-do" className="section">
-        <div className="sectionContainer">
-          <div className="card">
-            <div className="sectionHeader">
-              {/* <div className="iconContainer">
-                <X className="w-6 h-6 text-yellow-600" />
-              </div> */}
-              <h2 className="sectionTitle">What We Don&apos;t Do</h2>
+      {/* What We Don't Do */}
+      <section id="what-we-dont-do" className="py-4 px-4 md:py-8 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="global-card p-5 sm:p-8 lg:p-12">
+            <div className="flex items-center gap-4 mb-6">
+              <h2 className="global-section-title">Operational Boundaries: What We Don&apos;t Do</h2>
             </div>
-            <div className="sectionContent">
+            <div className="global-body-lg space-y-4">
               <p>
-                ECH Institute does not make protocol decisions, control Ethereum development, or act as a central authority. We are a neutral coordination body that supports the decentralized decision-making processes of the Ethereum community.
+                <strong>No Protocol Authority:</strong> We do not make protocol decisions or control Ethereum development; authority remains with the broader community of developers and researchers.
               </p>
               <p>
-                We do not endorse specific projects, tokens, or commercial entities. Our focus is solely on supporting Ethereum&apos;s protocol governance and coordination as a public good.
+                <strong>Neutral Positioning:</strong> We do not act as a central authority or endorse specific commercial projects, tokens, or entities.
               </p>
               <p>
-                We do not control or own any part of the Ethereum protocol. We facilitate coordination and communication, but all protocol decisions remain in the hands of the broader Ethereum community, including core developers, researchers, and stakeholders.
+                <strong>Non-Ownership:</strong> We facilitate coordination but do not own or control any part of the Ethereum protocol.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-
-
-      {/* Institutional Evolution & Continuity Section */}
-      <section id="evolution" className="section">
-        <div className="sectionContainer">
-          <div className="card">
-            <div className="sectionHeader">
-              {/* <div className="iconContainer">
-                <Building2 className="w-6 h-6 text-yellow-600" />
-              </div> */}
-              <h2 className="sectionTitle">Institutional Evolution & Continuity</h2>
+      {/* Evolution & Timeline */}
+      <section id="evolution" className="py-4 px-4 md:py-8 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="global-card p-5 sm:p-8 lg:p-12">
+            <div className="flex items-center gap-4 mb-6">
+              <h2 className="global-section-title">Institutional Evolution & Continuity (2024–2026)</h2>
             </div>
-            
-            {/* Timeline */}
-            <div className="timeline">
-              {/* Timeline line */}
-              <div className="timelineLine"></div>
-              
-              <div className="timelineItems">
-                {/* Today (2026) */}
-                <div className="timelineItem">
-                  <div className="timelineIcon">
-                    <Target className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="timelineContent">
-                    <div className="timelineHeader">
-                      <h3 className="timelineTitle">Today (2026)</h3>
-                      <span className="badge badgeBlue">Active & Operational</span>
+            <div className="relative mt-8">
+              <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-400 to-amber-500" />
+              <div className="flex flex-col gap-8 md:gap-12">
+                {[
+                  { year: 'Today (2026)', badge: 'Active & Operational', badgeCls: 'bg-blue-100 text-blue-800', desc: 'The Institute serves as the primary coordination and education layer for the network, managing the roadmap for the Glamsterdam and Hegotá upgrades.', milestone: 'Mission: Combining technical coordination with a heavy emphasis on community education and onboarding so the network\'s evolution remains transparent and inclusive.', icon: Target },
+                  { year: '2025', badge: 'Institutional Maturity', badgeCls: 'bg-amber-100 text-amber-800', desc: 'Establishment of a formalized board and governance structure, including the addition of veteran contributors like Hudson Jameson to the Board of Directors.', milestone: 'Key Focus: Scaling protocol governance and enhancing transparency in decision-making for Ethereum\'s Layer 1.', icon: Building2 },
+                  { year: '2024', badge: '501(c)(3) Registration', badgeCls: 'bg-green-100 text-green-800', desc: 'The official legal birth of ECH Institute as a registered 501(c)(3) charitable organization on July 11, 2024. This established a neutral legal foundation independent of private corporate interests.', milestone: 'The organization shifted all operations to the structured, institutional framework of the ECH Institute.', icon: CheckCircle2 },
+                ].map((item) => (
+                  <div key={item.year} className="global-card relative flex flex-col md:flex-row md:items-start gap-4">
+                    <div className="flex w-12 h-12 md:w-16 md:h-16 rounded-full items-center justify-center shrink-0 border-4 border-amber-200 shadow-md z-10 bg-amber-500">
+                      <item.icon className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0" style={{ color: '#ffffff' }} strokeWidth={2.5} />
                     </div>
-                    <p className="timelineDescription">
-                      The ECH Institute serves as the primary decentralized project management and coordination layer for the Ethereum network. It is currently responsible for managing the technical roadmap for upcoming network upgrades, facilitating the All Core Devs (ACD) meetings, and expanding the PEEPanEIP educational platform.
-                    </p>
-                    <div className="timelineMilestone">
-                      <p>
-                        <strong>Mission:</strong> Ensuring Ethereum remains a transparent, decentralized, and accessible global public infrastructure.
-                      </p>
+                    <div className="flex-1 md:pt-2">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <h3 className="global-section-title">{item.year}</h3>
+                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${item.badgeCls}`}>{item.badge}</span>
+                      </div>
+                      <p className="global-body mb-4">{item.desc}</p>
+                      <div className="bg-gray-50 p-4 global-rounded border-l-4 global-border-yellow">
+                        <p className="global-body text-sm">{item.milestone}</p>
+                      </div>
                     </div>
                   </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-10 pt-8 border-t border-gray-200">
+              <h3 className="global-section-title mb-4">2026 Technical Roadmap</h3>
+              <p className="global-body mb-6">A defining characteristic of 2026 is the shift toward a biannual upgrade schedule—moving Ethereum toward predictable engineering delivery. ECH Institute provides the coordination framework for the year&apos;s primary milestones:</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="global-card p-6">
+                  <h4 className="global-card-title mb-2">Glamsterdam (H1 2026)</h4>
+                  <p className="global-body text-sm">Focus on scaling and user experience. Includes Block-level Access Lists (EIP-7928), transitioning transaction execution to a parallel model for greater efficiency.</p>
                 </div>
-
-                {/* 2025 - Full Institutional Maturity */}
-                <div className="timelineItem">
-                  <div className="timelineIcon">
-                    <Building2 className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="timelineContent">
-                    <div className="timelineHeader">
-                      <h3 className="timelineTitle">2025</h3>
-                      <span className="badge badgeYellow">Full Institutional Maturity</span>
-                    </div>
-                    <p className="timelineDescription">
-                      Following its legal registration, the ECH Institute established a formalized board and governance structure. This allowed the organization to manage larger ecosystem grants and professionalize the support provided to Ethereum Improvement Proposal (EIP) authors and core developers.
-                    </p>
-                    <div className="timelineMilestone">
-                      <p>
-                        <strong>Key Focus:</strong> Scaling protocol governance and enhancing transparency in the decision-making processes for Ethereum&apos;s Layer 1.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 2024 - 501(c)(3) Registration */}
-                <div className="timelineItem">
-                  <div className="timelineIcon">
-                    <CheckCircle2 className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="timelineContent">
-                    <div className="timelineHeader">
-                      <h3 className="timelineTitle">2024</h3>
-                      <span className="badge badgeGreen">501(c)(3) Nonprofit Registration</span>
-                    </div>
-                    <p className="timelineDescription">
-                      This year marked the official legal birth of the ECH Institute as a registered 501(c)(3) tax-exempt charitable organization.
-                    </p>
-                    <div className="timelineMilestone">
-                      <p>
-                        <strong>Significance:</strong> Moving to a registered nonprofit status was essential to establish the Institute as a neutral public good. This legal foundation ensures that the organization operates for the benefit of the entire community, independent of private corporate interests.
-                    </p>
-                      <p style={{ marginTop: '12px' }}>
-                        <strong>Transition:</strong> The organization shifted all operations to the structured, institutional framework of the ECH Institute.
-                      </p>
-                    </div>
-                  </div>
+                <div className="global-card p-6">
+                  <h4 className="global-card-title mb-2">Hegotá (H2 2026)</h4>
+                  <p className="global-body text-sm">Centers on hardening the L1 and managing state growth—long-term sustainability and censorship resistance, with systems like Forward-inclusion Lists (FOCIL) for transaction censorship defense.</p>
                 </div>
               </div>
             </div>
@@ -251,72 +186,184 @@ export default function AboutPage() {
         </div>
       </section>
 
-      
-      {/* Members Section - MembersSlider */}
-      <section id="members" className="section membersSection">
-        <div className="sectionContainer">
-          <div className="membersSliderWrapper">
-            <MembersSlider />
+      {/* People */}
+      <section id="people" className="py-4 px-4 md:py-8 md:px-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-6">
+            <h2 className="global-section-title">People Behind ECH Institute</h2>
           </div>
-        </div>
-      </section>
-
-
-      
-      {/* People Behind ECH Institute Section */}
-      <section id="people" className="section sectionAlt">
-        <div className="sectionContainer">
-          <div className="sectionHeader">
-            {/* <div className="iconContainer">
-              <Heart className="w-6 h-6 text-yellow-600" />
-            </div> */}
-            <h2 className="sectionTitle">People Behind ECH Institute</h2>
+          <div className="global-body-lg space-y-4 mb-8">
+            <p>ECH Institute is powered by a diverse group of dedicated individuals who contribute their time, expertise, and passion to support the Ethereum ecosystem. Our team includes:</p>
           </div>
-          <div className="sectionContent">
-            <p>
-              ECH Institute is powered by a diverse group of dedicated individuals who contribute their time, expertise, and passion to support the Ethereum ecosystem. Our team includes:
-            </p>
-            <div className="grid">
-              <div className="roleCard">
-                <Sparkles className="w-8 h-8 mb-3" />
-                <h3 className="font-semibold text-xl mb-2">Core Contributors</h3>
-                <p>Long-term contributors who coordinate major initiatives, manage EIP processes, and facilitate community consensus.</p>
-              </div>
-              <div className="roleCard">
-                <Users className="w-8 h-8 mb-3" />
-                <h3 className="font-semibold text-xl mb-2">Community Coordinators</h3>
-                <p>Individuals who help organize meetings, document discussions, and ensure information flows effectively throughout the community.</p>
-              </div>
-              <div className="roleCard">
-                <Target className="w-8 h-8 mb-3" />
-                <h3 className="font-semibold text-xl mb-2">Technical Writers</h3>
-                <p>Team members who create documentation, write blog posts, and translate complex technical information into accessible content.</p>
-              </div>
-              <div className="roleCard">
-                <Heart className="w-8 h-8 mb-3" />
-                <h3 className="font-semibold text-xl mb-2">Outreach Specialists</h3>
-                <p>Contributors who engage with the broader Ethereum community, organize events, and facilitate community participation.</p>
-              </div>
+          {/* Mobile: one card carousel with nav */}
+          <div className="md:hidden">
+            <div className="global-card p-6 sm:p-8 text-center flex flex-col items-center min-h-[200px]">
+              {(() => {
+                const item = PEOPLE_CARDS[peopleCarouselIndex];
+                const Icon = item.icon;
+                return (
+                  <>
+                    <Icon className="global-icon-yellow w-8 h-8 mb-3" />
+                    <h3 className="global-card-title mb-2">{item.title}</h3>
+                    <p className="global-body">{item.desc}</p>
+                  </>
+                );
+              })()}
             </div>
-            <div className="ctaBox">
-              <p>
-                <strong>Want to help the ECH Institute?</strong>
-              </p>
-              <p>
-                There&apos;s plenty of opportunities to weigh in the ECH Institute, help with documenting meeting notes, writing blogs, make community outreach, participate in process improvements, and even earn bounty.
-              </p>
-              <div className="ctaButtons">
-                <Link href="https://discord.com/invite/Nz6rtfJ8Cu" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#3c3c3c] text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-[#2a2a2a]">
-                    Join our Discord
-                  </Button>
-                </Link>
-                <Link href="https://www.ethcatherders.com/join" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#3c3c3c] text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-[#2a2a2a]">
-                    Join ECH
-                  </Button>
-                </Link>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <button
+                type="button"
+                onClick={() => setPeopleCarouselIndex((i) => (i === 0 ? PEOPLE_CARDS.length - 1 : i - 1))}
+                className="p-2 rounded-full border-2 border-gray-200 hover:border-amber-400 hover:bg-amber-50 transition-colors"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-700" />
+              </button>
+              <div className="flex gap-2">
+                {PEOPLE_CARDS.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setPeopleCarouselIndex(i)}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                      i === peopleCarouselIndex ? 'bg-amber-500 scale-125' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
               </div>
+              <button
+                type="button"
+                onClick={() => setPeopleCarouselIndex((i) => (i === PEOPLE_CARDS.length - 1 ? 0 : i + 1))}
+                className="p-2 rounded-full border-2 border-gray-200 hover:border-amber-400 hover:bg-amber-50 transition-colors"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-700" />
+              </button>
+            </div>
+          </div>
+          {/* Desktop: grid */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {PEOPLE_CARDS.map((item) => (
+              <div key={item.title} className="global-card p-8 text-center flex flex-col items-center">
+                <item.icon className="global-icon-yellow w-8 h-8 mb-3" />
+                <h3 className="global-card-title mb-2">{item.title}</h3>
+                <p className="global-body">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* ECH Institute Board — Members and Officers */}
+          <div className="mt-12">
+            <h3 className="global-section-title mb-6">ECH Institute Board</h3>
+
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold text-gray-800 mb-4">Members of ECH Institute Board</h4>
+              <p className="global-body text-gray-600 mb-4">Click a member to see their background.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {BOARD_MEMBERS.map((member) => {
+                  const isSelected = selectedMemberId === member.id;
+                  return (
+                    <button
+                      key={member.id}
+                      type="button"
+                      onClick={() => setSelectedMemberId(isSelected ? null : member.id)}
+                      className={`w-full rounded-[12px] border-2 bg-white transition-all duration-200 text-left p-4 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-card)] ${
+                        isSelected
+                          ? '[border-color:var(--card-border-hover)] bg-amber-50/50 shadow-[var(--shadow-hover)]'
+                          : ''
+                      }`}
+                    >
+                      <span className="flex items-center gap-3 min-w-0">
+                        {member.image ? (
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            width={56}
+                            height={56}
+                            className="w-14 h-14 rounded-full object-cover shrink-0 border-2 [border-color:var(--card-border)]"
+                          />
+                        ) : (
+                          <span className="w-14 h-14 rounded-full bg-amber-200 flex items-center justify-center text-amber-800 font-bold text-base shrink-0">
+                            {member.name.split(' ').map((n) => n[0]).join('').slice(0, 2)}
+                          </span>
+                        )}
+                        <span className="min-w-0">
+                          <span className="block font-semibold text-gray-900 truncate">{member.name}</span>
+                          <span className="block text-sm text-amber-700 truncate">{member.position}</span>
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+              {selectedMemberId && (() => {
+                const member = BOARD_MEMBERS.find((m) => m.id === selectedMemberId);
+                if (!member) return null;
+                const initials = member.name.split(' ').map((n) => n[0]).join('').slice(0, 2);
+                return (
+                  <div
+                    className="mt-6 p-0 overflow-hidden rounded-[12px] border-2 bg-white shadow-[var(--shadow-card)] [border-color:var(--card-border)]"
+                    aria-live="polite"
+                  >
+                    <div className="flex flex-col sm:flex-row">
+                      <div className="sm:w-48 md:w-56 shrink-0 flex items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100 p-8">
+                        {member.image ? (
+                          <Image src={member.image} alt={member.name} width={160} height={160} className="rounded-full object-cover w-32 h-32 md:w-40 md:h-40" />
+                        ) : (
+                          <span className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-amber-200 flex items-center justify-center text-amber-800 font-bold text-3xl md:text-4xl">
+                            {initials}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+                        <h4 className="global-section-title mb-1">{member.name}</h4>
+                        <p className="text-amber-600 font-semibold mb-4">{member.position}</p>
+                        <p className="global-body text-gray-600">{member.bio}</p>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedMemberId(null)}
+                          className="mt-4 text-sm font-medium text-amber-600 hover:text-amber-700"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+
+          {/* Multimedia and Educational Series */}
+          <div className="mt-12">
+            <h3 className="global-section-title mb-4">Multimedia and Educational Series</h3>
+            <p className="global-body-lg mb-6">The Institute&apos;s educational mission is delivered through specialized series:</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Link href="/peepaneip" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+                <h4 className="global-card-title mb-2">PEEPanEIP</h4>
+                <p className="global-body text-sm">Deep-dive interviews with EIP authors to explain technical changes intended for network upgrades.</p>
+              </Link>
+              <Link href="/podcast/fusaka-files" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+                <h4 className="global-card-title mb-2">The Fusaka Files</h4>
+                <p className="global-body text-sm">A limited series documenting the technical transition toward the Fusaka upgrade and its scaling implications.</p>
+              </Link>
+              <Link href="/podcast/epd" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+                <h4 className="global-card-title mb-2">Ecosystem Project Demo (EPD)</h4>
+                <p className="global-body text-sm">A platform for developers to showcase decentralized tools, public goods, and infrastructure.</p>
+              </Link>
+              <Link href="/podcast/wiep" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+                <h4 className="global-card-title mb-2">Women in Ethereum Protocol (WiEP)</h4>
+                <p className="global-body text-sm">Study groups and community support for women interested in contributing to Ethereum&apos;s core protocol. Peer support, mentorship, and structured learning.</p>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-12 p-8 global-card global-border-yellow text-center bg-gradient-to-br from-white to-amber-50">
+            <p className="global-body-lg mb-4"><strong>Participation and Ecosystem Contribution</strong></p>
+            <p className="global-body-lg mb-6">ECH Institute has established itself as the social and organizational &quot;operating system&quot; for Ethereum. By combining technical coordination with a strong emphasis on community education and onboarding, the Institute ensures the network&apos;s evolution remains transparent and inclusive. You can contribute through documentation, content creation, community outreach, and incentivized bounties.</p>
+            <div className="flex justify-center">
+              <Link href="https://discord.com/events/916516304972824576/1389240560866426944" target="_blank" rel="noopener noreferrer" className="global-btn global-btn-primary-white">Join our Discord</Link>
             </div>
           </div>
         </div>

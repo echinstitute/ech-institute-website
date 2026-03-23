@@ -1,5 +1,3 @@
-import './donate.css';
-
 export const metadata = {
   title: 'Donate - ECH Institute',
 };

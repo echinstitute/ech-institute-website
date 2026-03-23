@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import './home-page-styles.css';
-// import MembersSlider from '@/components/MembersSlider';
 import CardSlider from '@/components/features/CardSlider';
 import { Settings, ShieldCheck, Clock } from 'lucide-react';
 
@@ -62,15 +60,15 @@ export default function Home() {
           <p className="hero-subtitle animate-fade-up delay-2">
             ECH Institute is uniquely positioned at the intersection of People, Process and Protocol. It operates to support Ethereum&apos;s governance participation, and protocol‑coordination infrastructure. As a neutral public good, it ensures the protocol remains accessible and decentralized as it scales.
           </p>
-          <div className="hero-buttons animate-fade-up delay-3">
+          {/* <div className="hero-buttons animate-fade-up delay-3">
             <a href="#mission" className="btn btn-primary" style={{ color: 'white' }}>Learn More</a>
             <a href="#involved" className="btn btn-outline">Get Involved</a>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="section" id="mission">
+      {/* <section className="section" id="mission">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="section-header">
             <h2 className="section-title text-center">Our Mission</h2>
@@ -79,7 +77,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Role Section */}
       <section id="role" className="role-section">
@@ -315,7 +313,7 @@ export default function Home() {
             </div>
 
             <p className="why-footer-alt">
-              ECH Institute exists to make that possible — quietly, credibly, and sustainably!
+              ECH Institute exists to make that possible quietly, credibly, and sustainably!
             </p>
           </div>
         </div>
@@ -440,22 +438,9 @@ export default function Home() {
       </section>
 
       {/* Card Slider Section */}
-      <section className="card-slider-section">
+      {/* <section className="card-slider-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <CardSlider />
-        </div>
-      </section>
-
-      {/* Members Section */}
-      {/* <section className="section members-section" id="members">
-        <div className="container">
-          <div className="section-header animate-on-scroll text-center">
-            <h2 className="section-title">Our Members</h2>
-            <p className="section-subtitle">
-              Meet the dedicated team members who drive ECH Institute&apos;s mission forward.
-            </p>
-          </div>
-          <MembersSlider />
         </div>
       </section> */}
     </div>

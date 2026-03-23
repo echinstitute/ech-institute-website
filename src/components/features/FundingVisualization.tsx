@@ -1,38 +1,29 @@
 "use client";
 
 import { useState } from 'react';
-import { TrendingUp, DollarSign, Calendar, Building2 } from 'lucide-react';
+import { Heart, Award, Building2, TrendingUp } from 'lucide-react';
 
-interface FundingSource {
-  provider: string;
-  date: string;
-  amount: string;
-  focus: string;
-  category: 'institutional' | 'community' | 'staking';
-}
-
-const fundingData: FundingSource[] = [
+const fundingPillars = [
   {
-    provider: 'Optimism (RPGF)',
-    date: 'Round 3 (2024)',
-    amount: '124,000 OP',
-    focus: 'Protocol process improvement and multi-chain coordination',
-    category: 'institutional'
+    icon: Heart,
+    title: "Donations",
+    description: "Individual and organizational gifts fuel our education, coordination, and community work.",
   },
   {
-    provider: 'ENS Public Goods',
-    date: 'Q2 2023',
-    amount: '50,000 USDC',
-    focus: 'Foundational grant for ENS/EIP documentation and standards',
-    category: 'institutional'
+    icon: Award,
+    title: "Grants",
+    description: "Targeted support from the Ethereum Foundation and others for specific technical initiatives.",
   },
   {
-    provider: 'Ethereum Foundation',
-    date: 'Q2 2021',
-    amount: '$90,000',
-    focus: '6-month operational support for London upgrade transition',
-    category: 'institutional'
-  }
+    icon: Building2,
+    title: "Stewardship Programs",
+    description: "Long-term partnerships with DAOs and foundations for core protocol maintenance.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Staking Rewards",
+    description: "Octant (Golem Foundation) distributes rewards from 100K staked ETH to public goods.",
+  },
 ];
 
 const octantData = [
@@ -94,9 +85,34 @@ export function FundingVisualization() {
     ? pieSegments[hoveredSegment] 
     : null;
   return (
-    <div className="space-y-8 md:space-y-10 lg:space-y-12">
-      {/* Institutional Grants Section */}
-      <div>
+    <div className="mx-auto max-w-6xl space-y-6 md:space-y-8 lg:space-y-10">
+      <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+        {fundingPillars.map((pillar, index) => {
+          const Icon = pillar.icon;
+          return (
+            <article
+              key={index}
+              className="group flex min-w-0 flex-col rounded-[12px] border-2 bg-white p-4 transition-all duration-200 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-hover)] sm:p-5"
+            >
+              <div className="mb-3 flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-100 transition-colors group-hover:bg-gray-200/80">
+                  <Icon className="global-icon-yellow h-4 w-4 sm:h-5 sm:w-5" aria-hidden />
+                </div>
+                <h3 className="global-body text-base font-semibold leading-snug text-zinc-900 sm:text-lg">
+                  {pillar.title}
+                </h3>
+              </div>
+              <p className="global-body mt-auto text-gray-600">{pillar.description}</p>
+            </article>
+          );
+        })}
+      </div>
+
+      {/* Divider before Octant detail */}
+      <div className="border-t-2 border-gray-200/80 pt-6 md:pt-8" role="separator" aria-hidden />
+
+      {/* Institutional Grants Section - commented out */}
+      {/* <div>
         <h3 className="text-xl md:text-2xl font-antonio font-semibold mb-4 md:mb-6 flex items-center gap-2">
           <Building2 className="w-5 h-5 md:w-6 md:h-6 text-yellow-600" />
           Institutional Stewardship & DAO Grants
@@ -129,31 +145,35 @@ export function FundingVisualization() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
-      {/* Octant Staking Rewards Section */}
-      <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 md:p-8">
-        <div className="mb-6 md:mb-8">
-          <h3 className="text-2xl md:text-3xl font-antonio font-bold mb-3 md:mb-4 flex items-center gap-2 md:gap-3 flex-wrap">
-            <div className="p-2 bg-gray-100 rounded-lg">
-              <TrendingUp className="w-5 h-5 md:w-7 md:h-7 text-yellow-600" />
-            </div>
-            <span className="text-xl md:text-3xl">Octant Staking Rewards (Golem Foundation)</span>
+      {/* Octant — detailed breakdown */}
+      <div className="space-y-5 md:space-y-6">
+        <div>
+          <h3 className="global-card-title mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-100 sm:h-10 sm:w-10">
+              <TrendingUp className="global-icon-yellow h-4 w-4 sm:h-5 sm:w-5" aria-hidden />
+            </span>
+            <span className="text-balance leading-snug">
+              Octant staking rewards (Golem Foundation)
+            </span>
           </h3>
-          <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+          <p className="global-body-lg max-w-3xl">
             Octant provides funding in 90-day &quot;epochs&quot; derived from rewards on 100,000 staked ETH. ECH has been a consistent participant since the program&apos;s inception.
           </p>
         </div>
 
-        <div className="mb-6 md:mb-8">
-          <h4 className="text-lg md:text-xl font-antonio font-semibold mb-4 md:mb-5 text-gray-800">Audited Octant Funding History (Starting from Epoch 4)</h4>
-        </div>
+        <h4 className="global-body text-base font-semibold text-zinc-900 sm:text-lg">
+          Audited Octant funding history (from Epoch 4)
+        </h4>
 
         {/* Pie Chart and Info Card Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2">
           {/* Pie Chart */}
-          <div className="bg-gray-50 border-2 border-gray-200 rounded-xl p-4 md:p-5 flex flex-col items-center">
-            <h5 className="text-lg md:text-xl font-antonio font-semibold mb-3 text-gray-900">Funding Distribution</h5>
+          <div className="flex flex-col items-center rounded-[12px] border-2 bg-gray-50/90 p-4 md:p-5 [border-color:var(--card-border)]">
+            <h5 className="global-body mb-3 text-base font-semibold text-zinc-900 md:text-lg">
+              Funding distribution
+            </h5>
             <div className="relative w-[200px] h-[200px] md:w-[220px] md:h-[220px] mx-auto flex-shrink-0">
               <svg width="240" height="240" viewBox="0 0 240 240" className="transform -rotate-90 w-full h-full">
                 {pieSegments.map((segment, index) => (
@@ -182,12 +202,12 @@ export function FundingVisualization() {
             </div>
             
             {/* Legend */}
-            <div className="mt-3 grid grid-cols-2 gap-2 w-full">
+            <div className="mt-3 grid w-full grid-cols-2 gap-2">
               {pieSegments.map((segment, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-2 text-sm md:text-base p-1.5 md:p-2 rounded-lg cursor-pointer transition-colors ${
-                    hoveredSegment === index ? 'bg-gray-200' : ''
+                  className={`flex cursor-pointer items-center gap-2 rounded-lg p-1.5 text-sm transition-colors md:p-2 md:text-base ${
+                    hoveredSegment === index ? "bg-gray-100" : ""
                   }`}
                   onMouseEnter={() => setHoveredSegment(index)}
                 >
@@ -202,34 +222,35 @@ export function FundingVisualization() {
           </div>
 
           {/* Info Card - Shows selected epoch details */}
-          <div className="bg-gray-50 border-2 border-gray-200 rounded-xl p-6 md:p-8 flex flex-col justify-center">
+          <div className="flex flex-col justify-center rounded-[12px] border-2 bg-gray-50/90 p-6 md:p-8 [border-color:var(--card-border)]">
             {currentSegment ? (
               <div className="space-y-4 md:space-y-6">
                 <div>
-                  <h5 className="text-2xl md:text-3xl font-antonio font-bold text-gray-900 mb-2 md:mb-3">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-zinc-900 md:mb-3 md:text-3xl">
                     {currentSegment.epoch}
                   </h5>
-                  <p className="text-sm md:text-base font-medium text-gray-600 mb-4">
+                  <p className="mb-4 text-sm font-medium text-gray-600 md:text-base">
                     {currentSegment.period}
                   </p>
                 </div>
-                <div className="bg-white rounded-lg p-5 md:p-6 border-2 border-gray-200">
-                  <p className="text-3xl md:text-4xl font-bold text-yellow-600 mb-3">
+                <div className="rounded-[12px] border-2 bg-white p-5 md:p-6 [border-color:var(--card-border)]">
+                  <p className="mb-3 text-3xl font-bold text-amber-600 md:text-4xl">
                     {currentSegment.amount} ETH
                   </p>
-                  <p className="text-sm md:text-base text-gray-700 font-medium">
-                    <span className="text-gray-900 font-semibold">Percentage:</span> {currentSegment.percentage.toFixed(2)}%
+                  <p className="global-body text-sm font-medium text-gray-700 md:text-base">
+                    <span className="font-semibold text-zinc-900">Percentage:</span>{" "}
+                    {currentSegment.percentage.toFixed(2)}%
                   </p>
                 </div>
-                <div className="pt-4 border-t-2 border-gray-200">
-                  <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                    <span className="font-semibold text-gray-900">Impact:</span> {currentSegment.impact}
+                <div className="border-t-2 pt-4 [border-color:var(--card-border)]">
+                  <p className="global-body text-sm leading-relaxed text-gray-700 md:text-base">
+                    <span className="font-semibold text-zinc-900">Impact:</span> {currentSegment.impact}
                   </p>
                 </div>
               </div>
             ) : (
-              <div className="flex items-center justify-center h-full">
-                <p className="text-gray-500 text-center">Select an epoch to view details</p>
+              <div className="flex h-full items-center justify-center">
+                <p className="text-center text-gray-500">Select an epoch to view details</p>
               </div>
             )}
           </div>
@@ -237,7 +258,7 @@ export function FundingVisualization() {
       </div>
 
       {/* Community Support Section */}
-      <div className="bg-white border-2 border-gray-200 rounded-xl p-6 md:p-8">
+      {/* <div className="bg-white border-2 border-gray-200 rounded-xl p-6 md:p-8">
         <h3 className="text-xl md:text-2xl font-antonio font-semibold mb-3 md:mb-4">Community Support (Gitcoin Grants)</h3>
         <p className="text-base md:text-lg mb-4 md:mb-6 leading-relaxed">
           ECH has utilized Quadratic Funding (QF) since 2019 to amplify individual community donations.
@@ -256,7 +277,7 @@ export function FundingVisualization() {
           <p>• <strong>GG24 (Oct 2025):</strong> Inaugural participation in &quot;Gitcoin 3.0&quot; utilizing Open Source Observer (OSO).</p>
           <p>• <strong>Specialized Technical Grants:</strong> Ethereum Foundation individual grants in 2021 for EIP automation bots.</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

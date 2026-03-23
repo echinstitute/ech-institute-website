@@ -27,10 +27,10 @@ const fundingPillars = [
 ];
 
 const octantData = [
-  { epoch: 'Epoch 10', period: 'Oct 2025 – Jan 2026', amount: 13.642, impact: 'Pectra upgrade coordination' },
-  { epoch: 'Epoch 6', period: 'Jan 2025 – Mar 2025', amount: 19.225, impact: 'Peak content production' },
-  { epoch: 'Epoch 5', period: 'Oct 2024 – Jan 2025', amount: 15.732, impact: 'Dencun spec coordination' },
-  { epoch: 'Epoch 4', period: 'Jul 2024 – Oct 2024', amount: 8.314, impact: 'EOF research support' }
+  { epoch: 'Epoch 10', period: 'Oct 2025 – Jan 2026', amount: 13.642, impact: 'Technical coordination for the Pectra upgrade and devnet-6 syncing.' },
+  { epoch: 'Epoch 6', period: 'Jan 2025 – Mar 2025', amount: 19.225, impact: 'Ecosystem Impact Milestone; peak production of technical content.' },
+  { epoch: 'Epoch 5', period: 'Oct 2024 – Jan 2025', amount: 15.732, impact: 'Shapella & Cancun testing support; Dencun spec coordination.' },
+  { epoch: 'Epoch 4', period: 'Jul 2024 – Oct 2024', amount: 8.314, impact: 'Critical support for EOF (EVM Object Format) research.' }
 ];
 
 const maxOctantAmount = Math.max(...octantData.map(d => d.amount));

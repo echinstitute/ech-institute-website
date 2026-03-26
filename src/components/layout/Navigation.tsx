@@ -18,10 +18,9 @@ import {
   Code,
   GraduationCap,
 } from 'lucide-react';
-// ThemeToggle commented out - not currently used
-// import { ThemeToggle } from './ThemeToggle';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
+import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
 
 // ==========================================
 // CUSTOMIZABLE MENU ITEMS
@@ -54,13 +53,13 @@ const menuItems: MenuConfig = {
     title: 'HOME',
     description: 'Back to home',
     icon: Home,
-    link: '/',
+    link: ROUTES.home,
   },
   about: {
     title: 'ABOUT',
     description: 'Learn about ECH Institute',
     icon: UserCircle,
-    link: '/about',
+    link: ROUTES.about,
   },
   community: {
     title: 'COMMUNITY',
@@ -72,37 +71,37 @@ const menuItems: MenuConfig = {
         title: 'PODCAST',
         description: 'Media hub & podcast series',
         icon: Mic,
-        link: '/podcast',
+        link: ROUTES.podcast,
         subItems: [
           {
             title: 'PODCAST',
             description: 'Media hub & coordination gateway',
             icon: Mic,
-            link: '/podcast',
+            link: ROUTES.podcast,
           },
           {
             title: 'PEEPanEIP',
             description: 'Protocol deep-dive EIP archive',
             icon: BookOpen,
-            link: '/podcast/peepaneip',
+            link: ROUTES.peepaneip,
           },
           {
             title: 'FUSAKA FILES',
             description: 'Strategic & enterprise scaling series',
             icon: Radio,
-            link: '/podcast/fusaka-files',
+            link: ROUTES.fusakaFiles,
           },
           {
             title: 'EPD',
             description: 'Ecosystem Project Demo hub',
             icon: Code,
-            link: '/podcast/epd',
+            link: ROUTES.epd,
           },
           {
             title: 'WiEP',
             description: 'Women in Ethereum Protocol study groups',
             icon: GraduationCap,
-            link: '/podcast/wiep',
+            link: ROUTES.wiep,
           },
         ],
       },
@@ -110,19 +109,19 @@ const menuItems: MenuConfig = {
         title: 'EVENTS',
         description: 'Upcoming events',
         icon: Calendar,
-        link: '/events',
+        link: ROUTES.events,
       },
       {
         title: 'BLOG',
         description: 'Latest blog posts',
         icon: FileText,
-        link: 'https://blog.echinstitute.org',
+        link: EXTERNAL_LINKS.blog,
       },
       {
         title: 'FIRST ANNUAL REPORT',
         description: 'ECH Institute first annual report',
         icon: FileText,
-        link: '/reports/First_Annual_Report_ECH_Institute_Inc.pdf',
+        link: EXTERNAL_LINKS.annualReport,
       },
     ],
   },
@@ -130,7 +129,7 @@ const menuItems: MenuConfig = {
     title: 'DONATE',
     description: 'Support our mission',
     icon: Heart,
-    link: '/donate',
+    link: ROUTES.donate,
   },
 };
 

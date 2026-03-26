@@ -1,19 +1,28 @@
 import type { NextConfig } from "next";
+// Central route config — all aliases are defined in src/config/routes.ts
+// @ts-ignore — runtime import of src/ file from config root
+import { PATH_ALIASES } from "./src/config/routes";
 
 const nextConfig: NextConfig = {
+  // ─────────────────────────────────────────────
+  // URL REWRITES  — short-path aliases
+  // Add new aliases in src/config/routes.ts → PATH_ALIASES.
+  // No changes needed here when adding new routes.
+  // ─────────────────────────────────────────────
   async rewrites() {
-    return [
-      { source: '/wiep', destination: '/podcast/wiep' },
-      { source: '/peepaneip', destination: '/podcast/peepaneip' },
-      { source: '/fusaka-files', destination: '/podcast/fusaka-files' },
-      { source: '/epd', destination: '/podcast/epd' },
-    ];
+    return PATH_ALIASES;
   },
-  // Explicitly use webpack instead of Turbopack
+
+  // ─────────────────────────────────────────────
+  // BUILD
+  // ─────────────────────────────────────────────
   experimental: {
     webpackBuildWorker: true,
   },
-  // Image optimization settings
+
+  // ─────────────────────────────────────────────
+  // IMAGE OPTIMIZATION
+  // ─────────────────────────────────────────────
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -31,10 +40,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Disable Turbopack to prevent SST file errors
-  // Use --webpack flag in build command instead
+
+  // ─────────────────────────────────────────────
+  // WEBPACK OVERRIDES
+  // Forces webpack instead of Turbopack (avoids SST/MetaMask SDK file errors)
+  // ─────────────────────────────────────────────
   webpack: (config, { isServer, webpack }) => {
-    // Fix for webpack runtime errors
+    // Browser build: stub Node-only modules
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -43,20 +55,20 @@ const nextConfig: NextConfig = {
         tls: false,
       };
     }
-    
-    // Ignore React Native modules in browser builds (MetaMask SDK issue)
+
+    // Suppress MetaMask SDK's React Native async-storage import
     config.plugins.push(
       new webpack.IgnorePlugin({
         resourceRegExp: /^@react-native-async-storage\/async-storage$/,
       })
     );
-    
-    // Ignore specific modules that cause issues
+
+    // Silence MetaMask SDK resolve warnings
     config.ignoreWarnings = [
       { module: /node_modules\/@metamask\/sdk/ },
       { message: /Can't resolve '@react-native-async-storage\/async-storage'/ },
     ];
-    
+
     return config;
   },
 };

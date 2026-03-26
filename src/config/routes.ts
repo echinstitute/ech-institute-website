@@ -1,0 +1,84 @@
+/**
+ * ECH Institute — Centralized Route Configuration
+ * ================================================
+ * Single source of truth for ALL application routes and path aliases.
+ * Similar to Angular's RouterModule — import from here everywhere.
+ *
+ * Usage:
+ *   import { ROUTES, ALIASES } from '@/config/routes';
+ *   <Link href={ROUTES.about}>About</Link>
+ *
+ * To add a new page:
+ *   1. Add it to APP_ROUTES (canonical path)
+ *   2. If you want a short-path alias, add to PATH_ALIASES
+ *   3. next.config.ts reads PATH_ALIASES automatically — no other changes needed
+ */
+
+// ─────────────────────────────────────────────
+// CANONICAL ROUTES  (the real URL for each page)
+// ─────────────────────────────────────────────
+export const ROUTES = {
+  home:         '/',
+  about:        '/about',
+  events:       '/events',
+  donate:       '/donate',
+
+  // Community / media hub
+  podcast:      '/podcast',
+  peepaneip:    '/podcast/peepaneip',
+  fusakaFiles:  '/podcast/fusaka-files',
+  epd:          '/podcast/epd',
+  wiep:         '/podcast/wiep',
+} as const;
+
+export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES];
+
+// ─────────────────────────────────────────────
+// SHORT-PATH ALIASES  (convenience URLs → canonical)
+// ─────────────────────────────────────────────
+// These are injected into next.config.ts as rewrites().
+// Add an entry here to make /short-path serve /canonical-path content
+// without a redirect (URL stays as the short version in the browser).
+export const PATH_ALIASES: Array<{ source: string; destination: string }> = [
+  { source: '/peepaneip',    destination: ROUTES.peepaneip   },
+  { source: '/fusaka-files', destination: ROUTES.fusakaFiles },
+  { source: '/epd',          destination: ROUTES.epd         },
+  { source: '/wiep',         destination: ROUTES.wiep        },
+];
+
+// ─────────────────────────────────────────────
+// EXTERNAL LINKS  (third-party URLs used across the site)
+// ─────────────────────────────────────────────
+export const EXTERNAL_LINKS = {
+  blog:          'https://blog.echinstitute.org',
+  annualReport:  '/reports/First_Annual_Report_ECH_Institute_Inc.pdf',
+  discord:       'https://discord.com/events/916516304972824576/1389240560866426944',
+
+  // Social
+  twitter:       'https://x.com/ECHinstitute',
+  github:        'https://github.com/echinstitute',
+  youtube:       'https://www.youtube.com/@echinstitute',
+  linkedin:      'https://www.linkedin.com/company/ethereum-cat-herders/',
+  reddit:        'https://www.reddit.com/r/EthereumCatHerders/',
+  warpcast:      'https://farcaster.xyz/ethcatherders',
+
+  // Podcast platforms
+  spotify:       'https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA',
+  applePodcasts: 'https://podcasts.apple.com/us/podcast/ech-institute-podcast/id1620565121',
+  pocketCasts:   'https://pocketcasts.com/podcast/ech-institute-podcast/07681030-5a48-013a-d70a-0acc26574db2',
+  castbox:       'https://castbox.fm/channel/7004180?country=gb',
+
+  // Contact
+  email:         'mailto:team@ethcatherders.com',
+} as const;
+
+// ─────────────────────────────────────────────
+// SITE METADATA  (used by SEO, sitemap, etc.)
+// ─────────────────────────────────────────────
+export const SITE = {
+  url:         'https://www.echinstitute.org',
+  name:        'ECH Institute',
+  email:       'team@ethcatherders.com',
+  twitterHandle: '@ECHinstitute',
+  foundingDate:  '2024-07-11',
+} as const;

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Heart, Wallet } from "lucide-react";
+import { EXTERNAL_LINKS } from "@/config/routes";
 import { FundingVisualization } from "@/components/features/FundingVisualization";
 import { EcosystemImpact } from "@/components/features/EcosystemImpact";
 
@@ -165,7 +166,7 @@ export default function DonatePage() {
             <p className="global-body text-gray-700">
               Questions:{" "}
               <a
-                href="mailto:team@ethcatherders.com"
+                href={EXTERNAL_LINKS.email}
                 className="font-semibold text-amber-800 underline-offset-2 hover:underline"
               >
                 team@ethcatherders.com

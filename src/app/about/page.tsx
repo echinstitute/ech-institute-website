@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
 import { Users, CheckCircle2, Building2, Target, Heart, Sparkles, Video, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const BOARD_MEMBERS = [
@@ -340,19 +341,19 @@ export default function AboutPage() {
             <h3 className="global-section-title mb-4">Multimedia and Educational Series</h3>
             <p className="global-body-lg mb-6">The Institute&apos;s educational mission is delivered through specialized series:</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Link href="/podcast/peepaneip" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+              <Link href={ROUTES.peepaneip} className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
                 <h4 className="global-card-title mb-2">PEEPanEIP</h4>
                 <p className="global-body text-sm">Deep-dive interviews with EIP authors to explain technical changes intended for network upgrades.</p>
               </Link>
-              <Link href="/podcast/fusaka-files" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+              <Link href={ROUTES.fusakaFiles} className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
                 <h4 className="global-card-title mb-2">The Fusaka Files</h4>
                 <p className="global-body text-sm">A limited series documenting the technical transition toward the Fusaka upgrade and its scaling implications.</p>
               </Link>
-              <Link href="/podcast/epd" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
-                <h4 className="global-card-title mb-2">Ecosystem Project Demo (EPD)</h4>
-                <p className="global-body text-sm">A platform for developers to showcase decentralized tools, public goods, and infrastructure.</p>
+              <Link href={ROUTES.epd} className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+                <h4 className="global-card-title mb-2">EPD</h4>
+                <p className="global-body text-sm">Ecosystem Project Demo showcasing public goods, infrastructure tools, and community initiatives.</p>
               </Link>
-              <Link href="/podcast/wiep" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+              <Link href={ROUTES.wiep} className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
                 <h4 className="global-card-title mb-2">Women in Ethereum Protocol (WiEP)</h4>
                 <p className="global-body text-sm">Study groups and community support for women interested in contributing to Ethereum&apos;s core protocol. Peer support, mentorship, and structured learning.</p>
               </Link>
@@ -362,8 +363,9 @@ export default function AboutPage() {
           <div className="mt-12 p-8 global-card global-border-yellow text-center bg-gradient-to-br from-white to-amber-50">
             <p className="global-body-lg mb-4"><strong>Participation and Ecosystem Contribution</strong></p>
             <p className="global-body-lg mb-6">ECH Institute has established itself as the social and organizational &quot;operating system&quot; for Ethereum. By combining technical coordination with a strong emphasis on community education and onboarding, the Institute ensures the network&apos;s evolution remains transparent and inclusive. You can contribute through documentation, content creation, community outreach, and incentivized bounties.</p>
-            <div className="flex justify-center">
-              <Link href="https://discord.com/events/916516304972824576/1389240560866426944" target="_blank" rel="noopener noreferrer" className="global-btn global-btn-primary-white">Join our Discord</Link>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="global-btn global-btn-primary-white">Join our Discord</Link>
+              <Link href={EXTERNAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="global-btn global-btn-outline-white">Follow on X</Link>
             </div>
           </div>
         </div>

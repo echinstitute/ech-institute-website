@@ -45,10 +45,8 @@ export default function Footer() {
   ];
 
   const footerLinks = [
-    // { name: 'Upgrades', href: '/upgrades' },
-    // { name: 'Podcast', href: '/podcast' },
     { name: 'About', href: '/about' },
-    { name: 'Blogs', href: '/blogs' },
+    { name: 'Podcast', href: '/podcast' },
     { name: 'Events', href: '/events' },
     { name: 'Donate', href: '/donate' },
   ];

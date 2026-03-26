@@ -66,7 +66,7 @@ const mediaPillars = [
     title: 'Ecosystem Project Demo (EPD)',
     blurb: 'Showcasing Web3 public goods and infrastructure. Open-sourced tools and developer experience.',
     episodes: 'Ongoing',
-    href: '/epd',
+    href: '/podcast/epd',
     icon: Code,
   },
   {

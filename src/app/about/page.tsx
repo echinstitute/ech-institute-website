@@ -340,7 +340,7 @@ export default function AboutPage() {
             <h3 className="global-section-title mb-4">Multimedia and Educational Series</h3>
             <p className="global-body-lg mb-6">The Institute&apos;s educational mission is delivered through specialized series:</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Link href="/peepaneip" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
+              <Link href="/podcast/peepaneip" className="global-card p-6 block no-underline text-inherit hover:border-amber-400 transition-colors">
                 <h4 className="global-card-title mb-2">PEEPanEIP</h4>
                 <p className="global-body text-sm">Deep-dive interviews with EIP authors to explain technical changes intended for network upgrades.</p>
               </Link>

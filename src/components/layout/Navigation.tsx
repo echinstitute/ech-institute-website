@@ -116,7 +116,7 @@ const menuItems: MenuConfig = {
         title: 'BLOG',
         description: 'Latest blog posts',
         icon: FileText,
-        link: 'https://blog.echinstitute.org.com/',
+        link: 'https://blog.echinstitute.org',
       },
       {
         title: 'FIRST ANNUAL REPORT',
@@ -434,7 +434,7 @@ export default function Navigation() {
                       onMouseEnter={() => handleMenuEnter(key)}
                       onMouseLeave={handleMenuLeave}
                       className={cn(
-                        'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center focus:outline-none focus-visible:outline-none focus:ring-0 no-underline whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
+                        'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center focus:outline-none focus-visible:outline-none focus:ring-0 no-underline whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
                         hoveredMenu === key
                           ? 'bg-gray-100 text-black'
                           : 'text-[#4c5663] hover:bg-gray-100 hover:text-black'
@@ -443,7 +443,7 @@ export default function Navigation() {
                     >
                       <span
                         className={cn(
-                          'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl transition-colors',
+                          'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
                           hoveredMenu === key
                             ? 'text-black'
                             : 'text-[#4c5663]'
@@ -475,7 +475,7 @@ export default function Navigation() {
                           setHoveredNavItem(null);
                         }}
                         className={cn(
-                          'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
+                          'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
                           'visited:text-[#4c5663] active:text-[#4c5663]',
                           hoveredNavItem === key
                             ? 'bg-gray-100 text-black visited:text-black active:text-black'
@@ -488,7 +488,7 @@ export default function Navigation() {
                       >
                         <span 
                           className={cn(
-                            'font-bold uppercase visited:text-[#4c5663] active:text-[#4c5663] text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl transition-colors',
+                            'font-bold uppercase visited:text-[#4c5663] active:text-[#4c5663] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
                             hoveredNavItem === key ? 'text-black visited:text-black active:text-black' : 'text-[#4c5663] hover:!text-black'
                           )}
                           style={{ 
@@ -538,7 +538,7 @@ export default function Navigation() {
                       data-nav-active={isActive ? 'true' : 'false'}
                       data-nav-hovered={isHovered ? 'true' : 'false'}
                       className={cn(
-                        'nav-link-item font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl',
+                        'nav-link-item font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
                         isActive && 'bg-gray-100 text-black',
                         !isActive && 'text-[#4c5663] hover:bg-gray-100 hover:text-black'
                       )}
@@ -549,7 +549,7 @@ export default function Navigation() {
                     >
                       <span 
                         className={cn(
-                          'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-2xl transition-colors',
+                          'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
                           shouldBeBlack ? 'text-black' : 'text-[#4c5663]'
                         )}
                         style={{ 

@@ -381,13 +381,13 @@
     background-color: white !important;
   }
   
-  /* Make all sections white background */
-  section {
-    background-color: white !important;
+  /* White background utility — apply explicitly where needed */
+  .section-white {
+    background-color: white;
   }
   
   /* Only cards have different background */
-  .card{
+  .card {
     background-color: var(--card-bg) !important;
   }
   
@@ -4532,9 +4532,8 @@ main .card-title,
 }
 
 /* ==========================================
-   Responsive
+   Role Section Styles
    ========================================== */
-/* Role Section Styles - Bootstrap Compatible */
 .role-section {
   padding: 60px 0 0 0;
   background-color: var(--section-bg-light);

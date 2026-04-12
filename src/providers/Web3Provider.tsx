@@ -61,6 +61,7 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (mounted && config && typeof window !== 'undefined') {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const configAny = config as any;
         if (configAny?._internal?.core?.relayer?.core?.events) {
           const events = configAny._internal.core.relayer.core.events;

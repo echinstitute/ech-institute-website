@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import {
-  Heart, Wallet, Shield, BookOpen, Globe, Users, Zap,
+  Heart, Wallet, Shield, BookOpen, Globe, Users,
   ArrowRight, CheckCircle2, ExternalLink, ChevronDown,
   TrendingUp, FileText, GitBranch, Award, Target,
   DollarSign, Gift, Building2, Star, Lock, Eye,

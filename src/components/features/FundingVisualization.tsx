@@ -33,7 +33,6 @@ const octantData = [
   { epoch: 'Epoch 4', period: 'Jul 2024 – Oct 2024', amount: 8.314, impact: 'Critical support for EOF (EVM Object Format) research.' }
 ];
 
-const maxOctantAmount = Math.max(...octantData.map(d => d.amount));
 const totalOctantAmount = octantData.reduce((sum, e) => sum + e.amount, 0);
 
 // Pie chart colors

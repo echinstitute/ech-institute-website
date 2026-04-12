@@ -13,34 +13,39 @@
   }
 }
 
-@layer components {
   /* ==========================================
      Global Section Components
      ========================================== */
   .global-section-tag {
-    @apply flex items-center gap-4 text-xs font-bold tracking-widest text-[#facc14] mb-4 uppercase;
+    @apply flex items-center gap-4 text-xs font-bold tracking-widest text-[#facc14] mb-4 uppercase inline-flex;
     font-family: var(--font-family-page-heading);
   }
   .global-section-tag .bg-black {
     @apply w-6 h-[1.5px] bg-black;
   }
+  
+  /* Normalized Typography Scale */
+  .global-hero-title {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tighter text-gray-900;
+    font-family: var(--font-family-page-heading);
+  }
   .global-section-title {
-    @apply text-4xl sm:text-5xl lg:text-5xl font-bold leading-tight text-gray-900;
+    @apply text-3xl sm:text-4xl lg:text-4xl font-extrabold leading-[1.15] tracking-tight text-gray-900;
     font-family: var(--font-family-page-heading);
   }
   .global-section-title em {
     @apply text-[#facc14] not-italic;
   }
   .global-section-subtitle {
-    @apply text-lg sm:text-xl text-gray-600 font-light mt-4;
+    @apply text-lg sm:text-xl text-gray-600 font-medium mt-4;
     font-family: var(--font-family-page-body);
   }
   .global-body-lg {
-    @apply text-lg sm:text-xl leading-relaxed text-gray-600 font-light;
+    @apply text-lg sm:text-xl leading-relaxed text-gray-700 font-normal;
     font-family: var(--font-family-page-body);
   }
   .global-body {
-    @apply text-gray-600 leading-relaxed font-light;
+    @apply text-gray-600 leading-relaxed font-normal;
     font-family: var(--font-family-page-body);
   }
   .global-card {
@@ -53,23 +58,62 @@
     @apply text-xl sm:text-2xl font-bold mb-3 text-gray-900;
     font-family: var(--font-family-page-heading);
   }
+
+  /* Proplay Specialized Utilities */
+  .overlay-dark-gradient {
+    @apply absolute inset-0 transition-opacity duration-300;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.6) 50%, rgba(15, 23, 42, 0.95) 100%);
+  }
+
+  .proplay-dynamic-card {
+    background-color: var(--dynamic-bg, white);
+    border-color: var(--dynamic-accent, #e5e7eb);
+    @apply border-2 transition-all duration-300;
+  }
+
+  .proplay-icon-container {
+    background-color: var(--dynamic-bg, #f3f4f6);
+    @apply flex items-center justify-center rounded-xl transition-colors;
+    color: var(--dynamic-accent, #facc14);
+  }
+
+  .proplay-icon-container svg,
+  .proplay-dynamic-icon {
+    color: var(--dynamic-accent, inherit);
+  }
+
+  .text-brand-yellow {
+    @apply text-[#facc14];
+  }
+
   .global-btn {
-    @apply inline-flex items-center justify-center transition-all duration-300 font-bold;
+    @apply inline-flex items-center justify-center transition-all duration-300 font-bold px-8 py-3 rounded;
     font-family: var(--font-family-page-heading);
   }
   .global-btn-primary {
-    @apply bg-black text-white px-8 py-3 rounded hover:bg-gray-800;
+    @apply bg-black text-white hover:bg-gray-800 shadow-md hover:shadow-lg;
   }
-  .global-btn-primary-white {
-    @apply bg-white text-black border border-gray-200 px-8 py-3 rounded hover:bg-gray-50;
+  .global-btn-yellow {
+    @apply bg-[#facc14] text-white hover:bg-[#eab308] shadow-md hover:shadow-lg;
   }
-  
+  .global-btn-outline {
+    @apply border-2 border-gray-200 text-gray-900 hover:border-[#facc14] hover:bg-[#fefce8];
+  }
+
   .footer-main, .footer-title, .footer-section-title, .footer-link, .footer-email, .footer-tagline, .footer-copyright, .footer-disclaimer {
     font-family: var(--font-family-footer) !important;
   }
 
   .nav-link-item, .logo-fallback, .mega-menu-title {
     font-family: var(--font-family-nav) !important;
+  }
+
+  /* Spacing Standards (50% Tightened) */
+  .section-padding {
+    @apply py-12 md:py-16 px-4 md:px-8;
+  }
+  .section-padding-dense {
+    @apply py-8 md:py-10 px-4 md:px-8;
   }
 
   /* Typography Specimen Classes for Brand Page */

@@ -72,14 +72,14 @@ export default function Home() {
     <div className="home-page">
 
       {/* ── Hero ── */}
-      <section className="hero" id="hero">
+      <section className="hero pt-10 pb-12 md:pt-16 md:pb-20" id="hero">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16 w-full flex flex-col md:flex-row items-center gap-12">
           <div className="hero-content flex-1 text-left">
             <div className="hero-badge animate-fade-up">
               <span className="badge-dot"></span>
               501(c)(3) Nonprofit · Est. 2024
             </div>
-            <h1 className="hero-title animate-fade-up delay-1">ECH Institute</h1>
+            <h1 className="global-hero-title animate-fade-up delay-1">ECH Institute</h1>
             <p className="hero-tagline animate-fade-up">Education, Community, Homesteading!</p>
             <p className="hero-subtitle animate-fade-up delay-2">
               ECH Institute is committed to empowering individuals with knowledge, strengthening communities, and supporting ecosystem projects. Our work focuses on creating meaningful change while serving the broader ecosystem as a public good.
@@ -96,7 +96,7 @@ export default function Home() {
       </section>
 
       {/* ── Who We Are ── */}
-      <section className="py-20 bg-white" id="who-we-are">
+      <section className="py-10 md:py-16 bg-white" id="who-we-are">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
@@ -281,7 +281,7 @@ export default function Home() {
       </section>
 
       {/* ── Programs ── */}
-      <section className="py-24 bg-white" id="programs">
+      <section className="py-12 md:py-16 bg-white" id="programs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 justify-between items-stretch lg:items-end mb-16">
             <div className="lg:w-1/2 flex flex-col justify-end">
@@ -295,7 +295,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link href={ROUTES.education} className="program-img-card group lg:row-span-2">
               <img src="/assets/How We Work with EF.webp" alt="Education" className="bg-img" />
-              <div className="overlay"></div>
+              <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge">FLAGSHIP PROGRAM</span>
                 <h3>Education &amp; Literacy</h3>
@@ -308,7 +308,7 @@ export default function Home() {
 
             <Link href={ROUTES.eipSupport} className="program-img-card group">
               <img src="/assets/IMG_355.webp" alt="EIP Support" className="bg-img" />
-              <div className="overlay"></div>
+              <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">GOVERNANCE</span>
                 <h3>EIP Support</h3>
@@ -321,7 +321,7 @@ export default function Home() {
 
             <Link href={ROUTES.podcast} className="program-img-card group">
               <img src="/assets/IMG_3600.webp" alt="Podcast" className="bg-img" />
-              <div className="overlay" style={{ background: 'linear-gradient(0deg, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.6) 50%, rgba(15,23,42,0.2) 100%)' }}></div>
+              <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">CONTENT</span>
                 <h3>Podcast &amp; Content</h3>
@@ -334,7 +334,7 @@ export default function Home() {
 
             <Link href={ROUTES.communityPartnerships} className="program-img-card group">
               <img src="/assets/Who We Serve.webp" alt="Community Partnerships" className="bg-img" />
-              <div className="overlay"></div>
+              <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">COMMUNITY</span>
                 <h3>Community Partnerships</h3>
@@ -347,7 +347,7 @@ export default function Home() {
 
             <Link href={ROUTES.wiep} className="program-img-card group">
               <img src="/assets/EIP Summit Group Photo.webp" alt="Women in Protocol" className="bg-img" />
-              <div className="overlay"></div>
+              <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge">INCLUSION</span>
                 <h3>Women in Protocol</h3>
@@ -360,7 +360,7 @@ export default function Home() {
 
             <Link href={ROUTES.institutionalBridging} className="program-img-card group">
               <img src="/assets/Enterprise & Institutional View.webp" alt="Institutional Bridging" className="bg-img" />
-              <div className="overlay"></div>
+              <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">INSTITUTIONAL</span>
                 <h3>Institutional Bridging</h3>
@@ -373,7 +373,7 @@ export default function Home() {
 
             <Link href={ROUTES.events} className="program-img-card group md:col-span-2 lg:col-span-2" style={{ minHeight: '320px' }}>
               <img src="/assets/2025 recap.webp" alt="Events" className="bg-img" />
-              <div className="overlay" style={{ background: 'linear-gradient(90deg, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.85) 40%, transparent 100%)' }}></div>
+              <div className="overlay-dark-gradient opacity-90"></div>
               <div className="content md:w-3/4 lg:w-3/4">
                 <span className="badge">ECOSYSTEM FESTIVALS</span>
                 <h3>Events &amp; Workshops</h3>
@@ -388,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* ── Impact ── */}
-      <section className="py-24 bg-white border-y border-gray-100" id="impact">
+      <section className="py-12 md:py-16 bg-white border-y border-gray-100" id="impact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 lg:gap-20 justify-between items-start md:items-end mb-16">
             <div className="max-w-2xl">
@@ -402,7 +402,7 @@ export default function Home() {
             {/* Card 1: Network Upgrades */}
             <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll">
               <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
-                <span className="text-7xl font-syne font-extrabold text-[#facc14] leading-none mb-3">2</span>
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">2</span>
                 <h3 className="font-syne font-bold text-lg text-gray-900">Network Upgrades</h3>
               </div>
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
@@ -423,7 +423,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
-                <span className="text-7xl font-syne font-extrabold text-[#facc14] leading-none mb-3">108+</span>
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">108+</span>
                 <h3 className="font-syne font-bold text-lg text-gray-900">Podcasts Produced</h3>
               </div>
             </div>
@@ -431,7 +431,7 @@ export default function Home() {
             {/* Card 3: Community Members */}
             <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-2">
               <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
-                <span className="text-6xl xl:text-7xl font-syne font-extrabold text-[#facc14] leading-none mb-3">8.2K+</span>
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">8.2K+</span>
                 <h3 className="font-syne font-bold text-lg text-gray-900">Community Members</h3>
               </div>
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
@@ -446,7 +446,7 @@ export default function Home() {
                 <p className="global-body text-gray-600">Through our flagship initiatives, we streamline technical standard documentation, global mentorship, and core institutional outreach.</p>
               </div>
               <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
-                <span className="text-7xl font-syne font-extrabold text-[#facc14] leading-none mb-3">7+</span>
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">7+</span>
                 <h3 className="font-syne font-bold text-lg text-gray-900">Core Programs</h3>
               </div>
             </div>
@@ -456,7 +456,7 @@ export default function Home() {
 
       {/* ── Get Involved ── */}
       <section className="gi-pro-bg border-t border-gray-100 relative overflow-hidden" id="get-involved-peek">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
           <div className="hidden lg:flex lg:col-span-5 items-center justify-center relative h-[400px]">
             <div className="gi-mascot-wrap">
               <img src="/assets/images/cat-peek.webp" alt="Cat peeking" className="relative z-10 w-[320px] h-auto object-contain drop-shadow-2xl animate-float" />
@@ -464,7 +464,7 @@ export default function Home() {
           </div>
           <div className="lg:col-span-7 animate-on-scroll">
             <div className="global-section-tag">GET INVOLVED</div>
-            <h2 className="text-5xl lg:text-6xl font-syne font-extrabold mb-8 text-gray-900 leading-[1.05] tracking-tight">
+            <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
               Join us in building <br /><span className="text-[#facc14] italic">a better community.</span>
             </h2>
             <p className="grow-0 global-body-lg mb-12 text-gray-700 max-w-xl leading-relaxed">
@@ -539,12 +539,12 @@ export default function Home() {
       </section>
 
       {/* ── Contact ── */}
-      <section className="py-32 contact-pro-bg border-t border-gray-100 relative" id="contact">
+      <section className="py-16 md:py-24 contact-pro-bg border-t border-gray-100 relative" id="contact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <div className="animate-on-scroll">
               <div className="global-section-tag">CONTACT ECH</div>
-              <h2 className="text-5xl lg:text-6xl font-syne font-extrabold mb-8 text-gray-900 leading-[1.05] tracking-tight">
+              <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
                 Let&apos;s build <br /><span className="text-[#facc14] italic">the future.</span>
               </h2>
               <p className="global-body-lg mb-12 text-gray-700 max-w-lg leading-relaxed">

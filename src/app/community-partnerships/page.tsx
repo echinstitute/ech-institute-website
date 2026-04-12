@@ -32,7 +32,7 @@ export default function CommunityPartnershipsPage() {
       </section>
 
       {/* ── Content Section ── */}
-      <section className="py-24 bg-white" id="overview">
+      <section className="py-12 md:py-16 bg-white" id="overview">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 relative rounded-2xl overflow-hidden shadow-lg h-96">

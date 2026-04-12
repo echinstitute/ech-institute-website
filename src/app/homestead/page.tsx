@@ -526,8 +526,8 @@ export default function HomesteadPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center gap-4 text-center max-w-3xl mx-auto">
             <h1 className="global-hero-title">Homestead</h1>
-            <p className="global-body-lg" style={{ color: 'var(--color-yellow)', fontWeight: 700, fontSize: '1.1rem' }}>
-              Ethereum Governance, Structured
+            <p className="global-body-lg text-brand-yellow font-bold text-[1.1rem]">
+              ECH is the steward of major initiatives documented at Homestead.
             </p>
             <p className="global-body-lg">
               Supporting the processes, coordination, and participation that help Ethereum evolve responsibly as open, public infrastructure.
@@ -555,7 +555,7 @@ export default function HomesteadPage() {
               { value: '2024', label: 'ECH Institute Founded' },
             ].map((s, i) => (
               <div key={i}>
-                <div className="global-section-title" style={{ color: 'var(--color-yellow)' }}>{s.value}</div>
+                <div className="global-section-title text-brand-yellow">{s.value}</div>
                 <div className="text-sm text-gray-500 font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
@@ -606,7 +606,7 @@ export default function HomesteadPage() {
 
             {/* Intro quote */}
             <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50 mb-8">
-              <div className="text-5xl font-black leading-none" style={{ color: 'var(--color-yellow)', opacity: 0.35 }}>&ldquo;</div>
+              <div className="text-5xl font-black leading-none text-brand-yellow opacity-35">&ldquo;</div>
               <blockquote className="text-lg sm:text-xl font-extrabold text-black leading-snug -mt-4 mb-2">
                 Ethereum has no CEO, no single engineering team, and no controlling shareholder.
                 Its governance is the process — and the process is open to everyone.
@@ -626,10 +626,10 @@ export default function HomesteadPage() {
                   <div key={i} className="relative flex gap-4 items-start">
                     {/* Step circle */}
                     <div
-                      className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 mt-1"
-                      style={{ background: step.bg, borderColor: step.border }}
+                      className="proplay-icon-container h-10 w-10 shrink-0 mt-1 !rounded-full !border-2"
+                      style={{ '--dynamic-bg': step.bg, '--dynamic-accent': step.color } as React.CSSProperties}
                     >
-                      <step.icon size={17} style={{ color: step.color }} />
+                      <step.icon size={17} />
                     </div>
                     {/* Card */}
                     <div className="flex-1 global-card mb-0 p-0 overflow-hidden">
@@ -667,7 +667,7 @@ export default function HomesteadPage() {
             <h3 className="global-card-title mb-2">Upgrade Lifecycle</h3>
             <p className="global-body mb-5">
               Before an EIP reaches mainnet, it passes through four formal inclusion stages standardized by
-              {' '}<Link href="https://eips.ethereum.org/EIPS/eip-7723" target="_blank" className="font-bold underline underline-offset-2" style={{ color: 'var(--color-yellow)' }}>EIP-7723</Link>.
+              {' '}<Link href="https://eips.ethereum.org/EIPS/eip-7723" target="_blank" className="font-bold underline underline-offset-2 text-brand-yellow">EIP-7723</Link>.
               These stages provide a clear, public signal of where each EIP stands in the upgrade process.
             </p>
 
@@ -676,10 +676,10 @@ export default function HomesteadPage() {
               {upgradeLcStages.map((s, i) => (
                 <div key={i} className="relative flex gap-4 items-start">
                   <div
-                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 mt-1"
-                    style={{ background: s.bg, borderColor: s.border }}
+                    className="proplay-icon-container h-10 w-10 shrink-0 mt-1 !rounded-full !border-2"
+                    style={{ '--dynamic-bg': s.bg, '--dynamic-accent': s.color } as React.CSSProperties}
                   >
-                    <s.icon size={17} style={{ color: s.color }} />
+                    <s.icon size={17} />
                   </div>
                   <div className="flex-1 global-card mb-0 hover:border-amber-400 transition-colors">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
@@ -695,7 +695,13 @@ export default function HomesteadPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                       {s.actions.map((a, j) => (
                         <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} style={{ color: s.color }} /> {a}
+                          <div
+                            className="proplay-icon-container h-4 w-4 !rounded-full shrink-0"
+                            style={{ '--dynamic-bg': s.bg, '--dynamic-accent': s.color } as React.CSSProperties}
+                          >
+                            <CheckCircle2 size={10} />
+                          </div>
+                          {a}
                         </span>
                       ))}
                     </div>
@@ -747,10 +753,10 @@ export default function HomesteadPage() {
                       onClick={() => toggle(setOpenMatters, i)}
                     >
                       <div
-                        className="flex h-10 w-10 items-center justify-center rounded-xl shrink-0"
-                        style={{ background: item.bg }}
+                        className="proplay-icon-container h-10 w-10 shrink-0"
+                        style={{ '--dynamic-bg': item.bg, '--dynamic-accent': item.color } as React.CSSProperties}
                       >
-                        <item.icon className="h-5 w-5" style={{ color: item.color }} />
+                        <item.icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-black">{item.title}</div>
@@ -765,8 +771,11 @@ export default function HomesteadPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {item.bullets.map((b, j) => (
                             <div key={j} className="flex items-start gap-2.5">
-                              <div className="flex h-5 w-5 items-center justify-center rounded-full shrink-0 mt-0.5" style={{ background: item.bg }}>
-                                <CheckCircle2 size={11} style={{ color: item.color }} />
+                              <div
+                                className="proplay-icon-container h-5 w-5 !rounded-full shrink-0 mt-0.5"
+                                style={{ '--dynamic-bg': item.bg, '--dynamic-accent': item.color } as React.CSSProperties}
+                              >
+                                <CheckCircle2 size={11} />
                               </div>
                               <span className="text-sm text-gray-600 leading-snug">{b}</span>
                             </div>

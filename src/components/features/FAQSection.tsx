@@ -177,7 +177,7 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="py-16 md:py-24 px-4 md:px-8"
+      className="py-10 md:py-12 px-4 md:px-8"
       style={{ background: 'linear-gradient(180deg, #f9fafb 0%, #ffffff 100%)', borderTop: '1px solid #e5e7eb' }}
     >
       <div className="max-w-5xl mx-auto">
@@ -222,14 +222,14 @@ export default function FAQSection() {
 
         {/* Topic intro badge */}
         <div className="flex items-center gap-3 mb-5">
-          <span
-            className="flex h-9 w-9 items-center justify-center rounded-xl"
-            style={{ background: topic.bg }}
+          <div
+            className="proplay-icon-container h-9 w-9"
+            style={{ '--dynamic-bg': topic.bg, '--dynamic-accent': topic.color } as React.CSSProperties}
           >
-            <topic.icon size={18} style={{ color: topic.color }} />
-          </span>
+            <topic.icon size={18} />
+          </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest" style={{ color: topic.color }}>
+            <p className="text-xs font-bold uppercase tracking-widest text-brand-yellow">
               {topic.label}
             </p>
             <p className="text-xs text-gray-400">{topic.questions.length} questions</p>
@@ -244,12 +244,13 @@ export default function FAQSection() {
             return (
               <div
                 key={key}
-                className="rounded-xl overflow-hidden"
+                className="proplay-dynamic-card rounded-xl overflow-hidden"
                 style={{
-                  border: `2px solid ${isOpen ? topic.border : '#e5e7eb'}`,
-                  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+                  '--dynamic-bg': topic.bg,
+                  '--dynamic-accent': topic.color,
+                  '--card-border-alt': isOpen ? topic.border : '#e5e7eb',
                   boxShadow: isOpen ? `0 4px 16px ${topic.color}18` : 'none',
-                }}
+                } as React.CSSProperties}
               >
                 {/* Question button */}
                 <button
@@ -258,29 +259,28 @@ export default function FAQSection() {
                   style={{ background: isOpen ? topic.bg + '55' : 'white' }}
                 >
                   {/* Step number */}
-                  <span
-                    className="flex-shrink-0 flex h-8 w-8 items-center justify-center rounded-lg text-sm font-extrabold"
+                  <div
+                    className="proplay-icon-container h-8 w-8 !text-sm font-extrabold !border-1.5"
                     style={{
-                      background: isOpen ? topic.bg : '#f3f4f6',
-                      color: isOpen ? topic.color : '#9ca3af',
-                      border: `1.5px solid ${isOpen ? topic.border : '#e5e7eb'}`,
-                    }}
+                      '--dynamic-bg': isOpen ? topic.bg : '#f3f4f6',
+                      '--dynamic-accent': isOpen ? topic.color : '#9ca3af',
+                    } as React.CSSProperties}
                   >
                     {qi + 1}
-                  </span>
+                  </div>
                   <span className="flex-1 font-bold text-black text-sm sm:text-base leading-snug">
                     {item.q}
                   </span>
-                  <span
-                    className="flex-shrink-0 flex h-7 w-7 items-center justify-center rounded-full transition-transform duration-300"
+                  <div
+                    className="proplay-icon-container h-7 w-7 !rounded-full !border-1.5 transition-transform duration-300"
                     style={{
-                      background: isOpen ? topic.bg : '#f3f4f6',
-                      border: `1.5px solid ${isOpen ? topic.border : '#e5e7eb'}`,
+                      '--dynamic-bg': isOpen ? topic.bg : '#f3f4f6',
+                      '--dynamic-accent': isOpen ? topic.color : '#9ca3af',
                       transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                    }}
+                    } as React.CSSProperties}
                   >
-                    <ChevronDown size={13} style={{ color: isOpen ? topic.color : '#9ca3af' }} />
-                  </span>
+                    <ChevronDown size={13} />
+                  </div>
                 </button>
 
                 {/* Answer */}

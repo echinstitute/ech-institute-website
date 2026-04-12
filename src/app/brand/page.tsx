@@ -453,7 +453,7 @@ export default function BrandPage() {
       <div className="brand-divider" />
 
       {/* ── Download CTA ──────────────────────────────────────────────────── */}
-      <section className="brand-section brand-cta-section bg-white border-t border-gray-100 py-24 flex justify-center items-center">
+      <section className="brand-section brand-cta-section bg-white border-t border-gray-100 py-12 md:py-16 flex justify-center items-center">
         <div className="w-full max-w-4xl mx-auto px-4 flex justify-center">
           <div className="brand-cta-inner flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
             <div className="brand-cta-cat flex-shrink-0">

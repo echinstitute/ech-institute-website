@@ -326,7 +326,7 @@ export default function SupportPage() {
       </section>
 
       {/* ── Impact Stats ──────────────────────────────────────────────────── */}
-      <section className="border-b border-gray-100 bg-gray-50 py-6 px-4 md:px-8">
+      <section className="border-b border-gray-100 bg-gray-50 py-6 md:py-8 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -336,7 +336,7 @@ export default function SupportPage() {
               { value: "Open", label: "All Governance Calls" },
             ].map((s, i) => (
               <div key={i}>
-                <div className="global-section-title" style={{ color: "var(--color-yellow)" }}>{s.value}</div>
+                <div className="global-section-title text-brand-yellow">{s.value}</div>
                 <div className="text-sm text-gray-500 font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
@@ -389,10 +389,10 @@ export default function SupportPage() {
                       onClick={() => togglePillar(i)}
                     >
                       <div
-                        className="flex h-10 w-10 items-center justify-center rounded-xl shrink-0"
-                        style={{ background: pillar.bg }}
+                        className="proplay-icon-container h-10 w-10 shrink-0"
+                        style={{ '--dynamic-bg': pillar.bg, '--dynamic-accent': pillar.color } as React.CSSProperties}
                       >
-                        <pillar.icon className="h-5 w-5" style={{ color: pillar.color }} />
+                        <pillar.icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
@@ -420,10 +420,10 @@ export default function SupportPage() {
                           {pillar.highlights.map((h, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <div
-                                className="flex h-5 w-5 items-center justify-center rounded-full shrink-0 mt-0.5"
-                                style={{ background: pillar.bg }}
+                                className="proplay-icon-container h-5 w-5 !rounded-full shrink-0 mt-0.5"
+                                style={{ '--dynamic-bg': pillar.bg, '--dynamic-accent': pillar.color } as React.CSSProperties}
                               >
-                                <CheckCircle2 size={11} style={{ color: pillar.color }} />
+                                <CheckCircle2 size={11} />
                               </div>
                               <span className="text-sm text-gray-600 leading-snug">{h}</span>
                             </div>
@@ -438,7 +438,7 @@ export default function SupportPage() {
 
             {/* Quote banner */}
             <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50 mt-5">
-              <div className="text-5xl font-black leading-none" style={{ color: "var(--color-yellow)", opacity: 0.4 }}>&ldquo;</div>
+              <div className="text-5xl font-black leading-none text-brand-yellow opacity-40">&ldquo;</div>
               <blockquote className="text-lg sm:text-xl font-extrabold text-black leading-snug -mt-4">
                 Ethereum&apos;s governance infrastructure is just as important as its technical infrastructure —
                 and it needs the same level of sustained, independent support.
@@ -463,10 +463,10 @@ export default function SupportPage() {
                   className="global-card flex gap-4 hover:border-amber-400 transition-colors"
                 >
                   <div
-                    className="flex h-11 w-11 items-center justify-center rounded-xl shrink-0 mt-0.5"
-                    style={{ background: `${item.color}15` }}
+                    className="proplay-icon-container h-11 w-11 shrink-0 mt-0.5"
+                    style={{ '--dynamic-bg': `${item.color}15`, '--dynamic-accent': item.color } as React.CSSProperties}
                   >
-                    <item.icon className="h-5 w-5" style={{ color: item.color }} />
+                    <item.icon className="h-5 w-5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="global-card-title mb-1">{item.title}</h3>
@@ -503,10 +503,10 @@ export default function SupportPage() {
                       onClick={() => toggleWay(i)}
                     >
                       <div
-                        className="flex h-10 w-10 items-center justify-center rounded-xl shrink-0"
-                        style={{ background: way.bg }}
+                        className="proplay-icon-container h-10 w-10 shrink-0"
+                        style={{ '--dynamic-bg': way.bg, '--dynamic-accent': way.color } as React.CSSProperties}
                       >
-                        <way.icon className="h-5 w-5" style={{ color: way.color }} />
+                        <way.icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
@@ -534,8 +534,8 @@ export default function SupportPage() {
                           {way.process.map((step, j) => (
                             <div key={j} className="flex items-start gap-3">
                               <div
-                                className="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold shrink-0 mt-0.5"
-                                style={{ background: way.bg, color: way.color }}
+                                className="proplay-icon-container h-5 w-5 !rounded-full text-[10px] font-bold shrink-0 mt-0.5"
+                                style={{ '--dynamic-bg': way.bg, '--dynamic-accent': way.color } as React.CSSProperties}
                               >
                                 {j + 1}
                               </div>

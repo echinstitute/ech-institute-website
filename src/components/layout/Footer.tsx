@@ -46,10 +46,11 @@ export default function Footer() {
   ];
 
   const footerLinks = [
-    { name: 'About', href: ROUTES.about },
-    { name: 'Podcast', href: ROUTES.podcast },
-    { name: 'Events', href: ROUTES.events },
-    { name: 'Donate', href: ROUTES.donate },
+    { name: 'Education', href: ROUTES.education },
+    { name: 'Homestead', href: ROUTES.homestead },
+    // { name: 'About', href: ROUTES.about },
+    { name: 'Support', href: ROUTES.support },
+    { name: 'Brand', href: ROUTES.brand },
   ];
 
   return (
@@ -68,10 +69,15 @@ export default function Footer() {
                   height={48}
                   className="footer-logo"
                 />
-                <h2 className="footer-title">ECH Institute</h2>
+                <div className="flex flex-col -space-y-0.5">
+                  <h2 className="footer-title">ECH Institute</h2>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[var(--color-yellow)] mt-0">
+                    Nonprofit Organization
+                  </span>
+                </div>
               </div>
-              <p className="footer-tagline">
-                Herding Knowledge, Building Community, Homesteading Ethereum!
+              <p className="footer-tagline mt-4">
+                Education, Community, Homesteading!
               </p>
             </div>
           </div>
@@ -95,16 +101,16 @@ export default function Footer() {
             <h3 className="footer-section-title">Follow Us</h3>
             <div className="footer-social-icons">
               {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="footer-social-icon"
-                    aria-label={social.name}
-                  >
-                      {social.svg}
-                  </a>
+                  aria-label={social.name}
+                >
+                  {social.svg}
+                </a>
               ))}
             </div>
             <div className="footer-email-section">

@@ -1,5 +1,5 @@
 /**
- * ECH Institute — Centralized Route Configuration
+ * ECH Institute Centralized Route Configuration
  * ================================================
  * Single source of truth for ALL application routes and path aliases.
  * Similar to Angular's RouterModule — import from here everywhere.
@@ -20,10 +20,19 @@
 export const ROUTES = {
   home:         '/',
   about:        '/about',
+  education:    '/education',
+  homestead:    '/homestead',
   events:       '/events',
-  donate:       '/donate',
+  support:      '/support',
+  brand:        '/brand',
+  getInvolved:  '/community/get-involved',
 
-  // Community / media hub
+  // Programs & Initiatives
+  eipSupport:            '/eip-support',
+  communityPartnerships: '/community-partnerships',
+  institutionalBridging: '/institutional-bridging',
+
+  // Community / media hub (Clean URLs shown in browser)
   podcast:      '/podcast',
   peepaneip:    '/podcast/peepaneip',
   fusakaFiles:  '/podcast/fusaka-files',
@@ -40,10 +49,19 @@ export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES];
 // Add an entry here to make /short-path serve /canonical-path content
 // without a redirect (URL stays as the short version in the browser).
 export const PATH_ALIASES: Array<{ source: string; destination: string }> = [
-  { source: '/peepaneip',    destination: ROUTES.peepaneip   },
-  { source: '/fusaka-files', destination: ROUTES.fusakaFiles },
-  { source: '/epd',          destination: ROUTES.epd         },
-  { source: '/wiep',         destination: ROUTES.wiep        },
+  // Core physical rewrites: Clean URL -> Physical App Router Folder
+  { source: '/podcast',              destination: '/community/podcast' },
+  { source: '/podcast/peepaneip',    destination: '/community/podcast/peepaneip' },
+  { source: '/podcast/fusaka-files', destination: '/community/podcast/fusaka-files' },
+  { source: '/podcast/epd',          destination: '/community/podcast/epd' },
+  { source: '/podcast/wiep',         destination: '/community/podcast/wiep' },
+  
+  // Absolute top-level shorthands
+  { source: '/peepaneip',            destination: '/community/podcast/peepaneip' },
+  { source: '/fusaka-files',         destination: '/community/podcast/fusaka-files' },
+  { source: '/epd',                  destination: '/community/podcast/epd' },
+  { source: '/wiep',                 destination: '/community/podcast/wiep' },
+  { source: '/get-involved',         destination: '/community/get-involved' },
 ];
 
 // ─────────────────────────────────────────────

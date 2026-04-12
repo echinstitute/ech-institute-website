@@ -49,17 +49,11 @@ interface MenuConfig {
 }
 
 const menuItems: MenuConfig = {
-  home: {
-    title: 'HOME',
-    description: 'Back to home',
-    icon: Home,
-    link: ROUTES.home,
-  },
-  about: {
-    title: 'ABOUT',
-    description: 'Learn about ECH Institute',
-    icon: UserCircle,
-    link: ROUTES.about,
+  education: {
+    title: 'EDUCATION',
+    description: 'Learn and grow',
+    icon: GraduationCap,
+    link: ROUTES.education,
   },
   community: {
     title: 'COMMUNITY',
@@ -97,12 +91,12 @@ const menuItems: MenuConfig = {
             icon: Code,
             link: ROUTES.epd,
           },
-          {
-            title: 'WiEP',
-            description: 'Women in Ethereum Protocol study groups',
-            icon: GraduationCap,
-            link: ROUTES.wiep,
-          },
+          // {
+          //   title: 'WiEP',
+          //   description: 'Women in Ethereum Protocol study groups',
+          //   icon: GraduationCap,
+          //   link: ROUTES.wiep,
+          // },
         ],
       },
       {
@@ -123,15 +117,34 @@ const menuItems: MenuConfig = {
         icon: FileText,
         link: EXTERNAL_LINKS.annualReport,
       },
+      {
+        title: 'GET INVOLVED',
+        description: 'Join our community missions',
+        icon: UserCircle,
+        link: ROUTES.getInvolved,
+      },
     ],
   },
-  donate: {
-    title: 'DONATE',
+  homestead: {
+    title: 'HOMESTEAD',
+    description: 'Our physical space',
+    icon: Home,
+    link: ROUTES.homestead,
+  },
+  about: {
+    title: 'ABOUT',
+    description: 'Learn about ECH Institute',
+    icon: UserCircle,
+    link: ROUTES.about,
+  },
+  support: {
+    title: 'SUPPORT',
     description: 'Support our mission',
     icon: Heart,
-    link: ROUTES.donate,
+    link: ROUTES.support,
   },
 };
+
 
 // ==========================================
 // NAVIGATION COMPONENT
@@ -408,14 +421,19 @@ export default function Navigation() {
                   }
                 }}
               />
-              <span className={cn(
-                "font-[family-name:var(--font-family-nav)] font-bold transition-colors inline whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl",
-                mounted && theme === 'dark' 
-                  ? 'text-white' 
-                  : 'text-black'
-              )}>
-                ECH Institute
-              </span>
+              <div className="flex flex-col -space-y-0.5">
+                <span className={cn(
+                  "font-[family-name:var(--font-family-nav)] font-bold transition-colors inline whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl",
+                  mounted && theme === 'dark' 
+                    ? 'text-white' 
+                    : 'text-black'
+                )}>
+                  ECH Institute
+                </span>
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--color-yellow)] mt-0 whitespace-nowrap">
+                  Nonprofit Organization
+                </span>
+              </div>
             </Link>
 
             {/* RIGHT: Menu Buttons - Right-aligned on desktop */}

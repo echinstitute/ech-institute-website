@@ -42,15 +42,25 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
-      {/* Hero - no background color per request */}
-      <section className="mb-16 py-8 px-4 md:py-16 md:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center gap-8">
-            <div className="w-full text-center max-w-[900px]">
-              <h1 className="global-hero-title mb-6">About ECH Institute</h1>
-              <p className="global-body-lg max-w-4xl mx-auto">
-              ECH Institute Inc. is a 501(c)(3) non-profit organization that transitioned to a formalized institutional steward on July 11, 2024. We are a group of individuals working together to support the Ethereum community through decentralized project management, coordination, and technical education as a neutral public good.              </p>
-            </div>
+      {/* ── Hero — "proplay" inner-page style ──────────────── */}
+      <section className="page-hero">
+        <div className="page-hero-inner">
+          <div className="page-hero-tag">
+            <span className="page-hero-dot" />
+            501(c)(3) Nonprofit · Est. 2024
+          </div>
+          <h1 className="page-hero-title">
+            About <em>ECH</em><br />Institute
+          </h1>
+          <p className="page-hero-desc">
+            ECH Institute Inc. is a 501(c)(3) non-profit organization that transitioned to a
+            formalized institutional steward on July 11, 2024 — supporting the Ethereum ecosystem
+            through decentralized project management, coordination, and technical education as a
+            neutral public good.
+          </p>
+          <div className="page-hero-actions">
+            <Link href="/support#donate" className="btn btn-primary">Support Our Mission</Link>
+            <a href="#who-we-are" className="btn btn-outline">Learn More</a>
           </div>
         </div>
       </section>
@@ -69,12 +79,11 @@ export default function AboutPage() {
               />
             </div>
             <div className="flex-1">
-              <div className="flex items-center gap-4 mb-6">
-                <h2 className="global-section-title">Who We Are</h2>
-              </div>
+              <span className="global-section-tag">Our Foundation</span>
+              <h2 className="global-section-title">Who <em>We Are</em></h2>
               <div className="global-body-lg space-y-4">
                 <p>
-                  The evolution of decentralized protocol governance has necessitated structured, neutral entities capable of bridging core technical research and community-wide implementation. Since our beginnings in January 2019, we have helped coordinate EIPs for network upgrades, pre- and post-deployment communication for successful hard forks, community consensus gathering, community funding, and related coordination tasks.
+                  The evolution of decentralized protocol governance has necessitated structured, neutral entities capable of bridging core technical research and community-wide implementation. Since our beginnings in January 2024 have helped coordinate EIPs for network upgrades, pre- and post-deployment communication for successful hard forks, community consensus gathering, community funding, and related coordination tasks.
                 </p>
                 <p>
                   ECH Institute is uniquely positioned at the intersection of People, Process, and Protocol. It operates to support Ethereum&apos;s governance participation and protocol-coordination infrastructure. As a neutral public good, it ensures the protocol remains accessible and decentralized as it scales.
@@ -88,9 +97,8 @@ export default function AboutPage() {
       {/* What We Do - Core Operational Mandate */}
       <section id="what-we-do" className="py-4 px-4 md:py-8 md:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-4 mb-6">
-            <h2 className="global-section-title">Core Operational Mandate: What We Do</h2>
-          </div>
+          <span className="global-section-tag">Operational Mandate</span>
+          <h2 className="global-section-title">Core <em>Operations</em>: What We Do</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             {[
               { title: 'Educational Content Production', desc: 'Producing technical content to expand community knowledge: the PEEPanEIP video series to simplify EIPs, animated shorts for complex concepts, and the Learn2earn platform to incentivize protocol learning.' },
@@ -118,9 +126,8 @@ export default function AboutPage() {
       <section id="what-we-dont-do" className="py-4 px-4 md:py-8 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="global-card p-5 sm:p-8 lg:p-12">
-            <div className="flex items-center gap-4 mb-6">
-              <h2 className="global-section-title">Operational Boundaries: What We Don&apos;t Do</h2>
-            </div>
+            <span className="global-section-tag">Operational Boundaries</span>
+            <h2 className="global-section-title">What We <em>Don&apos;t Do</em></h2>
             <div className="global-body-lg space-y-4">
               <p>
                 <strong>No Protocol Authority:</strong> We do not make protocol decisions or control Ethereum development; authority remains with the broader community of developers and researchers.
@@ -140,9 +147,8 @@ export default function AboutPage() {
       <section id="evolution" className="py-4 px-4 md:py-8 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="global-card p-5 sm:p-8 lg:p-12">
-            <div className="flex items-center gap-4 mb-6">
-              <h2 className="global-section-title">Institutional Evolution & Continuity (2024–2026)</h2>
-            </div>
+            <span className="global-section-tag">Institutional History</span>
+            <h2 className="global-section-title">Institutional <em>Evolution &amp; Continuity</em> (2024–2026)</h2>
             <div className="relative mt-8">
               <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-400 to-amber-500" />
               <div className="flex flex-col gap-8 md:gap-12">
@@ -190,9 +196,8 @@ export default function AboutPage() {
       {/* People */}
       <section id="people" className="py-4 px-4 md:py-8 md:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-4 mb-6">
-            <h2 className="global-section-title">People Behind ECH Institute</h2>
-          </div>
+          <span className="global-section-tag">Our Community</span>
+          <h2 className="global-section-title">People Behind <em>ECH Institute</em></h2>
           <div className="global-body-lg space-y-4 mb-8">
             <p>ECH Institute is powered by a diverse group of dedicated individuals who contribute their time, expertise, and passion to support the Ethereum ecosystem. Our team includes:</p>
           </div>
@@ -226,9 +231,8 @@ export default function AboutPage() {
                     key={i}
                     type="button"
                     onClick={() => setPeopleCarouselIndex(i)}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                      i === peopleCarouselIndex ? 'bg-amber-500 scale-125' : 'bg-gray-300'
-                    }`}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${i === peopleCarouselIndex ? 'bg-amber-500 scale-125' : 'bg-gray-300'
+                      }`}
                     aria-label={`Go to slide ${i + 1}`}
                   />
                 ))}
@@ -269,11 +273,10 @@ export default function AboutPage() {
                       key={member.id}
                       type="button"
                       onClick={() => setSelectedMemberId(isSelected ? null : member.id)}
-                      className={`w-full rounded-[12px] border-2 bg-white transition-all duration-200 text-left p-4 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-card)] ${
-                        isSelected
+                      className={`w-full rounded-[12px] border-2 bg-white transition-all duration-200 text-left p-4 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-card)] ${isSelected
                           ? '[border-color:var(--card-border-hover)] bg-amber-50/50 shadow-[var(--shadow-hover)]'
                           : ''
-                      }`}
+                        }`}
                     >
                       <span className="flex items-center gap-3 min-w-0">
                         {member.image ? (
@@ -364,8 +367,8 @@ export default function AboutPage() {
             <p className="global-body-lg mb-4"><strong>Participation and Ecosystem Contribution</strong></p>
             <p className="global-body-lg mb-6">ECH Institute has established itself as the social and organizational &quot;operating system&quot; for Ethereum. By combining technical coordination with a strong emphasis on community education and onboarding, the Institute ensures the network&apos;s evolution remains transparent and inclusive. You can contribute through documentation, content creation, community outreach, and incentivized bounties.</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="global-btn global-btn-primary-white">Join our Discord</Link>
-              <Link href={EXTERNAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="global-btn global-btn-outline-white">Follow on X</Link>
+              <Link href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="btn btn-primary-white">Join our Discord</Link>
+              <Link href={EXTERNAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="btn btn-outline-white">Follow on X</Link>
             </div>
           </div>
         </div>

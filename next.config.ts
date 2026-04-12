@@ -14,6 +14,20 @@ const nextConfig: NextConfig = {
   },
 
   // ─────────────────────────────────────────────
+  // URL REDIRECTS  — legacy path cleanup
+  // ─────────────────────────────────────────────
+  async redirects() {
+    return [
+      {
+        source: '/community/get-involved',
+        destination: '/get-involved',
+        permanent: true,
+      },
+    ];
+  },
+
+
+  // ─────────────────────────────────────────────
   // BUILD
   // ─────────────────────────────────────────────
   experimental: {

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Ethereum public good",
   ],
   openGraph: {
-    title: "About ECH Institute — 501(c)(3) Ethereum Governance Nonprofit",
+    title: "About ECH Institute 501(c)(3) Ethereum Governance Nonprofit",
     description:
       "Founded July 11, 2024, ECH Institute supports Ethereum's governance and EIP coordination as a neutral public good. Meet our team and learn what we do.",
     url: "https://www.echinstitute.org/about",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "About ECH Institute — Ethereum Governance & Coordination",
+    title: "About ECH Institute Ethereum Governance & Coordination",
     description:
       "Founded July 11, 2024. ECH Institute supports Ethereum's protocol governance, EIP coordination, and community education as a neutral 501(c)(3).",
     images: ["/assets/ech_full_logo.png"],

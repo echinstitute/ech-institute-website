@@ -1,12 +1,50 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { ROUTES } from '@/config/routes';
 import CardSlider from '@/components/features/CardSlider';
-import { Settings, ShieldCheck, Clock } from 'lucide-react';
+import FAQSection from '@/components/features/FAQSection';
+import { Settings, ShieldCheck, Clock, Mail, Twitter, Youtube } from 'lucide-react';
 
 export default function Home() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/team@ethcatherders.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        form.reset();
+      } else {
+        // Fallback or error handling
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("Error sending message. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   useEffect(() => {
-    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e: Event) {
         e.preventDefault();
@@ -15,434 +53,614 @@ export default function Home() {
           const target = document.querySelector(href);
           if (target) {
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
           }
         }
       });
     });
 
-    // Scroll animations using Intersection Observer
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '-50px 0px'
-    };
-
+    const observerOptions = { threshold: 0.1, rootMargin: '-50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, observerOptions);
-
-    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-      observer.observe(el);
-    });
-
-    // Hero section - no opacity fade on scroll (removed for simplicity)
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
   }, []);
 
   return (
     <div className="home-page">
-      {/* Hero Section */}
+
+      {/* ── Hero ── */}
       <section className="hero" id="hero">
-        <div className="hero-bg"></div>
-        <div className="hero-overlay"></div>
-        <div className="hero-image">
-          <img src="/assets/images/Catty.webp" alt="ECH Institute" />
-        </div>
-        <div className="hero-content">
-          <h1 className="hero-title animate-fade-up delay-1">ECH Institute</h1>
-          <p className="hero-tagline animate-fade-up">Education, Community Building, Homesteading Ethereum!</p>
-          <p className="hero-subtitle animate-fade-up delay-2">
-            ECH Institute is uniquely positioned at the intersection of People, Process and Protocol. It operates to support Ethereum&apos;s governance participation, and protocol‑coordination infrastructure. As a neutral public good, it ensures the protocol remains accessible and decentralized as it scales.
-          </p>
-          {/* <div className="hero-buttons animate-fade-up delay-3">
-            <a href="#mission" className="btn btn-primary" style={{ color: 'white' }}>Learn More</a>
-            <a href="#involved" className="btn btn-outline">Get Involved</a>
-          </div> */}
-        </div>
-      </section>
-
-      {/* Mission Section */}
-      {/* <section className="section" id="mission">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="section-header">
-            <h2 className="section-title text-center">Our Mission</h2>
-            <p className="section-subtitle text-center">
-              ECH Institute supports Ethereum&apos;s protocol governance and coordination as a neutral public good. By strengthening processes, participation, and shared understanding, we help Ethereum scale responsibly, transparently, and sustainably as global public infrastructure.
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16 w-full flex flex-col md:flex-row items-center gap-12">
+          <div className="hero-content flex-1 text-left">
+            <div className="hero-badge animate-fade-up">
+              <span className="badge-dot"></span>
+              501(c)(3) Nonprofit · Est. 2024
+            </div>
+            <h1 className="hero-title animate-fade-up delay-1">ECH Institute</h1>
+            <p className="hero-tagline animate-fade-up">Education, Community, Homesteading!</p>
+            <p className="hero-subtitle animate-fade-up delay-2">
+              ECH Institute is committed to empowering individuals with knowledge, strengthening communities, and supporting ecosystem projects. Our work focuses on creating meaningful change while serving the broader ecosystem as a public good.
             </p>
+            <div className="hero-buttons animate-fade-up delay-3">
+              <Link href={ROUTES.education} className="btn btn-primary">Our Programs</Link>
+              <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
+            </div>
           </div>
-        </div>
-      </section> */}
-
-      {/* Role Section */}
-      <section id="role" className="role-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center role-header">
-            <h2 className="role-main-title">Our Role in the Ethereum Ecosystem</h2>
-            <p className="role-intro-text">
-              Ethereum does not have a central authority. Decisions emerge through open processes involving
-              core developers, researchers, client teams, and the broader community.
-            </p>
-          </div>
-
-          <div className="role-cards-container">
-            <div className="role-card">
-              <h3 className="role-card-title">Governance Operations</h3>
-              <p className="role-card-description">Supporting transparency and operational excellence in Ethereum governance</p>
-            </div>
-            <div className="role-card">
-              <h3 className="role-card-title">EIP Standardization</h3>
-              <p className="role-card-description">Long-term stewardship of the Ethereum Improvement Proposal process</p>
-            </div>
-            <div className="role-card">
-              <h3 className="role-card-title">Protocol Translation</h3>
-              <p className="role-card-description">Enabling institutional stakeholders to make informed, confident decisions</p>
-            </div>
+          <div className="hero-image flex-1 hidden md:flex justify-end">
+            <img src="/assets/images/Catty.webp" alt="ECH Institute" className="max-w-xl w-full object-contain" />
           </div>
         </div>
       </section>
 
-      {/* Focus Section */}
-      <section>
-        <div className="role-focus-box">
-          <h3 className="role-focus-title">We Double Down On</h3>
-          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 w-full">
-              {/* First Column - 3 Cards (40%) */}
-              <div className="w-full lg:w-2/5 flex flex-col gap-4">
-                <div className="role-focus-item flex items-start gap-3">
-                  <span className="check-icon-large flex-shrink-0">✓</span>
-                  <div className="flex-1">
-                        <h4 className="role-focus-item-title">Process Clarity as Public Infrastructure</h4>
-                        <p className="role-focus-item-desc">Strengthening how Ethereum governs itself</p>
-                      </div>
-                    </div>
-                <div className="role-focus-item flex items-start gap-3">
-                  <span className="check-icon-large flex-shrink-0">✓</span>
-                  <div className="flex-1">
-                        <h4 className="role-focus-item-title">Long-term EIP Stewardship</h4>
-                        <p className="role-focus-item-desc">Documentation, review, and standardization</p>
-                      </div>
-                    </div>
-                <div className="role-focus-item flex items-start gap-3">
-                  <span className="check-icon-large flex-shrink-0">✓</span>
-                  <div className="flex-1">
-                        <h4 className="role-focus-item-title">Protocol Translation</h4>
-                        <p className="role-focus-item-desc">For institutional stakeholders and enterprises</p>
-                      </div>
-                    </div>
-                  </div>
-              
-              {/* Second Column - 3 Cards (40%) */}
-              <div className="w-full lg:w-2/5 flex flex-col gap-4">
-                <div className="role-focus-item flex items-start gap-3">
-                  <span className="check-icon-large flex-shrink-0">✓</span>
-                  <div className="flex-1">
-                        <h4 className="role-focus-item-title">Formal Participation Pathways</h4>
-                        <p className="role-focus-item-desc">Opening governance to more contributors</p>
-                      </div>
-                    </div>
-                <div className="role-focus-item flex items-start gap-3">
-                  <span className="check-icon-large flex-shrink-0">✓</span>
-                  <div className="flex-1">
-                        <h4 className="role-focus-item-title">Diversity Through Onboarding</h4>
-                        <p className="role-focus-item-desc">Supporting women developers in protocol work</p>
-                      </div>
-                    </div>
-                <div className="role-focus-item flex items-start gap-3">
-                  <span className="check-icon-large flex-shrink-0">✓</span>
-                  <div className="flex-1">
-                        <h4 className="role-focus-item-title">Durable Artifacts</h4>
-                        <p className="role-focus-item-desc">Creating lasting content beyond meeting notes</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Third Column - Image (20%) */}
-              <div className="hidden lg:flex w-full lg:w-1/5 items-center justify-center">
-                <div className="role-focus-image w-full">
-                  <img src="/assets/images/cat-peek.webp" alt="Cat Peek" className="w-full h-auto object-contain" />
-                </div>
-              </div>
-            </div>
-            
-            {/* Footer Box - Full Width Below Cards */}
-            <div className="role-footer-box mt-6 lg:mt-8">
-              <p className="role-footer-text">
-                We do not set protocol direction. We support the systems that allow Ethereum to decide responsibly.
+      {/* ── Who We Are ── */}
+      <section className="py-20 bg-white" id="who-we-are">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <div className="global-section-tag">WHO WE ARE</div>
+              <h2 className="global-section-title mb-6">
+                Built on <em>purpose,</em><br />driven by community.
+              </h2>
+              <p className="global-body-lg mb-10">
+                ECH Institute believes everyone deserves access to education and the opportunity to contribute regardless of race, gender &amp; background. We bridge gaps by empowering individuals with blockchain knowledge, strengthening communities, and supporting the Web3 ecosystem as a public good, with a strong focus on inclusion and diversity.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      
-      <section className="boundaries-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center">
-            <div className="w-full lg:w-1/2 boundaries-column">
-            <h2 className="boundaries-title">Our Boundaries</h2>
-
-              <p className="boundaries-intro">
-                To protect focus and sustainability, ECH will intentionally step back from:
-              </p>
-              <div className="boundaries-list">
-                <div className="boundary-item">
-                  <span className="circle-icon">○</span>
-                  <p>Being the default operator for all Ethereum Protocol & breakout livestreaming</p>
-                </div>
-                <div className="boundary-item">
-                  <span className="circle-icon">○</span>
-                  <p>Ad-hoc community media work not tied to governance or protocol outcomes</p>
-                </div>
-                <div className="boundary-item">
-                  <span className="circle-icon">○</span>
-                  <p>Duplicating efforts now staffed within EF Protocol Support</p>
-                </div>
-              </div>
-              <p className="boundaries-note">
-                These activities are valuable but no longer the highest-leverage use of ECH&apos;s unique position.
-              </p>
-              <div className="boundaries-highlight-box">
-                <p className="boundaries-highlight-text">Our role is support, clarity, and stewardship — not authority.</p>
-              </div>
-            </div>
-            <div className="w-full lg:w-1/2 boundaries-image-column">
-              <div className="boundaries-image-wrapper">
-                <img src="/assets/EIP Summit Group Photo.webp" alt="Our Boundaries" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* EF Section */}
-      <section className="ef-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-stretch">
-            <div className="w-full lg:w-5/12 ef-image-column">
-              <div className="ef-image-wrapper">
-                <img 
-                  src="/assets/How We Work with EF.webp" 
-                  alt="How We Work with EF" 
-                />
-              </div>
-            </div>
-            <div className="w-full lg:w-7/12 ef-column">
-              <div className="ef-content-wrapper">
-                <h2 className="ef-title">How We Work with the Ethereum Foundation</h2>
-                <p className="ef-intro-text">
-                  ECH Institute works <strong>with</strong> the Ethereum Foundation, not <strong>in place of it</strong>.
-                </p>
-                <div className="ef-cards-container">
-                  <div className="ef-card">
-                    <h4 className="ef-card-title">EF Teams</h4>
-                    <p className="ef-card-description">Build and maintain the protocol</p>
-                  </div>
-                  <div className="ef-card">
-                    <h4 className="ef-card-title">Client Teams</h4>
-                    <p className="ef-card-description">Implement and ship</p>
-                  </div>
-                  <div className="ef-card">
-                    <h4 className="ef-card-title">ECH Institute</h4>
-                    <p className="ef-card-description">Supports the governance and coordination layer that connects them</p>
+              <div className="space-y-8">
+                <div className="flex gap-4 items-start">
+                  <span className="text-[#facc14] font-syne font-bold text-2xl">01</span>
+                  <div>
+                    <h3 className="global-card-title">Education First</h3>
+                    <p className="global-body">We create accessible pathways to learn blockchain and participate in the Web3 ecosystem empowering individuals at every stage to contribute with confidence.</p>
                   </div>
                 </div>
-                <p className="ef-footer-text">
-                  We focus on neutral infrastructure, documentation, and participation pathways that benefit the entire ecosystem.
-                </p>
+                <div className="flex gap-4 items-start">
+                  <span className="text-[#facc14] font-syne font-bold text-2xl">02</span>
+                  <div>
+                    <h3 className="global-card-title">Community-Centered</h3>
+                    <p className="global-body">We build inclusive, supportive communities that enable meaningful participation because learning and contributing in Web3 go hand in hand.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <span className="text-[#facc14] font-syne font-bold text-2xl">03</span>
+                  <div>
+                    <h3 className="global-card-title">Open Accountability</h3>
+                    <p className="global-body">We operate with transparency and integrity openly sharing our work, progress, and impact with the communities we serve and support.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative pl-4 lg:pl-10">
+              <div className="absolute inset-0 -left-2 sm:-left-4 top-8 -bottom-8 bg-[#fffbeb] rounded-3xl -z-10"></div>
+              <div className="flex flex-col shadow-2xl rounded-3xl overflow-hidden bg-white">
+                <div className="aspect-[4/3] relative">
+                  <img src="/assets/EIP Summit Group Photo.webp" alt="ECH Institute community at EIP Summit" className="w-full h-full object-cover" />
+                </div>
+                <div className="bg-[#fefce8] p-8 lg:p-12 border-t border-yellow-100">
+                  <p className="text-2xl lg:text-3xl font-lora italic text-gray-800 leading-relaxed mb-8">
+                    &ldquo;We don&apos;t help communities. We are part of them.&rdquo;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <span className="w-8 h-[2px] bg-yellow-400"></span>
+                    <span className="text-xs font-bold tracking-[0.25em] text-gray-900 uppercase">ECH INSTITUTE</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quote Section */}
-      {/* <section className="quote-section-wrapper">
-        <div className="container">
-          <div className="quote-box">
-            <div className="quote-content">
-              <div>
-                <p className="quote-text">
-                  Ethereum governance is complex but open to all. — Pooja Ranjan
-                </p>
-              </div>
-            </div>
+      {/* ══════════════════════════════════════════════════
+          OUR JOURNEY — Infographic Timeline
+      ══════════════════════════════════════════════════ */}
+      <section className="evo-section" id="evolution">
+        <div className="evo-container">
+
+          {/* Header */}
+          <div className="evo-header animate-on-scroll">
+            <div className="global-section-tag justify-center">OUR JOURNEY</div>
+            <h2 className="evo-main-title">
+              Institutional Evolution &amp; <span className="evo-accent">Continuity</span>
+            </h2>
+            <p className="evo-sub-year">(2024–2026)</p>
           </div>
-        </div>
-      </section> */}
 
-      {/* Why Section */}
-      <section className="why-section-alt">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="why-content-wrapper">
-            <h2 className="why-title-alt">Why ECH Institute</h2>
-            <p className="why-intro-alt">
-              Ethereum&apos;s success depends not only on code, but on its ability to coordinate globally, onboard new contributors,
-              support long-lived institutional users, and retain legitimacy as public infrastructure. We focus on work that is
-              essential, and not owned by any single team.
-            </p>
+          {/* ─── Infographic board ─── */}
+          <div className="evo-board animate-on-scroll">
 
-            <div className="why-trusted-section">
-              <h3 className="why-trusted-title">ECH Institute is trusted because we combine:</h3>
-              <div className="flex flex-wrap lg:flex-nowrap gap-4 sm:gap-6 lg:gap-8 why-trusted-grid">
-                <div className="w-full sm:w-full lg:w-1/3 lg:flex-shrink-0 why-trusted-card">
-                  <div className="why-trusted-icon">
-                    <Settings className="w-10 h-10 sm:w-12 sm:h-12" />
-                  </div>
-                  <p className="why-trusted-text">Deep operational experience inside protocol processes</p>
+            {/* TOP TEXT BLOCKS */}
+            <div className="evo-top-row">
+
+              <div className="evo-col">
+                <div className="evo-pill evo-pill--gray">BEGINNINGS</div>
+                <div className="evo-text-block">
+                  <strong className="evo-blk-title">EMERGENCE</strong>
+                  <span className="evo-blk-body">Forged from the decentralized Ethereum community.</span>
                 </div>
-                <div className="w-full sm:w-full lg:w-1/3 lg:flex-shrink-0 why-trusted-card">
-                  <div className="why-trusted-icon">
-                    <ShieldCheck className="w-10 h-10 sm:w-12 sm:h-12" />
-                  </div>
-                  <p className="why-trusted-text">Neutral nonprofit positioning</p>
+              </div>
+
+              <div className="evo-col">
+                <div className="evo-pill evo-pill--gray">LEGAL FORMATION</div>
+                <div className="evo-text-block">
+                  <strong className="evo-blk-title">COORDINATION</strong>
+                  <span className="evo-blk-body">EIP support, Hard Fork community funding.</span>
                 </div>
-                <div className="w-full sm:w-full lg:w-1/3 lg:flex-shrink-0 why-trusted-card">
-                  <div className="why-trusted-icon">
-                    <Clock className="w-10 h-10 sm:w-12 sm:h-12" />
-                  </div>
-                  <p className="why-trusted-text">Long‑term stewardship mindset</p>
+              </div>
+
+              <div className="evo-col">
+                <div className="evo-pill evo-pill--gray">GOVERNANCE MATURITY</div>
+                <div className="evo-text-block">
+                  <strong className="evo-blk-title">BOARD FORMALIZATION</strong>
+                  <span className="evo-blk-body">Including veteran ecosystem contributors.</span>
+                </div>
+              </div>
+
+              <div className="evo-col">
+                <div className="evo-pill evo-pill--gold">ACTIVE OPERATIONS</div>
+                <div className="evo-text-block">
+                  <strong className="evo-blk-title">EXPLORE TECHNICAL ROADMAPS</strong>
+                  <span className="evo-blk-body">Assist in charting protocol roadmaps for Ethereum.</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* CONNECTING PATH + DIAMONDS */}
+            <div className="evo-path-row">
+              <div className="evo-path-line">
+                <div className="evo-path-fill"></div>
+              </div>
+
+              <div className="evo-node-wrap">
+                <div className="evo-diamond evo-diamond--gray">
+                  <span className="evo-yr">2019</span>
+                </div>
+              </div>
+
+              <div className="evo-node-wrap">
+                <div className="evo-diamond evo-diamond--gray">
+                  <span className="evo-yr">2024</span>
+                </div>
+              </div>
+
+              <div className="evo-node-wrap">
+                <div className="evo-diamond evo-diamond--gray">
+                  <span className="evo-yr">2025</span>
+                </div>
+              </div>
+
+              <div className="evo-node-wrap">
+                <div className="evo-diamond evo-diamond--gold">
+                  <span className="evo-yr">2026</span>
                 </div>
               </div>
             </div>
 
-            <p className="why-footer-alt">
-              ECH Institute exists to make that possible quietly, credibly, and sustainably!
-            </p>
-          </div>
-        </div>
-      </section>
+            {/* BOTTOM TEXT BLOCKS */}
+            <div className="evo-bottom-row">
 
-      {/* Who We Serve Section - Text Left, Image Right */}
-      <section className="serve-section" id="serve">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="serve-header">
-            <h2 className="serve-section-title">Who We Serve</h2>
-            <p className="serve-section-subtitle">
-              We provide essential infrastructure and support to diverse stakeholders across the Ethereum ecosystem
-            </p>
-          </div>
-          <div className="serve-layout">
-            <div className="serve-content">
-              <div className="serve-audience-grid">
-                <div className="serve-audience-card">
-                  {/* <div className="serve-card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H11V21H5V3H13V9H21ZM14 10V12H16V10H14ZM18 10V12H20V10H18ZM14 14V16H16V14H14ZM18 14V16H20V14H18ZM14 18V20H16V18H14ZM18 18V20H20V18H18Z" fill="currentColor"/>
-                    </svg>
-                  </div> */}
-                  <h3 className="serve-card-title">Ethereum Ecosystem</h3>
-                  <p className="serve-card-description">Ethereum ecosystem and aspiring contributors</p>
-                </div>
-                
-                <div className="serve-audience-card">
-                  {/* <div className="serve-card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div> */}
-                  <h3 className="serve-card-title">EF Teams</h3>
-                  <p className="serve-card-description">Ethereum Foundation teams looking for neutral governance infrastructure</p>
-                </div>
-                
-                <div className="serve-audience-card">
-                  {/* <div className="serve-card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3 21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M5 21V7L13 2L21 7V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M9 9V13H15V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div> */}
-                  <h3 className="serve-card-title">Enterprises & Institutions</h3>
-                  <p className="serve-card-description">Building on Ethereum who need clear, accurate protocol context</p>
-                </div>
-                
-                <div className="serve-audience-card">
-                  {/* <div className="serve-card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6.25278V19.2528M12 6.25278C10.8321 5.47686 9.24649 5 7.5 5C5.75351 5 4.16789 5.47686 3 6.25278V19.2528C4.16789 18.4769 5.75351 18 7.5 18C9.24649 18 10.8321 18.4769 12 19.2528M12 6.25278C13.1679 5.47686 14.7535 5 16.5 5C18.2465 5 19.8321 5.47686 21 6.25278V19.2528C19.8321 18.4769 18.2465 18 16.5 18C14.7535 18 13.1679 18.4769 12 19.2528" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div> */}
-                  <h3 className="serve-card-title">Researchers & Educators</h3>
-                  <p className="serve-card-description">Studying open-source governance and protocol development</p>
-                </div>
-                
-                <div className="serve-audience-card">
-                  {/* <div className="serve-card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div> */}
-                  <h3 className="serve-card-title">Core Contributors</h3>
-                  <p className="serve-card-description">Ethereum core contributors seeking sustainable coordination support</p>
+              <div className="evo-col">
+                <div className="evo-text-block">
+                  <strong className="evo-blk-title">COORDINATION</strong>
+                  <span className="evo-blk-body">EIP support, Hard Fork communication &amp; community funding.</span>
                 </div>
               </div>
-            </div>
-            <div className="serve-image">
-              <div className="serve-image-wrapper">
-                <img src="/assets/Who We Serve.webp" alt="Who We Serve" />
+
+              <div className="evo-col">
+                <div className="evo-text-block">
+                  <strong className="evo-blk-title">INSTITUTIONAL FOUNDATION</strong>
+                  <span className="evo-blk-body">A legal body to support education &amp; public goods.</span>
+                  <span className="evo-blk-body">501(c)(3) details. Independent of private corporate interests.</span>
+                </div>
               </div>
+
+              <div className="evo-col">
+                <div className="evo-text-block">
+                  <strong className="evo-blk-title">SUPPORT GOVERNANCE</strong>
+                  <span className="evo-blk-body">Increased Office Hours to educate and support contributors to participate in governance.</span>
+                </div>
+                <div className="evo-text-block" style={{ marginTop: '10px' }}>
+                  <strong className="evo-blk-title">INSTITUTIONAL ENGAGEMENT</strong>
+                  <span className="evo-blk-body">Special podcast to explain Ethereum upgrades to Institutional users.</span>
+                </div>
+              </div>
+
+              <div className="evo-col">
+                <div className="evo-text-block">
+                  <strong className="evo-blk-title">EVENT SUPPORT</strong>
+                  <span className="evo-blk-body">Supporting Road to Devcon — bringing the biggest festival of Ethereum to India.</span>
+                </div>
+              </div>
+
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Enterprise & Institutional View Section - Image Left, Text Right */}
-      <section className="section enterprise-section">
+      {/* ── Programs ── */}
+      <section className="py-24 bg-white" id="programs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="enterprise-layout">
-            <div className="enterprise-image">
-              <img src="/assets/Enterprise & Institutional View.webp" alt="Enterprise & Institutional View" />
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 justify-between items-stretch lg:items-end mb-16">
+            <div className="lg:w-1/2 flex flex-col justify-end">
+              <div className="global-section-tag justify-start mb-4">WHAT WE DO</div>
+              <h2 className="global-section-title mb-0 leading-[1.1] pb-1">Programs built <br /><span className="text-[#facc14]">for real impact.</span></h2>
             </div>
-            <div className="enterprise-content">
-              <h2 className="serve-section-title">Enterprise & Institutional View</h2>
-              <p className="enterprise-intro">
-                For enterprises and institutions, Ethereum is long‑lived public infrastructure. Understanding how protocol change is governed is critical to managing risk.
-              </p>
+            <div className="lg:w-1/2 flex flex-col justify-end">
+              <p className="global-body-lg text-left lg:text-right text-gray-600 mb-0 lg:pb-1">Each ECH program supports Ethereum governance through clear processes, coordination, and participation focused on long-term, sustainable outcomes rather than short-term fixes.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Link href={ROUTES.education} className="program-img-card group lg:row-span-2">
+              <img src="/assets/How We Work with EF.webp" alt="Education" className="bg-img" />
+              <div className="overlay"></div>
+              <div className="content">
+                <span className="badge">FLAGSHIP PROGRAM</span>
+                <h3>Education &amp; Literacy</h3>
+                <p>Centered on improving understanding of Ethereum network upgrades and governance processes through structured explanations, documentation, and coordination.</p>
+                <div className="btn-wrap">
+                  <span className="program-img-card-btn">View Program &rarr;</span>
+                </div>
+              </div>
+            </Link>
 
-              <div className="enterprise-card-white">
-                <h3 className="enterprise-card-title">ECH Institute helps institutional users:</h3>
-                <ul className="enterprise-numbered-list">
-                  <li>
-                    <span className="enterprise-number">1</span>
-                    <span>Understand how and when protocol changes occur</span>
-                  </li>
-                  <li>
-                    <span className="enterprise-number">2</span>
-                    <span>Interpret upgrades beyond release notes</span>
-                  </li>
-                  <li>
-                    <span className="enterprise-number">3</span>
-                    <span>Engage responsibly without influencing protocol direction</span>
-                  </li>
+            <Link href={ROUTES.eipSupport} className="program-img-card group">
+              <img src="/assets/IMG_355.webp" alt="EIP Support" className="bg-img" />
+              <div className="overlay"></div>
+              <div className="content">
+                <span className="badge !bg-gray-200 !text-gray-800">GOVERNANCE</span>
+                <h3>EIP Support</h3>
+                <p>Strengthening the Ethereum Improvement Proposal process through structure and coordinated reviews.</p>
+                <div className="btn-wrap">
+                  <span className="program-img-card-btn">View Program &rarr;</span>
+                </div>
+              </div>
+            </Link>
+
+            <Link href={ROUTES.podcast} className="program-img-card group">
+              <img src="/assets/IMG_3600.webp" alt="Podcast" className="bg-img" />
+              <div className="overlay" style={{ background: 'linear-gradient(0deg, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.6) 50%, rgba(15,23,42,0.2) 100%)' }}></div>
+              <div className="content">
+                <span className="badge !bg-gray-200 !text-gray-800">CONTENT</span>
+                <h3>Podcast &amp; Content</h3>
+                <p>Translating complex Ethereum governance into accessible knowledge through videos and podcasts.</p>
+                <div className="btn-wrap">
+                  <span className="program-img-card-btn">View Program &rarr;</span>
+                </div>
+              </div>
+            </Link>
+
+            <Link href={ROUTES.communityPartnerships} className="program-img-card group">
+              <img src="/assets/Who We Serve.webp" alt="Community Partnerships" className="bg-img" />
+              <div className="overlay"></div>
+              <div className="content">
+                <span className="badge !bg-gray-200 !text-gray-800">COMMUNITY</span>
+                <h3>Community Partnerships</h3>
+                <p>Collaborating with ecosystem communities to expand participation in Ethereum governance.</p>
+                <div className="btn-wrap">
+                  <span className="program-img-card-btn">View Program &rarr;</span>
+                </div>
+              </div>
+            </Link>
+
+            <Link href={ROUTES.wiep} className="program-img-card group">
+              <img src="/assets/EIP Summit Group Photo.webp" alt="Women in Protocol" className="bg-img" />
+              <div className="overlay"></div>
+              <div className="content">
+                <span className="badge">INCLUSION</span>
+                <h3>Women in Protocol</h3>
+                <p>Supporting women entering Ethereum governance through mentorship and education.</p>
+                <div className="btn-wrap">
+                  <span className="program-img-card-btn">View Program &rarr;</span>
+                </div>
+              </div>
+            </Link>
+
+            <Link href={ROUTES.institutionalBridging} className="program-img-card group">
+              <img src="/assets/Enterprise & Institutional View.webp" alt="Institutional Bridging" className="bg-img" />
+              <div className="overlay"></div>
+              <div className="content">
+                <span className="badge !bg-gray-200 !text-gray-800">INSTITUTIONAL</span>
+                <h3>Institutional Bridging</h3>
+                <p>Bridging Ethereum governance with enterprise stakeholders through education and dialogue.</p>
+                <div className="btn-wrap">
+                  <span className="program-img-card-btn">View Program &rarr;</span>
+                </div>
+              </div>
+            </Link>
+
+            <Link href={ROUTES.events} className="program-img-card group md:col-span-2 lg:col-span-2" style={{ minHeight: '320px' }}>
+              <img src="/assets/2025 recap.webp" alt="Events" className="bg-img" />
+              <div className="overlay" style={{ background: 'linear-gradient(90deg, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.85) 40%, transparent 100%)' }}></div>
+              <div className="content md:w-3/4 lg:w-3/4">
+                <span className="badge">ECOSYSTEM FESTIVALS</span>
+                <h3>Events &amp; Workshops</h3>
+                <p>Organizing roundtables and workshops that bring the ecosystem together for discussion around EIPs and emerging standards.</p>
+                <div className="btn-wrap">
+                  <span className="program-img-card-btn">View Program &rarr;</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Impact ── */}
+      <section className="py-24 bg-white border-y border-gray-100" id="impact">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row gap-8 lg:gap-20 justify-between items-start md:items-end mb-16">
+            <div className="max-w-2xl">
+              <div className="global-section-tag justify-start">OUR IMPACT</div>
+              <h2 className="global-section-title mb-4">Numbers <br /><em>that matter.</em></h2>
+              <p className="global-body-lg text-gray-600">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
+            </div>
+            <button className="btn btn-primary md:flex-shrink-0">VIEW FULL REPORT</button>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Card 1: Network Upgrades */}
+            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll">
+              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
+                <span className="text-7xl font-syne font-extrabold text-[#facc14] leading-none mb-3">2</span>
+                <h3 className="font-syne font-bold text-lg text-gray-900">Network Upgrades</h3>
+              </div>
+              <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
+                <p className="global-body font-medium text-gray-800 mb-4">Over the twelve months, we supported the Dencun upgrade and the Pectra upgrade.</p>
+                <p className="global-body text-gray-600">We livestreamed both upgrades with community partners. We invited core EIP proposal Authors to share about the significance of the upgrades to scale Ethereum.</p>
+              </div>
+            </div>
+
+            {/* Card 2: Podcasts Produced */}
+            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-1">
+              <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%] order-2 xl:order-1">
+                <p className="global-body font-medium text-gray-800 mb-4">We produced 13 videos on the Dencun upgrade, 18 videos on the Pectra upgrade and featured 23 independent projects on Ecosystem Project Demo.</p>
+                <p className="global-body text-gray-600 mb-2">We also coordinated and published:</p>
+                <ul className="list-disc list-inside global-body text-gray-600 space-y-1 ml-2">
+                  <li>30+ Eth Multicall</li>
+                  <li>12+ ePBS Breakout Room</li>
+                  <li>25+ EOF Implementers Meetings</li>
                 </ul>
-                <div className="enterprise-divider"></div>
-                <p className="enterprise-footer-text">
-                  We provide clarity, not advocacy — so organizations can build and operate with confidence.
-                </p>
+              </div>
+              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
+                <span className="text-7xl font-syne font-extrabold text-[#facc14] leading-none mb-3">108+</span>
+                <h3 className="font-syne font-bold text-lg text-gray-900">Podcasts Produced</h3>
+              </div>
+            </div>
+
+            {/* Card 3: Community Members */}
+            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-2">
+              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
+                <span className="text-6xl xl:text-7xl font-syne font-extrabold text-[#facc14] leading-none mb-3">8.2K+</span>
+                <h3 className="font-syne font-bold text-lg text-gray-900">Community Members</h3>
+              </div>
+              <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
+                <p className="global-body font-medium text-gray-800 leading-relaxed">Partnering over 5 global communities for events, Over 8200 people followed us on X/Twitter and hosting over 2,900 members on Discord, our community is growing!</p>
+              </div>
+            </div>
+
+            {/* Card 4: ECH Core Efficiency */}
+            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-3">
+              <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%] order-2 xl:order-1">
+                <p className="global-body font-medium text-gray-800 mb-4">Managing robust operations entirely transparently, providing a critical resource layer for developers and Ethereum ecosystem stakeholders.</p>
+                <p className="global-body text-gray-600">Through our flagship initiatives, we streamline technical standard documentation, global mentorship, and core institutional outreach.</p>
+              </div>
+              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
+                <span className="text-7xl font-syne font-extrabold text-[#facc14] leading-none mb-3">7+</span>
+                <h3 className="font-syne font-bold text-lg text-gray-900">Core Programs</h3>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Card Slider Section */}
-      {/* <section className="card-slider-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CardSlider />
+      {/* ── Get Involved ── */}
+      <section className="gi-pro-bg border-t border-gray-100 relative overflow-hidden" id="get-involved-peek">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
+          <div className="hidden lg:flex lg:col-span-5 items-center justify-center relative h-[400px]">
+            <div className="gi-mascot-wrap">
+              <img src="/assets/images/cat-peek.webp" alt="Cat peeking" className="relative z-10 w-[320px] h-auto object-contain drop-shadow-2xl animate-float" />
+            </div>
+          </div>
+          <div className="lg:col-span-7 animate-on-scroll">
+            <div className="global-section-tag">GET INVOLVED</div>
+            <h2 className="text-5xl lg:text-6xl font-syne font-extrabold mb-8 text-gray-900 leading-[1.05] tracking-tight">
+              Join us in building <br /><span className="text-[#facc14] italic">a better community.</span>
+            </h2>
+            <p className="grow-0 global-body-lg mb-12 text-gray-700 max-w-xl leading-relaxed">
+              Change doesn&apos;t happen alone. Whether you have time, skills, or resources to give there is a meaningful place for you at ECH Institute.
+            </p>
+            <div className="flex flex-wrap gap-6 items-center">
+              <Link href={ROUTES.support} className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">DONATE NOW</Link>
+              <Link href={ROUTES.getInvolved} className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">GET INVOLVED &rarr;</Link>
+            </div>
+          </div>
         </div>
-      </section> */}
+      </section>
+
+      {/* ── Partners Marquee ── */}
+      <section className="py-12 bg-white border-y border-gray-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+          <div className="inline-flex items-center gap-4 mb-4">
+            <div className="h-px w-8 bg-gray-200"></div>
+            <span className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">OUR NETWORK</span>
+            <div className="h-px w-8 bg-gray-200"></div>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-gray-900 leading-tight">
+            Supported by &amp; <br className="md:hidden" /> <em>Collaborating with.</em>
+          </h2>
+        </div>
+        <div className="marquee-container">
+          <div className="marquee-track">
+            {[
+              { id: 'ef', src: "/logos/ethereum-foundation-logo.png", alt: "Ethereum Foundation", size: "scale-200" },
+              { id: 'gitcoin', src: "/logos/gitcoin.svg", alt: "Gitcoin", size: "scale-110" },
+              { id: 'optimism', src: "/logos/Optimism-logo.png", alt: "Optimism", size: "scale-100" },
+              { id: 'octant', src: "/logos/octant-logo.svg", alt: "Octant", size: "scale-100" },
+              { id: 'ethstaker', src: "/logos/ethstaker-logo.svg", alt: "EthStaker", size: "scale-125" },
+              { id: 'magicians', src: "/logos/ethereum magicians logo.png", alt: "Ethereum Magicians", size: "scale-200" },
+              { id: 'ethcluj', src: "/logos/EthCluj-logo.svg", alt: "EthCluj", size: "scale-200" },
+              { id: 'eea', src: "/logos/enterpriseethereumalliance_logo.jpg", alt: "Enterprise Ethereum Alliance", size: "scale-200" },
+              { id: 'edcon', src: "/logos/EDCON-logo.jpeg", alt: "EDCON", size: "scale-250" }
+            ].map((partner) => (
+              <div key={partner.id} className="marquee-item flex items-center justify-center px-6 md:px-10">
+                <div className="h-12 w-32 md:w-40 flex items-center justify-center">
+                  <img 
+                    src={partner.src} 
+                    alt={partner.alt} 
+                    className={`max-h-full max-w-full w-auto h-auto object-contain transition-all duration-300 ${partner.size}`}
+                  />
+                </div>
+              </div>
+            ))}
+            {[
+              { id: 'ef-clone', src: "/logos/ethereum-foundation-logo.png", alt: "Ethereum Foundation", size: "scale-200" },
+              { id: 'gitcoin-clone', src: "/logos/gitcoin.svg", alt: "Gitcoin", size: "scale-110" },
+              { id: 'optimism-clone', src: "/logos/Optimism-logo.png", alt: "Optimism", size: "scale-100" },
+              { id: 'octant-clone', src: "/logos/octant-logo.svg", alt: "Octant", size: "scale-100" },
+              { id: 'ethstaker-clone', src: "/logos/ethstaker-logo.svg", alt: "EthStaker", size: "scale-125" },
+              { id: 'magicians-clone', src: "/logos/ethereum magicians logo.png", alt: "Ethereum Magicians", size: "scale-200" },
+              { id: 'ethcluj-clone', src: "/logos/EthCluj-logo.svg", alt: "EthCluj", size: "scale-200" },
+              { id: 'eea-clone', src: "/logos/enterpriseethereumalliance_logo.jpg", alt: "Enterprise Ethereum Alliance", size: "scale-200" },
+              { id: 'edcon-clone', src: "/logos/EDCON-logo.jpeg", alt: "EDCON", size: "scale-250" }
+            ].map((partner) => (
+              <div key={partner.id} className="marquee-item flex items-center justify-center px-6 md:px-10">
+                <div className="h-12 w-32 md:w-40 flex items-center justify-center">
+                  <img 
+                    src={partner.src} 
+                    alt={partner.alt} 
+                    className={`max-h-full max-w-full w-auto h-auto object-contain transition-all duration-300 ${partner.size}`}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Contact ── */}
+      <section className="py-32 contact-pro-bg border-t border-gray-100 relative" id="contact">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            <div className="animate-on-scroll">
+              <div className="global-section-tag">CONTACT ECH</div>
+              <h2 className="text-5xl lg:text-6xl font-syne font-extrabold mb-8 text-gray-900 leading-[1.05] tracking-tight">
+                Let&apos;s build <br /><span className="text-[#facc14] italic">the future.</span>
+              </h2>
+              <p className="global-body-lg mb-12 text-gray-700 max-w-lg leading-relaxed">
+                Whether you&apos;re looking to partner, contribute to an EIP, or need help understanding the latest network upgrade — we&apos;re here for the ecosystem.
+              </p>
+              
+              <div className="grid grid-cols-1 gap-6">
+                <a href="mailto:team@ethcatherders.com" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
+                  <div className="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-yellow-50 text-yellow-500">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">EMAIL</span>
+                    <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors line-clamp-1">team@ethcatherders.com</span>
+                  </div>
+                </a>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <a href="https://x.com/ECHinstitute" target="_blank" rel="noopener noreferrer" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
+                    <div className="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-yellow-50 text-yellow-500">
+                      <Twitter size={24} />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">TWITTER</span>
+                      <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors">@ECHinstitute</span>
+                    </div>
+                  </a>
+                  
+                  <a href="https://www.youtube.com/@echinstitute" target="_blank" rel="noopener noreferrer" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
+                    <div className="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-yellow-50 text-yellow-500">
+                      <Youtube size={24} />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">YOUTUBE</span>
+                      <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors uppercase">ECH Institute</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="animate-on-scroll delay-2">
+              <div className="p-1 lg:p-2 bg-gray-50/50 rounded-[40px] border border-gray-100 shadow-xl">
+                <div className="bg-white p-8 lg:p-12 rounded-[32px] shadow-sm border border-gray-100">
+                  {isSubmitted ? (
+                    <div className="py-12 text-center animate-fade-in">
+                      <div className="w-20 h-20 bg-[#facc14] rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-yellow-200">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </div>
+                      <h3 className="text-3xl font-syne font-bold text-gray-900 mb-4">Message Sent!</h3>
+                      <p className="global-body text-gray-600 mb-10 max-w-sm mx-auto">We&apos;ve received your message and our team will get back to you within 2 business days.</p>
+                      <button onClick={() => setIsSubmitted(false)} className="text-xs font-bold tracking-[0.3em] text-gray-900 uppercase border-b-2 border-[#facc14] pb-2 hover:text-[#facc14] transition-all">
+                        SEND ANOTHER MESSAGE
+                      </button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                      <input type="hidden" name="_subject" value="New ECH Institute Contact Form Submission!" />
+                      <input type="hidden" name="_captcha" value="false" />
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">First Name</label>
+                          <input type="text" name="First Name" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="Jane" required />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Last Name</label>
+                          <input type="text" name="Last Name" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="Doe" required />
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Email Address</label>
+                        <input type="email" name="email" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="jane@example.com" required />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Inquiry Type</label>
+                        <div className="relative">
+                          <select name="Inquiry Type" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg text-gray-400 appearance-none cursor-pointer relative z-10" required defaultValue="">
+                            <option value="" disabled>How can we help?</option>
+                            <option value="General Inquiry" className="text-gray-900">General Inquiry</option>
+                            <option value="EIP Support" className="text-gray-900">EIP Support</option>
+                            <option value="Support & Donation" className="text-gray-900">Support & Donation</option>
+                            <option value="Volunteering" className="text-gray-900">Volunteering</option>
+                            <option value="Partnership" className="text-gray-900">Partnership</option>
+                            <option value="Institutional Engagement" className="text-gray-900">Institutional Engagement</option>
+                            <option value="Education & Training" className="text-gray-900">Education & Training</option>
+                            <option value="Other" className="text-gray-900">Other</option>
+                          </select>
+                          <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-300">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Your Message</label>
+                        <textarea name="Message" rows={4} className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300 resize-none" placeholder="Tell us more about how we can work together..." required></textarea>
+                      </div>
+
+                      <button type="submit" disabled={isSubmitting} className="global-btn global-btn-primary w-full py-6 text-base tracking-widest shadow-2xl hover:shadow-yellow-200/50 disabled:opacity-50 transition-all duration-300 bg-black text-white hover:bg-[#facc14] hover:text-black mt-4">
+                        {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FAQSection />
     </div>
   );
 }

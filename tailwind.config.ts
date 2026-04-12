@@ -76,8 +76,9 @@ const config = {
         'infinite-scroll': 'infinite-scroll 25s linear infinite',
       },
       fontFamily: {
+        syne: ["Syne", "sans-serif"],
         antonio: ["Antonio", "sans-serif"],
-        roboto: ["Roboto", "sans-serif"],
+        sans: ["DM Sans", "sans-serif"],
       },
     },
   },

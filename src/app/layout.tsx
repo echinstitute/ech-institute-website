@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.echinstitute.org"),
   title: {
-    default: "ECH Institute — Ethereum Protocol Governance & Coordination",
+    default: "ECH Institute Ethereum Protocol Governance & Coordination",
     template: "%s | ECH Institute",
   },
   description:
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.echinstitute.org",
     siteName: "ECH Institute",
-    title: "ECH Institute — Ethereum Protocol Governance & Coordination",
+    title: "ECH Institute Ethereum Protocol Governance & Coordination",
     description:
       "ECH Institute supports Ethereum's protocol governance and coordination as a neutral public good — helping the ecosystem scale responsibly and sustainably.",
     images: [
@@ -69,13 +69,13 @@ export const metadata: Metadata = {
         url: "/assets/ech_full_logo.png",
         width: 1200,
         height: 630,
-        alt: "ECH Institute — Ethereum Protocol Governance & Coordination",
+        alt: "ECH Institute Ethereum Protocol Governance & Coordination",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ECH Institute — Ethereum Protocol Governance & Coordination",
+    title: "ECH Institute Ethereum Protocol Governance & Coordination",
     description:
       "Supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral 501(c)(3) public good.",
     images: ["/assets/ech_full_logo.png"],
@@ -84,7 +84,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
       { url: "/assets/ech_full_logo.png", type: "image/png" },
     ],
     apple: "/assets/ech_full_logo.png",
@@ -109,7 +108,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
           rel="stylesheet"
         />
         {/* Structured Data — Organization */}

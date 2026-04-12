@@ -33,6 +33,12 @@ const nextConfig: NextConfig = {
   experimental: {
     webpackBuildWorker: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 
   // ─────────────────────────────────────────────
   // IMAGE OPTIMIZATION

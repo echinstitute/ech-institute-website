@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
 @import "tw-animate-css";
 
 @layer base {
@@ -140,7 +141,7 @@
    FOOTER STYLES - Single source of truth
    ========================================== */
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

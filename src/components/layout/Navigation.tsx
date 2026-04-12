@@ -612,7 +612,7 @@ export default function Navigation() {
                     document.body.style.overflow = '';
                   }
                 }}
-                className="block lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors text-black z-[100] relative flex-shrink-0"
+                className="hidden max-lg:flex p-2 rounded-md hover:bg-gray-100 transition-colors text-black z-[100] relative flex-shrink-0 items-center justify-center"
                 aria-label="Toggle menu"
                 type="button"
                 aria-expanded={isMenuOpen}

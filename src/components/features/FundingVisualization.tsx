@@ -84,24 +84,26 @@ export function FundingVisualization() {
     ? pieSegments[hoveredSegment] 
     : null;
   return (
-    <div className="mx-auto max-w-6xl space-y-6 md:space-y-8 lg:space-y-10">
-      <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+    <div className="mx-auto max-w-6xl space-y-6 md:space-y-8 lg:space-y-10 px-1">
+      <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {fundingPillars.map((pillar, index) => {
           const Icon = pillar.icon;
           return (
             <article
               key={index}
-              className="group flex min-w-0 flex-col rounded-[12px] border-2 bg-white p-4 transition-all duration-200 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-hover)] sm:p-5"
+              className="group flex min-w-0 flex-col rounded-[12px] border-2 bg-white p-4 transition-all duration-200 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-hover)] sm:p-5 overflow-hidden"
             >
               <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-100 transition-colors group-hover:bg-gray-200/80">
-                  <Icon className="global-icon-yellow h-4 w-4 sm:h-5 sm:w-5" aria-hidden />
+                <div className="proplay-icon-container h-9 w-9 shrink-0">
+                  <Icon className="h-4 w-4" />
                 </div>
-                <h3 className="global-body text-base font-semibold leading-snug text-zinc-900 sm:text-lg">
+                <h3 className="global-card-title !mb-0 text-zinc-900">
                   {pillar.title}
                 </h3>
               </div>
-              <p className="global-body mt-auto text-gray-600">{pillar.description}</p>
+              <p className="global-body mt-auto text-gray-600 text-sm leading-relaxed text-balance">
+                {pillar.description}
+              </p>
             </article>
           );
         })}
@@ -173,7 +175,7 @@ export function FundingVisualization() {
             <h5 className="global-body mb-3 text-base font-semibold text-zinc-900 md:text-lg">
               Funding distribution
             </h5>
-            <div className="relative w-[200px] h-[200px] md:w-[220px] md:h-[220px] mx-auto flex-shrink-0">
+            <div className="relative w-[180px] h-[180px] sm:w-[200px] sm:h-[200px] md:w-[220px] md:h-[220px] mx-auto flex-shrink-0">
               <svg width="240" height="240" viewBox="0 0 240 240" className="transform -rotate-90 w-full h-full">
                 {pieSegments.map((segment, index) => (
                   <g key={index}>
@@ -201,7 +203,7 @@ export function FundingVisualization() {
             </div>
             
             {/* Legend */}
-            <div className="mt-3 grid w-full grid-cols-2 gap-2">
+            <div className="mt-3 grid w-full grid-cols-1 sm:grid-cols-2 gap-2">
               {pieSegments.map((segment, index) => (
                 <div
                   key={index}
@@ -225,15 +227,15 @@ export function FundingVisualization() {
             {currentSegment ? (
               <div className="space-y-4 md:space-y-6">
                 <div>
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-zinc-900 md:mb-3 md:text-3xl">
+                  <h5 className="mb-2 text-xl font-bold tracking-tight text-zinc-900 md:mb-3 sm:text-2xl md:text-3xl break-words">
                     {currentSegment.epoch}
                   </h5>
-                  <p className="mb-4 text-sm font-medium text-gray-600 md:text-base">
+                  <p className="mb-4 text-xs font-medium text-gray-600 sm:text-sm md:text-base">
                     {currentSegment.period}
                   </p>
                 </div>
-                <div className="rounded-[12px] border-2 bg-white p-5 md:p-6 [border-color:var(--card-border)]">
-                  <p className="mb-3 text-3xl font-bold text-amber-600 md:text-4xl">
+                <div className="rounded-[12px] border-2 bg-white p-4 sm:p-5 md:p-6 [border-color:var(--card-border)] overflow-hidden">
+                  <p className="mb-3 text-2xl font-bold text-amber-600 sm:text-3xl md:text-4xl break-all">
                     {currentSegment.amount} ETH
                   </p>
                   <p className="global-body text-sm font-medium text-gray-700 md:text-base">
@@ -242,7 +244,7 @@ export function FundingVisualization() {
                   </p>
                 </div>
                 <div className="border-t-2 pt-4 [border-color:var(--card-border)]">
-                  <p className="global-body text-sm leading-relaxed text-gray-700 md:text-base">
+                  <p className="global-body text-xs sm:text-sm leading-relaxed text-gray-700 md:text-base break-words">
                     <span className="font-semibold text-zinc-900">Impact:</span> {currentSegment.impact}
                   </p>
                 </div>

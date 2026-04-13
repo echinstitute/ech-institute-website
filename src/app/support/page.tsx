@@ -16,10 +16,10 @@ import { EcosystemImpact } from "@/components/features/EcosystemImpact";
 
 // ─── Sticky Nav ───────────────────────────────────────────────────────────────
 const NAV_SECTIONS = [
+  { id: "donate", label: "Make a Donation" },
   { id: "why-support", label: "Why Support" },
   { id: "what-enables", label: "What You Enable" },
   { id: "ways-to-support", label: "Ways to Support" },
-  { id: "donate", label: "Make a Donation" },
   { id: "funding-model", label: "Funding Model" },
   { id: "transparency", label: "Transparency" },
   { id: "disclaimer", label: "Disclaimer" },
@@ -285,7 +285,7 @@ function EthereumLogo({ className }: { className?: string }) {
 }
 
 export default function SupportPage() {
-  const [activeSection, setActiveSection] = useState("why-support");
+  const [activeSection, setActiveSection] = useState("donate");
   const [openPillars, setOpenPillars] = useState<Record<number, boolean>>({ 0: true });
   const [openWays, setOpenWays] = useState<Record<number, boolean>>({ 2: true });
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -387,6 +387,93 @@ export default function SupportPage() {
 
         {/* Main content */}
         <div className="flex-1 min-w-0 flex flex-col gap-10 md:gap-16">
+
+          {/* ── Make a Donation ───────────────────────────────────────────── */}
+          <section id="donate">
+            <span className="global-section-tag">Direct Donation</span>
+            <h2 className="global-section-title">Make a <em>Donation</em></h2>
+            <p className="global-body-lg mb-5">
+              Send ETH directly to the ECH Institute treasury address below. As a 501(c)(3) charitable
+              organization, your contribution may be tax-deductible under U.S. law.
+            </p>
+
+            <div className="global-card p-0 overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                {/* Left — mission text */}
+                <div className="lg:col-span-7 p-5 md:p-6">
+                  <h3 className="global-card-title mb-3">Support Our Mission</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="global-body">
+                      Thank you for supporting ECH Institute. Your contribution directly funds EIP process
+                      coordination, upgrade communication, educational content production, and inclusion
+                      programs that make Ethereum governance accessible to everyone.
+                    </p>
+                    <p className="global-body">
+                      ECH Institute is committed to ensuring that the Ethereum ecosystem remains
+                      decentralized, well-coordinated, and accessible for all participants — not just
+                      insiders.
+                    </p>
+                    <p className="global-body">
+                      Your contribution fuels accessible resources, critical meeting coordination,
+                      governance documentation, and inclusivity programs across the Ethereum ecosystem.
+                    </p>
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {[
+                      "EIP coordination",
+                      "Upgrade communication",
+                      "PEEPanEIP series",
+                      "WiEP program",
+                      "ACD documentation",
+                      "Open governance records",
+                    ].map(tag => (
+                      <span
+                        key={tag}
+                        className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 rounded-full px-3 py-1"
+                      >
+                        <CheckCircle2 size={11} className="text-[#f5a51d]" />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right — wallet card */}
+                <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-gray-100">
+                  <div className="h-full flex flex-col p-5 md:p-6">
+                    <div className="mb-3 flex items-start gap-2.5">
+                      <div className="proplay-icon-container h-10 w-10 shrink-0">
+                        <Wallet className="h-5 w-5" aria-hidden />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="global-card-title mb-0.5">Treasury Address</p>
+                        <p className="text-xs text-gray-500">Ethereum Mainnet</p>
+                      </div>
+                    </div>
+
+                    <div className="relative group">
+                      <p className="global-body mb-4 break-all font-mono text-xs sm:text-sm leading-snug text-zinc-900 bg-gray-50 rounded-lg p-3 sm:p-4 border border-gray-100 [word-break:break-all]">
+                        {DONATION_ADDRESS}
+                      </p>
+                      <div className="absolute top-2 right-2">
+                        <CopyButton text={DONATION_ADDRESS} />
+                      </div>
+                    </div>
+
+                    <div className="mb-4 flex justify-center">
+                      <ConnectButtonClient />
+                    </div>
+
+                    <div className="mt-auto flex flex-wrap items-center justify-center gap-2 border-t border-gray-100 pt-3">
+                      <span className="global-body text-xs text-gray-600">Supported network</span>
+                      <EthereumLogo className="h-5 w-5 shrink-0 text-[#627EEA]" />
+                      <span className="global-body text-xs font-semibold text-zinc-900">Ethereum</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* ── Why Support ECH Institute ────────────────────────────────── */}
           <section id="why-support">
@@ -577,95 +664,8 @@ export default function SupportPage() {
             </div>
           </section>
 
-          {/* ── Make a Donation ───────────────────────────────────────────── */}
-          <section id="donate">
-            <span className="global-section-tag">Direct Donation</span>
-            <h2 className="global-section-title">Make a <em>Donation</em></h2>
-            <p className="global-body-lg mb-5">
-              Send ETH directly to the ECH Institute treasury address below. As a 501(c)(3) charitable
-              organization, your contribution may be tax-deductible under U.S. law.
-            </p>
-
-            <div className="global-card p-0 overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-                {/* Left — mission text */}
-                <div className="lg:col-span-7 p-5 md:p-6">
-                  <h3 className="global-card-title mb-3">Support Our Mission</h3>
-                  <div className="space-y-3 text-gray-700">
-                    <p className="global-body">
-                      Thank you for supporting ECH Institute. Your contribution directly funds EIP process
-                      coordination, upgrade communication, educational content production, and inclusion
-                      programs that make Ethereum governance accessible to everyone.
-                    </p>
-                    <p className="global-body">
-                      ECH Institute is committed to ensuring that the Ethereum ecosystem remains
-                      decentralized, well-coordinated, and accessible for all participants — not just
-                      insiders.
-                    </p>
-                    <p className="global-body">
-                      Your contribution fuels accessible resources, critical meeting coordination,
-                      governance documentation, and inclusivity programs across the Ethereum ecosystem.
-                    </p>
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {[
-                      "EIP coordination",
-                      "Upgrade communication",
-                      "PEEPanEIP series",
-                      "WiEP program",
-                      "ACD documentation",
-                      "Open governance records",
-                    ].map(tag => (
-                      <span
-                        key={tag}
-                        className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 rounded-full px-3 py-1"
-                      >
-                        <CheckCircle2 size={11} className="text-[#f5a51d]" />
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right — wallet card */}
-                <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-gray-100">
-                  <div className="h-full flex flex-col p-5 md:p-6">
-                    <div className="mb-3 flex items-start gap-2.5">
-                      <div className="proplay-icon-container h-10 w-10 shrink-0">
-                        <Wallet className="h-5 w-5" aria-hidden />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="global-card-title mb-0.5">Treasury Address</p>
-                        <p className="text-xs text-gray-500">Ethereum Mainnet</p>
-                      </div>
-                    </div>
-
-                    <div className="relative group">
-                      <p className="global-body mb-4 break-all font-mono text-xs sm:text-sm leading-snug text-zinc-900 bg-gray-50 rounded-lg p-3 sm:p-4 border border-gray-100 [word-break:break-all]">
-                        {DONATION_ADDRESS}
-                      </p>
-                      <div className="absolute top-2 right-2">
-                        <CopyButton text={DONATION_ADDRESS} />
-                      </div>
-                    </div>
-
-                    <div className="mb-4 flex justify-center">
-                      <ConnectButtonClient />
-                    </div>
-
-                    <div className="mt-auto flex flex-wrap items-center justify-center gap-2 border-t border-gray-100 pt-3">
-                      <span className="global-body text-xs text-gray-600">Supported network</span>
-                      <EthereumLogo className="h-5 w-5 shrink-0 text-[#627EEA]" />
-                      <span className="global-body text-xs font-semibold text-zinc-900">Ethereum</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
           {/* ── Ecosystem Impact ──────────────────────────────────────────── */}
-          <section>
+          <section id="ecosystem-impact">
             <EcosystemImpact />
           </section>
 

@@ -61,9 +61,9 @@ function ImpactCard({ item }: { item: ImpactMetric }) {
   return (
     <article className={cardClassName}>
       <div className="mb-3 flex min-w-0 items-start gap-3 sm:items-center">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 transition-colors group-hover:bg-gray-200/80">
+        <div className="proplay-icon-container h-10 w-10 shrink-0">
           {React.cloneElement(item.icon as React.ReactElement<{ className?: string }>, {
-            className: "global-icon-yellow h-5 w-5",
+            className: "h-5 w-5",
           })}
         </div>
         <h3 className="global-body min-w-0 flex-1 text-left text-base font-semibold leading-snug text-zinc-900 sm:text-lg">
@@ -90,11 +90,10 @@ export function EcosystemImpact() {
       className="min-w-0 w-full max-w-full overflow-x-hidden rounded-[12px] border-2 bg-white shadow-[var(--shadow-card)] [border-color:var(--card-border)]"
       aria-labelledby="ecosystem-impact-heading"
     >
-      <div className="border-b border-gray-100 bg-white px-3 py-3 sm:px-5 sm:py-4 md:px-6">
-        <div className="mx-auto w-full max-w-3xl text-center">
-          <p className="mb-2 flex flex-wrap items-center justify-center gap-2 global-body text-xs font-semibold uppercase tracking-wider text-gray-600">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100">
-              <BarChart3 className="global-icon-yellow h-4 w-4 shrink-0" aria-hidden />
+        <div className="mx-auto w-full max-w-3xl text-center px-2">
+          <p className="mb-2 flex flex-wrap items-center justify-center gap-2 global-body text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-600">
+            <span className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100">
+              <BarChart3 className="global-icon-yellow h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" aria-hidden />
             </span>
             <span className="text-balance">By the numbers</span>
           </p>
@@ -104,12 +103,11 @@ export function EcosystemImpact() {
           >
             Ecosystem impact
           </h2>
-          <p className="global-section-subtitle mx-auto max-w-2xl text-balance break-words sm:mx-0">
+          <p className="global-section-subtitle mx-auto max-w-2xl text-balance break-words text-xs sm:text-sm md:text-base">
             Snapshot of what ECH Institute delivers through coordination, education, and media,
             updated <span className="font-medium text-zinc-800">February 2026</span>.
           </p>
         </div>
-      </div>
 
       <div className="bg-gradient-to-b from-gray-50/80 to-white px-3 py-4 sm:px-4 sm:py-4 md:px-6">
         {/* Mobile: one card + carousel controls */}

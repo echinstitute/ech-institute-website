@@ -73,14 +73,14 @@
   }
 
   .proplay-icon-container {
-    background-color: var(--dynamic-bg, #f3f4f6);
-    @apply flex items-center justify-center rounded-xl transition-colors;
-    color: var(--dynamic-accent, #facc14);
+    background-color: var(--dynamic-accent, #facc14);
+    @apply flex items-center justify-center rounded-xl transition-all duration-300;
+    color: white !important;
   }
 
   .proplay-icon-container svg,
   .proplay-dynamic-icon {
-    color: var(--dynamic-accent, inherit);
+    color: white !important;
   }
 
   .text-brand-yellow {

@@ -367,8 +367,8 @@ export default function EducationPage() {
                   className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-amber-400 transition-all hover:shadow-md group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0 group-hover:bg-amber-50 transition-colors">
-                      <f.icon className="h-5 w-5 global-icon-yellow" />
+                    <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
+                      <f.icon className="h-5 w-5" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
@@ -385,7 +385,7 @@ export default function EducationPage() {
                     <div className="flex flex-wrap gap-2">
                       {f.highlights.map((h, j) => (
                         <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} className="global-icon-yellow" /> {h}
+                          <CheckCircle2 size={11} className="text-[#facc14]" /> {h}
                         </span>
                       ))}
                     </div>
@@ -410,8 +410,8 @@ export default function EducationPage() {
                       className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
                       onClick={() => toggleGuide(i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0">
-                        <g.icon className="h-5 w-5 global-icon-yellow" />
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
+                        <g.icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
@@ -555,8 +555,8 @@ export default function EducationPage() {
               {timelineCards.map((card, i) => (
                 <div key={i} className="global-card flex flex-col gap-3 hover:border-amber-400 transition-colors">
                   <div className="flex items-start justify-between gap-2">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl shrink-0" style={{ background: card.iconBg }}>
-                      <card.icon size={18} style={{ color: card.iconColor }} />
+                    <div className="proplay-icon-container h-10 w-10 shrink-0" style={{ '--dynamic-accent': card.iconColor } as React.CSSProperties}>
+                      <card.icon size={18} />
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border shrink-0"
                       style={{ color: card.badgeCls, borderColor: `${card.badgeCls}40`, background: `${card.badgeCls}0f` }}>
@@ -588,8 +588,8 @@ export default function EducationPage() {
                 { icon: Globe, title: 'Governance in Practice', desc: 'Join EIPIP meetings to observe and engage with live Ethereum governance decisions.', link: 'https://github.com/ethereum-cat-herders/EIPIP', cta: 'EIPIP Meetings' },
               ].map((card, i) => (
                 <Link key={i} href={card.link} target="_blank" className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-amber-400 transition-colors">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0">
-                    <card.icon className="h-5 w-5 global-icon-yellow" />
+                  <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
+                    <card.icon className="h-5 w-5" />
                   </div>
                   <div className="flex-1">
                     <h3 className="global-card-title mb-1">{card.title}</h3>

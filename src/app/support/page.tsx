@@ -602,7 +602,7 @@ export default function SupportPage() {
                         key={tag}
                         className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 rounded-full px-3 py-1"
                       >
-                        <CheckCircle2 size={11} className="global-icon-yellow" />
+                        <CheckCircle2 size={11} className="text-[#facc14]" />
                         {tag}
                       </span>
                     ))}
@@ -613,8 +613,8 @@ export default function SupportPage() {
                 <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-gray-100">
                   <div className="h-full flex flex-col p-5 md:p-6">
                     <div className="mb-3 flex items-start gap-2.5">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100">
-                        <Wallet className="global-icon-yellow h-5 w-5" aria-hidden />
+                      <div className="proplay-icon-container h-10 w-10 shrink-0">
+                        <Wallet className="h-5 w-5" aria-hidden />
                       </div>
                       <div className="min-w-0">
                         <p className="global-card-title mb-0.5">Treasury Address</p>
@@ -680,8 +680,8 @@ export default function SupportPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {transparencyItems.map((item, i) => (
                 <div key={i} className="global-card flex flex-col gap-3 hover:border-amber-400 transition-colors">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0">
-                    <item.icon className="h-5 w-5 global-icon-yellow" />
+                  <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
+                    <item.icon className="h-5 w-5" />
                   </div>
                   <h3 className="global-card-title">{item.title}</h3>
                   <p className="global-body text-sm">{item.description}</p>
@@ -692,8 +692,8 @@ export default function SupportPage() {
             <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50 mt-5">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
                 <div className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-amber-50 border border-amber-200">
-                    <FileText className="h-5 w-5 global-icon-yellow" />
+                  <span className="proplay-icon-container h-11 w-11 flex-shrink-0">
+                    <FileText className="h-5 w-5" />
                   </span>
                   <div>
                     <h3 className="global-card-title">Read the Annual Report</h3>

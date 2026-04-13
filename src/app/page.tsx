@@ -15,15 +15,15 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     const form = e.currentTarget;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/team@ethcatherders.com", {
+      const response = await fetch("https://formsubmit.co/ajax/shubhamkshirsagar4045@gmail.com", {
         method: "POST",
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
@@ -92,9 +92,9 @@ export default function Home() {
           </div>
           <div className="hero-image flex-1 hidden md:flex justify-end relative">
             <div className="relative w-full max-w-xl aspect-[1/1] md:aspect-auto">
-              <Image 
-                src="/assets/images/Catty.webp" 
-                alt="ECH Institute mascot" 
+              <Image
+                src="/assets/images/Catty.webp"
+                alt="ECH Institute mascot"
                 layout="responsive"
                 width={500}
                 height={500}
@@ -146,9 +146,9 @@ export default function Home() {
               <div className="absolute inset-0 -left-2 sm:-left-4 top-8 -bottom-8 bg-[#fffbeb] rounded-3xl -z-10"></div>
               <div className="flex flex-col shadow-2xl rounded-3xl overflow-hidden bg-white">
                 <div className="aspect-[4/3] relative w-full">
-                  <Image 
-                    src="/assets/EIP Summit Group Photo.webp" 
-                    alt="ECH Institute community at EIP Summit" 
+                  <Image
+                    src="/assets/EIP Summit Group Photo.webp"
+                    alt="ECH Institute community at EIP Summit"
                     fill
                     className="object-cover"
                   />
@@ -521,9 +521,9 @@ export default function Home() {
             ].map((partner) => (
               <div key={partner.id} className="marquee-item flex items-center justify-center px-6 md:px-10">
                 <div className="h-12 w-32 md:w-40 flex items-center justify-center">
-                  <img 
-                    src={partner.src} 
-                    alt={partner.alt} 
+                  <img
+                    src={partner.src}
+                    alt={partner.alt}
                     className={`max-h-full max-w-full w-auto h-auto object-contain transition-all duration-300 ${partner.size}`}
                   />
                 </div>
@@ -542,9 +542,9 @@ export default function Home() {
             ].map((partner) => (
               <div key={partner.id} className="marquee-item flex items-center justify-center px-6 md:px-10">
                 <div className="h-12 w-32 md:w-40 flex items-center justify-center">
-                  <img 
-                    src={partner.src} 
-                    alt={partner.alt} 
+                  <img
+                    src={partner.src}
+                    alt={partner.alt}
                     className={`max-h-full max-w-full w-auto h-auto object-contain transition-all duration-300 ${partner.size}`}
                   />
                 </div>
@@ -566,10 +566,10 @@ export default function Home() {
               <p className="global-body-lg mb-12 text-gray-700 max-w-lg leading-relaxed">
                 Whether you&apos;re looking to partner, contribute to an EIP, or need help understanding the latest network upgrade — we&apos;re here for the ecosystem.
               </p>
-              
+
               <div className="grid grid-cols-1 gap-6">
                 <a href="mailto:team@ethcatherders.com" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
-                  <div className="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-yellow-50 text-yellow-500">
+                  <div className="proplay-icon-container w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Mail size={24} />
                   </div>
                   <div>
@@ -577,10 +577,10 @@ export default function Home() {
                     <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors line-clamp-1">team@ethcatherders.com</span>
                   </div>
                 </a>
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <a href="https://x.com/ECHinstitute" target="_blank" rel="noopener noreferrer" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
-                    <div className="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-yellow-50 text-yellow-500">
+                    <div className="proplay-icon-container w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0">
                       <Twitter size={24} />
                     </div>
                     <div>
@@ -588,9 +588,9 @@ export default function Home() {
                       <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors">@ECHinstitute</span>
                     </div>
                   </a>
-                  
+
                   <a href="https://www.youtube.com/@echinstitute" target="_blank" rel="noopener noreferrer" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
-                    <div className="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-yellow-50 text-yellow-500">
+                    <div className="proplay-icon-container w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0">
                       <Youtube size={24} />
                     </div>
                     <div>
@@ -622,7 +622,7 @@ export default function Home() {
                     <form onSubmit={handleSubmit} className="space-y-8">
                       <input type="hidden" name="_subject" value="New ECH Institute Contact Form Submission!" />
                       <input type="hidden" name="_captcha" value="false" />
-                      
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         <div className="space-y-2">
                           <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">First Name</label>
@@ -654,7 +654,7 @@ export default function Home() {
                             <option value="Other" className="text-gray-900">Other</option>
                           </select>
                           <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-300">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                           </div>
                         </div>
                       </div>

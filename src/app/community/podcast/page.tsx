@@ -168,22 +168,22 @@ export default function PodcastPage() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             <div className="global-card p-5 sm:p-6 h-full flex flex-col">
-              <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center mb-4 shrink-0">
-                <Play className="global-icon-yellow w-5 h-5" />
+              <div className="proplay-icon-container w-10 h-10 rounded-lg flex items-center justify-center mb-4 shrink-0">
+                <Play className="w-5 h-5" />
               </div>
               <h3 className="global-card-title mb-2">Multimedia Integration</h3>
               <p className="global-body text-sm">Embedded YouTube recording with timestamped chapters for easy navigation.</p>
             </div>
             <div className="global-card p-5 sm:p-6 h-full flex flex-col">
-              <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center mb-4 shrink-0">
-                <FileText className="global-icon-yellow w-5 h-5" />
+              <div className="proplay-icon-container w-10 h-10 rounded-lg flex items-center justify-center mb-4 shrink-0">
+                <FileText className="w-5 h-5" />
               </div>
               <h3 className="global-card-title mb-2">Technical Summaries</h3>
               <p className="global-body text-sm">AI-generated highlights and action items for client teams.</p>
             </div>
             <div className="global-card p-5 sm:p-6 h-full flex flex-col">
-              <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center mb-4 shrink-0">
-                <Code className="global-icon-yellow w-5 h-5" />
+              <div className="proplay-icon-container w-10 h-10 rounded-lg flex items-center justify-center mb-4 shrink-0">
+                <Code className="w-5 h-5" />
               </div>
               <h3 className="global-card-title mb-2">Repository Links</h3>
               <p className="global-body text-sm">Access supporting references and full meeting notes for protocol coordination.</p>

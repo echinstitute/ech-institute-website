@@ -201,8 +201,8 @@ export default function GetInvolvedPage() {
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             {/* Left — copy */}
             <div className="flex flex-col gap-5">
-              <div className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full border border-gray-200 bg-gray-50 text-xs font-bold uppercase tracking-widest text-gray-500">
-                <Zap className="h-3 w-3 global-icon-yellow" />
+              <div className="proplay-icon-container px-3 py-1 self-start">
+                <Zap className="h-3 w-3" />
                 Open to Everyone
               </div>
               <h1 className="global-hero-title">
@@ -238,8 +238,8 @@ export default function GetInvolvedPage() {
                   key={title}
                   className="global-card flex flex-col gap-2 hover:border-amber-400 transition-all hover:-translate-y-1 hover:shadow-md group"
                 >
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-amber-50 transition-colors">
-                    <Icon className="h-5 w-5 global-icon-yellow" />
+                  <span className="proplay-icon-container h-10 w-10 flex-shrink-0">
+                    <Icon className="h-5 w-5" />
                   </span>
                   <p className="font-bold text-sm text-black">{title}</p>
                   <p className="text-xs text-gray-500 leading-snug">{desc}</p>
@@ -288,8 +288,8 @@ export default function GetInvolvedPage() {
                     target="_blank"
                     className="global-card flex flex-col gap-3 no-underline text-inherit bg-white hover:border-amber-400 transition-all hover:-translate-y-1 hover:shadow-md group"
                   >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 group-hover:bg-amber-50 transition-colors shrink-0">
-                      <Icon className="h-5 w-5 global-icon-yellow" />
+                    <div className="proplay-icon-container h-11 w-11 flex-shrink-0">
+                      <Icon className="h-5 w-5" />
                     </div>
                     <div className="flex-1">
                       <h3 className="global-card-title mb-1">{action.title}</h3>
@@ -361,10 +361,10 @@ export default function GetInvolvedPage() {
                     {/* Icon row */}
                     <div className="flex items-center justify-between">
                       <span
-                        className="flex h-11 w-11 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110"
-                        style={{ background: link.iconBg }}
+                        className="proplay-icon-container h-11 w-11 flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
+                        style={{ '--dynamic-accent': link.accent } as React.CSSProperties}
                       >
-                        <Icon className="h-5 w-5" style={{ color: link.accent }} />
+                        <Icon className="h-5 w-5" />
                       </span>
                       <span
                         className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full"
@@ -409,8 +409,8 @@ export default function GetInvolvedPage() {
           <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="flex items-start gap-4">
-                <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-amber-50 border border-amber-200">
-                  <Heart className="h-5 w-5 global-icon-yellow" />
+                <span className="proplay-icon-container h-11 w-11 flex-shrink-0">
+                  <Heart className="h-5 w-5" />
                 </span>
                 <div>
                   <h3 className="global-card-title">Ready to shape the future?</h3>

@@ -593,8 +593,8 @@ export default function HomesteadPage() {
           <section id="governance-hub">
             {/* Section header */}
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
-                <Home className="h-4 w-4 global-icon-yellow" />
+              <span className="proplay-icon-container h-8 w-8 flex-shrink-0">
+                <Home className="h-4 w-4" />
               </span>
               <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Governance Hub</p>
             </div>
@@ -659,8 +659,8 @@ export default function HomesteadPage() {
 
             {/* ── Upgrade Lifecycle (4 stages EIP-7723) ── */}
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gray-100">
-                <GitBranch className="h-4 w-4 global-icon-yellow" />
+              <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
+                <GitBranch className="h-4 w-4" />
               </span>
               <p className="text-xs font-bold uppercase tracking-widest text-gray-400">EIP-7723 Inclusion Stages</p>
             </div>
@@ -721,8 +721,8 @@ export default function HomesteadPage() {
 
             {/* Forkcast callout */}
             <div className="global-card global-border-yellow bg-amber-50/30 flex flex-col sm:flex-row sm:items-center gap-4 mb-10">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 shrink-0">
-                <TrendingUp className="h-5 w-5 global-icon-yellow" />
+              <div className="proplay-icon-container h-11 w-11 flex-shrink-0">
+                <TrendingUp className="h-5 w-5" />
               </div>
               <div className="flex-1 min-w-0">
                 <h4 className="global-card-title mb-0.5">Track the Upgrade Lifecycle Live</h4>
@@ -735,8 +735,8 @@ export default function HomesteadPage() {
 
             {/* ── Why This Matters ── */}
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gray-100">
-                <Target className="h-4 w-4 global-icon-yellow" />
+              <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
+                <Target className="h-4 w-4" />
               </span>
               <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Impact</p>
             </div>
@@ -790,8 +790,8 @@ export default function HomesteadPage() {
 
             {/* ── Explore ── */}
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gray-100">
-                <ChevronRight className="h-4 w-4 global-icon-yellow" />
+              <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
+                <ChevronRight className="h-4 w-4" />
               </span>
               <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Explore</p>
             </div>

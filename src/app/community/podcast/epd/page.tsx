@@ -97,8 +97,6 @@ export default function EPDPage() {
             >
               Ecosystem Project Demo YouTube playlist
             </a>
-          </>
-        }
             .
           </>
         }

@@ -81,8 +81,6 @@ export default function FusakaFilesPage() {
             >
               The Fusaka Files YouTube playlist
             </a>
-          </>
-        }
             .
           </>
         }

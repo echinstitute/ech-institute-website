@@ -25,8 +25,8 @@ const communityLinks = [
     cta: "Get Involved",
     href: "https://ethereum.org/en/community/get-involved/#ethereum-jobs/",
     icon: Users,
-    accent: '#3b82f6',
-    iconBg: '#eff6ff',
+    accent: '#f5a51d',
+    iconBg: '#ffffff',
   },
   {
     title: "Ethereum Magicians",
@@ -35,8 +35,8 @@ const communityLinks = [
     cta: "Join Forum",
     href: "https://ethereum-magicians.org/faq",
     icon: BookOpen,
-    accent: '#8b5cf6',
-    iconBg: '#f5f3ff',
+    accent: '#000000',
+    iconBg: '#ffffff',
   },
   {
     title: "Ethereum Testing Suite",
@@ -45,8 +45,8 @@ const communityLinks = [
     cta: "View Issues",
     href: "https://github.com/ethereum/eth-tester/issues",
     icon: Code,
-    accent: '#10b981',
-    iconBg: '#f0fdf4',
+    accent: '#f5a51d',
+    iconBg: '#ffffff',
   },
   {
     title: "Lighthouse",
@@ -55,8 +55,8 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://lighthouse.sigmaprime.io/",
     icon: Shield,
-    accent: '#3b82f6',
-    iconBg: '#eff6ff',
+    accent: '#000000',
+    iconBg: '#ffffff',
   },
   {
     title: "Lodestar",
@@ -65,8 +65,8 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://lodestar.chainsafe.io/",
     icon: Shield,
-    accent: '#8b5cf6',
-    iconBg: '#f5f3ff',
+    accent: '#f5a51d',
+    iconBg: '#ffffff',
   },
   {
     title: "Nimbus",
@@ -75,8 +75,8 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://nimbus.team/",
     icon: Shield,
-    accent: '#10b981',
-    iconBg: '#f0fdf4',
+    accent: '#000000',
+    iconBg: '#ffffff',
   },
   {
     title: "Prysm",
@@ -85,8 +85,8 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://docs.prylabs.network/docs/getting-started",
     icon: Shield,
-    accent: '#3b82f6',
-    iconBg: '#eff6ff',
+    accent: '#f5a51d',
+    iconBg: '#ffffff',
   },
   {
     title: "Teku",
@@ -95,18 +95,18 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://consensys.io/teku",
     icon: Shield,
-    accent: '#8b5cf6',
-    iconBg: '#f5f3ff',
+    accent: '#000000',
+    iconBg: '#ffffff',
   },
   {
     title: "Besu",
     category: "Execution Client",
-    description: "An enterprise-focused Java execution client under the Hyperledger umbrella. Supports both public and private Ethereum networks.",
+    description: "A Java-based execution client designed for public and private permissioned networks. Built for robustness and modularity.",
     cta: "Contribute",
-    href: "https://www.hyperledger.org/projects/besu",
-    icon: Code,
-    accent: '#10b981',
-    iconBg: '#f0fdf4',
+    href: "https://besu.hyperledger.org/",
+    icon: Shield,
+    accent: '#f5a51d',
+    iconBg: '#ffffff',
   },
   {
     title: "Erigon",
@@ -196,7 +196,7 @@ export default function GetInvolvedPage() {
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="py-8 px-4 md:py-16 md:px-8 bg-white border-b border-gray-100">
+      <section className="py-8 px-4 md:py-16 md:px-8 bg-white border-b border-black">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             {/* Left — copy */}
@@ -242,7 +242,7 @@ export default function GetInvolvedPage() {
                     <Icon className="h-5 w-5" />
                   </span>
                   <p className="font-bold text-sm text-black">{title}</p>
-                  <p className="text-xs text-gray-500 leading-snug">{desc}</p>
+                  <p className="text-xs text-black leading-snug">{desc}</p>
                 </div>
               ))}
             </div>
@@ -253,14 +253,14 @@ export default function GetInvolvedPage() {
 
 
       {/* ── Participation Actions + Quote — side by side ──────────────── */}
-      <section className="py-10 px-4 md:py-14 md:px-8 border-b border-gray-100 bg-gray-50">
+      <section className="py-10 px-4 md:py-14 md:px-8 border-b border-black bg-[#f5a51d]">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8 items-start">
 
             {/* Left — Quote Banner */}
             <div className="flex flex-col justify-between h-full">
               <div className="mb-5">
-                <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Direct Participation</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-black mb-1">Direct Participation</p>
                 <h2 className="global-section-title">How To Get Involved</h2>
               </div>
               <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50 flex flex-col gap-4 flex-1">
@@ -270,8 +270,8 @@ export default function GetInvolvedPage() {
                   <br />
                   It is the home, school, and gathering place for Ethereum governance.
                 </blockquote>
-                <p className="text-xs font-bold uppercase tracking-widest text-amber-700 mt-1">ECH Institute Mission</p>
-                <div className="mt-auto pt-4 border-t border-amber-100">
+                <p className="text-xs font-bold uppercase tracking-widest text-[#f5a51d] mt-1">ECH Institute Mission</p>
+                <div className="mt-auto pt-4 border-t border-[#f5a51d]">
                   <p className="global-body text-sm">Start participating in Ethereum governance today with these direct entry points curated by ECH Institute.</p>
                 </div>
               </div>
@@ -296,7 +296,7 @@ export default function GetInvolvedPage() {
                       <p className="global-body text-sm">{action.desc}</p>
                     </div>
                     <div
-                      className="flex items-center gap-1.5 text-sm font-bold pt-3 border-t border-gray-100 group-hover:gap-2 transition-all"
+                      className="flex items-center gap-1.5 text-sm font-bold pt-3 border-t border-black group-hover:gap-2 transition-all"
                       style={{ color: 'var(--color-yellow)' }}
                     >
                       {action.cta} <ArrowRight size={13} />
@@ -316,7 +316,7 @@ export default function GetInvolvedPage() {
           {/* Section header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Ecosystem</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black mb-1">Ecosystem</p>
               <h2 className="global-section-title">The Ethereum Community</h2>
               <p className="global-body-lg mt-1">Opportunities for every background and skill-set.</p>
             </div>
@@ -331,7 +331,7 @@ export default function GetInvolvedPage() {
                     "px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide border-2 transition-all duration-150",
                     activeCategory === key
                       ? "border-gray-800 bg-gray-800 text-white"
-                      : "border-gray-200 bg-white text-gray-500 hover:border-gray-700 hover:text-gray-800",
+                      : "border-black bg-white text-black hover:border-gray-700 hover:text-black",
                   ].join(" ")}
                 >
                   {label}
@@ -349,7 +349,7 @@ export default function GetInvolvedPage() {
                   key={i}
                   href={link.href}
                   target="_blank"
-                  className="group relative flex flex-col rounded-xl border border-gray-200 bg-white overflow-hidden no-underline text-inherit hover:border-transparent hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-200 hover:-translate-y-1"
+                  className="group relative flex flex-col rounded-xl border border-black bg-white overflow-hidden no-underline text-inherit hover:border-transparent hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-200 hover:-translate-y-1"
                 >
                   {/* Colored top accent bar */}
                   <div
@@ -380,13 +380,13 @@ export default function GetInvolvedPage() {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-gray-500 leading-relaxed flex-1">
+                    <p className="text-sm text-black leading-relaxed flex-1">
                       {link.description}
                     </p>
 
                     {/* CTA row */}
                     <div
-                      className="flex items-center gap-1.5 pt-3 border-t border-gray-100 text-sm font-bold transition-all duration-150 group-hover:gap-2"
+                      className="flex items-center gap-1.5 pt-3 border-t border-black text-sm font-bold transition-all duration-150 group-hover:gap-2"
                       style={{ color: link.accent }}
                     >
                       {link.cta} <ArrowRight size={13} />
@@ -398,13 +398,13 @@ export default function GetInvolvedPage() {
           </div>
 
           {filtered.length === 0 && (
-            <p className="text-center text-gray-500 py-16">No projects in this category.</p>
+            <p className="text-center text-black py-16">No projects in this category.</p>
           )}
         </div>
       </section>
 
       {/* ── CTA Banner ────────────────────────────────────────────────── */}
-      <section className="border-t border-gray-100 bg-gray-50 py-10 px-4 md:px-8">
+      <section className="border-t border-black bg-[#f5a51d] py-10 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -440,7 +440,7 @@ export default function GetInvolvedPage() {
             </div>
 
             {/* Quick links row */}
-            <div className="mt-6 pt-5 border-t border-amber-100 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="mt-6 pt-5 border-t border-[#f5a51d] grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
                 { label: 'Office Hours', href: 'https://github.com/ethereum/pm/issues?q=is%3Aissue%20state%3Aopen%20office%20hour' },
                 { label: 'EIPIP Governance', href: 'https://github.com/ethereum/pm/issues?q=is%3Aissue%20state%3Aopen%20eipip' },

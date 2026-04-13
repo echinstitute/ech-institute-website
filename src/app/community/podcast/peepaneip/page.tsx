@@ -11,17 +11,17 @@ const peep = PODCAST_SERIES_PLAYLISTS.peepaneip;
 export default function PEEPanEIPPage() {
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
-      <div className="border-b border-gray-100 bg-gray-50">
+      <div className="border-b border-black bg-[#f5a51d]">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 md:px-8">
           <Link
             href="/podcast"
-            className="mb-6 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-amber-600 font-medium text-sm uppercase tracking-wider"
+            className="mb-6 inline-flex items-center gap-2 text-black transition-all hover:translate-x-[-4px] font-bold text-sm uppercase tracking-widest"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Media Hub
           </Link>
           <div className="max-w-4xl">
             <h1 className="global-hero-title mb-4 lg:text-5xl">PEEPanEIP</h1>
-            <p className="global-hero-subtitle text-gray-600 max-w-3xl">
+            <p className="global-hero-subtitle text-black max-w-3xl">
               Protocol deep-dives and technical coordination. A series built for client teams 
               and researchers to align on Ethereum Improvement Proposals (EIPs).
             </p>
@@ -35,7 +35,7 @@ export default function PEEPanEIPPage() {
         purpose={
           <>
             The series was created to give client teams a{' '}
-            <strong className="font-semibold text-zinc-900">
+            <strong className="font-bold text-black">
               dedicated overview of new EIPs
             </strong>{' '}
             ahead of All Core Dev (ACD) meetings so proposals aren&apos;t first heard only on
@@ -45,7 +45,7 @@ export default function PEEPanEIPPage() {
         goal={
           <>
             Raise visibility for{' '}
-            <strong className="font-semibold text-zinc-900">
+            <strong className="font-bold text-black">
               &quot;Last Call&quot; and &quot;Draft&quot;
             </strong>{' '}
             work by translating it into ELI5 style explanations making it easier to align on
@@ -55,7 +55,7 @@ export default function PEEPanEIPPage() {
         closing={
           <>
             Every episode pairs a concrete EIP or ERC with{' '}
-            <span className="not-italic font-medium text-zinc-800">guest experts</span>
+            <span className="not-italic font-bold text-black">guest experts</span>
             core devs, researchers, and implementers so you can trace how ideas travel from
             draft to mainnet.
           </>
@@ -73,7 +73,7 @@ export default function PEEPanEIPPage() {
               href={peep.playlistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-amber-800 underline-offset-2 hover:underline"
+              className="font-bold text-[#f5a51d] underline decoration-2 underline-offset-4 hover:text-black"
             >
               PEEPanEIP YouTube playlist
             </a>{' '}
@@ -89,15 +89,15 @@ export default function PEEPanEIPPage() {
         <div className="mx-auto max-w-4xl">
           <section>
             <h2 className="global-section-title mb-3 sm:mb-4">Themes we explore</h2>
-            <p className="global-body text-gray-600 mb-4">
+            <p className="global-body text-black mb-4">
               PEEPanEIP turns EIP work into upgrade context—so you can connect what&apos;s changing to
               enterprise execution, resilience, credible neutrality, and the Road to 2026.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-              <div className="global-card p-4 sm:p-5">
+              <div className="global-card p-5 border-black/10">
                 <h3 className="global-card-title mb-2">Scaling &amp; enterprise Ethereum</h3>
-                <p className="global-body text-sm text-gray-600">
+                <p className="global-body">
                   EIP deep-dives that explain how scaling and infrastructure choices show up for clients,
                   builders, and enterprise users.
                 </p>
@@ -105,7 +105,7 @@ export default function PEEPanEIPPage() {
 
               <div className="global-card p-4 sm:p-5">
                 <h3 className="global-card-title mb-2">Resilience &amp; protocol health</h3>
-                <p className="global-body text-sm text-gray-600">
+                <p className="global-body text-sm text-black">
                   Signal for safer execution: how proposals affect stability, validation, and the health of
                   the protocol under real load.
                 </p>
@@ -113,7 +113,7 @@ export default function PEEPanEIPPage() {
 
               <div className="global-card p-4 sm:p-5">
                 <h3 className="global-card-title mb-2">Credible neutrality</h3>
-                <p className="global-body text-sm text-gray-600">
+                <p className="global-body text-sm text-black">
                   Plain language explanations so you can evaluate tradeoffs without hype, and align with
                   what authors and implementers are actually proposing.
                 </p>
@@ -121,7 +121,7 @@ export default function PEEPanEIPPage() {
 
               <div className="global-card p-4 sm:p-5">
                 <h3 className="global-card-title mb-2">Road to 2026: what comes next</h3>
-                <p className="global-body text-sm text-gray-600">
+                <p className="global-body text-sm text-black">
                   Track draft to mainnet work in context, so teams can plan upgrades with confidence as the
                   cadence moves toward 2026.
                 </p>

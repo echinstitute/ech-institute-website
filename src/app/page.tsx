@@ -120,21 +120,21 @@ export default function Home() {
               </p>
               <div className="space-y-8">
                 <div className="flex gap-4 items-start">
-                  <span className="text-[#facc14] font-syne font-bold text-2xl">01</span>
+                  <span className="text-[#f5a51d] font-syne font-bold text-2xl">01</span>
                   <div>
                     <h3 className="global-card-title">Education First</h3>
                     <p className="global-body">We create accessible pathways to learn blockchain and participate in the Web3 ecosystem empowering individuals at every stage to contribute with confidence.</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
-                  <span className="text-[#facc14] font-syne font-bold text-2xl">02</span>
+                  <span className="text-[#f5a51d] font-syne font-bold text-2xl">02</span>
                   <div>
                     <h3 className="global-card-title">Community-Centered</h3>
                     <p className="global-body">We build inclusive, supportive communities that enable meaningful participation because learning and contributing in Web3 go hand in hand.</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
-                  <span className="text-[#facc14] font-syne font-bold text-2xl">03</span>
+                  <span className="text-[#f5a51d] font-syne font-bold text-2xl">03</span>
                   <div>
                     <h3 className="global-card-title">Open Accountability</h3>
                     <p className="global-body">We operate with transparency and integrity openly sharing our work, progress, and impact with the communities we serve and support.</p>
@@ -154,12 +154,12 @@ export default function Home() {
                   />
                 </div>
                 <div className="bg-[#fefce8] p-8 lg:p-12 border-t border-yellow-100">
-                  <p className="text-2xl lg:text-3xl font-lora italic text-gray-800 leading-relaxed mb-8">
+                  <p className="text-2xl lg:text-3xl font-lora italic text-black leading-relaxed mb-8">
                     &ldquo;We don&apos;t help communities. We are part of them.&rdquo;
                   </p>
                   <div className="flex items-center gap-4">
                     <span className="w-8 h-[2px] bg-yellow-400"></span>
-                    <span className="text-xs font-bold tracking-[0.25em] text-gray-900 uppercase">ECH INSTITUTE</span>
+                    <span className="text-xs font-bold tracking-[0.25em] text-black uppercase">ECH INSTITUTE</span>
                   </div>
                 </div>
               </div>
@@ -302,10 +302,10 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 justify-between items-stretch lg:items-end mb-16">
             <div className="lg:w-1/2 flex flex-col justify-end">
               <div className="global-section-tag justify-start mb-4">WHAT WE DO</div>
-              <h2 className="global-section-title mb-0 leading-[1.1] pb-1">Programs built <br /><span className="text-[#facc14]">for real impact.</span></h2>
+              <h2 className="global-section-title mb-0 leading-[1.1] pb-1">Programs built <br /><span className="text-[#f5a51d]">for real impact.</span></h2>
             </div>
             <div className="lg:w-1/2 flex flex-col justify-end">
-              <p className="global-body-lg text-left lg:text-right text-gray-600 mb-0 lg:pb-1">Each ECH program supports Ethereum governance through clear processes, coordination, and participation focused on long-term, sustainable outcomes rather than short-term fixes.</p>
+              <p className="global-body-lg text-left lg:text-right text-black mb-0 lg:pb-1">Each ECH program supports Ethereum governance through clear processes, coordination, and participation focused on long-term, sustainable outcomes rather than short-term fixes.</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -326,7 +326,7 @@ export default function Home() {
               <img src="/assets/IMG_355.webp" alt="EIP Support" className="bg-img" />
               <div className="overlay-dark-gradient"></div>
               <div className="content">
-                <span className="badge !bg-gray-200 !text-gray-800">GOVERNANCE</span>
+                <span className="badge !bg-black !text-black">GOVERNANCE</span>
                 <h3>EIP Support</h3>
                 <p>Strengthening the Ethereum Improvement Proposal process through structure and coordinated reviews.</p>
                 <div className="btn-wrap">
@@ -339,7 +339,7 @@ export default function Home() {
               <img src="/assets/IMG_3600.webp" alt="Podcast" className="bg-img" />
               <div className="overlay-dark-gradient"></div>
               <div className="content">
-                <span className="badge !bg-gray-200 !text-gray-800">CONTENT</span>
+                <span className="badge !bg-black !text-black">CONTENT</span>
                 <h3>Podcast &amp; Content</h3>
                 <p>Translating complex Ethereum governance into accessible knowledge through videos and podcasts.</p>
                 <div className="btn-wrap">
@@ -352,7 +352,7 @@ export default function Home() {
               <img src="/assets/Who We Serve.webp" alt="Community Partnerships" className="bg-img" />
               <div className="overlay-dark-gradient"></div>
               <div className="content">
-                <span className="badge !bg-gray-200 !text-gray-800">COMMUNITY</span>
+                <span className="badge !bg-black !text-black">COMMUNITY</span>
                 <h3>Community Partnerships</h3>
                 <p>Collaborating with ecosystem communities to expand participation in Ethereum governance.</p>
                 <div className="btn-wrap">
@@ -378,7 +378,7 @@ export default function Home() {
               <img src="/assets/Enterprise & Institutional View.webp" alt="Institutional Bridging" className="bg-img" />
               <div className="overlay-dark-gradient"></div>
               <div className="content">
-                <span className="badge !bg-gray-200 !text-gray-800">INSTITUTIONAL</span>
+                <span className="badge !bg-black !text-black">INSTITUTIONAL</span>
                 <h3>Institutional Bridging</h3>
                 <p>Bridging Ethereum governance with enterprise stakeholders through education and dialogue.</p>
                 <div className="btn-wrap">
@@ -404,66 +404,66 @@ export default function Home() {
       </section>
 
       {/* ── Impact ── */}
-      <section className="py-12 md:py-16 bg-white border-y border-gray-100" id="impact">
+      <section className="py-12 md:py-16 bg-white border-y border-black" id="impact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 lg:gap-20 justify-between items-start md:items-end mb-16">
             <div className="max-w-2xl">
               <div className="global-section-tag justify-start">OUR IMPACT</div>
               <h2 className="global-section-title mb-4">Numbers <br /><em>that matter.</em></h2>
-              <p className="global-body-lg text-gray-600">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
+              <p className="global-body-lg text-black">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
             </div>
             <button className="btn btn-primary md:flex-shrink-0">VIEW FULL REPORT</button>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Card 1: Network Upgrades */}
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll">
-              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">2</span>
-                <h3 className="font-syne font-bold text-lg text-gray-900">Network Upgrades</h3>
+            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#f5a51d] transition-all duration-300 h-full group animate-on-scroll">
+              <div className="bg-[#f5a51d] group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#f5a51d] leading-none mb-3">2</span>
+                <h3 className="font-syne font-bold text-lg text-black">Network Upgrades</h3>
               </div>
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
-                <p className="global-body font-medium text-gray-800 mb-4">Over the twelve months, we supported the Dencun upgrade and the Pectra upgrade.</p>
-                <p className="global-body text-gray-600">We livestreamed both upgrades with community partners. We invited core EIP proposal Authors to share about the significance of the upgrades to scale Ethereum.</p>
+                <p className="global-body font-medium text-black mb-4">Over the twelve months, we supported the Dencun upgrade and the Pectra upgrade.</p>
+                <p className="global-body text-black">We livestreamed both upgrades with community partners. We invited core EIP proposal Authors to share about the significance of the upgrades to scale Ethereum.</p>
               </div>
             </div>
 
             {/* Card 2: Podcasts Produced */}
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-1">
+            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#f5a51d] transition-all duration-300 h-full group animate-on-scroll delay-1">
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%] order-2 xl:order-1">
-                <p className="global-body font-medium text-gray-800 mb-4">We produced 13 videos on the Dencun upgrade, 18 videos on the Pectra upgrade and featured 23 independent projects on Ecosystem Project Demo.</p>
-                <p className="global-body text-gray-600 mb-2">We also coordinated and published:</p>
-                <ul className="list-disc list-inside global-body text-gray-600 space-y-1 ml-2">
+                <p className="global-body font-medium text-black mb-4">We produced 13 videos on the Dencun upgrade, 18 videos on the Pectra upgrade and featured 23 independent projects on Ecosystem Project Demo.</p>
+                <p className="global-body text-black mb-2">We also coordinated and published:</p>
+                <ul className="list-disc list-inside global-body text-black space-y-1 ml-2">
                   <li>30+ Eth Multicall</li>
                   <li>12+ ePBS Breakout Room</li>
                   <li>25+ EOF Implementers Meetings</li>
                 </ul>
               </div>
-              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">108+</span>
-                <h3 className="font-syne font-bold text-lg text-gray-900">Podcasts Produced</h3>
+              <div className="bg-[#f5a51d] group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#f5a51d] leading-none mb-3">108+</span>
+                <h3 className="font-syne font-bold text-lg text-black">Podcasts Produced</h3>
               </div>
             </div>
 
             {/* Card 3: Community Members */}
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-2">
-              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
-                <span className="text-4xl sm:text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">8.2K+</span>
-                <h3 className="font-syne font-bold !text-base sm:!text-lg text-gray-900">Community Members</h3>
+            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#f5a51d] transition-all duration-300 h-full group animate-on-scroll delay-2">
+              <div className="bg-[#f5a51d] group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
+                <span className="text-4xl sm:text-5xl md:text-6xl font-syne font-extrabold text-[#f5a51d] leading-none mb-3">8.2K+</span>
+                <h3 className="font-syne font-bold !text-base sm:!text-lg text-black">Community Members</h3>
               </div>
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
-                <p className="global-body font-medium text-gray-800 leading-relaxed">Partnering over 5 global communities for events, Over 8200 people followed us on X/Twitter and hosting over 2,900 members on Discord, our community is growing!</p>
+                <p className="global-body font-medium text-black leading-relaxed">Partnering over 5 global communities for events, Over 8200 people followed us on X/Twitter and hosting over 2,900 members on Discord, our community is growing!</p>
               </div>
             </div>
 
             {/* Card 4: ECH Core Efficiency */}
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-3">
+            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#f5a51d] transition-all duration-300 h-full group animate-on-scroll delay-3">
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%] order-2 xl:order-1">
-                <p className="global-body font-medium text-gray-800 mb-4">Managing robust operations entirely transparently, providing a critical resource layer for developers and Ethereum ecosystem stakeholders.</p>
-                <p className="global-body text-gray-600">Through our flagship initiatives, we streamline technical standard documentation, global mentorship, and core institutional outreach.</p>
+                <p className="global-body font-medium text-black mb-4">Managing robust operations entirely transparently, providing a critical resource layer for developers and Ethereum ecosystem stakeholders.</p>
+                <p className="global-body text-black">Through our flagship initiatives, we streamline technical standard documentation, global mentorship, and core institutional outreach.</p>
               </div>
-              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">7+</span>
-                <h3 className="font-syne font-bold text-lg text-gray-900">Core Programs</h3>
+              <div className="bg-[#f5a51d] group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#f5a51d] leading-none mb-3">7+</span>
+                <h3 className="font-syne font-bold text-lg text-black">Core Programs</h3>
               </div>
             </div>
           </div>
@@ -471,7 +471,7 @@ export default function Home() {
       </section>
 
       {/* ── Get Involved ── */}
-      <section className="gi-pro-bg border-t border-gray-100 relative overflow-hidden" id="get-involved-peek">
+      <section className="gi-pro-bg border-t border-black relative overflow-hidden" id="get-involved-peek">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
           <div className="hidden lg:flex lg:col-span-5 items-center justify-center relative h-[400px]">
             <div className="gi-mascot-wrap">
@@ -480,10 +480,10 @@ export default function Home() {
           </div>
           <div className="lg:col-span-7 animate-on-scroll">
             <div className="global-section-tag">GET INVOLVED</div>
-            <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
-              Join us in building <br /><span className="text-[#facc14] italic">a better community.</span>
+            <h2 className="global-section-title mb-8 text-black leading-[1.05] tracking-tight">
+              Join us in building <br /><span className="text-[#f5a51d] italic">a better community.</span>
             </h2>
-            <p className="grow-0 global-body-lg mb-12 text-gray-700 max-w-xl leading-relaxed">
+            <p className="grow-0 global-body-lg mb-12 text-black max-w-xl leading-relaxed">
               Change doesn&apos;t happen alone. Whether you have time, skills, or resources to give there is a meaningful place for you at ECH Institute.
             </p>
             <div className="flex flex-wrap gap-6 items-center">
@@ -495,14 +495,14 @@ export default function Home() {
       </section>
 
       {/* ── Partners Marquee ── */}
-      <section className="py-12 bg-white border-y border-gray-100 overflow-hidden">
+      <section className="py-12 bg-white border-y border-black overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
           <div className="inline-flex items-center gap-4 mb-4">
-            <div className="h-px w-8 bg-gray-200"></div>
-            <span className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">OUR NETWORK</span>
-            <div className="h-px w-8 bg-gray-200"></div>
+            <div className="h-px w-8 bg-black"></div>
+            <span className="text-[10px] font-bold tracking-[0.3em] text-black uppercase">OUR NETWORK</span>
+            <div className="h-px w-8 bg-black"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-gray-900 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-black leading-tight">
             Supported by &amp; <br className="md:hidden" /> <em>Collaborating with.</em>
           </h2>
         </div>
@@ -555,15 +555,15 @@ export default function Home() {
       </section>
 
       {/* ── Contact ── */}
-      <section className="py-16 md:py-24 contact-pro-bg border-t border-gray-100 relative" id="contact">
+      <section className="py-16 md:py-24 contact-pro-bg border-t border-black relative" id="contact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <div className="animate-on-scroll">
               <div className="global-section-tag">CONTACT ECH</div>
-              <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
-                Let&apos;s build <br /><span className="text-[#facc14] italic">the future.</span>
+              <h2 className="global-section-title mb-8 text-black leading-[1.05] tracking-tight">
+                Let&apos;s build <br /><span className="text-[#f5a51d] italic">the future.</span>
               </h2>
-              <p className="global-body-lg mb-12 text-gray-700 max-w-lg leading-relaxed">
+              <p className="global-body-lg mb-12 text-black max-w-lg leading-relaxed">
                 Whether you&apos;re looking to partner, contribute to an EIP, or need help understanding the latest network upgrade — we&apos;re here for the ecosystem.
               </p>
 
@@ -573,8 +573,8 @@ export default function Home() {
                     <Mail size={24} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">EMAIL</span>
-                    <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors line-clamp-1">team@ethcatherders.com</span>
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-black uppercase block mb-1">EMAIL</span>
+                    <span className="text-lg font-syne font-bold text-black group-hover:text-[#f5a51d] transition-colors line-clamp-1">team@ethcatherders.com</span>
                   </div>
                 </a>
 
@@ -584,8 +584,8 @@ export default function Home() {
                       <Twitter size={24} />
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">TWITTER</span>
-                      <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors">@ECHinstitute</span>
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-black uppercase block mb-1">TWITTER</span>
+                      <span className="text-lg font-syne font-bold text-black group-hover:text-[#f5a51d] transition-colors">@ECHinstitute</span>
                     </div>
                   </a>
 
@@ -594,8 +594,8 @@ export default function Home() {
                       <Youtube size={24} />
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">YOUTUBE</span>
-                      <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors uppercase">ECH Institute</span>
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-black uppercase block mb-1">YOUTUBE</span>
+                      <span className="text-lg font-syne font-bold text-black group-hover:text-[#f5a51d] transition-colors uppercase">ECH Institute</span>
                     </div>
                   </a>
                 </div>
@@ -603,18 +603,18 @@ export default function Home() {
             </div>
 
             <div className="animate-on-scroll delay-2">
-              <div className="p-1 lg:p-2 bg-gray-50/50 rounded-[40px] border border-gray-100 shadow-xl">
-                <div className="bg-white p-8 lg:p-12 rounded-[32px] shadow-sm border border-gray-100">
+              <div className="p-1 lg:p-2 bg-[#f5a51d]/50 rounded-[40px] border border-black shadow-xl">
+                <div className="bg-white p-8 lg:p-12 rounded-[32px] shadow-sm border border-black">
                   {isSubmitted ? (
                     <div className="py-12 text-center animate-fade-in">
-                      <div className="w-20 h-20 bg-[#facc14] rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-yellow-200">
+                      <div className="w-20 h-20 bg-[#f5a51d] rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-yellow-200">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                       </div>
-                      <h3 className="text-3xl font-syne font-bold text-gray-900 mb-4">Message Sent!</h3>
-                      <p className="global-body text-gray-600 mb-10 max-w-sm mx-auto">We&apos;ve received your message and our team will get back to you within 2 business days.</p>
-                      <button onClick={() => setIsSubmitted(false)} className="text-xs font-bold tracking-[0.3em] text-gray-900 uppercase border-b-2 border-[#facc14] pb-2 hover:text-[#facc14] transition-all">
+                      <h3 className="text-3xl font-syne font-bold text-black mb-4">Message Sent!</h3>
+                      <p className="global-body text-black mb-10 max-w-sm mx-auto">We&apos;ve received your message and our team will get back to you within 2 business days.</p>
+                      <button onClick={() => setIsSubmitted(false)} className="text-xs font-bold tracking-[0.3em] text-black uppercase border-b-2 border-[#f5a51d] pb-2 hover:text-[#f5a51d] transition-all">
                         SEND ANOTHER MESSAGE
                       </button>
                     </div>
@@ -625,46 +625,46 @@ export default function Home() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">First Name</label>
-                          <input type="text" name="First Name" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="Jane" required />
+                          <label className="text-[10px] font-bold tracking-widest text-black uppercase ml-1">First Name</label>
+                          <input type="text" name="First Name" className="w-full contact-pro-input border-b-2 border-black py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="Jane" required />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Last Name</label>
-                          <input type="text" name="Last Name" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="Doe" required />
+                          <label className="text-[10px] font-bold tracking-widest text-black uppercase ml-1">Last Name</label>
+                          <input type="text" name="Last Name" className="w-full contact-pro-input border-b-2 border-black py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="Doe" required />
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Email Address</label>
-                        <input type="email" name="email" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="jane@example.com" required />
+                        <label className="text-[10px] font-bold tracking-widest text-black uppercase ml-1">Email Address</label>
+                        <input type="email" name="email" className="w-full contact-pro-input border-b-2 border-black py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="jane@example.com" required />
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Inquiry Type</label>
+                        <label className="text-[10px] font-bold tracking-widest text-black uppercase ml-1">Inquiry Type</label>
                         <div className="relative">
-                          <select name="Inquiry Type" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg text-gray-400 appearance-none cursor-pointer relative z-10" required defaultValue="">
+                          <select name="Inquiry Type" className="w-full contact-pro-input border-b-2 border-black py-3 focus:outline-none bg-transparent transition-all font-sans text-lg text-black appearance-none cursor-pointer relative z-10" required defaultValue="">
                             <option value="" disabled>How can we help?</option>
-                            <option value="General Inquiry" className="text-gray-900">General Inquiry</option>
-                            <option value="EIP Support" className="text-gray-900">EIP Support</option>
-                            <option value="Support & Donation" className="text-gray-900">Support & Donation</option>
-                            <option value="Volunteering" className="text-gray-900">Volunteering</option>
-                            <option value="Partnership" className="text-gray-900">Partnership</option>
-                            <option value="Institutional Engagement" className="text-gray-900">Institutional Engagement</option>
-                            <option value="Education & Training" className="text-gray-900">Education & Training</option>
-                            <option value="Other" className="text-gray-900">Other</option>
+                            <option value="General Inquiry" className="text-black">General Inquiry</option>
+                            <option value="EIP Support" className="text-black">EIP Support</option>
+                            <option value="Support & Donation" className="text-black">Support & Donation</option>
+                            <option value="Volunteering" className="text-black">Volunteering</option>
+                            <option value="Partnership" className="text-black">Partnership</option>
+                            <option value="Institutional Engagement" className="text-black">Institutional Engagement</option>
+                            <option value="Education & Training" className="text-black">Education & Training</option>
+                            <option value="Other" className="text-black">Other</option>
                           </select>
-                          <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-300">
+                          <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-black">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                           </div>
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Your Message</label>
-                        <textarea name="Message" rows={4} className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300 resize-none" placeholder="Tell us more about how we can work together..." required></textarea>
+                        <label className="text-[10px] font-bold tracking-widest text-black uppercase ml-1">Your Message</label>
+                        <textarea name="Message" rows={4} className="w-full contact-pro-input border-b-2 border-black py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300 resize-none" placeholder="Tell us more about how we can work together..." required></textarea>
                       </div>
 
-                      <button type="submit" disabled={isSubmitting} className="global-btn global-btn-primary w-full py-6 text-base tracking-widest shadow-2xl hover:shadow-yellow-200/50 disabled:opacity-50 transition-all duration-300 bg-black text-white hover:bg-[#facc14] hover:text-black mt-4">
+                      <button type="submit" disabled={isSubmitting} className="global-btn global-btn-primary w-full py-6 text-base tracking-widest shadow-2xl hover:shadow-yellow-200/50 disabled:opacity-50 transition-all duration-300 bg-black text-white hover:bg-[#f5a51d] hover:text-black mt-4">
                         {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
                       </button>
                     </form>

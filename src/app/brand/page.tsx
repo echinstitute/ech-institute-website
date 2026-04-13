@@ -82,7 +82,7 @@ function LogoCard({
       </div>
       <div className={`flex items-center justify-between w-full px-4 py-3 ${dark ? 'text-white' : ''}`}>
         <p className="brand-logo-label" style={{ padding: 0, margin: 0, color: dark ? '#ffffff' : undefined }}>{label}</p>
-        <a href={src} download className={`transition-colors ${dark ? 'text-white hover:opacity-80' : 'text-gray-400 hover:text-black'}`} title={`Download ${label}`}>
+        <a href={src} download className={`transition-colors ${dark ? 'text-white hover:opacity-80' : 'text-black hover:text-black'}`} title={`Download ${label}`}>
           <Download size={16} color={dark ? "#ffffff" : "currentColor"} />
         </a>
       </div>
@@ -222,15 +222,15 @@ export default function BrandPage() {
 
         {/* Sticky Left Nav */}
         <aside className="hidden lg:block w-56 flex-shrink-0 sticky top-28 self-start">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-4 px-3">On This Page</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-black mb-4 px-3">On This Page</p>
           <nav className="flex flex-col gap-1">
             {NAV_SECTIONS.map((s) => (
               <button
                 key={s.id}
                 onClick={() => scrollToSection(s.id)}
                 className={`text-left px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 border-l-2 ${activeSection === s.id
-                    ? 'bg-gray-50 text-black border-yellow-400'
-                    : 'text-gray-400 hover:text-black hover:bg-gray-50 border-transparent'
+                    ? 'bg-[#f5a51d] text-black border-yellow-400'
+                    : 'text-black hover:text-black hover:bg-[#f5a51d] border-transparent'
                   }`}
                 style={{ fontFamily: 'Antonio, sans-serif' }}
               >
@@ -272,24 +272,21 @@ export default function BrandPage() {
             <div className="brand-swatches">
               <ColorSwatch color="#ffffff" name="White" hex="#FFFFFF" textDark />
               <ColorSwatch color="#000000" name="Black" hex="#000000" textDark={false} />
-              <ColorSwatch color="#facc14" name="ECH Yellow" hex="#FACC14" textDark />
+              <ColorSwatch color="#f5a51d" name="ECH Yellow" hex="#f5a51d" textDark />
             </div>
 
-            <h3 className="brand-subsection-title" style={{ marginTop: '3rem' }}>Extended Palette</h3>
+            <h3 className="brand-subsection-title" style={{ marginTop: '3rem' }}>Secondary UI Colors (Tints)</h3>
             <div className="brand-swatches">
-              <ColorSwatch color="#f9fafb" name="Off White" hex="#F9FAFB" textDark />
-              <ColorSwatch color="#f7f9fa" name="Card BG" hex="#F7F9FA" textDark />
-              <ColorSwatch color="#fefbd6" name="Yellow Light" hex="#FEFBD6" textDark />
-              <ColorSwatch color="#4c5663" name="Text Secondary" hex="#4C5663" textDark={false} />
-              <ColorSwatch color="#ced2d9" name="Border" hex="#CED2D9" textDark />
-              <ColorSwatch color="#f9a825" name="Yellow Dark" hex="#F9A825" textDark />
+              <ColorSwatch color="rgba(0,0,0,0.05)" name="Soft Divider" hex="rgba(0,0,0,0.05)" textDark />
+              <ColorSwatch color="rgba(245,165,29,0.05)" name="Yellow Tint" hex="rgba(245,165,29,0.05)" textDark />
+              <ColorSwatch color="rgba(0,0,0,0.65)" name="Muted Text" hex="rgba(0,0,0,0.65)" textDark={false} />
             </div>
 
             <div className="brand-proportion-bar" style={{ marginTop: '3rem' }}>
               {/* Correct: 60% white, 30% black, 10% yellow */}
               <div style={{ flex: 6, background: '#fff', border: '1.5px solid var(--border-divider)', borderRadius: '8px 0 0 8px' }} />
               <div style={{ flex: 3, background: '#000', borderRadius: '0' }} />
-              <div style={{ flex: 1, background: '#facc14', border: '1.5px solid #e6b800', borderRadius: '0 8px 8px 0' }} />
+              <div style={{ flex: 1, background: '#f5a51d', border: '1.5px solid #e6b800', borderRadius: '0 8px 8px 0' }} />
             </div>
             <div className="brand-proportion-labels">
               <span>White — 60%</span>
@@ -304,13 +301,13 @@ export default function BrandPage() {
           <section id="typography" className="scroll-mt-28">
             <SectionHeader label="03 — Typography" title="Typography" />
             <p className="global-body-lg mb-8 max-w-2xl">
-              We use two typefaces <strong>Syne</strong> for headings, and <strong>DM Sans</strong> for body. Navigation and footer use <strong>Antonio</strong>.
+              We use two primary typefaces: <strong>Outfit</strong> for headings and <strong>Inter</strong> for body content. These were selected for their clarity, modern feel, and educational accessibility.
             </p>
 
             <TypeSample
               fontFamily="var(--font-family-page-heading)"
-              fontName="Syne"
-              label="Headings — Syne"
+              fontName="Outfit"
+              label="Headings — Outfit"
               category="heading"
               weights={[
                 { weight: 800, name: 'ExtraBold 800' },
@@ -321,13 +318,13 @@ export default function BrandPage() {
 
             <TypeSample
               fontFamily="var(--font-family-page-body)"
-              fontName="DM Sans"
-              label="Body — DM Sans"
+              fontName="Inter"
+              label="Body — Inter"
               category="body"
               weights={[
                 { weight: 400, name: 'Regular 400' },
                 { weight: 500, name: 'Medium 500' },
-                { weight: 300, name: 'Light 300' },
+                { weight: 600, name: 'SemiBold 600' },
               ]}
             />
 
@@ -378,7 +375,7 @@ export default function BrandPage() {
                   </div>
                   <div className="flex items-center justify-between w-full px-4 py-3">
                     <p className="brand-asset-label" style={{ padding: 0, margin: 0 }}>{label}</p>
-                    <a href={src} download className="text-gray-400 hover:text-black transition-colors" title={`Download ${label}`}>
+                    <a href={src} download className="text-black hover:text-black transition-colors" title={`Download ${label}`}>
                       <Download size={16} />
                     </a>
                   </div>
@@ -406,7 +403,7 @@ export default function BrandPage() {
                   </div>
                   <div className="flex items-center justify-between w-full px-4 py-3">
                     <p className="brand-asset-label" style={{ padding: 0, margin: 0 }}>{label}</p>
-                    <a href={src} download className="text-gray-400 hover:text-black transition-colors" title={`Download ${label}`}>
+                    <a href={src} download className="text-black hover:text-black transition-colors" title={`Download ${label}`}>
                       <Download size={16} />
                     </a>
                   </div>
@@ -438,10 +435,10 @@ export default function BrandPage() {
 
             <h3 className="brand-subsection-title" style={{ marginTop: '3rem' }}>Badges</h3>
             <div className="brand-badge-row">
-              <span className="brand-badge brand-badge-yellow">Nonprofit</span>
-              <span className="brand-badge brand-badge-outline">Education</span>
-              <span className="brand-badge brand-badge-dark">Community</span>
-              <span className="brand-badge brand-badge-light">Public Good</span>
+              <span className="brand-badge brand-badge-yellow !bg-[#f5a51d] !text-white">Nonprofit</span>
+              <span className="brand-badge brand-badge-outline !border-black !text-black">Education</span>
+              <span className="brand-badge brand-badge-dark !bg-black !text-white">Community</span>
+              <span className="brand-badge brand-badge-light !bg-white !border-black/10 !text-black">Public Good</span>
             </div>
           </section>
 
@@ -453,7 +450,7 @@ export default function BrandPage() {
       <div className="brand-divider" />
 
       {/* ── Download CTA ──────────────────────────────────────────────────── */}
-      <section className="brand-section brand-cta-section bg-white border-t border-gray-100 py-12 md:py-16 flex justify-center items-center">
+      <section className="brand-section brand-cta-section bg-white border-t border-black py-12 md:py-16 flex justify-center items-center">
         <div className="w-full max-w-4xl mx-auto px-4 flex justify-center">
           <div className="brand-cta-inner flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
             <div className="brand-cta-cat flex-shrink-0">
@@ -461,7 +458,7 @@ export default function BrandPage() {
             </div>
             <div className="brand-cta-copy flex flex-col items-center md:items-start text-center md:text-left">
               <h2 className="brand-cta-title" style={{ fontSize: '2.5rem', fontWeight: 800 }}>Ready to build?</h2>
-              <p className="brand-cta-subtitle text-gray-500 mt-2">
+              <p className="brand-cta-subtitle text-black mt-2">
                 All brand assets are available for use by partners and community members.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">

@@ -40,37 +40,37 @@ export default function EipSupportPage() {
               <h2 className="global-section-title mb-6">
                 Guiding technical <br /><em>standards.</em>
               </h2>
-              <p className="global-body-lg mb-6 text-gray-600">
+              <p className="global-body-lg mb-6 text-black">
                 The Ethereum Improvement Proposal (EIP) process is the backbone of Ethereum&apos;s technical evolution. However, shepherding a proposal from draft to finalization requires significant structural oversight to prevent bottlenecks.
               </p>
-              <p className="global-body-lg text-gray-600">
+              <p className="global-body-lg text-black">
                 ECH Institute provides dedicated EIP support, ensuring that authors have the resources, technical reviews, and community feedback necessary to advance critical protocols.
               </p>
             </div>
-            <div className="bg-gray-50 rounded-2xl p-10 border border-gray-100 shadow-sm relative overflow-hidden">
+            <div className="bg-[#f5a51d] rounded-2xl p-10 border border-black shadow-sm relative overflow-hidden">
               <img src="/assets/IMG_355.webp" alt="EIP Support" className="absolute inset-0 w-full h-full object-cover opacity-10 blur-sm" />
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold font-syne mb-6 text-gray-900">Program Pillars</h3>
+                <h3 className="text-2xl font-bold font-syne mb-6 text-black">Program Pillars</h3>
                 <ul className="space-y-6">
                   <li className="flex gap-4">
                     <span className="text-xl">📋</span>
                     <div>
-                      <strong className="block text-gray-900 mb-1">Process Documentation</strong>
-                      <span className="text-gray-600 text-sm">Maintaining clear, accessible guidelines for EIP authors and reviewers.</span>
+                      <strong className="block text-black mb-1">Process Documentation</strong>
+                      <span className="text-black text-sm">Maintaining clear, accessible guidelines for EIP authors and reviewers.</span>
                     </div>
                   </li>
                   <li className="flex gap-4">
                     <span className="text-xl">🔍</span>
                     <div>
-                      <strong className="block text-gray-900 mb-1">Technical Review Acceleration</strong>
-                      <span className="text-gray-600 text-sm">Connecting proposals with qualified reviewers to reduce friction.</span>
+                      <strong className="block text-black mb-1">Technical Review Acceleration</strong>
+                      <span className="text-black text-sm">Connecting proposals with qualified reviewers to reduce friction.</span>
                     </div>
                   </li>
                   <li className="flex gap-4">
                     <span className="text-xl">🎙️</span>
                     <div>
-                      <strong className="block text-gray-900 mb-1">Peep an EIP</strong>
-                      <span className="text-gray-600 text-sm">Hosting deep-dive interviews with authors to explain proposals to the broader community.</span>
+                      <strong className="block text-black mb-1">Peep an EIP</strong>
+                      <span className="text-black text-sm">Hosting deep-dive interviews with authors to explain proposals to the broader community.</span>
                     </div>
                   </li>
                 </ul>

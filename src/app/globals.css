@@ -4,13 +4,13 @@
 
 @layer base {
   body {
-    font-family: var(--font-family-page-body);
-    @apply text-gray-900 bg-white antialiased;
+    font-family: var(--font-inter);
+    @apply text-black bg-white antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-family-page-heading);
-    @apply font-bold tracking-tight;
+    font-family: var(--font-outfit);
+    @apply font-bold tracking-tight text-black;
   }
 }
 
@@ -18,8 +18,8 @@
      Global Section Components
      ========================================== */
   .global-section-tag {
-    @apply flex items-center gap-4 text-xs font-bold tracking-widest text-[#facc14] mb-4 uppercase inline-flex;
-    font-family: var(--font-family-page-heading);
+    @apply flex items-center gap-4 text-xs font-bold tracking-widest text-[#f5a51d] mb-4 uppercase inline-flex;
+    font-family: var(--font-outfit);
   }
   .global-section-tag .bg-black {
     @apply w-6 h-[1.5px] bg-black;
@@ -27,37 +27,42 @@
   
   /* Normalized Typography Scale */
   .global-hero-title {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tighter text-gray-900;
-    font-family: var(--font-family-page-heading);
+    @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tighter text-black;
+    font-family: var(--font-outfit);
   }
   .global-section-title {
-    @apply text-3xl sm:text-4xl lg:text-4xl font-extrabold leading-[1.15] tracking-tight text-gray-900;
-    font-family: var(--font-family-page-heading);
+    @apply text-3xl sm:text-4xl lg:text-4xl font-extrabold leading-[1.15] tracking-tight text-black;
+    font-family: var(--font-outfit);
   }
   .global-section-title em {
-    @apply text-[#facc14] not-italic;
+    @apply text-[#f5a51d] not-italic;
   }
   .global-section-subtitle {
-    @apply text-lg sm:text-xl text-gray-600 font-medium mt-4;
-    font-family: var(--font-family-page-body);
+    @apply text-lg sm:text-xl font-medium mt-4;
+    color: var(--text-secondary);
+    font-family: var(--font-inter);
   }
   .global-body-lg {
-    @apply text-lg sm:text-xl leading-relaxed text-gray-700 font-normal;
-    font-family: var(--font-family-page-body);
+    @apply text-lg sm:text-xl leading-relaxed font-normal;
+    color: var(--text-primary);
+    font-family: var(--font-inter);
   }
   .global-body {
-    @apply text-gray-600 leading-relaxed font-normal;
-    font-family: var(--font-family-page-body);
+    @apply text-base md:text-lg leading-relaxed font-normal;
+    color: var(--text-secondary);
+    font-family: var(--font-inter);
   }
   .global-card {
-    @apply p-8 border border-gray-100 rounded-2xl bg-white shadow-sm transition-all duration-300;
+    @apply p-8 border rounded-2xl bg-white shadow-sm transition-all duration-300;
+    border-color: var(--border-primary);
   }
   .global-card:hover {
     @apply shadow-lg -translate-y-1;
+    border-color: var(--border-yellow);
   }
   .global-card-title {
-    @apply text-xl sm:text-2xl font-bold mb-3 text-gray-900;
-    font-family: var(--font-family-page-heading);
+    @apply text-xl sm:text-2xl font-bold mb-3 text-black;
+    font-family: var(--font-outfit);
   }
 
   /* Proplay Specialized Utilities */
@@ -73,7 +78,7 @@
   }
 
   .proplay-icon-container {
-    background-color: var(--dynamic-accent, #facc14);
+    background-color: var(--dynamic-accent, #f5a51d);
     @apply flex items-center justify-center rounded-xl transition-all duration-300;
     color: white !important;
   }
@@ -84,29 +89,31 @@
   }
 
   .text-brand-yellow {
-    @apply text-[#facc14];
+    @apply text-[#f5a51d];
   }
 
   .global-btn {
     @apply inline-flex items-center justify-center transition-all duration-300 font-bold px-8 py-3 rounded;
-    font-family: var(--font-family-page-heading);
+    font-family: var(--font-outfit);
   }
   .global-btn-primary {
-    @apply bg-black text-white hover:bg-gray-800 shadow-md hover:shadow-lg;
+    @apply bg-black text-white hover:bg-black shadow-md hover:shadow-lg;
   }
   .global-btn-yellow {
-    @apply bg-[#facc14] text-white hover:bg-[#eab308] shadow-md hover:shadow-lg;
+    @apply bg-[#f5a51d] text-white hover:bg-[#d98c0d] shadow-md hover:shadow-lg;
   }
   .global-btn-outline {
-    @apply border-2 border-gray-200 text-gray-900 hover:border-[#facc14] hover:bg-[#fefce8];
+    @apply border-2 text-black hover:border-[#f5a51d];
+    border-color: var(--border-primary);
+    &:hover { background-color: rgba(245, 165, 29, 0.05); }
   }
 
   .footer-main, .footer-title, .footer-section-title, .footer-link, .footer-email, .footer-tagline, .footer-copyright, .footer-disclaimer {
-    font-family: var(--font-family-footer) !important;
+    font-family: var(--font-outfit) !important;
   }
 
   .nav-link-item, .logo-fallback, .mega-menu-title {
-    font-family: var(--font-family-nav) !important;
+    font-family: var(--font-outfit) !important;
   }
 
   /* Spacing Standards (50% Tightened) */
@@ -144,274 +151,81 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --color-primary-foreground: var(--primary-foreground);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
   
   /* Typography - Institutional Standard */
-  --font-family-base: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-family-heading: 'Syne', sans-serif;
-  --font-family-subtitle: 'DM Sans', sans-serif;
-  --font-mono: 'Courier New', Courier, monospace;
-  --font-family-nav: 'Antonio', sans-serif;
-  --font-family-footer: 'Antonio', sans-serif;
-  
-  /* Page context aliases */
-  --font-family-page-heading: 'Syne', sans-serif;
-  --font-family-page-body: 'DM Sans', sans-serif;
-  
-  /* Font Sizes - Responsive */
-  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
-  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.875rem);
-  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
-  --font-size-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 3rem);
-  --font-size-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3.75rem);
-  --font-size-5xl: clamp(3rem, 2.5rem + 2.5vw, 4.5rem);
-  
-  /* Font Weights */
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  
-  /* Line Heights */
-  --line-height-tight: 1.25;
-  --line-height-snug: 1.375;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
-  --line-height-loose: 2;
+  --font-family-page-heading: var(--font-outfit);
+  --font-family-page-body: var(--font-inter);
+  --font-family-nav: var(--font-outfit);
+  --font-family-footer: var(--font-outfit);
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  
-  /* Page typography - Single Source of Truth */
-  --font-family-page-heading: 'Syne', sans-serif;
-  --font-family-page-body: 'DM Sans', sans-serif;
-  --font-family-nav: 'Antonio', sans-serif;
-  --font-family-footer: 'Antonio', sans-serif;
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --primary: #f5a51d;
+  --primary-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: rgba(0, 0, 0, 0.1);
+  --ring: #f5a51d;
 
-  /* ==========================================
-     ECH Institute - Global CSS Variables
-     ========================================== */
-  /* Primary Colors - White (60%), Black (30%), Yellow (10%) */
+  /* Legacy Variable Mapping to 3-Color Palette */
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-yellow: #facc14;
+  --color-yellow: #f5a51d;
   
-  /* Background Colors */
   --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-card: #f7f9fa;
-  --bg-light-yellow: #fefbd6;
-  --bg-light-blue: #f0f4f8;
-  --bg-hover: #f0f2f5;
+  --bg-secondary: rgba(245, 165, 29, 0.05); /* Very light yellow for subtle separation */
+  --bg-card: #ffffff;
+  --bg-light-yellow: rgba(245, 165, 29, 0.05);
+  --bg-hover: rgba(0,0,0,0.02);
   
-  /* Text Colors */
   --text-primary: #000000;
-  --text-secondary: #4c5663;
-  --text-muted: #4a5568;
+  --text-secondary: rgba(0, 0, 0, 0.8);
+  --text-muted: rgba(0, 0, 0, 0.5);
   --text-white: #ffffff;
   
-  /* Border Colors */
-  --border-primary: #ced2d9;
-  --border-yellow: #facc14;
+  --border-primary: rgba(0, 0, 0, 0.1);
+  --border-yellow: #f5a51d;
   --border-black: #000000;
-  --border-divider: #e5e7eb;
+  --border-divider: rgba(0, 0, 0, 0.05);
   
-  /* Icon Colors */
-  --icon-primary: #4c5663;
-  --icon-yellow: #facc14;
-  --icon-white: #ffffff;
-  
-  /* Accent Colors */
-  --accent-yellow: #facc14;
-  --accent-yellow-light: #fefbd6;
-  --accent-teal: #14b8a6;
-  
-  /* Card Colors */
-  --card-bg: #f7f9fa;
-  --card-border: #ced2d9;
-  --card-bg-hover: #fefbd6;
-  --card-border-hover: #facc14;
-  
-  /* Section Backgrounds */
-  --section-bg-light: #f9fafb;
-  --section-bg-white: #ffffff;
-  
-  /* Shadows */
   --shadow-card: 0 4px 24px -4px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 40px -10px rgba(250, 204, 20, 0.3);
-  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 8px 24px -4px rgba(250, 204, 20, 0.2);
+  --shadow-glow: 0 0 40px -10px rgba(245, 165, 29, 0.3);
   
-  /* Gradients */
-  --gradient-accent: linear-gradient(135deg, #facc14, #f9a825);
-  --gradient-card: linear-gradient(135deg, #ffffff, #f9fafb);
-  --gradient-hero: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
-  --gradient-yellow: linear-gradient(to bottom right, #fefbd6, #fef9c7);
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.1);
+  --card-bg-hover: rgba(245, 165, 29, 0.05);
+  --card-border-hover: #f5a51d;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #000000;
+  --card-foreground: #ffffff;
+  --primary: #f5a51d;
+  --primary-foreground: #000000;
+  --border: rgba(255, 255, 255, 0.15);
   
-  /* ==========================================
-     ECH Institute - Dark Mode Variables
-     ========================================== */
-  /* Primary Colors - Dark Mode */
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-yellow: #facc14;
-  
-  /* Background Colors - Dark Mode */
-  --bg-primary: oklch(0.145 0 0);
-  --bg-secondary: oklch(0.205 0 0);
-  --bg-card: oklch(0.205 0 0);
-  --bg-light-yellow: rgba(250, 204, 20, 0.15);
-  --bg-light-blue: oklch(0.269 0 0);
-  --bg-hover: oklch(0.269 0 0);
-  
-  /* Text Colors - Dark Mode */
-  --text-primary: oklch(0.985 0 0);
-  --text-secondary: oklch(0.708 0 0);
-  --text-muted: oklch(0.6 0 0);
-  --text-white: #ffffff;
-  
-  /* Border Colors - Dark Mode */
-  --border-primary: oklch(1 0 0 / 20%);
-  --border-yellow: #facc14;
-  --border-black: #000000;
-  --border-divider: oklch(1 0 0 / 15%);
-  
-  /* Icon Colors - Dark Mode */
-  --icon-primary: oklch(0.708 0 0);
-  --icon-yellow: #facc14;
-  --icon-white: #ffffff;
-  
-  /* Accent Colors - Dark Mode */
-  --accent-yellow: #facc14;
-  --accent-yellow-light: rgba(250, 204, 20, 0.15);
-  --accent-teal: #14b8a6;
-  
-  /* Card Colors - Dark Mode */
-  --card-bg: oklch(0.205 0 0);
-  --card-border: oklch(1 0 0 / 20%);
-  --card-bg-hover: oklch(0.269 0 0);
-  --card-border-hover: #facc14;
-  
-  /* Section Backgrounds - Dark Mode */
-  --section-bg-light: oklch(0.205 0 0);
-  --section-bg-white: oklch(0.145 0 0);
-  
-  /* Shadows - Dark Mode */
-  --shadow-card: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 40px -10px rgba(250, 204, 20, 0.2);
-  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-hover: 0 8px 24px -4px rgba(250, 204, 20, 0.3);
-  
-  /* Gradients - Dark Mode */
-  --gradient-accent: linear-gradient(135deg, #facc14, #f9a825);
-  --gradient-card: linear-gradient(135deg, oklch(0.205 0 0), oklch(0.269 0 0));
-  --gradient-hero: linear-gradient(180deg, oklch(0.145 0 0) 0%, oklch(0.205 0 0) 100%);
-  --gradient-yellow: linear-gradient(to bottom right, rgba(250, 204, 20, 0.15), rgba(250, 204, 20, 0.1));
+  --color-yellow: #f5a51d;
+
+  --bg-primary: #000000;
+  --bg-secondary: rgba(245, 165, 29, 0.1);
+  --text-primary: #ffffff;
+  --border-primary: rgba(255, 255, 255, 0.2);
 }
 
 @layer base {
@@ -5418,12 +5232,12 @@ main .card-title,
   color: var(--text-primary);
 }
 
-#role .text-gray-700 {
+#role .text-black {
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
-#role .bg-gray-50 {
+#role .bg-[#f5a51d] {
   background: var(--section-bg-light);
   padding: 48px;
   border-radius: 16px;
@@ -5431,7 +5245,7 @@ main .card-title,
   margin-bottom: 48px;
 }
 
-#role .bg-gray-50 h3 {
+#role .bg-[#f5a51d] h3 {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 32px;
@@ -5462,7 +5276,7 @@ main .card-title,
   font-size: 1.125rem;
 }
 
-#role .text-gray-600 {
+#role .text-black {
   color: var(--text-secondary);
 }
 
@@ -5482,7 +5296,7 @@ main .card-title,
   font-weight: 600;
 }
 
-#role .text-gray-800 {
+#role .text-black {
   color: var(--text-primary);
 }
 
@@ -5501,7 +5315,7 @@ main .card-title,
   background: var(--bg-primary);
 }
 
-.bg-gray-50 {
+.bg-[#f5a51d] {
   background: var(--section-bg-light);
 }
 
@@ -5620,7 +5434,7 @@ main .card-title,
   border-color: hsl(var(--accent));
 }
 
-.border-gray-200 {
+.border-black {
   border-color: hsla(var(--border), 0.2);
 }
 
@@ -5684,19 +5498,19 @@ main .card-title,
   text-align: center;
 }
 
-.text-gray-700 {
+.text-black {
   color: var(--text-secondary);
 }
 
-.text-gray-800 {
+.text-black {
   color: var(--text-primary);
 }
 
-.text-gray-600 {
+.text-black {
   color: var(--text-secondary);
 }
 
-.text-gray-400 {
+.text-black {
   color: hsla(var(--muted-foreground), 0.6);
 }
 

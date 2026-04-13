@@ -308,7 +308,7 @@ export default function EducationPage() {
       </section>
 
       {/* ── Stats ────────────────────────────────────────────────────────── */}
-      <section className="border-b border-gray-100 bg-gray-50 py-6 px-4 md:px-8">
+      <section className="border-b border-black bg-[#f5a51d] py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -319,7 +319,7 @@ export default function EducationPage() {
             ].map((s, i) => (
               <div key={i}>
                 <div className="global-section-title" style={{ color: 'var(--color-yellow)' }}>{s.value}</div>
-                <div className="text-sm text-gray-500 font-medium mt-0.5">{s.label}</div>
+                <div className="text-sm text-black font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -331,15 +331,15 @@ export default function EducationPage() {
 
         {/* Sticky Left Nav */}
         <aside className="hidden lg:block w-52 xl:w-60 flex-shrink-0 sticky top-28 self-start">
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 px-2">On This Page</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-black mb-3 px-2">On This Page</p>
           <nav className="flex flex-col gap-0.5">
             {NAV_SECTIONS.map(s => (
               <button
                 key={s.id}
                 onClick={() => scrollToSection(s.id)}
                 className={`text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 border-l-2 ${activeSection === s.id
-                    ? 'bg-gray-100 text-black font-bold'
-                    : 'text-gray-500 hover:text-black hover:bg-gray-50 border-transparent'
+                    ? 'bg-black text-black font-bold'
+                    : 'text-black hover:text-black hover:bg-[#f5a51d] border-transparent'
                   }`}
                 style={activeSection === s.id ? { borderLeftColor: 'var(--color-yellow)' } : {}}
               >
@@ -373,19 +373,19 @@ export default function EducationPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-base text-black">{f.title}</span>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full hidden sm:inline">{f.tag}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-black bg-black px-2 py-0.5 rounded-full hidden sm:inline">{f.tag}</span>
                       </div>
-                      <p className="text-xs text-amber-700 font-semibold">{f.subtitle}</p>
+                      <p className="text-xs text-[#f5a51d] font-semibold">{f.subtitle}</p>
                     </div>
-                    <ArrowRight size={16} className="text-gray-300 group-hover:text-amber-500 transition-colors shrink-0" />
+                    <ArrowRight size={16} className="text-black group-hover:text-amber-500 transition-colors shrink-0" />
                   </div>
 
                   <div className="pl-14">
                     <p className="global-body text-sm mb-3">{f.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {f.highlights.map((h, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} className="text-[#facc14]" /> {h}
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-black bg-[#f5a51d] border border-black rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="text-[#f5a51d]" /> {h}
                         </span>
                       ))}
                     </div>
@@ -407,7 +407,7 @@ export default function EducationPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
                       onClick={() => toggleGuide(i)}
                     >
                       <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
@@ -416,25 +416,25 @@ export default function EducationPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
                           <span className="font-bold text-base text-black">{g.title}</span>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full hidden sm:inline">{g.tag}</span>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#f5a51d] bg-[#f5a51d] border border-amber-200 px-2 py-0.5 rounded-full hidden sm:inline">{g.tag}</span>
                         </div>
                         <p className="global-body text-sm">{g.summary}</p>
                       </div>
                       <ChevronDown
                         size={16}
-                        className="text-gray-400 shrink-0 transition-transform duration-200"
+                        className="text-black shrink-0 transition-transform duration-200"
                         style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                       />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-gray-100 px-4 pb-4 pt-4">
+                      <div className="border-t border-black px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{g.detail}</p>
                         <div className="flex flex-col gap-2.5">
                           {g.steps.map((step, j) => (
                             <div key={j} className="flex items-start gap-3">
-                              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-50 text-amber-700 border border-amber-100 text-[10px] font-bold shrink-0 mt-0.5">{j + 1}</div>
-                              <span className="text-sm text-gray-600 leading-snug">{step}</span>
+                              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#f5a51d] text-[#f5a51d] border border-[#f5a51d] text-[10px] font-bold shrink-0 mt-0.5">{j + 1}</div>
+                              <span className="text-sm text-black leading-snug">{step}</span>
                             </div>
                           ))}
                         </div>
@@ -468,7 +468,7 @@ export default function EducationPage() {
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-full px-3 py-1">
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-black bg-[#f5a51d] border border-black rounded-full px-3 py-1">
                           <CheckCircle2 size={11} style={{ color: s.color }} /> {a}
                         </span>
                       ))}
@@ -477,7 +477,7 @@ export default function EducationPage() {
                 </div>
               ))}
             </div>
-            <div className="global-card mt-4 global-border-yellow bg-amber-50/30 text-center">
+            <div className="global-card mt-4 global-border-yellow bg-[#f5a51d] text-center">
               <p className="global-body">
                 <strong>ECH Institute&apos;s Role:</strong> We produce PEEPanEIP deep-dives for each significant EIP, host EIPIP calls that shepherd EIPs through review, and publish upgrade communication for each mainnet deployment.
               </p>
@@ -494,37 +494,37 @@ export default function EducationPage() {
               {tracks.map((track) => (
                 <div key={track.id} className="global-card p-0 overflow-hidden">
                   <button
-                    className="w-full flex items-center gap-4 p-5 text-left hover:bg-gray-50 transition-colors"
+                    className="w-full flex items-center gap-4 p-5 text-left hover:bg-[#f5a51d] transition-colors"
                     onClick={() => toggleTrack(track.id)}
                   >
                     <span className="text-2xl">{track.emoji}</span>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-bold text-lg text-black">{track.title}</h3>
-                      <p className="text-sm text-gray-500">{track.subtitle}</p>
+                      <p className="text-sm text-black">{track.subtitle}</p>
                     </div>
-                    <ChevronDown size={18} className="text-gray-400 shrink-0 transition-transform duration-200"
+                    <ChevronDown size={18} className="text-black shrink-0 transition-transform duration-200"
                       style={{ transform: openTracks[track.id] ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                   </button>
 
                   {openTracks[track.id] && (
-                    <div className="border-t border-gray-100">
+                    <div className="border-t border-black">
                       {track.items.map((item, j) => {
                         const key = `${track.id}-${j}`;
                         const isOpen = openItems[key];
                         return (
                           <div key={j} className="border-b border-gray-50 last:border-0">
                             <button
-                              className="w-full flex items-center gap-3 px-5 py-3.5 text-left hover:bg-gray-50 transition-colors"
+                              className="w-full flex items-center gap-3 px-5 py-3.5 text-left hover:bg-[#f5a51d] transition-colors"
                               onClick={() => toggleItem(key)}
                             >
                               <ChevronRight size={14} className="text-amber-400 shrink-0 transition-transform duration-150"
                                 style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }} />
-                              <span className="flex-1 font-semibold text-sm text-gray-900">{item.title}</span>
+                              <span className="flex-1 font-semibold text-sm text-black">{item.title}</span>
                               {isOpen && (
                                 <Link href={item.link}
                                   target={item.link.startsWith('http') ? '_blank' : '_self'}
                                   onClick={e => e.stopPropagation()}
-                                  className="text-xs font-bold border border-gray-200 rounded-full px-3 py-1 hover:border-amber-400 transition-colors shrink-0 no-underline"
+                                  className="text-xs font-bold border border-black rounded-full px-3 py-1 hover:border-amber-400 transition-colors shrink-0 no-underline"
                                   style={{ color: 'var(--color-yellow)' }}>
                                   {item.cta} <ExternalLink size={10} className="inline ml-0.5" />
                                 </Link>
@@ -564,12 +564,12 @@ export default function EducationPage() {
                     </span>
                   </div>
                   <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">{card.year} · {card.quarter}</div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-black mb-1">{card.year} · {card.quarter}</div>
                     <h3 className="global-card-title mb-1">{card.title}</h3>
                     <p className="global-body text-sm">{card.description}</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg px-3 py-2.5 border border-gray-100 mt-auto">
-                    <p className="text-xs text-gray-500 leading-relaxed">{card.highlight}</p>
+                  <div className="bg-[#f5a51d] rounded-lg px-3 py-2.5 border border-black mt-auto">
+                    <p className="text-xs text-black leading-relaxed">{card.highlight}</p>
                   </div>
                 </div>
               ))}
@@ -595,14 +595,14 @@ export default function EducationPage() {
                     <h3 className="global-card-title mb-1">{card.title}</h3>
                     <p className="global-body text-sm">{card.desc}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-gray-100" style={{ color: 'var(--color-yellow)' }}>
+                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-black" style={{ color: 'var(--color-yellow)' }}>
                     {card.cta} <ArrowRight size={13} />
                   </div>
                 </Link>
               ))}
             </div>
 
-            <div className="global-card global-border-yellow text-center bg-gradient-to-br from-white to-amber-50">
+            <div className="global-card global-border-yellow text-center bg-gradient-to-br from-white to-[#f5a51d]">
               <p className="global-body-lg mb-2"><strong>Participation &amp; Ecosystem Contribution</strong></p>
               <p className="global-body-lg mb-6">You can contribute through documentation, content creation, community outreach, and taking part in governance discussions. ECH Institute is your starting point.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

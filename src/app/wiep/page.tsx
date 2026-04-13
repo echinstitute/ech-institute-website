@@ -12,17 +12,17 @@ const WIEP_YOUTUBE_VIDEOS = 'https://www.youtube.com/@wiepteam/videos';
 export default function WiEPPage() {
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
-      <div className="border-b border-gray-100 bg-gray-50">
+      <div className="border-b border-black bg-[#f5a51d]">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 md:px-8">
           <Link
             href="/podcast"
-            className="mb-4 inline-flex items-center gap-2 text-gray-600 transition-colors hover:text-amber-600 global-body"
+            className="mb-4 inline-flex items-center gap-2 text-black transition-colors hover:text-[#f5a51d] global-body"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Podcast
           </Link>
           <div className="max-w-4xl">
             <h1 className="global-hero-title mb-3">Women in Ethereum Protocol (WiEP)</h1>
-            <p className="global-hero-subtitle text-gray-600">
+            <p className="global-hero-subtitle text-black">
               Community, study groups, and mentorship aligned support for women contributing to
               Ethereum&apos;s core protocol alongside the broader core dev and EPF ecosystem.
             </p>
@@ -106,7 +106,7 @@ export default function WiEPPage() {
         <div className="mx-auto max-w-4xl">
           <section className="mb-6 sm:mb-8">
             <h2 className="global-section-title mb-3 sm:mb-4">Study groups</h2>
-            <p className="global-body-lg mb-4 text-gray-600">
+            <p className="global-body-lg mb-4 text-black">
               WiEP study groups partner with the Ethereum Protocol Fellowship (EPF) Study
               Group model structured, part-time, and designed to lower the barrier to entry
               for developers aiming at core protocol roles.
@@ -135,7 +135,7 @@ export default function WiEPPage() {
 
           <section className="mb-6 sm:mb-8">
             <h2 className="global-section-title mb-3 sm:mb-4">Themes we explore</h2>
-            <p className="global-body text-gray-600 mb-4">
+            <p className="global-body text-black mb-4">
               WiEP connects people, learning, and core protocol work—connecting scaling,
               resilience, credible neutrality, and the Road to 2026 through structured community.
             </p>
@@ -143,7 +143,7 @@ export default function WiEPPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               <div className="global-card p-4 sm:p-5">
                 <h3 className="global-card-title mb-2">Scaling &amp; enterprise Ethereum</h3>
-                <p className="global-body text-sm text-gray-600">
+                <p className="global-body text-sm text-black">
                   Build the contributor capacity that helps ship improvements enterprises can rely on
                   as Ethereum scales.
                 </p>
@@ -151,7 +151,7 @@ export default function WiEPPage() {
 
               <div className="global-card p-6">
                 <h3 className="global-card-title mb-2">Resilience &amp; protocol health</h3>
-                <p className="global-body text-sm text-gray-600">
+                <p className="global-body text-sm text-black">
                   Mentorship and safer on-ramps improve review quality supporting healthier protocol
                   upgrades and operations.
                 </p>
@@ -159,7 +159,7 @@ export default function WiEPPage() {
 
               <div className="global-card p-4 sm:p-5">
                 <h3 className="global-card-title mb-2">Credible neutrality</h3>
-                <p className="global-body text-sm text-gray-600">
+                <p className="global-body text-sm text-black">
                   Focused learning without hype so participants can evaluate tradeoffs and contribute
                   with aligned incentives.
                 </p>
@@ -167,7 +167,7 @@ export default function WiEPPage() {
 
               <div className="global-card p-4 sm:p-5">
                 <h3 className="global-card-title mb-2">Road to 2026: what comes next</h3>
-                <p className="global-body text-sm text-gray-600">
+                <p className="global-body text-sm text-black">
                   Use study group structure to follow roadmap heavy work in context, preparing the
                   next wave of builders for 2026.
                 </p>
@@ -185,7 +185,7 @@ export default function WiEPPage() {
                 WiEP is active on Discord, X (Twitter), and email. For study group schedules
                 and how to join, reach out to the WiEP team.
               </p>
-              <ul className="global-body space-y-2 text-gray-600">
+              <ul className="global-body space-y-2 text-black">
                 <li>Email: wiepteam@gmail.com</li>
                 <li>
                   Playlist:{' '}
@@ -193,7 +193,7 @@ export default function WiEPPage() {
                     href={wiepPl.playlistUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-amber-700 hover:underline"
+                    className="font-medium text-[#f5a51d] hover:underline"
                   >
                     Women Powering Web3 (YouTube)
                   </a>
@@ -204,7 +204,7 @@ export default function WiEPPage() {
                     href={WIEP_YOUTUBE_VIDEOS}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-amber-700 hover:underline"
+                    className="font-medium text-[#f5a51d] hover:underline"
                   >
                     youtube.com/@wiepteam
                   </a>

@@ -40,10 +40,10 @@ export default function InstitutionalBridgingPage() {
               <h2 className="global-section-title mb-6">
                 Connecting <br /><em>traditional enterprise.</em>
               </h2>
-              <p className="global-body-lg mb-6 text-gray-600">
+              <p className="global-body-lg mb-6 text-black">
                 As Ethereum adoption grows, institutions and traditional enterprises increasingly rely on the network. However, the decentralized nature of Ethereum governance can appear opaque and unpredictable to organizations accustomed to centralized planning.
               </p>
-              <p className="global-body-lg text-gray-600">
+              <p className="global-body-lg text-black">
                 ECH Institute acts as a reliable informational bridge, providing clear translation of technical roadmaps, governance processes, and network upgrades to non-technical enterprise stakeholders.
               </p>
             </div>
@@ -56,21 +56,21 @@ export default function InstitutionalBridgingPage() {
                     <span className="text-xl">📊</span>
                     <div>
                       <strong className="block text-white mb-1">Impact Reports</strong>
-                      <span className="text-gray-400 text-sm">Professional analyses detailing the implications of upcoming hard forks on enterprise operations.</span>
+                      <span className="text-black text-sm">Professional analyses detailing the implications of upcoming hard forks on enterprise operations.</span>
                     </div>
                   </li>
                   <li className="flex gap-4">
                     <span className="text-xl">🏛️</span>
                     <div>
                       <strong className="block text-white mb-1">Corporate Readiness</strong>
-                      <span className="text-gray-400 text-sm">Briefings and materials establishing clear timelines for protocol upgrades.</span>
+                      <span className="text-black text-sm">Briefings and materials establishing clear timelines for protocol upgrades.</span>
                     </div>
                   </li>
                   <li className="flex gap-4">
                     <span className="text-xl">🤝</span>
                     <div>
                       <strong className="block text-white mb-1">Direct Dialogue</strong>
-                      <span className="text-gray-400 text-sm">Facilitating constructive communication between protocol core developers and major institutional users.</span>
+                      <span className="text-black text-sm">Facilitating constructive communication between protocol core developers and major institutional users.</span>
                     </div>
                   </li>
                 </ul>

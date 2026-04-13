@@ -391,7 +391,7 @@ export default function Navigation() {
       <nav 
         ref={navbarRef}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 border-b border-[#e2e8f0] bg-white shadow-sm transition-transform duration-300 ease-in-out",
+          "fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-white shadow-sm transition-transform duration-300 ease-in-out",
           isNavbarVisible ? "translate-y-0" : "-translate-y-full"
         )}
       >
@@ -400,7 +400,7 @@ export default function Navigation() {
             {/* LEFT SIDE: Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 sm:gap-3 font-bold hover:text-[#facc14] transition-colors pr-2 sm:pr-4 lg:pr-12 z-10 flex-shrink-0 no-underline min-w-0"
+              className="flex items-center gap-2 sm:gap-3 font-bold hover:text-[#f5a51d] transition-colors pr-2 sm:pr-4 lg:pr-12 z-10 flex-shrink-0 no-underline min-w-0"
               style={{ textDecoration: 'none' }}
             >
               <span className="sr-only">ECH Institute</span>
@@ -641,7 +641,7 @@ export default function Navigation() {
             {/* Mega Menu */}
             <div
               ref={dropdownRef}
-              className="hidden lg:block fixed inset-x-0 bg-[#f1f5f9] z-50 border-t border-[#e2e8f0] shadow-lg rounded-b-lg"
+              className="hidden lg:block fixed inset-x-0 bg-[#f1f5f9] z-50 border-t border-black/10 shadow-lg rounded-b-lg"
               style={{ top: `${navbarHeight}px` }}
               onMouseEnter={handleDropdownEnter}
               onMouseLeave={handleDropdownLeave}
@@ -670,14 +670,14 @@ export default function Navigation() {
                                 className={cn(
                                   'w-full flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border cursor-pointer focus:outline-none focus-visible:outline-none',
                                   isHovered || clickedSection === `${hoveredMenu}-${index}`
-                                    ? 'bg-white border-[#facc14] shadow-md'
-                                    : 'bg-white border-[#e2e8f0] hover:bg-white hover:border-[#facc14] hover:shadow-md'
+                                    ? 'bg-white border-[#f5a51d] shadow-md'
+                                    : 'bg-white border-black/10 hover:bg-white hover:border-[#f5a51d] hover:shadow-md'
                                 )}
                               >
                                 <div className={cn(
                                   'flex-shrink-0 w-10 h-10 rounded-md flex items-center justify-center transition-colors bg-transparent',
                                   isHovered || clickedSection === `${hoveredMenu}-${index}`
-                                    ? 'text-[#facc14]'
+                                    ? 'text-[#f5a51d]'
                                     : 'text-black'
                                 )}>
                                   <subItem.icon className="h-5 w-5" />
@@ -693,7 +693,7 @@ export default function Navigation() {
                                 </div>
                                 <ChevronRight className={cn(
                                   'h-5 w-5 flex-shrink-0 transition-colors',
-                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[#facc14]' : 'text-[#4c5663]'
+                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[#f5a51d]' : 'text-[#4c5663]'
                                 )} />
                               </div>
                             ) : (
@@ -711,9 +711,9 @@ export default function Navigation() {
                                       onMouseEnter={() => {
                                         setHoveredSection(null);
                                       }}
-                                      className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[#e2e8f0] bg-white hover:bg-white hover:border-[#facc14] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                      className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-black/10 bg-white hover:bg-white hover:border-[#f5a51d] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                     >
-                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#facc14] transition-colors">
+                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#f5a51d] transition-colors">
                                         <subItem.icon className="h-5 w-5" />
                                       </div>
                                       <div className="flex-1 text-left">
@@ -735,9 +735,9 @@ export default function Navigation() {
                                       // Clear hovered section when hovering non-nested items
                                       setHoveredSection(null);
                                     }}
-                                    className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[#e2e8f0] bg-white hover:bg-white hover:border-[#facc14] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                    className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-black/10 bg-white hover:bg-white hover:border-[#f5a51d] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#facc14] transition-colors">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#f5a51d] transition-colors">
                                       <subItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 text-left">
@@ -758,7 +758,7 @@ export default function Navigation() {
 
                   {/* RIGHT: Only show when at least one sub-item has nested sub-items */}
                   {currentMenu.subItems.some((s) => 'subItems' in s && s.subItems && s.subItems.length > 0) && (
-                  <div className="flex-1 border-l border-[#e2e8f0] pl-8 max-h-[calc(100vh-12rem)] overflow-y-auto mega-menu-scroll" style={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
+                  <div className="flex-1 border-l border-black/10 pl-8 max-h-[calc(100vh-12rem)] overflow-y-auto mega-menu-scroll" style={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
                     {(() => {
                       // Find the hovered or clicked sub-item that has nested sub-items
                       const activeSection = clickedSection || hoveredSection;
@@ -783,7 +783,7 @@ export default function Navigation() {
                       
                       return (
                         <div className="py-3 pe-3">
-                          <div className="mb-3 border-b border-[#e2e8f0]">
+                          <div className="mb-3 border-b border-black/10">
                             <h3 className="text-lg font-semibold text-black mb-2">
                               {activeSubItem.title}
                             </h3>
@@ -803,9 +803,9 @@ export default function Navigation() {
                                     href={linkUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[#e2e8f0] bg-white hover:bg-white hover:border-[#facc14] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                    className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-black/10 bg-white hover:bg-white hover:border-[#f5a51d] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#facc14] transition-colors mt-0.5">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#f5a51d] transition-colors mt-0.5">
                                       <nestedItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 min-w-0">
@@ -825,9 +825,9 @@ export default function Navigation() {
                                   key={nestedIndex}
                                   href={nestedItem.link}
                                   onClick={(e) => handleLinkClick(e, nestedItem.link)}
-                                  className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[#e2e8f0] bg-white hover:bg-white hover:border-[#facc14] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                  className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-black/10 bg-white hover:bg-white hover:border-[#f5a51d] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                 >
-                                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#facc14] transition-colors mt-0.5">
+                                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#f5a51d] transition-colors mt-0.5">
                                     <nestedItem.icon className="h-5 w-5" />
                                   </div>
                                   <div className="flex-1 min-w-0">
@@ -871,14 +871,14 @@ export default function Navigation() {
           />
           {/* Mobile Menu */}
           <div 
-            className="lg:hidden fixed inset-x-0 bottom-0 bg-white border-t border-[#e2e8f0] z-[100] overflow-y-auto shadow-lg"
+            className="lg:hidden fixed inset-x-0 bottom-0 bg-white border-t border-black/10 z-[100] overflow-y-auto shadow-lg"
             style={{ top: `${navbarHeight}px`, display: 'block', visibility: 'visible', pointerEvents: 'auto' }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="container max-w-7xl mx-auto px-2 sm:px-4 pt-8 pb-8">
               <div className="space-y-1 pt-2 pb-4">
                 {Object.entries(menuItems).map(([key, item]) => (
-                  <div key={key} className="border-b border-[#e2e8f0] last:border-0">
+                  <div key={key} className="border-b border-black/10 last:border-0">
                     {item.subItems && item.subItems.length > 0 ? (
                       <div className="py-2">
                         {/* Clickable header to toggle dropdown */}
@@ -888,7 +888,7 @@ export default function Navigation() {
                           }}
                           className="w-full flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0"
                         >
-                          <div className="w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                          <div className="w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#f5a51d] transition-colors">
                             <item.icon className="h-5 w-5" />
                           </div>
                           <div className="flex-1 text-left">
@@ -925,7 +925,7 @@ export default function Navigation() {
                                       }}
                                       className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 text-left"
                                     >
-                                      <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                      <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#f5a51d] transition-colors">
                                         <subItem.icon className="h-4 w-4" />
                                       </div>
                                       <div className="flex-1">
@@ -962,7 +962,7 @@ export default function Navigation() {
                                                 }}
                                                 className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                               >
-                                                <div className="w-6 h-6 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                                <div className="w-6 h-6 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#f5a51d] transition-colors">
                                                   <nestedItem.icon className="h-3 w-3" />
                                                 </div>
                                                 <div className="flex-1">
@@ -986,7 +986,7 @@ export default function Navigation() {
                                               }}
                                               className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                             >
-                                              <div className="w-6 h-6 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                              <div className="w-6 h-6 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#f5a51d] transition-colors">
                                                 <nestedItem.icon className="h-3 w-3" />
                                               </div>
                                               <div className="flex-1">
@@ -1020,7 +1020,7 @@ export default function Navigation() {
                                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                     style={{ textDecoration: 'none' }}
                                   >
-                                    <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                    <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#f5a51d] transition-colors">
                                       <subItem.icon className="h-4 w-4" />
                                     </div>
                                     <div className="flex-1">
@@ -1045,7 +1045,7 @@ export default function Navigation() {
                                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                   style={{ textDecoration: 'none' }}
                                 >
-                                  <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                  <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#f5a51d] transition-colors">
                                     <subItem.icon className="h-4 w-4" />
                                   </div>
                                   <div className="flex-1">
@@ -1073,7 +1073,7 @@ export default function Navigation() {
                       >
                         <div className={cn(
                           'w-10 h-10 rounded-md bg-transparent flex items-center justify-center flex-shrink-0 transition-colors',
-                          pathname === item.link ? 'text-[#facc14]' : 'text-black group-hover:text-[#facc14]'
+                          pathname === item.link ? 'text-[#f5a51d]' : 'text-black group-hover:text-[#f5a51d]'
                         )}>
                           <item.icon className="h-5 w-5" />
                         </div>

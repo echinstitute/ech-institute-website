@@ -6,10 +6,10 @@ import { BookOpen, Radio, Code, ArrowRight, Play, Mic, FileText, GraduationCap }
 import { PodcastRecentHighlights } from '@/components/features/PodcastRecentHighlights';
 
 const PODCAST_LINKS = [
-  { name: 'Spotify', href: 'https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA', color: '#1DB954' },
-  { name: 'Apple Podcasts', href: 'https://podcasts.apple.com/us/podcast/ech-institute-podcast/id1620565121', color: '#9933FF' },
-  { name: 'Pocket Casts', href: 'https://pocketcasts.com/podcast/ech-institute-podcast/07681030-5a48-013a-d70a-0acc26574db2', color: '#F43E37' },
-  { name: 'Castbox', href: 'https://castbox.fm/channel/7004180?country=gb', color: '#F6821F' },
+  { name: 'Spotify', href: 'https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA', color: '#000000' },
+  { name: 'Apple Podcasts', href: 'https://podcasts.apple.com/us/podcast/ech-institute-podcast/id1620565121', color: '#f5a51d' },
+  { name: 'Pocket Casts', href: 'https://pocketcasts.com/podcast/ech-institute-podcast/07681030-5a48-013a-d70a-0acc26574db2', color: '#000000' },
+  { name: 'Castbox', href: 'https://castbox.fm/channel/7004180?country=gb', color: '#f5a51d' },
 ];
 
 function SpotifyIcon({ className, color }: { className?: string; color?: string }) {
@@ -90,18 +90,18 @@ export default function PodcastPage() {
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
       {/* Hero + Listen cards */}
-      <section className="py-4 px-4 sm:py-6 sm:px-6 md:py-8 md:px-8 border-b border-gray-100">
+      <section className="py-4 px-4 sm:py-6 sm:px-6 md:py-8 md:px-8 border-b border-black">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="global-hero-title mb-3 sm:mb-4 lg:text-5xl">
             ECH Institute Podcast
           </h1>
-          <p className="global-hero-subtitle text-gray-600 mb-2 sm:mb-4 max-w-3xl mx-auto">
+          <p className="global-hero-subtitle text-black mb-2 sm:mb-4 max-w-3xl mx-auto">
             Deep-dives, strategic transitions, and ecosystem demos. One place for protocol education and coordination.
           </p>
-          <p className="global-body text-gray-500 mb-6 max-w-2xl mx-auto text-sm sm:text-base">
+          <p className="global-body text-black mb-6 max-w-2xl mx-auto text-sm sm:text-base">
             Exploring PEEPanEIP, Fusaka Files, and more with core developers and researchers.
           </p>
-          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3 mt-4">
+          <h2 className="text-sm font-semibold text-black uppercase tracking-wide mb-3 mt-4">
             Listen on
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto">
@@ -113,7 +113,7 @@ export default function PodcastPage() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white border border-gray-200 shadow-md hover:shadow-lg hover:border-amber-200 transition-all no-underline text-gray-900 min-h-[100px] sm:min-h-[110px]"
+                  className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white border border-black shadow-md hover:shadow-lg hover:border-amber-200 transition-all no-underline text-black min-h-[100px] sm:min-h-[110px]"
                 >
                   {Icon ? (
                     <span className="w-10 h-10 shrink-0 flex items-center justify-center" aria-hidden>
@@ -129,10 +129,10 @@ export default function PodcastPage() {
       </section>
 
       {/* Media Pillars */}
-      <section className="py-5 px-4 sm:py-8 sm:px-6 md:py-10 md:px-8 bg-gray-50">
+      <section className="py-5 px-4 sm:py-8 sm:px-6 md:py-10 md:px-8 bg-[#f5a51d]">
         <div className="max-w-7xl mx-auto">
           <h2 className="global-section-title mb-2 text-center">The Media Pillars</h2>
-          <p className="global-body-lg text-center text-gray-600 max-w-2xl mx-auto mb-5 sm:mb-6 px-0 sm:px-4">
+          <p className="global-body-lg text-center text-black max-w-2xl mx-auto mb-5 sm:mb-6 px-0 sm:px-4">
             Interactive cards linking to specialized series. Each displays the series name, a short blurb, and archived episode count.
           </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 items-stretch">
@@ -145,9 +145,9 @@ export default function PodcastPage() {
                 <Icon className="global-icon-yellow w-9 h-9 sm:w-10 sm:h-10 mb-3 sm:mb-4 shrink-0" />
                 <h3 className="global-card-title mb-2 line-clamp-2">{title}</h3>
                 <p className="global-body text-sm flex-1 line-clamp-4 sm:line-clamp-none">{blurb}</p>
-                <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between shrink-0">
-                  <span className="text-xs font-medium text-gray-500">{episodes}</span>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-gray-700 group-hover:text-black transition-colors">
+                <div className="mt-4 pt-4 border-t border-black flex items-center justify-between shrink-0">
+                  <span className="text-xs font-medium text-black">{episodes}</span>
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-black group-hover:text-black transition-colors">
                     Explore <ArrowRight className="w-4 h-4 shrink-0" />
                   </span>
                 </div>
@@ -160,10 +160,10 @@ export default function PodcastPage() {
       <PodcastRecentHighlights />
 
       {/* ACD Archive */}
-      <section id="acd-archive" className="py-5 px-4 sm:py-8 sm:px-6 md:py-10 md:px-8 bg-gray-50 scroll-mt-24">
+      <section id="acd-archive" className="py-5 px-4 sm:py-8 sm:px-6 md:py-10 md:px-8 bg-[#f5a51d] scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <h2 className="global-section-title mb-3 sm:mb-4">All Core Devs (ACD) Archive</h2>
-          <p className="global-body-lg text-gray-600 mb-4 sm:mb-6 max-w-3xl">
+          <p className="global-body-lg text-black mb-4 sm:mb-6 max-w-3xl">
             The hub archives raw All Core Devs meetings (ACDE, ACDC). Each entry provides:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">

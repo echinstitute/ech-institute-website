@@ -55,27 +55,27 @@ const impactData: ImpactMetric[] = [
 ];
 
 const cardClassName =
-  "group flex min-h-0 w-full min-w-0 max-w-full flex-col rounded-[12px] border-2 bg-white p-4 transition-all duration-200 sm:p-4 md:p-5 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-hover)]";
+  "group flex min-h-0 w-full min-w-0 max-w-full flex-col rounded-[12px] border-2 bg-white p-4 transition-all duration-200 sm:p-4 md:p-5 border-black/10 hover:border-[#f5a51d] hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]";
 
 function ImpactCard({ item }: { item: ImpactMetric }) {
   return (
     <article className={cardClassName}>
-      <div className="mb-3 flex min-w-0 items-start gap-3 sm:items-center">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 transition-colors group-hover:bg-gray-200/80">
+      <div className="mb-4 flex min-w-0 items-start gap-4 sm:items-center">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-black transition-colors group-hover:bg-[#f5a51d]">
           {React.cloneElement(item.icon as React.ReactElement<{ className?: string }>, {
-            className: "global-icon-yellow h-5 w-5",
+            className: "text-white h-6 w-6",
           })}
         </div>
-        <h3 className="global-body min-w-0 flex-1 text-left text-base font-semibold leading-snug text-zinc-900 sm:text-lg">
+        <h3 className="global-card-title !mb-0 min-w-0 flex-1 text-left">
           {item.category}
         </h3>
       </div>
 
-      <p className="mb-2 break-words text-2xl font-bold tabular-nums tracking-tight text-zinc-900 sm:text-3xl">
+      <p className="mb-3 break-words text-3xl sm:text-4xl font-black tabular-nums tracking-tighter text-black">
         {item.metric}
       </p>
 
-      <p className="global-body mt-auto text-left text-gray-600 break-words">
+      <p className="global-body mt-auto text-left leading-relaxed">
         {item.context}
       </p>
     </article>
@@ -90,11 +90,11 @@ export function EcosystemImpact() {
       className="min-w-0 w-full max-w-full overflow-x-hidden rounded-[12px] border-2 bg-white shadow-[var(--shadow-card)] [border-color:var(--card-border)]"
       aria-labelledby="ecosystem-impact-heading"
     >
-      <div className="border-b border-gray-100 bg-white px-3 py-3 sm:px-5 sm:py-4 md:px-6">
+      <div className="border-b border-black/10 bg-white px-3 py-4 sm:px-5 sm:py-6 md:px-8">
         <div className="mx-auto w-full max-w-3xl text-center">
-          <p className="mb-2 flex flex-wrap items-center justify-center gap-2 global-body text-xs font-semibold uppercase tracking-wider text-gray-600">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100">
-              <BarChart3 className="global-icon-yellow h-4 w-4 shrink-0" aria-hidden />
+          <p className="mb-3 flex flex-wrap items-center justify-center gap-2 global-body text-xs font-bold uppercase tracking-widest text-[#f5a51d]">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-black">
+              <BarChart3 className="text-white h-4 w-4 shrink-0" aria-hidden />
             </span>
             <span className="text-balance">By the numbers</span>
           </p>
@@ -106,7 +106,7 @@ export function EcosystemImpact() {
           </h2>
           <p className="global-section-subtitle mx-auto max-w-2xl text-balance break-words sm:mx-0">
             Snapshot of what ECH Institute delivers through coordination, education, and media,
-            updated <span className="font-medium text-zinc-800">February 2026</span>.
+            updated <span className="font-bold text-black">February 2026</span>.
           </p>
         </div>
       </div>

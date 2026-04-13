@@ -29,31 +29,31 @@ const governanceHowItems = [
     icon: Lightbulb,
     title: 'Ideas & Community Discussion',
     detail: 'Every change to Ethereum begins as an informal idea. Before any formal document is written, the concept is discussed openly on Ethereum Magicians (the primary governance forum), Discord channels, and research forums like ethresear.ch. This early phase gauges community interest, identifies potential problems, and refines the proposal before it goes through the formal EIP process. ECH Institute monitors these discussions and helps surface important conversations to the core developer community.',
-    color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb',
+    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
   },
   {
     icon: FileText,
     title: 'Formal EIP Drafting',
     detail: 'Once an idea has sufficient community traction, it is formalized as an Ethereum Improvement Proposal (EIP). EIPs must follow the template defined in EIP-1, which requires a preamble, abstract, motivation, full specification, rationale, backward compatibility analysis, and test cases. The proposal is submitted as a pull request to the ethereum/EIPs GitHub repository and reviewed by EIP editors for format and technical soundness. ECH Institute coordinates EIP editor office hours and EIPIP calls to shepherd EIPs through this phase.',
-    color: '#3b82f6', bg: '#eff6ff', border: '#bfdbfe',
+    color: '#f5a51d', bg: '#ffffff', border: '#f5a51d',
   },
   {
     icon: Users,
     title: 'Core Developer Review (ACD Calls)',
     detail: 'After EIP editors approve a draft, the proposal enters technical review by core Ethereum developers through All Core Devs (ACD) calls. ACD calls are biweekly calls alternating between Execution Layer (ACDE) and Consensus Layer (ACDC) meetings. These open calls are the primary venue where client teams (Geth, Nethermind, Besu, Lighthouse, Prysm, etc.) discuss whether to support an EIP. ECH Institute documents every ACD call and publishes notes to the ethereum/pm repository within 24 hours, creating a permanent public record.',
-    color: '#8b5cf6', bg: '#f5f3ff', border: '#ddd6fe',
+    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
   },
   {
     icon: Network,
     title: 'Upgrade Planning & Inclusion',
     detail: 'EIPs that pass technical review can be nominated for inclusion in a network upgrade. This process follows the formal inclusion stages defined by EIP-7723 (see below). Client teams must agree on which EIPs to include and implement them before a devnet is deployed for testing. A series of devnets, public testnets, and monitoring periods precede mainnet activation. ECH Institute coordinates upgrade communication — from initial CFI nomination through post-mainnet confirmation — ensuring the entire community stays informed.',
-    color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0',
+    color: '#f5a51d', bg: '#ffffff', border: '#f5a51d',
   },
   {
     icon: Cpu,
     title: 'Mainnet Activation & Post-Deployment',
     detail: 'Once all client teams have implemented and tested the upgrade, mainnet activation is scheduled at a specific block number or timestamp. The upgrade activates simultaneously across all Ethereum clients. ECH Institute monitors post-deployment metrics and publishes upgrade summaries for the community. Historical documentation of every Ethereum upgrade since Frontier (2015) is preserved in the ethereum/pm GitHub repository.',
-    color: '#d97706', bg: '#fffbeb', border: '#fde68a',
+    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
   },
 ];
 
@@ -63,7 +63,7 @@ const upgradeLcStages = [
     stage: 'Proposed for Inclusion',
     abbr: 'PFI',
     icon: Lightbulb,
-    color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb',
+    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
     description: 'An EIP author or community member nominates a finalized EIP for consideration in an upcoming network upgrade. The nomination is made publicly, typically in the relevant ACD meeting issue on GitHub or on Ethereum Magicians.',
     actions: [
       'Community or author nominates EIP on GitHub',
@@ -77,7 +77,7 @@ const upgradeLcStages = [
     stage: 'Considered for Inclusion',
     abbr: 'CFI',
     icon: AlertCircle,
-    color: '#f59e0b', bg: '#fffbeb', border: '#fde68a',
+    color: '#f5a51d', bg: '#ffffff', border: '#f5a51d',
     description: 'Client teams signal that an EIP is being actively reviewed for potential inclusion. CFI is an informal signal — it does not guarantee inclusion but indicates that client teams are evaluating the EIP seriously and may implement it.',
     actions: [
       'Client teams discuss EIP in ACD calls',
@@ -91,7 +91,7 @@ const upgradeLcStages = [
     stage: 'Scheduled for Inclusion',
     abbr: 'SFI',
     icon: Clock,
-    color: '#8b5cf6', bg: '#f5f3ff', border: '#ddd6fe',
+    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
     description: 'Client teams have formally agreed that the EIP will be included in a specific named upgrade. All major clients must commit to implementing the EIP before it reaches SFI status. This is the last decision gate before testnet deployment.',
     actions: [
       'All major clients commit to implementation',
@@ -99,11 +99,11 @@ const upgradeLcStages = [
       'Devnet with EIP activated for testing',
       'Public testnet deployment scheduled',
     ],
-    echRole: 'ECH Institute coordinates upgrade communication timelines and begins preparing community-facing documentation.',
+    echRole: 'ECH Institute documents SFI status transitions and facilitates community awareness through public updates.',
   },
   {
-    stage: 'Included in Network Upgrade',
-    abbr: 'INU',
+    stage: 'Confirmed for Inclusion',
+    abbr: 'CFI',
     icon: CheckCircle2,
     color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0',
     description: 'The EIP is part of the finalized, named network upgrade and will activate on Ethereum mainnet. All clients have implemented and tested it on public testnets. The mainnet activation block or timestamp has been set. No further community decisions are required.',
@@ -522,7 +522,7 @@ export default function HomesteadPage() {
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section id="overview" className="py-8 px-4 md:py-16 md:px-8 bg-white border-b border-gray-100">
+      <section id="overview" className="py-8 px-4 md:py-16 md:px-8 bg-white border-b border-black">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center gap-4 text-center max-w-3xl mx-auto">
             <h1 className="global-hero-title">Homestead</h1>
@@ -545,7 +545,7 @@ export default function HomesteadPage() {
       </section>
 
       {/* ── Stats ────────────────────────────────────────────────────────── */}
-      <section className="border-b border-gray-100 bg-gray-50 py-6 px-4 md:px-8">
+      <section className="border-b border-black bg-[#f5a51d] py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -556,7 +556,7 @@ export default function HomesteadPage() {
             ].map((s, i) => (
               <div key={i}>
                 <div className="global-section-title text-brand-yellow">{s.value}</div>
-                <div className="text-sm text-gray-500 font-medium mt-0.5">{s.label}</div>
+                <div className="text-sm text-black font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -568,15 +568,15 @@ export default function HomesteadPage() {
 
         {/* Sticky Left Nav */}
         <aside className="hidden lg:block w-52 xl:w-60 flex-shrink-0 sticky top-28 self-start">
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 px-2">On This Page</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-black mb-3 px-2">On This Page</p>
           <nav className="flex flex-col gap-0.5">
             {NAV_SECTIONS.map(s => (
               <button
                 key={s.id}
                 onClick={() => scrollToSection(s.id)}
                 className={`text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 border-l-2 ${activeSection === s.id
-                    ? 'bg-gray-100 text-black font-bold'
-                    : 'text-gray-500 hover:text-black hover:bg-gray-50 border-transparent'
+                    ? 'bg-black text-black font-bold'
+                    : 'text-black hover:text-black hover:bg-[#f5a51d] border-transparent'
                   }`}
                 style={activeSection === s.id ? { borderLeftColor: 'var(--color-yellow)' } : {}}
               >
@@ -596,7 +596,7 @@ export default function HomesteadPage() {
               <span className="proplay-icon-container h-8 w-8 flex-shrink-0">
                 <Home className="h-4 w-4" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Governance Hub</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Governance Hub</p>
             </div>
             <h2 className="global-section-title mb-1">How Ethereum Governance Works</h2>
             <p className="global-body-lg mb-2">
@@ -611,7 +611,7 @@ export default function HomesteadPage() {
                 Ethereum has no CEO, no single engineering team, and no controlling shareholder.
                 Its governance is the process — and the process is open to everyone.
               </blockquote>
-              <p className="text-xs font-bold uppercase tracking-widest text-amber-700">ECH Institute — Homestead</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#f5a51d]">ECH Institute — Homestead</p>
             </div>
 
             {/* ── How It Works: accordion steps ── */}
@@ -634,7 +634,7 @@ export default function HomesteadPage() {
                     {/* Card */}
                     <div className="flex-1 global-card mb-0 p-0 overflow-hidden">
                       <button
-                        className="w-full flex items-center gap-3 p-4 text-left hover:bg-gray-50 transition-colors"
+                        className="w-full flex items-center gap-3 p-4 text-left hover:bg-[#f5a51d] transition-colors"
                         onClick={() => toggle(setOpenGovHow, i)}
                       >
                         <div className="flex-1 min-w-0">
@@ -643,11 +643,11 @@ export default function HomesteadPage() {
                           </div>
                           <div className="font-bold text-base text-black">{step.title}</div>
                         </div>
-                        <ChevronDown size={16} className="text-gray-400 shrink-0 transition-transform duration-200"
+                        <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
                           style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                       </button>
                       {isOpen && (
-                        <div className="border-t border-gray-100 px-4 pb-4 pt-3">
+                        <div className="border-t border-black px-4 pb-4 pt-3">
                           <p className="global-body text-sm mb-3 leading-relaxed">{step.detail}</p>
                         </div>
                       )}
@@ -662,7 +662,7 @@ export default function HomesteadPage() {
               <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
                 <GitBranch className="h-4 w-4" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">EIP-7723 Inclusion Stages</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">EIP-7723 Inclusion Stages</p>
             </div>
             <h3 className="global-card-title mb-2">Upgrade Lifecycle</h3>
             <p className="global-body mb-5">
@@ -694,7 +694,7 @@ export default function HomesteadPage() {
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-full px-3 py-1">
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-black bg-[#f5a51d] border border-black rounded-full px-3 py-1">
                           <div
                             className="proplay-icon-container h-4 w-4 !rounded-full shrink-0"
                             style={{ '--dynamic-bg': s.bg, '--dynamic-accent': s.color } as React.CSSProperties}
@@ -720,7 +720,7 @@ export default function HomesteadPage() {
             </div>
 
             {/* Forkcast callout */}
-            <div className="global-card global-border-yellow bg-amber-50/30 flex flex-col sm:flex-row sm:items-center gap-4 mb-10">
+            <div className="global-card global-border-yellow bg-[#f5a51d]/30 flex flex-col sm:flex-row sm:items-center gap-4 mb-10">
               <div className="proplay-icon-container h-11 w-11 flex-shrink-0">
                 <TrendingUp className="h-5 w-5" />
               </div>
@@ -738,7 +738,7 @@ export default function HomesteadPage() {
               <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
                 <Target className="h-4 w-4" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Impact</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Impact</p>
             </div>
             <h3 className="global-card-title mb-2">Why Clear Governance Matters</h3>
             <p className="global-body mb-5">Clear, documented governance processes have three concrete effects on the Ethereum ecosystem:</p>
@@ -749,7 +749,7 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
                       onClick={() => toggle(setOpenMatters, i)}
                     >
                       <div
@@ -762,11 +762,11 @@ export default function HomesteadPage() {
                         <div className="font-bold text-base text-black">{item.title}</div>
                         <p className="global-body text-sm mt-0.5 line-clamp-1">{item.desc.slice(0, 80)}…</p>
                       </div>
-                      <ChevronDown size={16} className="text-gray-400 shrink-0 transition-transform duration-200"
+                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
                         style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                     </button>
                     {isOpen && (
-                      <div className="border-t border-gray-100 px-4 pb-4 pt-3">
+                      <div className="border-t border-black px-4 pb-4 pt-3">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.desc}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {item.bullets.map((b, j) => (
@@ -777,7 +777,7 @@ export default function HomesteadPage() {
                               >
                                 <CheckCircle2 size={11} />
                               </div>
-                              <span className="text-sm text-gray-600 leading-snug">{b}</span>
+                              <span className="text-sm text-black leading-snug">{b}</span>
                             </div>
                           ))}
                         </div>
@@ -793,7 +793,7 @@ export default function HomesteadPage() {
               <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
                 <ChevronRight className="h-4 w-4" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Explore</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Explore</p>
             </div>
             <h3 className="global-card-title mb-2">Explore Governance Resources</h3>
             <p className="global-body mb-5">Six essential resources for following, participating in, and contributing to Ethereum governance:</p>
@@ -804,7 +804,7 @@ export default function HomesteadPage() {
                   key={i}
                   href={link.href}
                   target="_blank"
-                  className="group relative flex flex-col rounded-xl border border-gray-200 bg-white overflow-hidden no-underline text-inherit hover:border-transparent hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-200 hover:-translate-y-1"
+                  className="group relative flex flex-col rounded-xl border border-black bg-white overflow-hidden no-underline text-inherit hover:border-transparent hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-200 hover:-translate-y-1"
                 >
                   {/* Top accent bar */}
                   <div className="h-1 w-full" style={{ background: link.color }} />
@@ -827,9 +827,9 @@ export default function HomesteadPage() {
                       <h4 className="font-extrabold text-base text-black leading-snug">{link.title}</h4>
                       <p className="text-xs font-semibold" style={{ color: link.color }}>{link.subtitle}</p>
                     </div>
-                    <p className="text-sm text-gray-500 leading-relaxed flex-1">{link.desc}</p>
+                    <p className="text-sm text-black leading-relaxed flex-1">{link.desc}</p>
                     <div
-                      className="flex items-center gap-1.5 pt-2 border-t border-gray-100 text-sm font-bold transition-all duration-150 group-hover:gap-2"
+                      className="flex items-center gap-1.5 pt-2 border-t border-black text-sm font-bold transition-all duration-150 group-hover:gap-2"
                       style={{ color: link.color }}
                     >
                       Explore <ExternalLink size={12} />
@@ -843,10 +843,10 @@ export default function HomesteadPage() {
           {/* ── Section 1: What is Ethereum Governance ───────────────────── */}
           <section id="what-is-governance">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
                 <Globe className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Section 1</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 1</p>
             </div>
             <h2 className="global-section-title mb-2">What is Ethereum Governance?</h2>
             <p className="global-body-lg mb-5">
@@ -859,28 +859,28 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
                       onClick={() => toggle(setOpenGov, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
                         <item.icon className="h-5 w-5 global-icon-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-black">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
-                      <ChevronDown size={16} className="text-gray-400 shrink-0 transition-transform duration-200"
+                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
                         style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-gray-100 px-4 pb-4 pt-4">
+                      <div className="border-t border-black px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-gray-600">{pt}</span>
+                              <span className="text-sm text-black">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -888,7 +888,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-gray-200 rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
                                 style={{ color: 'var(--color-yellow)' }}>
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
@@ -903,7 +903,7 @@ export default function HomesteadPage() {
             </div>
 
             {/* Key links callout */}
-            <div className="global-card global-border-yellow bg-amber-50/30">
+            <div className="global-card global-border-yellow bg-[#f5a51d]/30">
               <div className="flex items-center gap-3 mb-3">
                 <TrendingUp className="h-5 w-5 global-icon-yellow shrink-0" />
                 <h3 className="global-card-title mb-0">Track Ethereum Governance Live</h3>
@@ -914,7 +914,7 @@ export default function HomesteadPage() {
                   className="global-card flex flex-col gap-2 no-underline text-inherit hover:border-amber-400 transition-colors group">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-sm text-black">Forkcast.org</span>
-                    <ExternalLink size={13} className="text-gray-300 group-hover:text-amber-400 transition-colors" />
+                    <ExternalLink size={13} className="text-black group-hover:text-amber-400 transition-colors" />
                   </div>
                   <p className="global-body text-xs">Visual tracker for EIP inclusion stages across Ethereum upgrades. Maintained by the community.</p>
                 </Link>
@@ -922,7 +922,7 @@ export default function HomesteadPage() {
                   className="global-card flex flex-col gap-2 no-underline text-inherit hover:border-amber-400 transition-colors group">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-sm text-black">Protocol Support Dashboard</span>
-                    <ExternalLink size={13} className="text-gray-300 group-hover:text-amber-400 transition-colors" />
+                    <ExternalLink size={13} className="text-black group-hover:text-amber-400 transition-colors" />
                   </div>
                   <p className="global-body text-xs">Ethereum Foundation's Protocol Support page covering EIPs, client coordination, and upgrade tracking.</p>
                 </Link>
@@ -933,10 +933,10 @@ export default function HomesteadPage() {
           {/* ── Section 2: The EIP Process (Lifecycle) ───────────────────── */}
           <section id="eip-process">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
                 <GitBranch className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Section 2</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 2</p>
             </div>
             <h2 className="global-section-title mb-2">The EIP Process</h2>
             <p className="global-body-lg mb-5">
@@ -972,7 +972,7 @@ export default function HomesteadPage() {
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-full px-3 py-1">
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-black bg-[#f5a51d] border border-black rounded-full px-3 py-1">
                           <CheckCircle2 size={11} style={{ color: s.color }} /> {a}
                         </span>
                       ))}
@@ -986,10 +986,10 @@ export default function HomesteadPage() {
           {/* ── Section 3: Network Upgrades ──────────────────────────────── */}
           <section id="network-upgrades">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
                 <Layers className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Section 3</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 3</p>
             </div>
             <h2 className="global-section-title mb-2">Network Upgrades</h2>
             <p className="global-body-lg mb-5">
@@ -1002,28 +1002,28 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
                       onClick={() => toggle(setOpenUpgrades, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
                         <item.icon className="h-5 w-5 global-icon-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-black">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
-                      <ChevronDown size={16} className="text-gray-400 shrink-0 transition-transform duration-200"
+                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
                         style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-gray-100 px-4 pb-4 pt-4">
+                      <div className="border-t border-black px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-gray-600">{pt}</span>
+                              <span className="text-sm text-black">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -1031,7 +1031,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-gray-200 rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
                                 style={{ color: 'var(--color-yellow)' }}>
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
@@ -1049,10 +1049,10 @@ export default function HomesteadPage() {
           {/* ── Section 4: Role of ECH Institute ────────────────────────── */}
           <section id="ech-role">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
                 <Award className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Section 4</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 4</p>
             </div>
             <h2 className="global-section-title mb-2">Role of ECH Institute</h2>
             <p className="global-body-lg mb-5">
@@ -1065,28 +1065,28 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
                       onClick={() => toggle(setOpenEch, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
                         <item.icon className="h-5 w-5 global-icon-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-black">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
-                      <ChevronDown size={16} className="text-gray-400 shrink-0 transition-transform duration-200"
+                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
                         style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-gray-100 px-4 pb-4 pt-4">
+                      <div className="border-t border-black px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-gray-600">{pt}</span>
+                              <span className="text-sm text-black">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -1094,7 +1094,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-gray-200 rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
                                 style={{ color: 'var(--color-yellow)' }}>
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
@@ -1112,10 +1112,10 @@ export default function HomesteadPage() {
           {/* ── Section 5: Why It Matters ────────────────────────────────── */}
           <section id="why-it-matters">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
                 <Target className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Section 5</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 5</p>
             </div>
             <h2 className="global-section-title mb-2">Why This Matters</h2>
             <p className="global-body-lg mb-5">
@@ -1128,28 +1128,28 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
                       onClick={() => toggle(setOpenWhy, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
                         <item.icon className="h-5 w-5 global-icon-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-black">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
-                      <ChevronDown size={16} className="text-gray-400 shrink-0 transition-transform duration-200"
+                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
                         style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-gray-100 px-4 pb-4 pt-4">
+                      <div className="border-t border-black px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-gray-600">{pt}</span>
+                              <span className="text-sm text-black">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -1164,10 +1164,10 @@ export default function HomesteadPage() {
           {/* ── Section 6: Get Involved ──────────────────────────────────── */}
           <section id="get-involved">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
                 <Users className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Take the Next Step</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-black">Take the Next Step</p>
             </div>
             <h2 className="global-section-title mb-5">Get Involved in Governance</h2>
 
@@ -1179,14 +1179,14 @@ export default function HomesteadPage() {
               ].map((card, i) => (
                 <Link key={i} href={card.link} target={card.external ? '_blank' : '_self'}
                   className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-amber-400 transition-colors">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 shrink-0">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
                     <card.icon className="h-5 w-5 global-icon-yellow" />
                   </div>
                   <div className="flex-1">
                     <h3 className="global-card-title mb-1">{card.title}</h3>
                     <p className="global-body text-sm">{card.desc}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-gray-100"
+                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-black"
                     style={{ color: 'var(--color-yellow)' }}>
                     {card.cta} <ArrowRight size={13} />
                   </div>

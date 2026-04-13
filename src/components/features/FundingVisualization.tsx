@@ -35,12 +35,12 @@ const octantData = [
 
 const totalOctantAmount = octantData.reduce((sum, e) => sum + e.amount, 0);
 
-// Pie chart colors
+// Pie chart colors - using shades of brand yellow and black
 const pieColors = [
-  '#fbbf24', // yellow-400
-  '#f59e0b', // yellow-500
-  '#d97706', // yellow-600
-  '#92400e', // yellow-800
+  '#f5a51d', // primary yellow
+  '#000000', // black
+  '#f5a51dCC', // yellow alpha
+  '#00000088', // black alpha
 ];
 
 // Calculate pie chart segments
@@ -91,17 +91,17 @@ export function FundingVisualization() {
           return (
             <article
               key={index}
-              className="group flex min-w-0 flex-col rounded-[12px] border-2 bg-white p-4 transition-all duration-200 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-hover)] sm:p-5"
+              className="group flex min-w-0 flex-col rounded-[12px] border-2 bg-white p-4 transition-all duration-200 border-black/10 hover:border-[#f5a51d] hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:p-5"
             >
               <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-100 transition-colors group-hover:bg-gray-200/80">
-                  <Icon className="global-icon-yellow h-4 w-4 sm:h-5 sm:w-5" aria-hidden />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black transition-colors group-hover:bg-[#f5a51d]">
+                  <Icon className="text-white h-5 w-5" aria-hidden />
                 </div>
-                <h3 className="global-body text-base font-semibold leading-snug text-zinc-900 sm:text-lg">
+                <h3 className="global-card-title !mb-0 text-left">
                   {pillar.title}
                 </h3>
               </div>
-              <p className="global-body mt-auto text-gray-600">{pillar.description}</p>
+              <p className="global-body mt-auto">{pillar.description}</p>
             </article>
           );
         })}
@@ -162,15 +162,15 @@ export function FundingVisualization() {
           </p>
         </div>
 
-        <h4 className="global-body text-base font-semibold text-zinc-900 sm:text-lg">
+        <h4 className="global-body text-base font-bold text-black sm:text-lg uppercase tracking-wider">
           Audited Octant funding history (from Epoch 4)
         </h4>
 
         {/* Pie Chart and Info Card Layout */}
         <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2">
           {/* Pie Chart */}
-          <div className="flex flex-col items-center rounded-[12px] border-2 bg-gray-50/90 p-4 md:p-5 [border-color:var(--card-border)]">
-            <h5 className="global-body mb-3 text-base font-semibold text-zinc-900 md:text-lg">
+          <div className="flex flex-col items-center rounded-[12px] border-2 bg-white p-4 md:p-5 border-black/10">
+            <h5 className="global-body mb-3 text-base font-bold text-black md:text-lg">
               Funding distribution
             </h5>
             <div className="relative w-[200px] h-[200px] md:w-[220px] md:h-[220px] mx-auto flex-shrink-0">
@@ -195,8 +195,8 @@ export function FundingVisualization() {
             
             {/* Total ETH below pie chart - one line */}
             <div className="mt-3 text-center">
-              <p className="text-xl md:text-2xl font-bold text-gray-900 inline">
-                {totalOctantAmount.toFixed(3)} <span className="text-base md:text-lg font-semibold text-gray-700">Total ETH</span>
+              <p className="text-xl md:text-2xl font-black text-black inline">
+                {totalOctantAmount.toFixed(3)} <span className="text-base md:text-lg font-bold text-[#f5a51d]">Total ETH</span>
               </p>
             </div>
             
@@ -206,44 +206,44 @@ export function FundingVisualization() {
                 <div
                   key={index}
                   className={`flex cursor-pointer items-center gap-2 rounded-lg p-1.5 text-sm transition-colors md:p-2 md:text-base ${
-                    hoveredSegment === index ? "bg-gray-100" : ""
+                    hoveredSegment === index ? "bg-[#f5a51d10]" : ""
                   }`}
                   onMouseEnter={() => setHoveredSegment(index)}
                 >
                   <div
-                    className="w-4 h-4 md:w-5 md:h-5 rounded flex-shrink-0"
+                    className="w-4 h-4 md:w-5 md:h-5 rounded border border-black/10 flex-shrink-0"
                     style={{ backgroundColor: segment.color }}
                   />
-                  <span className="font-semibold text-gray-900">{segment.epoch}</span>
+                  <span className="font-bold text-black">{segment.epoch}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Info Card - Shows selected epoch details */}
-          <div className="flex flex-col justify-center rounded-[12px] border-2 bg-gray-50/90 p-6 md:p-8 [border-color:var(--card-border)]">
+          <div className="flex flex-col justify-center rounded-[12px] border-2 bg-white p-6 md:p-8 border-black/10">
             {currentSegment ? (
               <div className="space-y-4 md:space-y-6">
                 <div>
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-zinc-900 md:mb-3 md:text-3xl">
+                  <h5 className="mb-2 text-3xl font-black tracking-tighter text-black md:mb-3 md:text-4xl">
                     {currentSegment.epoch}
                   </h5>
-                  <p className="mb-4 text-sm font-medium text-gray-600 md:text-base">
+                  <p className="mb-4 text-sm font-bold text-[#f5a51d] uppercase tracking-widest md:text-base">
                     {currentSegment.period}
                   </p>
                 </div>
-                <div className="rounded-[12px] border-2 bg-white p-5 md:p-6 [border-color:var(--card-border)]">
-                  <p className="mb-3 text-3xl font-bold text-amber-600 md:text-4xl">
+                <div className="rounded-[12px] border-2 border-black p-5 md:p-6 bg-[#f5a51d05]">
+                  <p className="mb-1 text-3xl font-black text-black md:text-4xl">
                     {currentSegment.amount} ETH
                   </p>
-                  <p className="global-body text-sm font-medium text-gray-700 md:text-base">
-                    <span className="font-semibold text-zinc-900">Percentage:</span>{" "}
+                  <p className="global-body font-bold">
+                    <span className="text-[#f5a51d]">Portion:</span>{" "}
                     {currentSegment.percentage.toFixed(2)}%
                   </p>
                 </div>
-                <div className="border-t-2 pt-4 [border-color:var(--card-border)]">
-                  <p className="global-body text-sm leading-relaxed text-gray-700 md:text-base">
-                    <span className="font-semibold text-zinc-900">Impact:</span> {currentSegment.impact}
+                <div className="border-t border-black/10 pt-4">
+                  <p className="global-body leading-relaxed">
+                    <span className="font-bold text-black uppercase text-xs tracking-widest block mb-1">Impact</span> {currentSegment.impact}
                   </p>
                 </div>
               </div>

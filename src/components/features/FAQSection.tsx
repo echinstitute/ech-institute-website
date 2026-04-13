@@ -11,9 +11,9 @@ const FAQ_TOPICS = [
     id: 'general',
     label: 'General & ECH Institute',
     icon: Building2,
-    color: '#f59e0b',
-    bg: '#fffbeb',
-    border: '#fde68a',
+    color: '#000000',
+    bg: '#ffffff',
+    border: 'rgba(0,0,0,0.1)',
     questions: [
       {
         q: 'What is the ECH Institute?',
@@ -41,9 +41,9 @@ const FAQ_TOPICS = [
     id: 'governance',
     label: 'Governance',
     icon: Globe,
-    color: '#8b5cf6',
-    bg: '#f5f3ff',
-    border: '#ddd6fe',
+    color: '#f5a51d',
+    bg: '#ffffff',
+    border: '#f5a51d',
     questions: [
       {
         q: 'How does Ethereum governance work?',
@@ -71,9 +71,9 @@ const FAQ_TOPICS = [
     id: 'eips',
     label: 'EIPs & Protocol',
     icon: GitBranch,
-    color: '#3b82f6',
-    bg: '#eff6ff',
-    border: '#bfdbfe',
+    color: '#000000',
+    bg: '#ffffff',
+    border: 'rgba(0,0,0,0.1)',
     questions: [
       {
         q: 'What is an EIP (Ethereum Improvement Proposal)?',
@@ -101,9 +101,9 @@ const FAQ_TOPICS = [
     id: 'upgrades',
     label: 'Network Upgrades',
     icon: Zap,
-    color: '#10b981',
-    bg: '#f0fdf4',
-    border: '#a7f3d0',
+    color: '#f5a51d',
+    bg: '#ffffff',
+    border: '#f5a51d',
     questions: [
       {
         q: 'When is the next Ethereum network upgrade?',
@@ -131,9 +131,9 @@ const FAQ_TOPICS = [
     id: 'getinvolved',
     label: 'Getting Involved',
     icon: Users,
-    color: '#d97706',
-    bg: '#fffbeb',
-    border: '#fde68a',
+    color: '#000000',
+    bg: '#ffffff',
+    border: 'rgba(0,0,0,0.1)',
     questions: [
       {
         q: 'What Fellowships or programs does ECH Institute offer?',
@@ -184,13 +184,13 @@ export default function FAQSection() {
 
         {/* Header */}
         <div className="text-center mb-10">
-          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: 'var(--color-yellow)' }}>
+          <p className="global-body text-xs font-bold uppercase tracking-widest mb-2 text-[#f5a51d]">
             Knowledge Base
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black leading-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl font-black text-black leading-tight mb-3">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="global-body-lg max-w-2xl mx-auto">
             Everything you need to know about ECH Institute, Ethereum governance, EIPs, and network upgrades.
           </p>
         </div>
@@ -209,8 +209,8 @@ export default function FAQSection() {
                 className="flex items-center gap-2 whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 border-2 flex-shrink-0"
                 style={
                   isActive
-                    ? { background: t.bg, borderColor: t.color, color: t.color, boxShadow: `0 2px 8px ${t.color}22` }
-                    : { background: 'white', borderColor: '#e5e7eb', color: '#6b7280' }
+                    ? { background: 'black', borderColor: 'black', color: 'white' }
+                    : { background: 'white', borderColor: 'rgba(0,0,0,0.1)', color: 'black' }
                 }
               >
                 <t.icon size={14} />
@@ -229,10 +229,10 @@ export default function FAQSection() {
             <topic.icon size={18} />
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-brand-yellow">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#f5a51d]">
               {topic.label}
             </p>
-            <p className="text-xs text-gray-400">{topic.questions.length} questions</p>
+            <p className="text-[10px] font-bold text-black/40 uppercase tracking-tighter">{topic.questions.length} questions</p>
           </div>
         </div>
 
@@ -256,14 +256,14 @@ export default function FAQSection() {
                 <button
                   onClick={() => toggleItem(key)}
                   className="w-full flex items-center gap-4 p-4 sm:p-5 text-left transition-colors"
-                  style={{ background: isOpen ? topic.bg + '55' : 'white' }}
+                  style={{ background: isOpen ? topic.bg : 'white' }}
                 >
                   {/* Step number */}
                   <div
-                    className="proplay-icon-container h-8 w-8 !text-sm font-extrabold !border-1.5"
+                    className="proplay-icon-container h-8 w-8 !text-sm font-black !border-1.5"
                     style={{
-                      '--dynamic-bg': isOpen ? topic.bg : '#f3f4f6',
-                      '--dynamic-accent': isOpen ? topic.color : '#9ca3af',
+                      '--dynamic-bg': isOpen ? topic.color : 'white',
+                      '--dynamic-accent': isOpen ? (topic.color === '#000000' ? '#ffffff' : '#000000') : '#000000',
                     } as React.CSSProperties}
                   >
                     {qi + 1}
@@ -274,8 +274,8 @@ export default function FAQSection() {
                   <div
                     className="proplay-icon-container h-7 w-7 !rounded-full !border-1.5 transition-transform duration-300"
                     style={{
-                      '--dynamic-bg': isOpen ? topic.bg : '#f3f4f6',
-                      '--dynamic-accent': isOpen ? topic.color : '#9ca3af',
+                      '--dynamic-bg': isOpen ? topic.color : 'white',
+                      '--dynamic-accent': isOpen ? (topic.color === '#000000' ? '#ffffff' : '#000000') : '#000000',
                       transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                     } as React.CSSProperties}
                   >
@@ -290,8 +290,8 @@ export default function FAQSection() {
                     style={{ borderTop: `1.5px solid ${topic.border}` }}
                   >
                     <div
-                      className="mt-3 p-4 rounded-xl text-sm leading-relaxed text-gray-600"
-                      style={{ background: topic.bg }}
+                      className="mt-3 p-4 rounded-xl global-body"
+                      style={{ background: 'rgba(0,0,0,0.03)' }}
                     >
                       {item.a}
                     </div>
@@ -310,12 +310,12 @@ export default function FAQSection() {
             background: 'linear-gradient(135deg, #fffbeb 0%, #ffffff 100%)',
           }}
         >
-          <div className="flex-shrink-0 hidden sm:flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100">
-            <topic.icon size={22} style={{ color: 'var(--color-yellow)' }} />
+          <div className="flex-shrink-0 hidden sm:flex h-12 w-12 items-center justify-center rounded-xl bg-black">
+            <topic.icon size={22} className="text-[#f5a51d]" />
           </div>
           <div className="flex-1 text-center sm:text-left">
-            <p className="font-extrabold text-black text-lg mb-1">Still have questions?</p>
-            <p className="text-gray-500 text-sm">
+            <p className="font-black text-black text-xl mb-1">Still have questions?</p>
+            <p className="global-body text-sm">
               Join our Discord for live support or explore the Homestead page for in-depth governance documentation.
             </p>
           </div>

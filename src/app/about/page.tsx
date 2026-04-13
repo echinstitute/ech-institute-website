@@ -95,7 +95,7 @@ export default function AboutPage() {
       </section>
 
       {/* What We Do - Core Operational Mandate */}
-      <section id="what-we-do" className="py-4 px-4 md:py-8 md:px-8 bg-gray-50">
+      <section id="what-we-do" className="py-4 px-4 md:py-8 md:px-8 bg-[#f5a51d]">
         <div className="max-w-7xl mx-auto">
           <span className="global-section-tag">Operational Mandate</span>
           <h2 className="global-section-title">Core <em>Operations</em>: What We Do</h2>
@@ -154,11 +154,11 @@ export default function AboutPage() {
               <div className="flex flex-col gap-8 md:gap-12">
                 {[
                   { year: 'Today (2026)', badge: 'Active & Operational', badgeCls: 'bg-blue-100 text-blue-800', desc: 'The Institute serves as the primary coordination and education layer for the network, managing the roadmap for the Glamsterdam and Hegotá upgrades.', milestone: 'Mission: Combining technical coordination with a heavy emphasis on community education and onboarding so the network\'s evolution remains transparent and inclusive.', icon: Target },
-                  { year: '2025', badge: 'Institutional Maturity', badgeCls: 'bg-amber-100 text-amber-800', desc: 'Establishment of a formalized board and governance structure, including the addition of veteran contributors like Hudson Jameson to the Board of Directors.', milestone: 'Key Focus: Scaling protocol governance and enhancing transparency in decision-making for Ethereum\'s Layer 1.', icon: Building2 },
+                  { year: '2025', badge: 'Institutional Maturity', badgeCls: 'bg-[#f5a51d] text-amber-800', desc: 'Establishment of a formalized board and governance structure, including the addition of veteran contributors like Hudson Jameson to the Board of Directors.', milestone: 'Key Focus: Scaling protocol governance and enhancing transparency in decision-making for Ethereum\'s Layer 1.', icon: Building2 },
                   { year: '2024', badge: '501(c)(3) Registration', badgeCls: 'bg-green-100 text-green-800', desc: 'The official legal birth of ECH Institute as a registered 501(c)(3) charitable organization on July 11, 2024. This established a neutral legal foundation independent of private corporate interests.', milestone: 'The organization shifted all operations to the structured, institutional framework of the ECH Institute.', icon: CheckCircle2 },
                 ].map((item) => (
                   <div key={item.year} className="global-card relative flex flex-col md:flex-row md:items-start gap-4">
-                    <div className="flex w-12 h-12 md:w-16 md:h-16 rounded-full items-center justify-center shrink-0 border-4 border-amber-200 shadow-md z-10 bg-amber-500">
+                    <div className="flex w-12 h-12 md:w-16 md:h-16 rounded-full items-center justify-center shrink-0 border-4 border-amber-200 shadow-md z-10 bg-[#f5a51d]">
                       <item.icon className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0" style={{ color: '#ffffff' }} strokeWidth={2.5} />
                     </div>
                     <div className="flex-1 md:pt-2">
@@ -167,7 +167,7 @@ export default function AboutPage() {
                         <span className={`px-3 py-1 rounded-full text-sm font-semibold ${item.badgeCls}`}>{item.badge}</span>
                       </div>
                       <p className="global-body mb-4">{item.desc}</p>
-                      <div className="bg-gray-50 p-4 global-rounded border-l-4 global-border-yellow">
+                      <div className="bg-[#f5a51d] p-4 global-rounded border-l-4 global-border-yellow">
                         <p className="global-body text-sm">{item.milestone}</p>
                       </div>
                     </div>
@@ -175,7 +175,7 @@ export default function AboutPage() {
                 ))}
               </div>
             </div>
-            <div className="mt-10 pt-8 border-t border-gray-200">
+            <div className="mt-10 pt-8 border-t border-black">
               <h3 className="global-section-title mb-4">2026 Technical Roadmap</h3>
               <p className="global-body mb-6">A defining characteristic of 2026 is the shift toward a biannual upgrade schedule—moving Ethereum toward predictable engineering delivery. ECH Institute provides the coordination framework for the year&apos;s primary milestones:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -194,7 +194,7 @@ export default function AboutPage() {
       </section>
 
       {/* People */}
-      <section id="people" className="py-4 px-4 md:py-8 md:px-8 bg-gray-50">
+      <section id="people" className="py-4 px-4 md:py-8 md:px-8 bg-[#f5a51d]">
         <div className="max-w-7xl mx-auto">
           <span className="global-section-tag">Our Community</span>
           <h2 className="global-section-title">People Behind <em>ECH Institute</em></h2>
@@ -220,10 +220,10 @@ export default function AboutPage() {
               <button
                 type="button"
                 onClick={() => setPeopleCarouselIndex((i) => (i === 0 ? PEOPLE_CARDS.length - 1 : i - 1))}
-                className="p-2 rounded-full border-2 border-gray-200 hover:border-amber-400 hover:bg-amber-50 transition-colors"
+                className="p-2 rounded-full border-2 border-black hover:border-amber-400 hover:bg-[#f5a51d] transition-colors"
                 aria-label="Previous"
               >
-                <ChevronLeft className="w-5 h-5 text-gray-700" />
+                <ChevronLeft className="w-5 h-5 text-black" />
               </button>
               <div className="flex gap-2">
                 {PEOPLE_CARDS.map((_, i) => (
@@ -231,7 +231,7 @@ export default function AboutPage() {
                     key={i}
                     type="button"
                     onClick={() => setPeopleCarouselIndex(i)}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors ${i === peopleCarouselIndex ? 'bg-amber-500 scale-125' : 'bg-gray-300'
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${i === peopleCarouselIndex ? 'bg-[#f5a51d] scale-125' : 'bg-gray-300'
                       }`}
                     aria-label={`Go to slide ${i + 1}`}
                   />
@@ -240,10 +240,10 @@ export default function AboutPage() {
               <button
                 type="button"
                 onClick={() => setPeopleCarouselIndex((i) => (i === PEOPLE_CARDS.length - 1 ? 0 : i + 1))}
-                className="p-2 rounded-full border-2 border-gray-200 hover:border-amber-400 hover:bg-amber-50 transition-colors"
+                className="p-2 rounded-full border-2 border-black hover:border-amber-400 hover:bg-[#f5a51d] transition-colors"
                 aria-label="Next"
               >
-                <ChevronRight className="w-5 h-5 text-gray-700" />
+                <ChevronRight className="w-5 h-5 text-black" />
               </button>
             </div>
           </div>
@@ -263,8 +263,8 @@ export default function AboutPage() {
             <h3 className="global-section-title mb-6">ECH Institute Board</h3>
 
             <div className="mb-8">
-              <h4 className="text-lg font-semibold text-gray-800 mb-4">Members of ECH Institute Board</h4>
-              <p className="global-body text-gray-600 mb-4">Click a member to see their background.</p>
+              <h4 className="text-lg font-semibold text-black mb-4">Members of ECH Institute Board</h4>
+              <p className="global-body text-black mb-4">Click a member to see their background.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {BOARD_MEMBERS.map((member) => {
                   const isSelected = selectedMemberId === member.id;
@@ -274,7 +274,7 @@ export default function AboutPage() {
                       type="button"
                       onClick={() => setSelectedMemberId(isSelected ? null : member.id)}
                       className={`w-full rounded-[12px] border-2 bg-white transition-all duration-200 text-left p-4 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-card)] ${isSelected
-                          ? '[border-color:var(--card-border-hover)] bg-amber-50/50 shadow-[var(--shadow-hover)]'
+                          ? '[border-color:var(--card-border-hover)] bg-[#f5a51d]/50 shadow-[var(--shadow-hover)]'
                           : ''
                         }`}
                     >
@@ -293,8 +293,8 @@ export default function AboutPage() {
                           </span>
                         )}
                         <span className="min-w-0">
-                          <span className="block font-semibold text-gray-900 truncate">{member.name}</span>
-                          <span className="block text-sm text-amber-700 truncate">{member.position}</span>
+                          <span className="block font-semibold text-black truncate">{member.name}</span>
+                          <span className="block text-sm text-[#f5a51d] truncate">{member.position}</span>
                         </span>
                       </span>
                     </button>
@@ -322,12 +322,12 @@ export default function AboutPage() {
                       </div>
                       <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
                         <h4 className="global-section-title mb-1">{member.name}</h4>
-                        <p className="text-amber-600 font-semibold mb-4">{member.position}</p>
-                        <p className="global-body text-gray-600">{member.bio}</p>
+                        <p className="text-[#f5a51d] font-semibold mb-4">{member.position}</p>
+                        <p className="global-body text-black">{member.bio}</p>
                         <button
                           type="button"
                           onClick={() => setSelectedMemberId(null)}
-                          className="mt-4 text-sm font-medium text-amber-600 hover:text-amber-700"
+                          className="mt-4 text-sm font-medium text-[#f5a51d] hover:text-[#f5a51d]"
                         >
                           Close
                         </button>

@@ -14,10 +14,10 @@ export default function NotFoundContent() {
           >
             404
           </h1>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mt-4 mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mt-4 mb-6">
             Page Not Found
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-[500px] mx-auto mb-8 sm:mb-10 leading-relaxed">
+          <p className="text-base sm:text-lg text-black max-w-[500px] mx-auto mb-8 sm:mb-10 leading-relaxed">
             Oops! The page you're looking for doesn't exist or has been moved.
           </p>
           <div className="flex justify-center">

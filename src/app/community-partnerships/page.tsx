@@ -46,10 +46,10 @@ export default function CommunityPartnershipsPage() {
               <h2 className="global-section-title mb-6">
                 Decentralized <br /><em>collaboration.</em>
               </h2>
-              <p className="global-body-lg mb-6 text-gray-600">
+              <p className="global-body-lg mb-6 text-black">
                 Ethereum&apos;s strength lies in its vibrant, decentralized community. However, decentralized groups often operate in silos. Navigating network upgrades and sharing critical feedback requires coordinated effort across these micro-communities.
               </p>
-              <p className="global-body-lg text-gray-600">
+              <p className="global-body-lg text-black">
                 Through targeted community partnerships, ECH Institute connects disparate groups—from developer collectives to regional Ethereum hubs—facilitating communication and ensuring diverse voices are heard in protocol discussions.
               </p>
             </div>

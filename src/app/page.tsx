@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ROUTES } from '@/config/routes';
 import CardSlider from '@/components/features/CardSlider';
 import FAQSection from '@/components/features/FAQSection';
@@ -89,8 +90,14 @@ export default function Home() {
               <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
             </div>
           </div>
-          <div className="hero-image flex-1 hidden md:flex justify-end">
-            <img src="/assets/images/Catty.webp" alt="ECH Institute" className="max-w-xl w-full object-contain" />
+          <div className="hero-image flex-1 hidden md:flex justify-end relative h-[500px] w-full">
+            <Image 
+              src="/assets/images/Catty.webp" 
+              alt="ECH Institute mascot" 
+              fill
+              priority
+              className="object-contain"
+            />
           </div>
         </div>
       </section>
@@ -134,8 +141,13 @@ export default function Home() {
             <div className="relative pl-4 lg:pl-10">
               <div className="absolute inset-0 -left-2 sm:-left-4 top-8 -bottom-8 bg-[#fffbeb] rounded-3xl -z-10"></div>
               <div className="flex flex-col shadow-2xl rounded-3xl overflow-hidden bg-white">
-                <div className="aspect-[4/3] relative">
-                  <img src="/assets/EIP Summit Group Photo.webp" alt="ECH Institute community at EIP Summit" className="w-full h-full object-cover" />
+                <div className="aspect-[4/3] relative w-full">
+                  <Image 
+                    src="/assets/EIP Summit Group Photo.webp" 
+                    alt="ECH Institute community at EIP Summit" 
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="bg-[#fefce8] p-8 lg:p-12 border-t border-yellow-100">
                   <p className="text-2xl lg:text-3xl font-lora italic text-gray-800 leading-relaxed mb-8">
@@ -293,10 +305,10 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link href={ROUTES.education} className="program-img-card group lg:row-span-2">
-              <img src="/assets/How We Work with EF.webp" alt="Education" className="bg-img" />
-              <div className="overlay-dark-gradient"></div>
-              <div className="content">
+            <Link href={ROUTES.education} className="program-img-card group lg:row-span-2 relative overflow-hidden">
+              <Image src="/assets/How We Work with EF.webp" alt="Education" fill className="bg-img object-cover" />
+              <div className="overlay-dark-gradient absolute inset-0"></div>
+              <div className="content relative z-10">
                 <span className="badge">FLAGSHIP PROGRAM</span>
                 <h3>Education &amp; Literacy</h3>
                 <p>Centered on improving understanding of Ethereum network upgrades and governance processes through structured explanations, documentation, and coordination.</p>
@@ -431,8 +443,8 @@ export default function Home() {
             {/* Card 3: Community Members */}
             <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-2">
               <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">8.2K+</span>
-                <h3 className="font-syne font-bold text-lg text-gray-900">Community Members</h3>
+                <span className="text-4xl sm:text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">8.2K+</span>
+                <h3 className="font-syne font-bold text-base sm:text-lg text-gray-900">Community Members</h3>
               </div>
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
                 <p className="global-body font-medium text-gray-800 leading-relaxed">Partnering over 5 global communities for events, Over 8200 people followed us on X/Twitter and hosting over 2,900 members on Discord, our community is growing!</p>

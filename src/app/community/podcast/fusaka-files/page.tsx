@@ -12,19 +12,18 @@ export default function FusakaFilesPage() {
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
       <div className="border-b border-gray-100 bg-gray-50">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 md:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 md:px-8">
           <Link
             href="/podcast"
-            className="mb-4 inline-flex items-center gap-2 text-gray-600 transition-colors hover:text-amber-600 global-body"
+            className="mb-6 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-amber-600 font-medium text-sm uppercase tracking-wider"
           >
-            <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Podcast
+            <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Media Hub
           </Link>
           <div className="max-w-4xl">
-            <h1 className="global-hero-title mb-3">The Fusaka Files</h1>
-            <p className="global-hero-subtitle text-gray-600">
-              A limited ECH Institute series on Ethereum&apos;s move toward predictable,
-              biannual engineering delivery: what the Fusaka milestone means for protocol
-              roadmaps, operators, enterprises, and the wider ecosystem.
+            <h1 className="global-hero-title mb-4 lg:text-5xl">The Fusaka Files</h1>
+            <p className="global-hero-subtitle text-gray-600 max-w-3xl">
+              Exploring Ethereum&apos;s move toward predictable, biannual engineering delivery. 
+              Understanding what the Fusaka milestone means for protocol roadmaps and global scaling.
             </p>
           </div>
         </div>

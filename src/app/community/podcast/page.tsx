@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { BookOpen, Radio, Code, ArrowRight, Play, Mic, FileText, GraduationCap } from 'lucide-react';
 import { PodcastRecentHighlights } from '@/components/features/PodcastRecentHighlights';
 
@@ -91,14 +92,14 @@ export default function PodcastPage() {
       {/* Hero + Listen cards */}
       <section className="py-4 px-4 sm:py-6 sm:px-6 md:py-8 md:px-8 border-b border-gray-100">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="global-hero-title mb-3 sm:mb-4 text-balance">
+          <h1 className="global-hero-title mb-3 sm:mb-4 lg:text-5xl">
             ECH Institute Podcast
           </h1>
-          <p className="global-hero-subtitle text-gray-600 mb-2 sm:mb-3">
-            EIP deep-dives (PEEPanEIP), Fusaka Files, Ecosystem Project Demo, WiEP study groups, and All Core Devs archives.
+          <p className="global-hero-subtitle text-gray-600 mb-2 sm:mb-4 max-w-3xl mx-auto">
+            Deep-dives, strategic transitions, and ecosystem demos. One place for protocol education and coordination.
           </p>
-          <p className="global-body text-gray-600 mb-4 max-w-2xl mx-auto">
-            One place for protocol education and coordination for core developers and the global community.
+          <p className="global-body text-gray-500 mb-6 max-w-2xl mx-auto text-sm sm:text-base">
+            Exploring PEEPanEIP, Fusaka Files, and more with core developers and researchers.
           </p>
           <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3 mt-4">
             Listen on

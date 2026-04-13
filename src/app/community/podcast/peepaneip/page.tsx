@@ -12,19 +12,18 @@ export default function PEEPanEIPPage() {
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
       <div className="border-b border-gray-100 bg-gray-50">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 md:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 md:px-8">
           <Link
             href="/podcast"
-            className="mb-4 inline-flex items-center gap-2 text-gray-600 transition-colors hover:text-amber-600 global-body"
+            className="mb-6 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-amber-600 font-medium text-sm uppercase tracking-wider"
           >
-            <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Podcast
+            <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Media Hub
           </Link>
           <div className="max-w-4xl">
-            <h1 className="global-hero-title mb-3">PEEPanEIP</h1>
-            <p className="global-hero-subtitle text-gray-600">
-              Peep an EIP: protocol deep-dives. A comprehensive technical library for
-              developers and client implementers, with 150+ sessions on Ethereum Improvement
-              Proposals and related protocol topics.
+            <h1 className="global-hero-title mb-4 lg:text-5xl">PEEPanEIP</h1>
+            <p className="global-hero-subtitle text-gray-600 max-w-3xl">
+              Protocol deep-dives and technical coordination. A series built for client teams 
+              and researchers to align on Ethereum Improvement Proposals (EIPs).
             </p>
           </div>
         </div>

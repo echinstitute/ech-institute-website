@@ -238,7 +238,7 @@ export function PodcastVideoShowcase({
           />
         </div>
         <div className="flex flex-1 flex-col border-t border-[#ced2d9] bg-white p-5 sm:p-6">
-          <h3 className="mb-4 text-xl font-bold leading-snug tracking-tight text-zinc-900 sm:text-2xl">
+          <h3 className="mb-4 text-lg font-bold leading-snug tracking-tight text-zinc-900 sm:text-xl">
             {featured.title}
           </h3>
           <a
@@ -287,7 +287,7 @@ export function PodcastVideoShowcase({
                     {dateLabel}
                   </time>
                 ) : null}
-                <h3 className="line-clamp-3 text-sm font-bold leading-snug text-zinc-900 sm:text-base">
+                <h3 className="line-clamp-3 text-xs font-bold leading-snug text-zinc-900 sm:text-sm">
                   <a
                     href={getYouTubeWatchUrl(video.id)}
                     target="_blank"

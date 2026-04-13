@@ -37,7 +37,7 @@ export const ROUTES = {
   peepaneip:    '/podcast/peepaneip',
   fusakaFiles:  '/podcast/fusaka-files',
   epd:          '/podcast/epd',
-  wiep:         '/podcast/wiep',
+  wiep:         '/wiep',
 } as const;
 
 export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES];
@@ -54,13 +54,12 @@ export const PATH_ALIASES: Array<{ source: string; destination: string }> = [
   { source: '/podcast/peepaneip',    destination: '/community/podcast/peepaneip' },
   { source: '/podcast/fusaka-files', destination: '/community/podcast/fusaka-files' },
   { source: '/podcast/epd',          destination: '/community/podcast/epd' },
-  { source: '/podcast/wiep',         destination: '/community/podcast/wiep' },
+  { source: '/events',               destination: '/community/events' },
   
   // Absolute top-level shorthands
   { source: '/peepaneip',            destination: '/community/podcast/peepaneip' },
   { source: '/fusaka-files',         destination: '/community/podcast/fusaka-files' },
   { source: '/epd',                  destination: '/community/podcast/epd' },
-  { source: '/wiep',                 destination: '/community/podcast/wiep' },
   { source: '/get-involved',         destination: '/community/get-involved' },
 ];
 

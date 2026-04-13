@@ -3512,23 +3512,23 @@ section a:hover {
 .evo-diamond--gold { background: #facc14; box-shadow: 0 6px 28px rgba(250,204,20,0.45); }
 .evo-diamond--gold .evo-yr { color: #ffffff; }
 
-/* Tablet */
-@media (max-width: 900px) {
+/* Tablet & Small Desktop */
+@media (max-width: 1024px) {
   .evo-top-row, .evo-path-row, .evo-bottom-row { grid-template-columns: repeat(2, 1fr); }
   .evo-path-line { display: none; }
-  .evo-top-row { row-gap: 1.5rem; }
-  .evo-bottom-row { row-gap: 1.5rem; }
-  .evo-path-row { row-gap: 1.5rem; padding: 16px 0; }
+  .evo-top-row, .evo-bottom-row, .evo-path-row { row-gap: 2rem; padding: 10px 0; }
+  .evo-col { padding: 0 15px; }
 }
 
 /* Mobile */
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   .evo-section { padding: 3.5rem 0 4rem; }
   .evo-top-row, .evo-path-row, .evo-bottom-row { grid-template-columns: 1fr; }
-  .evo-col { padding: 0; }
-  .evo-diamond { width: 64px; height: 64px; }
-  .evo-yr { font-size: 0.72rem; }
-  .evo-pill { font-size: 0.52rem; }
+  .evo-col { padding: 0; margin-bottom: 1rem; }
+  .evo-diamond { width: 70px; height: 70px; }
+  .evo-yr { font-size: 0.9rem; }
+  .evo-pill { font-size: 0.65rem; padding: 4px 10px; }
+  .evo-text-block { padding: 12px; }
 }
 
 

@@ -90,14 +90,18 @@ export default function Home() {
               <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
             </div>
           </div>
-          <div className="hero-image flex-1 hidden md:flex justify-end relative h-[500px] w-full">
-            <Image 
-              src="/assets/images/Catty.webp" 
-              alt="ECH Institute mascot" 
-              fill
-              priority
-              className="object-contain"
-            />
+          <div className="hero-image flex-1 hidden md:flex justify-end relative">
+            <div className="relative w-full max-w-xl aspect-[1/1] md:aspect-auto">
+              <Image 
+                src="/assets/images/Catty.webp" 
+                alt="ECH Institute mascot" 
+                layout="responsive"
+                width={500}
+                height={500}
+                priority
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -444,7 +448,7 @@ export default function Home() {
             <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-2">
               <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
                 <span className="text-4xl sm:text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">8.2K+</span>
-                <h3 className="font-syne font-bold text-base sm:text-lg text-gray-900">Community Members</h3>
+                <h3 className="font-syne font-bold !text-base sm:!text-lg text-gray-900">Community Members</h3>
               </div>
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
                 <p className="global-body font-medium text-gray-800 leading-relaxed">Partnering over 5 global communities for events, Over 8200 people followed us on X/Twitter and hosting over 2,900 members on Discord, our community is growing!</p>

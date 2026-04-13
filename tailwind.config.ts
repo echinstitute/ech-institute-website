@@ -15,11 +15,8 @@ const config = {
     },
     extend: {
       colors: {
-        brand: {
-          yellow: "#f5a51d",
-          black: "#000000",
-          white: "#ffffff",
-        },
+        darkGray: "#3c3c3c",
+        lightGray: "#a9a9a9",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -79,13 +76,9 @@ const config = {
         'infinite-scroll': 'infinite-scroll 25s linear infinite',
       },
       fontFamily: {
-        outfit: ["var(--font-outfit)", "sans-serif"],
-        inter: ["var(--font-inter)", "sans-serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
-        heading: ["var(--font-outfit)", "sans-serif"],
-        syne: ["var(--font-outfit)", "sans-serif"],
-        antonio: ["var(--font-outfit)", "sans-serif"],
-        dmsans: ["var(--font-inter)", "sans-serif"],
+        syne: ["Syne", "sans-serif"],
+        antonio: ["Antonio", "sans-serif"],
+        sans: ["DM Sans", "sans-serif"],
       },
     },
   },

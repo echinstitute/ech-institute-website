@@ -15,7 +15,7 @@ export default function EPDPage() {
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 md:px-8">
           <Link
             href="/podcast"
-            className="mb-4 inline-flex items-center gap-2 text-black transition-all hover:translate-x-[-4px] font-bold text-sm uppercase tracking-widest"
+            className="mb-4 inline-flex items-center gap-2 text-black transition-colors hover:text-[#f5a51d] global-body"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Podcast
           </Link>
@@ -36,7 +36,7 @@ export default function EPDPage() {
         purpose={
           <>
             EPD was created to{' '}
-            <strong className="font-bold text-black">
+            <strong className="font-semibold text-zinc-900">
               showcase decentralized tools with public utility
             </strong>
             , with a steady focus on developer experience (DevEx) whether a project is early,
@@ -46,7 +46,7 @@ export default function EPDPage() {
         goal={
           <>
             Help builders{' '}
-            <strong className="font-bold text-black">
+            <strong className="font-semibold text-zinc-900">
               discover what exists across the Web3 stack
             </strong>
             ZK, governance, grants, metrics, and more by hearing maintainers walk through
@@ -56,7 +56,7 @@ export default function EPDPage() {
         closing={
           <>
             Each session is a{' '}
-            <span className="not-italic font-bold text-black">
+            <span className="not-italic font-medium text-zinc-800">
               numbered, project-centered demo
             </span>{' '}
             (e.g. EPD #26, #22): one team, one story, so you can compare approaches to
@@ -93,7 +93,7 @@ export default function EPDPage() {
               href={epd.playlistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-[#f5a51d] underline decoration-2 underline-offset-4 hover:text-black"
+              className="font-semibold text-amber-800 underline-offset-2 hover:underline"
             >
               Ecosystem Project Demo YouTube playlist
             </a>

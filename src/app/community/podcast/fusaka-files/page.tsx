@@ -15,7 +15,7 @@ export default function FusakaFilesPage() {
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 md:px-8">
           <Link
             href="/podcast"
-            className="mb-6 inline-flex items-center gap-2 text-black transition-all hover:translate-x-[-4px] font-bold text-sm uppercase tracking-widest"
+            className="mb-6 inline-flex items-center gap-2 text-black transition-colors hover:text-[#f5a51d] font-medium text-sm uppercase tracking-wider"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Media Hub
           </Link>
@@ -35,7 +35,7 @@ export default function FusakaFilesPage() {
         purpose={
           <>
             The series was created to explain{' '}
-            <strong className="font-bold text-black">
+            <strong className="font-semibold text-zinc-900">
               Ethereum&apos;s shift toward a predictable biannual engineering model
             </strong>{' '}
             and to situate the Fusaka upgrade inside that narrative why cadence matters for
@@ -45,7 +45,7 @@ export default function FusakaFilesPage() {
         goal={
           <>
             Bridge{' '}
-            <strong className="font-bold text-black">
+            <strong className="font-semibold text-zinc-900">
               protocol milestones and roadmap choices
             </strong>{' '}
             to ecosystem readiness: scaling, resilience, credible neutrality, and how those
@@ -56,7 +56,7 @@ export default function FusakaFilesPage() {
         closing={
           <>
             Episodes bring in{' '}
-            <span className="not-italic font-bold text-black">
+            <span className="not-italic font-medium text-zinc-800">
               core contributors and ecosystem voices
             </span>{' '}
             so you can follow how Fusaka era work ties to PeerDAS, BPO, MEV related
@@ -77,7 +77,7 @@ export default function FusakaFilesPage() {
               href={fusaka.playlistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-[#f5a51d] underline decoration-2 underline-offset-4 hover:text-black"
+              className="font-semibold text-amber-800 underline-offset-2 hover:underline"
             >
               The Fusaka Files YouTube playlist
             </a>

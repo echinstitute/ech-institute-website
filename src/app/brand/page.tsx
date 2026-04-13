@@ -275,11 +275,14 @@ export default function BrandPage() {
               <ColorSwatch color="#f5a51d" name="ECH Yellow" hex="#f5a51d" textDark />
             </div>
 
-            <h3 className="brand-subsection-title" style={{ marginTop: '3rem' }}>Secondary UI Colors (Tints)</h3>
+            <h3 className="brand-subsection-title" style={{ marginTop: '3rem' }}>Extended Palette</h3>
             <div className="brand-swatches">
-              <ColorSwatch color="rgba(0,0,0,0.05)" name="Soft Divider" hex="rgba(0,0,0,0.05)" textDark />
-              <ColorSwatch color="rgba(245,165,29,0.05)" name="Yellow Tint" hex="rgba(245,165,29,0.05)" textDark />
-              <ColorSwatch color="rgba(0,0,0,0.65)" name="Muted Text" hex="rgba(0,0,0,0.65)" textDark={false} />
+              <ColorSwatch color="#f9fafb" name="Off White" hex="#F9FAFB" textDark />
+              <ColorSwatch color="#f7f9fa" name="Card BG" hex="#F7F9FA" textDark />
+              <ColorSwatch color="#fefbd6" name="Yellow Light" hex="#FEFBD6" textDark />
+              <ColorSwatch color="#4c5663" name="Text Secondary" hex="#4C5663" textDark={false} />
+              <ColorSwatch color="#ced2d9" name="Border" hex="#CED2D9" textDark />
+              <ColorSwatch color="#f9a825" name="Yellow Dark" hex="#F9A825" textDark />
             </div>
 
             <div className="brand-proportion-bar" style={{ marginTop: '3rem' }}>
@@ -301,13 +304,13 @@ export default function BrandPage() {
           <section id="typography" className="scroll-mt-28">
             <SectionHeader label="03 — Typography" title="Typography" />
             <p className="global-body-lg mb-8 max-w-2xl">
-              We use two primary typefaces: <strong>Outfit</strong> for headings and <strong>Inter</strong> for body content. These were selected for their clarity, modern feel, and educational accessibility.
+              We use two typefaces <strong>Syne</strong> for headings, and <strong>DM Sans</strong> for body. Navigation and footer use <strong>Antonio</strong>.
             </p>
 
             <TypeSample
               fontFamily="var(--font-family-page-heading)"
-              fontName="Outfit"
-              label="Headings — Outfit"
+              fontName="Syne"
+              label="Headings — Syne"
               category="heading"
               weights={[
                 { weight: 800, name: 'ExtraBold 800' },
@@ -318,13 +321,13 @@ export default function BrandPage() {
 
             <TypeSample
               fontFamily="var(--font-family-page-body)"
-              fontName="Inter"
-              label="Body — Inter"
+              fontName="DM Sans"
+              label="Body — DM Sans"
               category="body"
               weights={[
                 { weight: 400, name: 'Regular 400' },
                 { weight: 500, name: 'Medium 500' },
-                { weight: 600, name: 'SemiBold 600' },
+                { weight: 300, name: 'Light 300' },
               ]}
             />
 
@@ -435,10 +438,10 @@ export default function BrandPage() {
 
             <h3 className="brand-subsection-title" style={{ marginTop: '3rem' }}>Badges</h3>
             <div className="brand-badge-row">
-              <span className="brand-badge brand-badge-yellow !bg-[#f5a51d] !text-white">Nonprofit</span>
-              <span className="brand-badge brand-badge-outline !border-black !text-black">Education</span>
-              <span className="brand-badge brand-badge-dark !bg-black !text-white">Community</span>
-              <span className="brand-badge brand-badge-light !bg-white !border-black/10 !text-black">Public Good</span>
+              <span className="brand-badge brand-badge-yellow">Nonprofit</span>
+              <span className="brand-badge brand-badge-outline">Education</span>
+              <span className="brand-badge brand-badge-dark">Community</span>
+              <span className="brand-badge brand-badge-light">Public Good</span>
             </div>
           </section>
 

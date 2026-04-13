@@ -6,10 +6,10 @@ import { BookOpen, Radio, Code, ArrowRight, Play, Mic, FileText, GraduationCap }
 import { PodcastRecentHighlights } from '@/components/features/PodcastRecentHighlights';
 
 const PODCAST_LINKS = [
-  { name: 'Spotify', href: 'https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA', color: '#000000' },
-  { name: 'Apple Podcasts', href: 'https://podcasts.apple.com/us/podcast/ech-institute-podcast/id1620565121', color: '#f5a51d' },
-  { name: 'Pocket Casts', href: 'https://pocketcasts.com/podcast/ech-institute-podcast/07681030-5a48-013a-d70a-0acc26574db2', color: '#000000' },
-  { name: 'Castbox', href: 'https://castbox.fm/channel/7004180?country=gb', color: '#f5a51d' },
+  { name: 'Spotify', href: 'https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA', color: '#1DB954' },
+  { name: 'Apple Podcasts', href: 'https://podcasts.apple.com/us/podcast/ech-institute-podcast/id1620565121', color: '#9933FF' },
+  { name: 'Pocket Casts', href: 'https://pocketcasts.com/podcast/ech-institute-podcast/07681030-5a48-013a-d70a-0acc26574db2', color: '#F43E37' },
+  { name: 'Castbox', href: 'https://castbox.fm/channel/7004180?country=gb', color: '#F6821F' },
 ];
 
 function SpotifyIcon({ className, color }: { className?: string; color?: string }) {

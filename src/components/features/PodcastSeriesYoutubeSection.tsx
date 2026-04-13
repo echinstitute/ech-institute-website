@@ -77,12 +77,12 @@ export function PodcastSeriesYoutubeSection({
 
   return (
     <section
-      className={`border-y border-black/10 bg-white py-8 ${className}`}
+      className={`border-y border-gray-100 bg-white py-6 sm:py-8 ${className}`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-        <div className="mb-6 sm:mb-8">
-          <h2 className="global-section-title mb-2">{title}</h2>
-          <div className="global-body-lg max-w-3xl">{description}</div>
+        <div className="mb-4 sm:mb-6">
+          <h2 className="global-section-title mb-2 text-zinc-900">{title}</h2>
+          <div className="global-body-lg max-w-3xl text-gray-600">{description}</div>
         </div>
         <PodcastVideoShowcase
           videos={videos}

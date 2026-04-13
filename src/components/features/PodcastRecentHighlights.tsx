@@ -42,16 +42,16 @@ export function PodcastRecentHighlights() {
   }, []);
 
   return (
-    <section className="bg-white py-8 px-4 sm:py-12 sm:px-8 border-t border-black/10">
-      <div className="mx-auto max-w-7xl">
+    <section className="bg-white py-5 px-0 sm:py-8 sm:px-6 md:py-10 md:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-0">
         <h2 className="global-section-title mb-2">Recent Highlights</h2>
-        <p className="global-body-lg mb-6 max-w-2xl">
+        <p className="global-body-lg mb-4 max-w-2xl text-gray-600 sm:mb-6">
           Latest uploads from{' '}
           <a
             href={CHANNEL_VIDEOS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-[#f5a51d] decoration-2 underline-offset-4 hover:underline"
+            className="font-semibold text-amber-800 underline-offset-2 hover:underline"
           >
             @echinstitute on YouTube
           </a>

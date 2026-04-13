@@ -15,7 +15,7 @@ export default function PEEPanEIPPage() {
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 md:px-8">
           <Link
             href="/podcast"
-            className="mb-6 inline-flex items-center gap-2 text-black transition-all hover:translate-x-[-4px] font-bold text-sm uppercase tracking-widest"
+            className="mb-6 inline-flex items-center gap-2 text-black transition-colors hover:text-[#f5a51d] font-medium text-sm uppercase tracking-wider"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Media Hub
           </Link>
@@ -35,7 +35,7 @@ export default function PEEPanEIPPage() {
         purpose={
           <>
             The series was created to give client teams a{' '}
-            <strong className="font-bold text-black">
+            <strong className="font-semibold text-zinc-900">
               dedicated overview of new EIPs
             </strong>{' '}
             ahead of All Core Dev (ACD) meetings so proposals aren&apos;t first heard only on
@@ -45,7 +45,7 @@ export default function PEEPanEIPPage() {
         goal={
           <>
             Raise visibility for{' '}
-            <strong className="font-bold text-black">
+            <strong className="font-semibold text-zinc-900">
               &quot;Last Call&quot; and &quot;Draft&quot;
             </strong>{' '}
             work by translating it into ELI5 style explanations making it easier to align on
@@ -55,7 +55,7 @@ export default function PEEPanEIPPage() {
         closing={
           <>
             Every episode pairs a concrete EIP or ERC with{' '}
-            <span className="not-italic font-bold text-black">guest experts</span>
+            <span className="not-italic font-medium text-zinc-800">guest experts</span>
             core devs, researchers, and implementers so you can trace how ideas travel from
             draft to mainnet.
           </>
@@ -73,7 +73,7 @@ export default function PEEPanEIPPage() {
               href={peep.playlistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-[#f5a51d] underline decoration-2 underline-offset-4 hover:text-black"
+              className="font-semibold text-amber-800 underline-offset-2 hover:underline"
             >
               PEEPanEIP YouTube playlist
             </a>{' '}
@@ -95,9 +95,9 @@ export default function PEEPanEIPPage() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-              <div className="global-card p-5 border-black/10">
+              <div className="global-card p-4 sm:p-5">
                 <h3 className="global-card-title mb-2">Scaling &amp; enterprise Ethereum</h3>
-                <p className="global-body">
+                <p className="global-body text-sm text-black">
                   EIP deep-dives that explain how scaling and infrastructure choices show up for clients,
                   builders, and enterprise users.
                 </p>

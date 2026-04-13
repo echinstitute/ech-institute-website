@@ -29,31 +29,31 @@ const governanceHowItems = [
     icon: Lightbulb,
     title: 'Ideas & Community Discussion',
     detail: 'Every change to Ethereum begins as an informal idea. Before any formal document is written, the concept is discussed openly on Ethereum Magicians (the primary governance forum), Discord channels, and research forums like ethresear.ch. This early phase gauges community interest, identifies potential problems, and refines the proposal before it goes through the formal EIP process. ECH Institute monitors these discussions and helps surface important conversations to the core developer community.',
-    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
+    color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb',
   },
   {
     icon: FileText,
     title: 'Formal EIP Drafting',
     detail: 'Once an idea has sufficient community traction, it is formalized as an Ethereum Improvement Proposal (EIP). EIPs must follow the template defined in EIP-1, which requires a preamble, abstract, motivation, full specification, rationale, backward compatibility analysis, and test cases. The proposal is submitted as a pull request to the ethereum/EIPs GitHub repository and reviewed by EIP editors for format and technical soundness. ECH Institute coordinates EIP editor office hours and EIPIP calls to shepherd EIPs through this phase.',
-    color: '#f5a51d', bg: '#ffffff', border: '#f5a51d',
+    color: '#3b82f6', bg: '#eff6ff', border: '#bfdbfe',
   },
   {
     icon: Users,
     title: 'Core Developer Review (ACD Calls)',
     detail: 'After EIP editors approve a draft, the proposal enters technical review by core Ethereum developers through All Core Devs (ACD) calls. ACD calls are biweekly calls alternating between Execution Layer (ACDE) and Consensus Layer (ACDC) meetings. These open calls are the primary venue where client teams (Geth, Nethermind, Besu, Lighthouse, Prysm, etc.) discuss whether to support an EIP. ECH Institute documents every ACD call and publishes notes to the ethereum/pm repository within 24 hours, creating a permanent public record.',
-    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
+    color: '#8b5cf6', bg: '#f5f3ff', border: '#ddd6fe',
   },
   {
     icon: Network,
     title: 'Upgrade Planning & Inclusion',
     detail: 'EIPs that pass technical review can be nominated for inclusion in a network upgrade. This process follows the formal inclusion stages defined by EIP-7723 (see below). Client teams must agree on which EIPs to include and implement them before a devnet is deployed for testing. A series of devnets, public testnets, and monitoring periods precede mainnet activation. ECH Institute coordinates upgrade communication — from initial CFI nomination through post-mainnet confirmation — ensuring the entire community stays informed.',
-    color: '#f5a51d', bg: '#ffffff', border: '#f5a51d',
+    color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0',
   },
   {
     icon: Cpu,
     title: 'Mainnet Activation & Post-Deployment',
     detail: 'Once all client teams have implemented and tested the upgrade, mainnet activation is scheduled at a specific block number or timestamp. The upgrade activates simultaneously across all Ethereum clients. ECH Institute monitors post-deployment metrics and publishes upgrade summaries for the community. Historical documentation of every Ethereum upgrade since Frontier (2015) is preserved in the ethereum/pm GitHub repository.',
-    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
+    color: '#d97706', bg: '#fffbeb', border: '#fde68a',
   },
 ];
 
@@ -63,7 +63,7 @@ const upgradeLcStages = [
     stage: 'Proposed for Inclusion',
     abbr: 'PFI',
     icon: Lightbulb,
-    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
+    color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb',
     description: 'An EIP author or community member nominates a finalized EIP for consideration in an upcoming network upgrade. The nomination is made publicly, typically in the relevant ACD meeting issue on GitHub or on Ethereum Magicians.',
     actions: [
       'Community or author nominates EIP on GitHub',
@@ -77,7 +77,7 @@ const upgradeLcStages = [
     stage: 'Considered for Inclusion',
     abbr: 'CFI',
     icon: AlertCircle,
-    color: '#f5a51d', bg: '#ffffff', border: '#f5a51d',
+    color: '#f59e0b', bg: '#fffbeb', border: '#fde68a',
     description: 'Client teams signal that an EIP is being actively reviewed for potential inclusion. CFI is an informal signal — it does not guarantee inclusion but indicates that client teams are evaluating the EIP seriously and may implement it.',
     actions: [
       'Client teams discuss EIP in ACD calls',
@@ -91,7 +91,7 @@ const upgradeLcStages = [
     stage: 'Scheduled for Inclusion',
     abbr: 'SFI',
     icon: Clock,
-    color: '#000000', bg: '#ffffff', border: 'rgba(0,0,0,0.1)',
+    color: '#8b5cf6', bg: '#f5f3ff', border: '#ddd6fe',
     description: 'Client teams have formally agreed that the EIP will be included in a specific named upgrade. All major clients must commit to implementing the EIP before it reaches SFI status. This is the last decision gate before testnet deployment.',
     actions: [
       'All major clients commit to implementation',
@@ -99,11 +99,11 @@ const upgradeLcStages = [
       'Devnet with EIP activated for testing',
       'Public testnet deployment scheduled',
     ],
-    echRole: 'ECH Institute documents SFI status transitions and facilitates community awareness through public updates.',
+    echRole: 'ECH Institute coordinates upgrade communication timelines and begins preparing community-facing documentation.',
   },
   {
-    stage: 'Confirmed for Inclusion',
-    abbr: 'CFI',
+    stage: 'Included in Network Upgrade',
+    abbr: 'INU',
     icon: CheckCircle2,
     color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0',
     description: 'The EIP is part of the finalized, named network upgrade and will activate on Ethereum mainnet. All clients have implemented and tested it on public testnets. The mainnet activation block or timestamp has been set. No further community decisions are required.',

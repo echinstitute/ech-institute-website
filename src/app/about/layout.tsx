@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: "https://www.echinstitute.org/about",
     images: [
       {
-        url: "/assets/ech_full_logo.png",
+        url: "/ECH Institute Logo - White.png",
         width: 1200,
         height: 630,
         alt: "About ECH Institute",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "About ECH Institute Ethereum Governance & Coordination",
     description:
       "Founded July 11, 2024. ECH Institute supports Ethereum's protocol governance, EIP coordination, and community education as a neutral 501(c)(3).",
-    images: ["/assets/ech_full_logo.png"],
+    images: ["/ECH Institute Logo - White.png"],
   },
   alternates: {
     canonical: "https://www.echinstitute.org/about",

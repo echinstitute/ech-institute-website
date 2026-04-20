@@ -71,7 +71,7 @@ export default function AboutPage() {
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
             <div className="shrink-0 w-full max-w-[200px] sm:max-w-[250px] lg:max-w-[300px] lg:w-[30%] flex justify-center items-center mx-auto lg:mx-0">
               <Image
-                src="/assets/ech_full_logo.png"
+                src="/ECH Institute Logo - Black.png"
                 alt="ECH Institute Logo"
                 width={300}
                 height={300}
@@ -95,7 +95,7 @@ export default function AboutPage() {
       </section>
 
       {/* What We Do - Core Operational Mandate */}
-      <section id="what-we-do" className="py-4 px-4 md:py-8 md:px-8 bg-[#f5a51d]">
+      <section id="what-we-do" className="py-4 px-4 md:py-8 md:px-8 bg-[var(--accent-brand)]">
         <div className="max-w-7xl mx-auto">
           <span className="global-section-tag">Operational Mandate</span>
           <h2 className="global-section-title">Core <em>Operations</em>: What We Do</h2>
@@ -154,12 +154,12 @@ export default function AboutPage() {
               <div className="flex flex-col gap-8 md:gap-12">
                 {[
                   { year: 'Today (2026)', badge: 'Active & Operational', badgeCls: 'bg-blue-100 text-blue-800', desc: 'The Institute serves as the primary coordination and education layer for the network, managing the roadmap for the Glamsterdam and Hegotá upgrades.', milestone: 'Mission: Combining technical coordination with a heavy emphasis on community education and onboarding so the network\'s evolution remains transparent and inclusive.', icon: Target },
-                  { year: '2025', badge: 'Institutional Maturity', badgeCls: 'bg-[#f5a51d] text-amber-800', desc: 'Establishment of a formalized board and governance structure, including the addition of veteran contributors like Hudson Jameson to the Board of Directors.', milestone: 'Key Focus: Scaling protocol governance and enhancing transparency in decision-making for Ethereum\'s Layer 1.', icon: Building2 },
+                  { year: '2025', badge: 'Institutional Maturity', badgeCls: 'bg-[var(--accent-brand)] text-amber-800', desc: 'Establishment of a formalized board and governance structure, including the addition of veteran contributors like Hudson Jameson to the Board of Directors.', milestone: 'Key Focus: Scaling protocol governance and enhancing transparency in decision-making for Ethereum\'s Layer 1.', icon: Building2 },
                   { year: '2024', badge: '501(c)(3) Registration', badgeCls: 'bg-green-100 text-green-800', desc: 'The official legal birth of ECH Institute as a registered 501(c)(3) charitable organization on July 11, 2024. This established a neutral legal foundation independent of private corporate interests.', milestone: 'The organization shifted all operations to the structured, institutional framework of the ECH Institute.', icon: CheckCircle2 },
                 ].map((item) => (
                   <div key={item.year} className="global-card relative flex flex-col md:flex-row md:items-start gap-4">
-                    <div className="flex w-12 h-12 md:w-16 md:h-16 rounded-full items-center justify-center shrink-0 border-4 border-amber-200 shadow-md z-10 bg-[#f5a51d]">
-                      <item.icon className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0" style={{ color: '#ffffff' }} strokeWidth={2.5} />
+                    <div className="flex w-12 h-12 md:w-16 md:h-16 rounded-full items-center justify-center shrink-0 border-4 border-amber-200 shadow-md z-10 bg-[var(--accent-brand)]">
+                      <item.icon className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0 text-white" strokeWidth={2.5} />
                     </div>
                     <div className="flex-1 md:pt-2">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -167,7 +167,7 @@ export default function AboutPage() {
                         <span className={`px-3 py-1 rounded-full text-sm font-semibold ${item.badgeCls}`}>{item.badge}</span>
                       </div>
                       <p className="global-body mb-4">{item.desc}</p>
-                      <div className="bg-[#f5a51d] p-4 global-rounded border-l-4 global-border-yellow">
+                      <div className="bg-[var(--accent-brand)] p-4 global-rounded border-l-4 global-border-yellow">
                         <p className="global-body text-sm">{item.milestone}</p>
                       </div>
                     </div>
@@ -194,7 +194,7 @@ export default function AboutPage() {
       </section>
 
       {/* People */}
-      <section id="people" className="py-4 px-4 md:py-8 md:px-8 bg-[#f5a51d]">
+      <section id="people" className="py-4 px-4 md:py-8 md:px-8 bg-[var(--accent-brand)]">
         <div className="max-w-7xl mx-auto">
           <span className="global-section-tag">Our Community</span>
           <h2 className="global-section-title">People Behind <em>ECH Institute</em></h2>
@@ -220,7 +220,7 @@ export default function AboutPage() {
               <button
                 type="button"
                 onClick={() => setPeopleCarouselIndex((i) => (i === 0 ? PEOPLE_CARDS.length - 1 : i - 1))}
-                className="p-2 rounded-full border-2 border-black hover:border-amber-400 hover:bg-[#f5a51d] transition-colors"
+                className="p-2 rounded-full border-2 border-black hover:border-amber-400 hover:bg-[var(--accent-brand)] transition-colors"
                 aria-label="Previous"
               >
                 <ChevronLeft className="w-5 h-5 text-black" />
@@ -231,7 +231,7 @@ export default function AboutPage() {
                     key={i}
                     type="button"
                     onClick={() => setPeopleCarouselIndex(i)}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors ${i === peopleCarouselIndex ? 'bg-[#f5a51d] scale-125' : 'bg-gray-300'
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${i === peopleCarouselIndex ? 'bg-[var(--accent-brand)] scale-125' : 'bg-gray-300'
                       }`}
                     aria-label={`Go to slide ${i + 1}`}
                   />
@@ -240,7 +240,7 @@ export default function AboutPage() {
               <button
                 type="button"
                 onClick={() => setPeopleCarouselIndex((i) => (i === PEOPLE_CARDS.length - 1 ? 0 : i + 1))}
-                className="p-2 rounded-full border-2 border-black hover:border-amber-400 hover:bg-[#f5a51d] transition-colors"
+                className="p-2 rounded-full border-2 border-black hover:border-amber-400 hover:bg-[var(--accent-brand)] transition-colors"
                 aria-label="Next"
               >
                 <ChevronRight className="w-5 h-5 text-black" />
@@ -274,7 +274,7 @@ export default function AboutPage() {
                       type="button"
                       onClick={() => setSelectedMemberId(isSelected ? null : member.id)}
                       className={`w-full rounded-[12px] border-2 bg-white transition-all duration-200 text-left p-4 [border-color:var(--card-border)] hover:[border-color:var(--card-border-hover)] hover:shadow-[var(--shadow-card)] ${isSelected
-                          ? '[border-color:var(--card-border-hover)] bg-[#f5a51d]/50 shadow-[var(--shadow-hover)]'
+                          ? '[border-color:var(--card-border-hover)] bg-[var(--accent-brand)]/50 shadow-[var(--shadow-hover)]'
                           : ''
                         }`}
                     >
@@ -294,7 +294,7 @@ export default function AboutPage() {
                         )}
                         <span className="min-w-0">
                           <span className="block font-semibold text-black truncate">{member.name}</span>
-                          <span className="block text-sm text-[#f5a51d] truncate">{member.position}</span>
+                          <span className="block text-sm text-[var(--accent-brand)] truncate">{member.position}</span>
                         </span>
                       </span>
                     </button>
@@ -322,12 +322,12 @@ export default function AboutPage() {
                       </div>
                       <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
                         <h4 className="global-section-title mb-1">{member.name}</h4>
-                        <p className="text-[#f5a51d] font-semibold mb-4">{member.position}</p>
+                        <p className="text-[var(--accent-brand)] font-semibold mb-4">{member.position}</p>
                         <p className="global-body text-black">{member.bio}</p>
                         <button
                           type="button"
                           onClick={() => setSelectedMemberId(null)}
-                          className="mt-4 text-sm font-medium text-[#f5a51d] hover:text-[#f5a51d]"
+                          className="mt-4 text-sm font-medium text-[var(--accent-brand)] hover:text-[var(--accent-brand)]"
                         >
                           Close
                         </button>
@@ -376,3 +376,4 @@ export default function AboutPage() {
     </main>
   );
 }
+

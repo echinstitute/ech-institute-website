@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "https://www.echinstitute.org/events",
     images: [
       {
-        url: "/assets/ech_full_logo.png",
+        url: "/ECH Institute Logo - White.png",
         width: 1200,
         height: 630,
         alt: "ECH Institute Events & Talks",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Events & Talks — ECH Institute",
     description:
       "EIP Summits, WiEP networking, and governance workshops at Devcon, ETH Singapore, and Devconnect Argentina.",
-    images: ["/assets/ech_full_logo.png"],
+    images: ["/ECH Institute Logo - White.png"],
   },
   alternates: {
     canonical: "https://www.echinstitute.org/events",

@@ -57,18 +57,13 @@ const cards: Card[] = [
 ];
 
 export default function CardSlider() {
-  const [currentIndex, setCurrentIndex] = useState(cards.length); // Start at duplicated cards
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(true);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Duplicate cards for infinite loop: [last cards] + [all cards] + [first cards]
-  const duplicatedCards = [...cards, ...cards, ...cards];
+  const trackRef = useRef<HTMLDivElement | null>(null);
   const totalCards = cards.length;
-  const totalDuplicatedCards = duplicatedCards.length;
-  const cardsPerView = isLargeScreen ? 2 : 1;
 
   // Check screen size after mount to avoid hydration mismatch
   useEffect(() => {
@@ -84,37 +79,11 @@ export default function CardSlider() {
   }, []);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => {
-      const next = prev + 1;
-      // If we've reached the end of duplicated cards, jump to the start of the middle set
-      if (next >= totalCards * 2) {
-        // Instantly jump to start without transition
-        setTimeout(() => {
-          setIsTransitioning(false);
-          setCurrentIndex(totalCards);
-          setTimeout(() => setIsTransitioning(true), 50);
-        }, 0);
-        return next;
-      }
-      return next;
-    });
+    setCurrentIndex((prev) => (prev + 1) % totalCards);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => {
-      const next = prev - 1;
-      // If we've gone before the start of duplicated cards, jump to the end of the middle set
-      if (next < totalCards) {
-        // Instantly jump to end without transition
-        setTimeout(() => {
-          setIsTransitioning(false);
-          setCurrentIndex(totalCards * 2 - 1);
-          setTimeout(() => setIsTransitioning(true), 50);
-        }, 0);
-        return next;
-      }
-      return next;
-    });
+    setCurrentIndex((prev) => (prev - 1 + totalCards) % totalCards);
   };
 
   // Auto-slide functionality
@@ -125,20 +94,7 @@ export default function CardSlider() {
     
     if (!isHovered) {
       timerRef.current = setInterval(() => {
-        setCurrentIndex((prev) => {
-          const next = prev + 1;
-          // If we've reached the end of duplicated cards, jump to the start of the middle set
-          if (next >= totalCards * 2) {
-            // Instantly jump to start without transition
-            setTimeout(() => {
-              setIsTransitioning(false);
-              setCurrentIndex(totalCards);
-              setTimeout(() => setIsTransitioning(true), 50);
-            }, 0);
-            return next;
-          }
-          return next;
-        });
+        setCurrentIndex((prev) => (prev + 1) % totalCards);
       }, 3000);
     }
     
@@ -147,20 +103,33 @@ export default function CardSlider() {
         clearInterval(timerRef.current);
       }
     };
-  }, [isHovered, cardsPerView, totalCards]);
+  }, [isHovered, totalCards]);
+
+  useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    const targetCard = track.children[currentIndex] as HTMLElement | undefined;
+
+    if (!targetCard) {
+      return;
+    }
+
+    track.scrollTo({
+      left: targetCard.offsetLeft,
+      behavior: 'smooth',
+    });
+  }, [currentIndex, isLargeScreen]);
 
   const goToSlide = (index: number) => {
-    // Map dot index to the middle set of duplicated cards
-    setCurrentIndex(totalCards + index);
+    setCurrentIndex(index);
   };
 
-  // Calculate dots - one dot per card since we move one at a time
   const totalDots = totalCards;
-  
-  // Get the actual card index for dots (0 to totalCards-1)
-  const actualIndex = currentIndex >= totalCards && currentIndex < totalCards * 2 
-    ? currentIndex - totalCards 
-    : currentIndex % totalCards;
+  const actualIndex = currentIndex;
 
   // Don't render slider content until mounted to avoid hydration mismatch
   if (!isMounted) {
@@ -186,19 +155,12 @@ export default function CardSlider() {
               </button>
             </div>
           </div>
-          <div className="card-slider-track-container">
-            <div 
-              className="card-slider-track" 
-              style={{ 
-                width: `${totalCards * 3 * 100}%`,
-                transform: `translateX(-${totalCards * (100 / (totalCards * 3))}%)`
-              }}
-            >
-              {[...cards, ...cards, ...cards].map((card, index) => (
+          <div className="card-slider-track-container card-slider-track-container--scroll">
+            <div className="card-slider-track" ref={trackRef}>
+              {cards.map((card, index) => (
                 <div
                   key={`${card.id}-${index}`}
                   className="card-slider-item"
-                  style={{ width: `${100 / (totalCards * 3)}%`, flexShrink: 0 }}
                 >
                   <div className="card-slider-card">
                     <div className="card-slider-image-wrapper">
@@ -282,20 +244,12 @@ export default function CardSlider() {
         >
           <div
             className="card-slider-track"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / totalDuplicatedCards)}%)`,
-              transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
-              width: isLargeScreen ? `${(totalDuplicatedCards / cardsPerView) * 100}%` : `${totalDuplicatedCards * 100}%`,
-            }}
+            ref={trackRef}
           >
-            {duplicatedCards.map((card, index) => (
+            {cards.map((card, index) => (
               <div
                 key={`${card.id}-${index}`}
                 className="card-slider-item"
-                style={{
-                  flexShrink: 0,
-                  width: `${100 / totalDuplicatedCards}%`,
-                }}
               >
                 <div className="card-slider-card">
                   <div className="card-slider-image-wrapper">

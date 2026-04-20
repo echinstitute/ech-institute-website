@@ -3,49 +3,28 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ROUTES } from '@/config/routes';
+import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
 import CardSlider from '@/components/features/CardSlider';
 import FAQSection from '@/components/features/FAQSection';
-import { Settings, ShieldCheck, Clock, Mail, Twitter, Youtube } from 'lucide-react';
+import { Settings, ShieldCheck, Clock, Mail, Twitter, Youtube, GraduationCap, Users, CheckCircle2, Quote } from 'lucide-react';
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/shubhamkshirsagar4045@gmail.com", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-        form.reset();
-      } else {
-        // Fallback or error handling
-        alert("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      alert("Error sending message. Please check your connection.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   useEffect(() => {
+    // Check for success hash in URL
+    if (window.location.hash === '#contact-success') {
+      setIsSubmitted(true);
+      const savedEmail = localStorage.getItem('submittedEmail');
+      if (savedEmail) setSubmittedEmail(savedEmail);
+      // Clean up hash
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e: Event) {
         e.preventDefault();
@@ -86,7 +65,7 @@ export default function Home() {
               ECH Institute is committed to empowering individuals with knowledge, strengthening communities, and supporting ecosystem projects. Our work focuses on creating meaningful change while serving the broader ecosystem as a public good.
             </p>
             <div className="hero-buttons animate-fade-up delay-3">
-              <Link href={ROUTES.education} className="btn btn-primary">Our Programs</Link>
+              <Link href="#programs" className="btn btn-primary">Our Programs</Link>
               <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
             </div>
           </div>
@@ -95,71 +74,87 @@ export default function Home() {
               <Image
                 src="/assets/images/Catty.webp"
                 alt="ECH Institute mascot"
-                layout="responsive"
                 width={500}
                 height={500}
                 priority
-                className="object-contain"
+                className="object-contain w-full h-auto"
               />
             </div>
           </div>
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+      </div>
+
       {/* ── Who We Are ── */}
-      <section className="py-10 md:py-16 bg-white" id="who-we-are">
+      <section className="proplay-section bg-background relative overflow-hidden scroll-mt-24" id="who-we-are">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <div className="global-section-tag">WHO WE ARE</div>
+              <div className="global-section-tag">
+                <span className="bg-black"></span>
+                WHO WE ARE
+              </div>
               <h2 className="global-section-title mb-6">
                 Built on <em>purpose,</em><br />driven by community.
               </h2>
-              <p className="global-body-lg mb-10">
-                ECH Institute believes everyone deserves access to education and the opportunity to contribute regardless of race, gender &amp; background. We bridge gaps by empowering individuals with blockchain knowledge, strengthening communities, and supporting the Web3 ecosystem as a public good, with a strong focus on inclusion and diversity.
+              <p className="global-body mb-12 max-w-xl">
+                ECH Institute believes everyone deserves access to education and the opportunity to contribute regardless of race, gender &amp; background. We bridge gaps by empowering individuals with blockchain knowledge, strengthening communities, and supporting the Web3 ecosystem.
               </p>
-              <div className="space-y-8">
-                <div className="flex gap-4 items-start">
-                  <span className="text-[#facc14] font-syne font-bold text-2xl">01</span>
+              <div className="space-y-6 pt-4">
+                <div className="flex gap-6 group">
+                  <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
+                    <GraduationCap className="h-6 w-6 text-white" />
+                  </div>
                   <div>
-                    <h3 className="global-card-title">Education First</h3>
-                    <p className="global-body">We create accessible pathways to learn blockchain and participate in the Web3 ecosystem empowering individuals at every stage to contribute with confidence.</p>
+                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Education First</h3>
+                    <p className="global-body text-sm leading-relaxed">We create accessible pathways to learn blockchain and participate in the Web3 ecosystem empowering individuals at every stage.</p>
                   </div>
                 </div>
-                <div className="flex gap-4 items-start">
-                  <span className="text-[#facc14] font-syne font-bold text-2xl">02</span>
+                <div className="flex gap-6 group">
+                  <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
+                    <Users className="h-6 w-6 text-white" />
+                  </div>
                   <div>
-                    <h3 className="global-card-title">Community-Centered</h3>
-                    <p className="global-body">We build inclusive, supportive communities that enable meaningful participation because learning and contributing in Web3 go hand in hand.</p>
+                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Community-Centered</h3>
+                    <p className="global-body text-sm leading-relaxed">We build inclusive, supportive communities that enable meaningful participation because learning and contributing in Web3 go hand in hand.</p>
                   </div>
                 </div>
-                <div className="flex gap-4 items-start">
-                  <span className="text-[#facc14] font-syne font-bold text-2xl">03</span>
+                <div className="flex gap-6 group">
+                  <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
+                    <ShieldCheck className="h-6 w-6 text-white" />
+                  </div>
                   <div>
-                    <h3 className="global-card-title">Open Accountability</h3>
-                    <p className="global-body">We operate with transparency and integrity openly sharing our work, progress, and impact with the communities we serve and support.</p>
+                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Open Accountability</h3>
+                    <p className="global-body text-sm leading-relaxed">We operate with transparency and integrity openly sharing our work, progress, and impact with the communities we serve.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="relative pl-4 lg:pl-10">
-              <div className="absolute inset-0 -left-2 sm:-left-4 top-8 -bottom-8 bg-[#fffbeb] rounded-3xl -z-10"></div>
-              <div className="flex flex-col shadow-2xl rounded-3xl overflow-hidden bg-white">
-                <div className="aspect-[4/3] relative w-full">
+            <div className="relative animate-on-scroll delay-1 lg:sticky lg:top-32">
+              <div className="absolute -inset-4 bg-muted/20 rounded-[40px] -z-10 rotate-1"></div>
+              <div className="flex flex-col shadow-2xl rounded-[32px] overflow-hidden bg-card border border-border">
+                <div className="aspect-[4/3] relative w-full overflow-hidden">
                   <Image
                     src="/assets/EIP Summit Group Photo.webp"
                     alt="ECH Institute community at EIP Summit"
                     fill
-                    className="object-cover"
+                    className="object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                <div className="bg-[#fefce8] p-8 lg:p-12 border-t border-yellow-100">
-                  <p className="text-2xl lg:text-3xl font-lora italic text-gray-800 leading-relaxed mb-8">
-                    &ldquo;We don&apos;t help communities. We are part of them.&rdquo;
+                <div className="p-8 lg:p-10 border-t border-border bg-card relative">
+                  <div className="absolute -top-6 left-10 w-12 h-12 bg-accent rounded-2xl flex items-center justify-center shadow-lg">
+                    <Quote className="h-6 w-6 text-accent-foreground" />
+                  </div>
+                  <p className="text-lg font-syne font-bold text-foreground leading-snug mb-6 pt-4 italic">
+                    &ldquo;We don&apos;t just help communities. We are an active part of the Ethereum fabric.&rdquo;
                   </p>
                   <div className="flex items-center gap-4">
-                    <span className="w-8 h-[2px] bg-yellow-400"></span>
-                    <span className="text-xs font-bold tracking-[0.25em] text-gray-900 uppercase">ECH INSTITUTE</span>
+                    <div className="h-[2px] w-8 bg-accent"></div>
+                    <span className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground uppercase">ECH INSTITUTE</span>
                   </div>
                 </div>
               </div>
@@ -168,17 +163,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+      </div>
+
+
       {/* ══════════════════════════════════════════════════
           OUR JOURNEY — Infographic Timeline
       ══════════════════════════════════════════════════ */}
-      <section className="evo-section" id="evolution">
+      <section className="proplay-section bg-background relative" id="evolution">
         <div className="evo-container">
 
           {/* Header */}
           <div className="evo-header animate-on-scroll">
             <div className="global-section-tag justify-center">OUR JOURNEY</div>
-            <h2 className="evo-main-title">
-              Institutional Evolution &amp; <span className="evo-accent">Continuity</span>
+            <h2 className="evo-main-title global-section-title">
+              Institutional Evolution &amp; <em>Continuity</em>
             </h2>
             <p className="evo-sub-year">(2024–2026)</p>
           </div>
@@ -277,7 +278,7 @@ export default function Home() {
                   <strong className="evo-blk-title">SUPPORT GOVERNANCE</strong>
                   <span className="evo-blk-body">Increased Office Hours to educate and support contributors to participate in governance.</span>
                 </div>
-                <div className="evo-text-block" style={{ marginTop: '10px' }}>
+                <div className="evo-text-block mt-2.5">
                   <strong className="evo-blk-title">INSTITUTIONAL ENGAGEMENT</strong>
                   <span className="evo-blk-body">Special podcast to explain Ethereum upgrades to Institutional users.</span>
                 </div>
@@ -296,13 +297,19 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+      </div>
+
+
       {/* ── Programs ── */}
-      <section className="py-12 md:py-16 bg-white" id="programs">
+      <section className="proplay-section bg-background" id="programs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 justify-between items-stretch lg:items-end mb-16">
             <div className="lg:w-1/2 flex flex-col justify-end">
               <div className="global-section-tag justify-start mb-4">WHAT WE DO</div>
-              <h2 className="global-section-title mb-0 leading-[1.1] pb-1">Programs built <br /><span className="text-[#facc14]">for real impact.</span></h2>
+              <h2 className="global-section-title mb-0 leading-[1.1] pb-1">Programs built <br /><em>for real impact.</em></h2>
             </div>
             <div className="lg:w-1/2 flex flex-col justify-end">
               <p className="global-body-lg text-left lg:text-right text-gray-600 mb-0 lg:pb-1">Each ECH program supports Ethereum governance through clear processes, coordination, and participation focused on long-term, sustainable outcomes rather than short-term fixes.</p>
@@ -323,7 +330,7 @@ export default function Home() {
             </Link>
 
             <Link href={ROUTES.eipSupport} className="program-img-card group">
-              <img src="/assets/IMG_355.webp" alt="EIP Support" className="bg-img" />
+              <img src="/assets/EIP Summit Group Photo.webp" alt="EIP Support" className="bg-img" />
               <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">GOVERNANCE</span>
@@ -336,7 +343,7 @@ export default function Home() {
             </Link>
 
             <Link href={ROUTES.podcast} className="program-img-card group">
-              <img src="/assets/IMG_3600.webp" alt="Podcast" className="bg-img" />
+              <img src="/assets/IMG_355.webp" alt="Podcast" className="bg-img" />
               <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">CONTENT</span>
@@ -362,7 +369,7 @@ export default function Home() {
             </Link>
 
             <Link href={ROUTES.wiep} className="program-img-card group">
-              <img src="/assets/EIP Summit Group Photo.webp" alt="Women in Protocol" className="bg-img" />
+              <img src="/assets/IMG_3600.webp" alt="Women in Protocol" className="bg-img" />
               <div className="overlay-dark-gradient"></div>
               <div className="content">
                 <span className="badge">INCLUSION</span>
@@ -382,14 +389,14 @@ export default function Home() {
                 <h3>Institutional Bridging</h3>
                 <p>Bridging Ethereum governance with enterprise stakeholders through education and dialogue.</p>
                 <div className="btn-wrap">
-                  <span className="program-img-card-btn">View Program &rarr;</span>
+                  <span className="program-img-card-btn ">View Program &rarr;</span>
                 </div>
               </div>
             </Link>
 
-            <Link href={ROUTES.events} className="program-img-card group md:col-span-2 lg:col-span-2" style={{ minHeight: '320px' }}>
+            <Link href={ROUTES.events} className="program-img-card group md:col-span-2 lg:col-span-2 min-h-80">
               <img src="/assets/2025 recap.webp" alt="Events" className="bg-img" />
-              <div className="overlay-dark-gradient opacity-90"></div>
+              <div className="overlay-dark-gradient"></div>
               <div className="content md:w-3/4 lg:w-3/4">
                 <span className="badge">ECOSYSTEM FESTIVALS</span>
                 <h3>Events &amp; Workshops</h3>
@@ -403,8 +410,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+      </div>
+
+
       {/* ── Impact ── */}
-      <section className="py-12 md:py-16 bg-white border-y border-gray-100" id="impact">
+      <section className="proplay-section bg-background" id="impact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 lg:gap-20 justify-between items-start md:items-end mb-16">
             <div className="max-w-2xl">
@@ -412,67 +425,73 @@ export default function Home() {
               <h2 className="global-section-title mb-4">Numbers <br /><em>that matter.</em></h2>
               <p className="global-body-lg text-gray-600">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
             </div>
-            <button className="btn btn-primary md:flex-shrink-0">VIEW FULL REPORT</button>
+            <button className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</button>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Card 1: Network Upgrades */}
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll">
-              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">2</span>
-                <h3 className="font-syne font-bold text-lg text-gray-900">Network Upgrades</h3>
+            <div className="flex flex-col xl:flex-row bg-[var(--surface-card-theme)] overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 h-full group animate-on-scroll">
+              <div className="bg-gray-50/50 group-hover:bg-[var(--border-soft)] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[var(--border-soft)]">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-3">2</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)]">Network Upgrades</h3>
               </div>
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
-                <p className="global-body font-medium text-gray-800 mb-4">Over the twelve months, we supported the Dencun upgrade and the Pectra upgrade.</p>
-                <p className="global-body text-gray-600">We livestreamed both upgrades with community partners. We invited core EIP proposal Authors to share about the significance of the upgrades to scale Ethereum.</p>
+                <p className="global-body font-medium text-[var(--text-base)] mb-4">Over the twelve months, we supported the Dencun upgrade and the Pectra upgrade.</p>
+                <p className="global-body text-[var(--text-soft)]">We livestreamed both upgrades with community partners. We invited core EIP proposal Authors to share about the significance of the upgrades to scale Ethereum.</p>
               </div>
             </div>
 
             {/* Card 2: Podcasts Produced */}
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-1">
+            <div className="flex flex-col xl:flex-row bg-[var(--surface-card-theme)] overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 h-full group animate-on-scroll delay-1">
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%] order-2 xl:order-1">
-                <p className="global-body font-medium text-gray-800 mb-4">We produced 13 videos on the Dencun upgrade, 18 videos on the Pectra upgrade and featured 23 independent projects on Ecosystem Project Demo.</p>
-                <p className="global-body text-gray-600 mb-2">We also coordinated and published:</p>
-                <ul className="list-disc list-inside global-body text-gray-600 space-y-1 ml-2">
+                <p className="global-body font-medium text-[var(--text-base)] mb-4">We produced 13 videos on the Dencun upgrade, 18 videos on the Pectra upgrade and featured 23 independent projects on Ecosystem Project Demo.</p>
+                <p className="global-body text-[var(--text-soft)] mb-2">We also coordinated and published:</p>
+                <ul className="list-disc list-inside global-body text-[var(--text-soft)] space-y-1 ml-2">
                   <li>30+ Eth Multicall</li>
                   <li>12+ ePBS Breakout Room</li>
                   <li>25+ EOF Implementers Meetings</li>
                 </ul>
               </div>
-              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">108+</span>
-                <h3 className="font-syne font-bold text-lg text-gray-900">Podcasts Produced</h3>
+              <div className="bg-gray-50/50 group-hover:bg-[var(--border-soft)] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[var(--border-soft)]">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-3">108+</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)]">Podcasts Produced</h3>
               </div>
             </div>
 
             {/* Card 3: Community Members */}
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-2">
-              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[#CED2D9]">
-                <span className="text-4xl sm:text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">8.2K+</span>
-                <h3 className="font-syne font-bold !text-base sm:!text-lg text-gray-900">Community Members</h3>
+            <div className="flex flex-col xl:flex-row bg-[var(--surface-card-theme)] overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 h-full group animate-on-scroll delay-2">
+              <div className="bg-gray-50/50 group-hover:bg-[var(--border-soft)] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[var(--border-soft)]">
+                <span className="text-4xl sm:text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-3">8.2K+</span>
+                <h3 className="font-syne font-bold !text-base sm:!text-lg text-[var(--text-base)]">Community Members</h3>
               </div>
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
-                <p className="global-body font-medium text-gray-800 leading-relaxed">Partnering over 5 global communities for events, Over 8200 people followed us on X/Twitter and hosting over 2,900 members on Discord, our community is growing!</p>
+                <p className="global-body font-medium text-[var(--text-base)] leading-relaxed">Partnering over 5 global communities for events, Over 8200 people followed us on X/Twitter and hosting over 2,900 members on Discord, our community is growing!</p>
               </div>
             </div>
 
             {/* Card 4: ECH Core Efficiency */}
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden rounded-2xl border border-[#CED2D9] shadow-sm hover:shadow-lg hover:border-[#facc14] transition-all duration-300 h-full group animate-on-scroll delay-3">
+            <div className="flex flex-col xl:flex-row bg-[var(--surface-card-theme)] overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 h-full group animate-on-scroll delay-3">
               <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%] order-2 xl:order-1">
-                <p className="global-body font-medium text-gray-800 mb-4">Managing robust operations entirely transparently, providing a critical resource layer for developers and Ethereum ecosystem stakeholders.</p>
-                <p className="global-body text-gray-600">Through our flagship initiatives, we streamline technical standard documentation, global mentorship, and core institutional outreach.</p>
+                <p className="global-body font-medium text-[var(--text-base)] mb-4">Managing robust operations entirely transparently, providing a critical resource layer for developers and Ethereum ecosystem stakeholders.</p>
+                <p className="global-body text-[var(--text-soft)]">Through our flagship initiatives, we streamline technical standard documentation, global mentorship, and core institutional outreach.</p>
               </div>
-              <div className="bg-gray-50 group-hover:bg-[#fefce8] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[#CED2D9]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[#facc14] leading-none mb-3">7+</span>
-                <h3 className="font-syne font-bold text-lg text-gray-900">Core Programs</h3>
+              <div className="bg-gray-50/50 group-hover:bg-[var(--border-soft)] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[var(--border-soft)]">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-3">7+</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)]">Core Programs</h3>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+      </div>
+
+
       {/* ── Get Involved ── */}
-      <section className="gi-pro-bg border-t border-gray-100 relative overflow-hidden" id="get-involved-peek">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
+      <section className="proplay-section bg-background relative overflow-hidden" id="get-involved-peek">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
           <div className="hidden lg:flex lg:col-span-5 items-center justify-center relative h-[400px]">
             <div className="gi-mascot-wrap">
               <img src="/assets/images/cat-peek.webp" alt="Cat peeking" className="relative z-10 w-[320px] h-auto object-contain drop-shadow-2xl animate-float" />
@@ -481,7 +500,7 @@ export default function Home() {
           <div className="lg:col-span-7 animate-on-scroll">
             <div className="global-section-tag">GET INVOLVED</div>
             <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
-              Join us in building <br /><span className="text-[#facc14] italic">a better community.</span>
+              Join us in building <br /><em>a better community.</em>
             </h2>
             <p className="grow-0 global-body-lg mb-12 text-gray-700 max-w-xl leading-relaxed">
               Change doesn&apos;t happen alone. Whether you have time, skills, or resources to give there is a meaningful place for you at ECH Institute.
@@ -494,178 +513,235 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+      </div>
+
+
       {/* ── Partners Marquee ── */}
-      <section className="py-12 bg-white border-y border-gray-100 overflow-hidden">
+      <section className="proplay-section-dense bg-[#151419] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
           <div className="inline-flex items-center gap-4 mb-4">
-            <div className="h-px w-8 bg-gray-200"></div>
-            <span className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">OUR NETWORK</span>
-            <div className="h-px w-8 bg-gray-200"></div>
+            <div className="h-px w-8 bg-[#262626]"></div>
+            <span className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase">OUR NETWORK</span>
+            <div className="h-px w-8 bg-[#262626]"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-gray-900 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-[#FBFBFB] leading-tight">
             Supported by &amp; <br className="md:hidden" /> <em>Collaborating with.</em>
           </h2>
         </div>
         <div className="marquee-container">
           <div className="marquee-track">
             {[
-              { id: 'ef', src: "/logos/ethereum-foundation-logo.png", alt: "Ethereum Foundation", size: "scale-200" },
-              { id: 'gitcoin', src: "/logos/gitcoin.svg", alt: "Gitcoin", size: "scale-110" },
-              { id: 'optimism', src: "/logos/Optimism-logo.png", alt: "Optimism", size: "scale-100" },
-              { id: 'octant', src: "/logos/octant-logo.svg", alt: "Octant", size: "scale-100" },
-              { id: 'ethstaker', src: "/logos/ethstaker-logo.svg", alt: "EthStaker", size: "scale-125" },
-              { id: 'magicians', src: "/logos/ethereum magicians logo.png", alt: "Ethereum Magicians", size: "scale-200" },
-              { id: 'ethcluj', src: "/logos/EthCluj-logo.svg", alt: "EthCluj", size: "scale-200" },
-              { id: 'eea', src: "/logos/enterpriseethereumalliance_logo.jpg", alt: "Enterprise Ethereum Alliance", size: "scale-200" },
-              { id: 'edcon', src: "/logos/EDCON-logo.jpeg", alt: "EDCON", size: "scale-250" }
+              { id: 'ef', src: "/logos/ethereum-foundation-logo.svg", alt: "Ethereum Foundation", size: "scale-[3.5]", href: "https://ethereum.org" },
+              { id: 'gitcoin', src: "/logos/gitcoin.svg", alt: "Gitcoin", href: "https://gitcoin.co" },
+              { id: 'eipsinsight', src: "/logos/EIPsInsights.gif", alt: "EIPs Insight",size: "scale-[1.5]", href: "https://eipsinsight.com/" },
+              { id: 'optimism', src: "/logos/Optimism-logo.png", alt: "Optimism", href: "https://optimism.io" },
+              { id: 'ethpune', src: "/logos/ETH Pune.png", alt: "ETH Pune", size: "scale-[3]", href: "https://www.ethpune.com/" },
+              { id: 'octant', src: "/logos/octant-logo.svg", alt: "Octant", href: "https://octant.app" },
+              // { id: 'ethstaker', src: "/logos/ethstaker-logo.svg", alt: "EthStaker", href: "https://ethstaker.cc" },
+              { id: 'magicians', src: "/logos/ethereum magicians logo.png", alt: "Ethereum Magicians",size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
+              { id: 'ethcluj', src: "/logos/EthCluj-logo.png", alt: "EthCluj", href: "https://ethcluj.ro" },
+              { id: 'eea', src: "/logos/enterpriseethereumalliance_logo.png", alt: "Enterprise Ethereum Alliance", href: "https://entethalliance.org" },
+              { id: 'edcon', src: "/logos/EDCON-logo.png", alt: "EDCON", href: "https://edcon.io" }
             ].map((partner) => (
-              <div key={partner.id} className="marquee-item flex items-center justify-center px-6 md:px-10">
-                <div className="h-12 w-32 md:w-40 flex items-center justify-center">
+              <Link key={partner.id} href={partner.href} target="_blank" rel="noopener noreferrer" className="marquee-item px-16 md:px-24">
+                <div className="h-8 md:h-10 flex items-center justify-center">
                   <img
                     src={partner.src}
                     alt={partner.alt}
-                    className={`max-h-full max-w-full w-auto h-auto object-contain transition-all duration-300 ${partner.size}`}
+                    className={`h-full w-auto object-contain transition-all duration-500 ${partner.size || ''}`}
                   />
                 </div>
-              </div>
+              </Link>
             ))}
+            {/* Duplicated for smooth loop */}
             {[
-              { id: 'ef-clone', src: "/logos/ethereum-foundation-logo.png", alt: "Ethereum Foundation", size: "scale-200" },
-              { id: 'gitcoin-clone', src: "/logos/gitcoin.svg", alt: "Gitcoin", size: "scale-110" },
-              { id: 'optimism-clone', src: "/logos/Optimism-logo.png", alt: "Optimism", size: "scale-100" },
-              { id: 'octant-clone', src: "/logos/octant-logo.svg", alt: "Octant", size: "scale-100" },
-              { id: 'ethstaker-clone', src: "/logos/ethstaker-logo.svg", alt: "EthStaker", size: "scale-125" },
-              { id: 'magicians-clone', src: "/logos/ethereum magicians logo.png", alt: "Ethereum Magicians", size: "scale-200" },
-              { id: 'ethcluj-clone', src: "/logos/EthCluj-logo.svg", alt: "EthCluj", size: "scale-200" },
-              { id: 'eea-clone', src: "/logos/enterpriseethereumalliance_logo.jpg", alt: "Enterprise Ethereum Alliance", size: "scale-200" },
-              { id: 'edcon-clone', src: "/logos/EDCON-logo.jpeg", alt: "EDCON", size: "scale-250" }
+              { id: 'ef-clone', src: "/logos/ethereum-foundation-logo.svg", alt: "Ethereum Foundation", size: "scale-[3.5]", href: "https://ethereum.org" },
+              { id: 'gitcoin-clone', src: "/logos/gitcoin.svg", alt: "Gitcoin", href: "https://gitcoin.co" },
+              { id: 'eipsinsight-clone', src: "/logos/EIPsInsights.gif", alt: "EIPs Insight",size: "scale-[1.5]", href: "https://eipsinsight.com/" },
+              { id: 'optimism-clone', src: "/logos/Optimism-logo.png", alt: "Optimism", href: "https://optimism.io" },
+              { id: 'ethpune-clone', src: "/logos/ETH Pune.png", size: "scale-[3]", alt: "ETH Pune", href: "https://www.ethpune.com/" },
+              { id: 'octant-clone', src: "/logos/octant-logo.svg", alt: "Octant", href: "https://octant.app" },
+              // { id: 'ethstaker-clone', src: "/logos/ethstaker-logo.svg", alt: "EthStaker", href: "https://ethstaker.cc" },
+              { id: 'magicians-clone', src: "/logos/ethereum magicians logo.png", alt: "Ethereum Magicians",size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
+              { id: 'ethcluj-clone', src: "/logos/EthCluj-logo.png", alt: "EthCluj", href: "https://ethcluj.ro" },
+              { id: 'eea-clone', src: "/logos/enterpriseethereumalliance_logo.png", alt: "Enterprise Ethereum Alliance", href: "https://entethalliance.org" },
+              { id: 'edcon-clone', src: "/logos/EDCON-logo.png", alt: "EDCON", href: "https://edcon.io" }
             ].map((partner) => (
-              <div key={partner.id} className="marquee-item flex items-center justify-center px-6 md:px-10">
-                <div className="h-12 w-32 md:w-40 flex items-center justify-center">
+              <Link key={partner.id} href={partner.href} target="_blank" rel="noopener noreferrer" className="marquee-item px-16 md:px-24">
+                <div className="h-8 md:h-10 flex items-center justify-center">
                   <img
                     src={partner.src}
                     alt={partner.alt}
-                    className={`max-h-full max-w-full w-auto h-auto object-contain transition-all duration-300 ${partner.size}`}
+                    className={`h-full w-auto object-contain transition-all duration-500 ${partner.size || ''}`}
                   />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Contact ── */}
-      <section className="py-16 md:py-24 contact-pro-bg border-t border-gray-100 relative" id="contact">
+      {/* Divider */}
+      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+      </div>
+
+
+      <section className="proplay-section bg-[#151419] relative overflow-hidden" id="contact">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(245,165,29,0.03)_0%,transparent_50%)]"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_70%_50%,rgba(245,165,29,0.02)_0%,transparent_70%)] pointer-events-none"></div>
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#F5A51D] opacity-[0.01] blur-[120px] rounded-full pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <div className="animate-on-scroll">
-              <div className="global-section-tag">CONTACT ECH</div>
-              <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
-                Let&apos;s build <br /><span className="text-[#facc14] italic">the future.</span>
+              <div className="global-section-tag !text-[#F5A51D] border-[#F5A51D]/20">CONTACT ECH</div>
+              <h2 className="global-section-title mb-8 text-[#FBFBFB] leading-[1.05] tracking-tight">
+                Let&apos;s build <br /><em className="text-[#F5A51D]">the future.</em>
               </h2>
-              <p className="global-body-lg mb-12 text-gray-700 max-w-lg leading-relaxed">
-                Whether you&apos;re looking to partner, contribute to an EIP, or need help understanding the latest network upgrade — we&apos;re here for the ecosystem.
-              </p>
-
-              <div className="grid grid-cols-1 gap-6">
-                <a href="mailto:team@ethcatherders.com" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
-                  <div className="proplay-icon-container w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">EMAIL</span>
-                    <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors line-clamp-1">team@ethcatherders.com</span>
+              <div className="flex flex-col gap-4 max-w-md">
+                <a href={EXTERNAL_LINKS.email} className="group relative p-6 rounded-2xl border border-[#262626] bg-[#1B1B1E] transition-all duration-300 hover:border-[#F5A51D]/40 hover:bg-[#262626] overflow-hidden">
+                  <div className="flex items-center gap-6 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-[#262626] border border-[#FBFBFB]/10 flex items-center justify-center text-[#FBFBFB] transition-transform duration-300 group-hover:scale-110">
+                      <Mail size={22} />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-black tracking-[0.2em] text-[#878787] uppercase block mb-1">Direct Inquiry</span>
+                      <span className="text-base font-syne font-bold text-[#FBFBFB] group-hover:text-[#F5A51D] transition-colors">team@ethcatherders.com</span>
+                    </div>
                   </div>
                 </a>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <a href="https://x.com/ECHinstitute" target="_blank" rel="noopener noreferrer" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
-                    <div className="proplay-icon-container w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <Twitter size={24} />
+                <a href={EXTERNAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-[#262626] bg-[#1B1B1E] transition-all duration-300 hover:border-[#F5A51D]/40 hover:bg-[#262626] overflow-hidden">
+                  <div className="flex items-center gap-6 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-[#262626] border border-[#FBFBFB]/10 flex items-center justify-center text-[#FBFBFB] transition-transform duration-300 group-hover:scale-110">
+                      <Twitter size={22} />
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">TWITTER</span>
-                      <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors">@ECHinstitute</span>
+                      <span className="text-[10px] font-black tracking-[0.2em] text-[#878787] uppercase block mb-1">X / Twitter</span>
+                      <span className="text-base font-syne font-bold text-[#FBFBFB] group-hover:text-[#F5A51D] transition-colors">@ECHinstitute</span>
                     </div>
-                  </a>
+                  </div>
+                </a>
 
-                  <a href="https://www.youtube.com/@echinstitute" target="_blank" rel="noopener noreferrer" className="contact-pro-card p-6 rounded-3xl flex items-center gap-6 group">
-                    <div className="proplay-icon-container w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <Youtube size={24} />
+                <a href={EXTERNAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-[#262626] bg-[#1B1B1E] transition-all duration-300 hover:border-[#F5A51D]/40 hover:bg-[#262626] overflow-hidden">
+                  <div className="flex items-center gap-6 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-[#262626] border border-[#FBFBFB]/10 flex items-center justify-center text-[#FBFBFB] transition-transform duration-300 group-hover:scale-110">
+                      <Youtube size={22} />
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase block mb-1">YOUTUBE</span>
-                      <span className="text-lg font-syne font-bold text-gray-900 group-hover:text-[#facc14] transition-colors uppercase">ECH Institute</span>
+                      <span className="text-[10px] font-black tracking-[0.2em] text-[#878787] uppercase block mb-1">YouTube</span>
+                      <span className="text-base font-syne font-bold text-[#FBFBFB] group-hover:text-[#F5A51D] transition-colors">@ECHinstitute</span>
                     </div>
-                  </a>
-                </div>
+                  </div>
+                </a>
+
+                <a href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-[#262626] bg-[#1B1B1E] transition-all duration-300 hover:border-[#F5A51D]/40 hover:bg-[#262626] overflow-hidden">
+                  <div className="flex items-center gap-6 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-[#262626] border border-[#FBFBFB]/10 flex items-center justify-center text-[#FBFBFB] transition-transform duration-300 group-hover:scale-110">
+                      <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"></path></svg>
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-black tracking-[0.2em] text-[#878787] uppercase block mb-1">Discord Community</span>
+                      <span className="text-base font-syne font-bold text-[#FBFBFB] group-hover:text-[#F5A51D] transition-colors">@Discord</span>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
 
-            <div className="animate-on-scroll delay-2">
-              <div className="p-1 lg:p-2 bg-gray-50/50 rounded-[40px] border border-gray-100 shadow-xl">
-                <div className="bg-white p-8 lg:p-12 rounded-[32px] shadow-sm border border-gray-100">
+            <div className="animate-on-scroll delay-2 relative">
+              <div className="relative p-1 lg:p-1 bg-[#262626] rounded-[32px] border border-[#262626] shadow-2xl overflow-hidden">
+                <div className="bg-[#1B1B1E] p-6 lg:p-10 rounded-[28px] shadow-inner border border-[#262626] relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#F5A51D]/20 to-transparent"></div>
                   {isSubmitted ? (
-                    <div className="py-12 text-center animate-fade-in">
-                      <div className="w-20 h-20 bg-[#facc14] rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-yellow-200">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                    <div className="py-12 text-center animate-fade-in flex flex-col items-center">
+                      <div className="mb-8 p-4 bg-[#151419] rounded-2xl border border-[#262626]">
+                        <img src="/ECH Institute Logo - White.png" alt="ECH Institute" className="h-12 w-auto object-contain brightness-0 invert" />
+                      </div>
+                      <div className="w-20 h-20 bg-[#F5A51D] text-[#151419] rounded-full flex items-center justify-center mb-8 shadow-lg shadow-yellow-500/20">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                       </div>
-                      <h3 className="text-3xl font-syne font-bold text-gray-900 mb-4">Message Sent!</h3>
-                      <p className="global-body text-gray-600 mb-10 max-w-sm mx-auto">We&apos;ve received your message and our team will get back to you within 2 business days.</p>
-                      <button onClick={() => setIsSubmitted(false)} className="text-xs font-bold tracking-[0.3em] text-gray-900 uppercase border-b-2 border-[#facc14] pb-2 hover:text-[#facc14] transition-all">
+                      <h3 className="text-3xl font-syne font-bold text-[#FBFBFB] mb-4 uppercase tracking-tight">Inquiry Received.</h3>
+                      <p className="global-body text-[#878787] mb-10 max-w-sm mx-auto leading-relaxed">
+                        A formal acknowledgement has been dispatched to <span className="text-[#F5A51D] font-bold underline decoration-[#F5A51D]/30">{submittedEmail}</span>. Our team will review your submission and respond within two business days.
+                      </p>
+                      <button onClick={() => { setIsSubmitted(false); }} className="text-[10px] font-black tracking-[0.4em] text-[#FBFBFB] uppercase border-b-2 border-[#F5A51D] pb-2 hover:text-[#F5A51D] transition-all">
                         SEND ANOTHER MESSAGE
                       </button>
                     </div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <form 
+                      action="https://formsubmit.co/shubhamkshirsagar4045@gmail.com" 
+                      method="POST"
+                      onSubmit={() => {
+                        setIsSubmitting(true);
+                        const emailInput = document.querySelector('input[name="email"]') as HTMLInputElement;
+                        if (emailInput) localStorage.setItem('submittedEmail', emailInput.value);
+                      }}
+                      className="space-y-5"
+                    >
                       <input type="hidden" name="_subject" value="New ECH Institute Contact Form Submission!" />
                       <input type="hidden" name="_captcha" value="false" />
+                      <input type="hidden" name="_template" value="table" />
+                      <input type="hidden" name="_from_name" value="ECH Institute" />
+                      <input type="hidden" name="_autoresponse" value="Thank you for contacting ECH Institute. We have received your message and will reach out to you within two business days. This is an automated confirmation from our system." />
+                      <input type="hidden" name="_next" value={typeof window !== 'undefined' ? `${window.location.origin}#contact-success` : ''} />
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">First Name</label>
-                          <input type="text" name="First Name" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="Jane" required />
+                          <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">First Name</label>
+                          <input type="text" name="First Name" className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="Jane" required />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Last Name</label>
-                          <input type="text" name="Last Name" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="Doe" required />
+                          <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Last Name</label>
+                          <input type="text" name="Last Name" className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="Doe" required />
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Email Address</label>
-                        <input type="email" name="email" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300" placeholder="jane@example.com" required />
+                        <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Email Address</label>
+                        <input 
+                          type="email" 
+                          name="email" 
+                          className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" 
+                          placeholder="jane@example.com" 
+                          required 
+                        />
                       </div>
 
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Inquiry Type</label>
-                        <div className="relative">
-                          <select name="Inquiry Type" className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg text-gray-400 appearance-none cursor-pointer relative z-10" required defaultValue="">
-                            <option value="" disabled>How can we help?</option>
-                            <option value="General Inquiry" className="text-gray-900">General Inquiry</option>
-                            <option value="EIP Support" className="text-gray-900">EIP Support</option>
-                            <option value="Support & Donation" className="text-gray-900">Support & Donation</option>
-                            <option value="Volunteering" className="text-gray-900">Volunteering</option>
-                            <option value="Partnership" className="text-gray-900">Partnership</option>
-                            <option value="Institutional Engagement" className="text-gray-900">Institutional Engagement</option>
-                            <option value="Education & Training" className="text-gray-900">Education & Training</option>
-                            <option value="Other" className="text-gray-900">Other</option>
-                          </select>
-                          <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-300">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
-                          </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Telegram (Compulsory)</label>
+                          <input type="text" name="Telegram" className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="@username" required />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Discord (Optional)</label>
+                          <input type="text" name="Discord" className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="username#0000" />
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Your Message</label>
-                        <textarea name="Message" rows={4} className="w-full contact-pro-input border-b-2 border-gray-100 py-3 focus:outline-none bg-transparent transition-all font-sans text-lg placeholder-gray-300 resize-none" placeholder="Tell us more about how we can work together..." required></textarea>
+                        <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Your Message</label>
+                        <textarea 
+                          name="Message" 
+                          rows={4} 
+                          className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 resize-none min-h-[140px] rounded-xl w-full px-6 py-4 text-sm font-medium" 
+                          placeholder="Tell us more about how we can work together..." 
+                          required
+                        ></textarea>
                       </div>
 
-                      <button type="submit" disabled={isSubmitting} className="global-btn global-btn-primary w-full py-6 text-base tracking-widest shadow-2xl hover:shadow-yellow-200/50 disabled:opacity-50 transition-all duration-300 bg-black text-white hover:bg-[#facc14] hover:text-black mt-4">
-                        {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
+                      <button 
+                        type="submit" 
+                        disabled={isSubmitting} 
+                        className="w-full py-6 text-sm font-black tracking-[0.3em] bg-[#F5A51D] text-[#FBFBFB] hover:bg-[#1B1B1E] transition-all duration-300 uppercase mt-4 rounded-xl border-0 shadow-lg shadow-yellow-500/10 disabled:opacity-80"
+                      >
+                        {isSubmitting ? 'Processing...' : 'Send Message'}
                       </button>
                     </form>
                   )}
@@ -676,7 +752,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+      </div>
+
+
       <FAQSection />
     </div>
   );
 }
+

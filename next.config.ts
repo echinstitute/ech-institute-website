@@ -18,11 +18,7 @@ const nextConfig: NextConfig = {
   // ─────────────────────────────────────────────
   async redirects() {
     return [
-      {
-        source: '/community/get-involved',
-        destination: '/get-involved',
-        permanent: true,
-      },
+      // Add manual redirects here if needed
     ];
   },
 

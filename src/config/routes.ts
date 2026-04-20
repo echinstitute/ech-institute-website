@@ -25,7 +25,7 @@ export const ROUTES = {
   events:       '/events',
   support:      '/support',
   brand:        '/brand',
-  getInvolved:  '/community/get-involved',
+  getInvolved:  '/get-involved',
 
   // Programs & Initiatives
   eipSupport:            '/eip-support',
@@ -58,9 +58,28 @@ export const PATH_ALIASES: Array<{ source: string; destination: string }> = [
   
   // Absolute top-level shorthands
   { source: '/peepaneip',            destination: '/community/podcast/peepaneip' },
+  { source: '/peep-an-eip',          destination: '/community/podcast/peepaneip' },
   { source: '/fusaka-files',         destination: '/community/podcast/fusaka-files' },
+  { source: '/fusakaFiles',          destination: '/community/podcast/fusaka-files' },
+  { source: '/fusakafiles',          destination: '/community/podcast/fusaka-files' },
   { source: '/epd',                  destination: '/community/podcast/epd' },
+  
+  // Two-word standardized aliases
+  { source: '/getInvolved',          destination: '/community/get-involved' },
+  { source: '/getinvolved',          destination: '/community/get-involved' },
   { source: '/get-involved',         destination: '/community/get-involved' },
+  
+  { source: '/eipSupport',           destination: '/community/eip-support' },
+  { source: '/eipsupport',           destination: '/community/eip-support' },
+  { source: '/eip-support',          destination: '/community/eip-support' },
+
+  { source: '/communityPartnerships', destination: '/community/community-partnerships' },
+  { source: '/communitypartnerships', destination: '/community/community-partnerships' },
+  { source: '/community-partnerships', destination: '/community/community-partnerships' },
+
+  { source: '/institutionalBridging', destination: '/community/institutional-bridging' },
+  { source: '/institutionalbridging', destination: '/community/institutional-bridging' },
+  { source: '/institutional-bridging', destination: '/community/institutional-bridging' },
 ];
 
 // ─────────────────────────────────────────────
@@ -69,7 +88,7 @@ export const PATH_ALIASES: Array<{ source: string; destination: string }> = [
 export const EXTERNAL_LINKS = {
   blog:          'https://blog.echinstitute.org',
   annualReport:  '/reports/First_Annual_Report_ECH_Institute_Inc.pdf',
-  discord:       'https://discord.com/events/916516304972824576/1389240560866426944',
+  discord:       'https://dsc.gg/ech',
 
   // Social
   twitter:       'https://x.com/ECHinstitute',

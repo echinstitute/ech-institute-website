@@ -6,10 +6,12 @@ import {
   Home, Globe, BookOpen, Network, Shield, Target, CheckCircle2,
   ChevronRight, ExternalLink, MessageSquare, Calendar,
   ChevronDown, GitBranch, AlertCircle, Clock, Cpu, FileText,
-  Lightbulb, Users, Zap, ArrowRight, Layers, Building2,
+  Lightbulb, Users, Zap, ArrowRight, Layers,
   TrendingUp, Award, Info
 } from 'lucide-react';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
+import { cn } from '@/lib/utils';
+import { StickySideNav } from '@/components/ui/StickySideNav';
 
 // ─── Sections for sticky nav ─────────────────────────────────────────────────
 const NAV_SECTIONS = [
@@ -29,31 +31,31 @@ const governanceHowItems = [
     icon: Lightbulb,
     title: 'Ideas & Community Discussion',
     detail: 'Every change to Ethereum begins as an informal idea. Before any formal document is written, the concept is discussed openly on Ethereum Magicians (the primary governance forum), Discord channels, and research forums like ethresear.ch. This early phase gauges community interest, identifies potential problems, and refines the proposal before it goes through the formal EIP process. ECH Institute monitors these discussions and helps surface important conversations to the core developer community.',
-    color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb',
+    tone: 'neutral',
   },
   {
     icon: FileText,
     title: 'Formal EIP Drafting',
     detail: 'Once an idea has sufficient community traction, it is formalized as an Ethereum Improvement Proposal (EIP). EIPs must follow the template defined in EIP-1, which requires a preamble, abstract, motivation, full specification, rationale, backward compatibility analysis, and test cases. The proposal is submitted as a pull request to the ethereum/EIPs GitHub repository and reviewed by EIP editors for format and technical soundness. ECH Institute coordinates EIP editor office hours and EIPIP calls to shepherd EIPs through this phase.',
-    color: '#3b82f6', bg: '#eff6ff', border: '#bfdbfe',
+    tone: 'info',
   },
   {
     icon: Users,
     title: 'Core Developer Review (ACD Calls)',
     detail: 'After EIP editors approve a draft, the proposal enters technical review by core Ethereum developers through All Core Devs (ACD) calls. ACD calls are biweekly calls alternating between Execution Layer (ACDE) and Consensus Layer (ACDC) meetings. These open calls are the primary venue where client teams (Geth, Nethermind, Besu, Lighthouse, Prysm, etc.) discuss whether to support an EIP. ECH Institute documents every ACD call and publishes notes to the ethereum/pm repository within 24 hours, creating a permanent public record.',
-    color: '#8b5cf6', bg: '#f5f3ff', border: '#ddd6fe',
+    tone: 'violet',
   },
   {
     icon: Network,
     title: 'Upgrade Planning & Inclusion',
     detail: 'EIPs that pass technical review can be nominated for inclusion in a network upgrade. This process follows the formal inclusion stages defined by EIP-7723 (see below). Client teams must agree on which EIPs to include and implement them before a devnet is deployed for testing. A series of devnets, public testnets, and monitoring periods precede mainnet activation. ECH Institute coordinates upgrade communication — from initial CFI nomination through post-mainnet confirmation — ensuring the entire community stays informed.',
-    color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0',
+    tone: 'success',
   },
   {
     icon: Cpu,
     title: 'Mainnet Activation & Post-Deployment',
     detail: 'Once all client teams have implemented and tested the upgrade, mainnet activation is scheduled at a specific block number or timestamp. The upgrade activates simultaneously across all Ethereum clients. ECH Institute monitors post-deployment metrics and publishes upgrade summaries for the community. Historical documentation of every Ethereum upgrade since Frontier (2015) is preserved in the ethereum/pm GitHub repository.',
-    color: '#d97706', bg: '#fffbeb', border: '#fde68a',
+    tone: 'warning',
   },
 ];
 
@@ -63,7 +65,7 @@ const upgradeLcStages = [
     stage: 'Proposed for Inclusion',
     abbr: 'PFI',
     icon: Lightbulb,
-    color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb',
+    tone: 'neutral',
     description: 'An EIP author or community member nominates a finalized EIP for consideration in an upcoming network upgrade. The nomination is made publicly, typically in the relevant ACD meeting issue on GitHub or on Ethereum Magicians.',
     actions: [
       'Community or author nominates EIP on GitHub',
@@ -77,7 +79,7 @@ const upgradeLcStages = [
     stage: 'Considered for Inclusion',
     abbr: 'CFI',
     icon: AlertCircle,
-    color: '#f59e0b', bg: '#fffbeb', border: '#fde68a',
+    tone: 'warning',
     description: 'Client teams signal that an EIP is being actively reviewed for potential inclusion. CFI is an informal signal — it does not guarantee inclusion but indicates that client teams are evaluating the EIP seriously and may implement it.',
     actions: [
       'Client teams discuss EIP in ACD calls',
@@ -91,7 +93,7 @@ const upgradeLcStages = [
     stage: 'Scheduled for Inclusion',
     abbr: 'SFI',
     icon: Clock,
-    color: '#8b5cf6', bg: '#f5f3ff', border: '#ddd6fe',
+    tone: 'violet',
     description: 'Client teams have formally agreed that the EIP will be included in a specific named upgrade. All major clients must commit to implementing the EIP before it reaches SFI status. This is the last decision gate before testnet deployment.',
     actions: [
       'All major clients commit to implementation',
@@ -105,7 +107,7 @@ const upgradeLcStages = [
     stage: 'Included in Network Upgrade',
     abbr: 'INU',
     icon: CheckCircle2,
-    color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0',
+    tone: 'success',
     description: 'The EIP is part of the finalized, named network upgrade and will activate on Ethereum mainnet. All clients have implemented and tested it on public testnets. The mainnet activation block or timestamp has been set. No further community decisions are required.',
     actions: [
       'Public testnet activation confirmed',
@@ -122,7 +124,7 @@ const govMattersItems = [
   {
     icon: TrendingUp,
     title: 'Improves Decision Quality',
-    color: '#3b82f6', bg: '#eff6ff',
+    tone: 'info',
     desc: 'When the governance process is clearly documented and publicly observable, more stakeholders participate in review. More reviewers catch more edge cases, spot implementation risks, and surface use cases that authors may have missed. This diversity of review makes the resulting EIPs and upgrades more robust and battle-tested before they reach mainnet.',
     bullets: [
       'More reviewers catch more edge cases and bugs',
@@ -134,7 +136,7 @@ const govMattersItems = [
   {
     icon: Zap,
     title: 'Reduces Coordination Overhead',
-    color: '#10b981', bg: '#f0fdf4',
+    tone: 'success',
     desc: 'Without clear governance processes, every upgrade requires renegotiating the same fundamental questions: who decides, how do we signal readiness, when does testing happen, and how do we communicate to users? Clear processes like the EIP lifecycle and EIP-7723 inclusion stages eliminate this overhead. ECH Institute\'s documentation and coordination work means that participants don\'t need to reinvent the process every cycle.',
     bullets: [
       'Standardized stages (EIP-7723) remove ambiguity',
@@ -146,7 +148,7 @@ const govMattersItems = [
   {
     icon: Globe,
     title: 'Enables Broader Participation',
-    color: '#8b5cf6', bg: '#f5f3ff',
+    tone: 'violet',
     desc: 'If governance processes are opaque or undocumented, only insiders with social connections can meaningfully participate. Every meeting note published, every EIP explained in plain language, and every office hour opened to the public is a direct investment in broader participation. ECH Institute\'s educational content and coordination infrastructure specifically exist to lower this barrier for contributors worldwide.',
     bullets: [
       'Open documentation lowers the knowledge barrier',
@@ -166,7 +168,7 @@ const exploreLinks = [
     desc: 'The primary public forum for EIP proposals, technical discussions, and governance conversations. Forum threads are the birthplace of most EIPs and run alongside the formal GitHub review process.',
     href: 'https://ethereum-magicians.org/',
     tag: 'Active Forum',
-    color: '#8b5cf6', bg: '#f5f3ff',
+    tone: 'violet',
     external: true,
   },
   {
@@ -176,7 +178,7 @@ const exploreLinks = [
     desc: 'All Core Devs call notes, EIPIP meeting summaries, and upgrade planning documentation published by ECH Institute. The complete, searchable archive of Ethereum protocol governance decisions.',
     href: 'https://github.com/ethereum/pm',
     tag: 'Public Archive',
-    color: '#6b7280', bg: '#f9fafb',
+    tone: 'neutral',
     external: true,
   },
   {
@@ -186,7 +188,7 @@ const exploreLinks = [
     desc: 'ECH Institute\'s open EIPIP office hours connect community members with EIP editors and core developers. Agendas are published in advance on GitHub. Anyone can attend and ask questions.',
     href: 'https://github.com/ethereum-cat-herders/EIPIP/issues',
     tag: 'Open to All',
-    color: '#10b981', bg: '#f0fdf4',
+    tone: 'success',
     external: true,
   },
   {
@@ -196,7 +198,7 @@ const exploreLinks = [
     desc: 'Visual real-time tracker showing which EIPs are Proposed, Considered, Scheduled, or Included in active Ethereum network upgrades. Community-maintained and updated continuously.',
     href: 'https://forkcast.org',
     tag: 'Live Tracker',
-    color: '#d97706', bg: '#fffbeb',
+    tone: 'warning',
     external: true,
   },
   {
@@ -206,7 +208,7 @@ const exploreLinks = [
     desc: 'The Ethereum Foundation\'s Protocol Support dashboard covering EIP status, client implementation tracking, and upgrade planning across the Ethereum protocol layer.',
     href: 'https://ps.ethereum.foundation',
     tag: 'EF Resource',
-    color: '#3b82f6', bg: '#eff6ff',
+    tone: 'info',
     external: true,
   },
   {
@@ -216,7 +218,7 @@ const exploreLinks = [
     desc: 'The official GitHub repository where all Ethereum Improvement Proposals live. Browse active drafts, read finalized standards, and track the complete EIP review history.',
     href: 'https://github.com/ethereum/EIPs',
     tag: 'GitHub Repo',
-    color: '#6b7280', bg: '#f9fafb',
+    tone: 'neutral',
     external: true,
   },
 ];
@@ -287,19 +289,19 @@ const governanceItems = [
 
 // ─── EIP Process Steps ────────────────────────────────────────────────────────
 const eipStages = [
-  { stage: 'Idea', icon: Lightbulb, color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb', description: 'A concept is informally discussed on Ethereum Magicians or Discord to gauge community interest and feasibility before any formal document is written.', actions: ['Post on Ethereum Magicians', 'Gauge community interest', 'Refine the core idea'] },
-  { stage: 'Draft', icon: FileText, color: '#3b82f6', bg: '#eff6ff', border: '#bfdbfe', description: 'A formal EIP document is written following the EIP-1 template. It is submitted as a pull request to the ethereum/EIPs GitHub repository and assigned an EIP number.', actions: ['Write EIP using the EIP-1 template', 'Submit PR to ethereum/EIPs', 'Assigned an EIP number by editors'] },
-  { stage: 'Review', icon: AlertCircle, color: '#f59e0b', bg: '#fffbeb', border: '#fde68a', description: 'EIP editors and the core developer community review the proposal for technical soundness, specification clarity, and backward compatibility. Revisions are made in response to feedback.', actions: ['EIP editor format review', 'Core developer technical review', 'Revisions based on feedback'] },
-  { stage: 'Last Call', icon: Clock, color: '#8b5cf6', bg: '#f5f3ff', border: '#ddd6fe', description: 'A final 14-day public comment window for all stakeholders. The EIP is considered complete unless critical issues are raised that require it to return to Review status.', actions: ['14-day public comment window', 'Broadcast to wider community', 'Final chance to raise blocking issues'] },
-  { stage: 'Final', icon: CheckCircle2, color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0', description: 'The EIP is accepted as an official Ethereum standard. From here it may be considered for inclusion in an upcoming network upgrade, or may stand alone as an informational or interface standard.', actions: ['Accepted as official standard', 'Considered for network upgrade inclusion', 'Becomes permanent reference spec'] },
-  { stage: 'Deployed', icon: Cpu, color: '#d97706', bg: '#fffbeb', border: '#fde68a', description: 'The EIP has been activated on Ethereum mainnet as part of a network upgrade. It is now enforced at the protocol level across all Ethereum clients.', actions: ['Mainnet activation via upgrade', 'Enforced by all client implementations', 'Documentation finalized and archived'] },
+  { stage: 'Idea', icon: Lightbulb, tone: 'neutral', description: 'A concept is informally discussed on Ethereum Magicians or Discord to gauge community interest and feasibility before any formal document is written.', actions: ['Post on Ethereum Magicians', 'Gauge community interest', 'Refine the core idea'] },
+  { stage: 'Draft', icon: FileText, tone: 'info', description: 'A formal EIP document is written following the EIP-1 template. It is submitted as a pull request to the ethereum/EIPs GitHub repository and assigned an EIP number.', actions: ['Write EIP using the EIP-1 template', 'Submit PR to ethereum/EIPs', 'Assigned an EIP number by editors'] },
+  { stage: 'Review', icon: AlertCircle, tone: 'warning', description: 'EIP editors and the core developer community review the proposal for technical soundness, specification clarity, and backward compatibility. Revisions are made in response to feedback.', actions: ['EIP editor format review', 'Core developer technical review', 'Revisions based on feedback'] },
+  { stage: 'Last Call', icon: Clock, tone: 'violet', description: 'A final 14-day public comment window for all stakeholders. The EIP is considered complete unless critical issues are raised that require it to return to Review status.', actions: ['14-day public comment window', 'Broadcast to wider community', 'Final chance to raise blocking issues'] },
+  { stage: 'Final', icon: CheckCircle2, tone: 'success', description: 'The EIP is accepted as an official Ethereum standard. From here it may be considered for inclusion in an upcoming network upgrade, or may stand alone as an informational or interface standard.', actions: ['Accepted as official standard', 'Considered for network upgrade inclusion', 'Becomes permanent reference spec'] },
+  { stage: 'Deployed', icon: Cpu, tone: 'warning', description: 'The EIP has been activated on Ethereum mainnet as part of a network upgrade. It is now enforced at the protocol level across all Ethereum clients.', actions: ['Mainnet activation via upgrade', 'Enforced by all client implementations', 'Documentation finalized and archived'] },
 ];
 
 // ─── EIP status types (non-standards track) ──────────────────────────────────
 const eipTypes = [
-  { type: 'Standards Track', color: '#3b82f6', bg: '#eff6ff', desc: 'EIPs that change the Ethereum protocol itself including Core, Networking, Interface, and ERC (token/application) changes.' },
-  { type: 'Meta EIP', color: '#8b5cf6', bg: '#f5f3ff', desc: 'Describes a process or proposes a change to the EIP process itself. Not changes to the protocol.' },
-  { type: 'Informational', color: '#6b7280', bg: '#f9fafb', desc: 'Provides general guidelines or information to the Ethereum community. No binding changes to the protocol.' },
+  { type: 'Standards Track', tone: 'info', desc: 'EIPs that change the Ethereum protocol itself including Core, Networking, Interface, and ERC (token/application) changes.' },
+  { type: 'Meta EIP', tone: 'violet', desc: 'Describes a process or proposes a change to the EIP process itself. Not changes to the protocol.' },
+  { type: 'Informational', tone: 'neutral', desc: 'Provides general guidelines or information to the Ethereum community. No binding changes to the protocol.' },
 ];
 
 // ─── Network Upgrades ─────────────────────────────────────────────────────────
@@ -519,10 +521,10 @@ export default function HomesteadPage() {
   ) => setter(prev => ({ ...prev, [i]: !prev[i] }));
 
   return (
-    <main className="min-h-screen bg-white pt-16 lg:pt-24">
+    <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24 text-[#FBFBFB]">
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section id="overview" className="py-8 px-4 md:py-16 md:px-8 bg-white border-b border-black">
+      <section id="overview" className="py-8 px-4 md:py-16 md:px-8 border-b border-[#262626]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center gap-4 text-center max-w-3xl mx-auto">
             <h1 className="global-hero-title">Homestead</h1>
@@ -545,7 +547,7 @@ export default function HomesteadPage() {
       </section>
 
       {/* ── Stats ────────────────────────────────────────────────────────── */}
-      <section className="border-b border-black bg-[#f5a51d] py-6 px-4 md:px-8">
+      <section className="border-b border-[#262626] py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -567,24 +569,7 @@ export default function HomesteadPage() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 flex gap-8 items-start">
 
         {/* Sticky Left Nav */}
-        <aside className="hidden lg:block w-52 xl:w-60 flex-shrink-0 sticky top-28 self-start">
-          <p className="text-xs font-bold uppercase tracking-widest text-black mb-3 px-2">On This Page</p>
-          <nav className="flex flex-col gap-0.5">
-            {NAV_SECTIONS.map(s => (
-              <button
-                key={s.id}
-                onClick={() => scrollToSection(s.id)}
-                className={`text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 border-l-2 ${activeSection === s.id
-                    ? 'bg-black text-black font-bold'
-                    : 'text-black hover:text-black hover:bg-[#f5a51d] border-transparent'
-                  }`}
-                style={activeSection === s.id ? { borderLeftColor: 'var(--color-yellow)' } : {}}
-              >
-                {s.label}
-              </button>
-            ))}
-          </nav>
-        </aside>
+                <StickySideNav sections={NAV_SECTIONS} activeSection={activeSection} onSectionClick={scrollToSection} />
 
         {/* Main content */}
         <div className="flex-1 min-w-0 flex flex-col gap-16">
@@ -596,7 +581,7 @@ export default function HomesteadPage() {
               <span className="proplay-icon-container h-8 w-8 flex-shrink-0">
                 <Home className="h-4 w-4" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Governance Hub</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Governance Hub</p>
             </div>
             <h2 className="global-section-title mb-1">How Ethereum Governance Works</h2>
             <p className="global-body-lg mb-2">
@@ -605,13 +590,13 @@ export default function HomesteadPage() {
             </p>
 
             {/* Intro quote */}
-            <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50 mb-8">
+            <div className="global-card global-border-yellow mb-8">
               <div className="text-5xl font-black leading-none text-brand-yellow opacity-35">&ldquo;</div>
-              <blockquote className="text-lg sm:text-xl font-extrabold text-black leading-snug -mt-4 mb-2">
+              <blockquote className="text-lg sm:text-xl font-extrabold text-[#FBFBFB] leading-snug -mt-4 mb-2">
                 Ethereum has no CEO, no single engineering team, and no controlling shareholder.
                 Its governance is the process — and the process is open to everyone.
               </blockquote>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#f5a51d]">ECH Institute — Homestead</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-yellow">ECH Institute — Homestead</p>
             </div>
 
             {/* ── How It Works: accordion steps ── */}
@@ -626,28 +611,30 @@ export default function HomesteadPage() {
                   <div key={i} className="relative flex gap-4 items-start">
                     {/* Step circle */}
                     <div
-                      className="proplay-icon-container h-10 w-10 shrink-0 mt-1 !rounded-full !border-2"
-                      style={{ '--dynamic-bg': step.bg, '--dynamic-accent': step.color } as React.CSSProperties}
+                      data-tone={step.tone}
+                      className="tone-icon h-10 w-10 shrink-0 mt-1 rounded-full border-2 flex items-center justify-center"
                     >
                       <step.icon size={17} />
                     </div>
                     {/* Card */}
                     <div className="flex-1 global-card mb-0 p-0 overflow-hidden">
                       <button
-                        className="w-full flex items-center gap-3 p-4 text-left hover:bg-[#f5a51d] transition-colors"
+                        className="theme-hover-surface w-full flex items-center gap-3 p-4 text-left transition-colors"
                         onClick={() => toggle(setOpenGovHow, i)}
                       >
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-0.5">
-                            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: step.color }}>Step {i + 1}</span>
+                            <span data-tone={step.tone} className="tone-link text-xs font-bold uppercase tracking-widest">Step {i + 1}</span>
                           </div>
-                          <div className="font-bold text-base text-black">{step.title}</div>
+                          <div className="font-bold text-base text-[#FBFBFB]">{step.title}</div>
                         </div>
-                        <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
-                          style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                        <ChevronDown
+                          size={16}
+                          className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                        />
                       </button>
                       {isOpen && (
-                        <div className="border-t border-black px-4 pb-4 pt-3">
+                        <div className="border-t border-[#262626] px-4 pb-4 pt-3">
                           <p className="global-body text-sm mb-3 leading-relaxed">{step.detail}</p>
                         </div>
                       )}
@@ -662,7 +649,7 @@ export default function HomesteadPage() {
               <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
                 <GitBranch className="h-4 w-4" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">EIP-7723 Inclusion Stages</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">EIP-7723 Inclusion Stages</p>
             </div>
             <h3 className="global-card-title mb-2">Upgrade Lifecycle</h3>
             <p className="global-body mb-5">
@@ -676,16 +663,16 @@ export default function HomesteadPage() {
               {upgradeLcStages.map((s, i) => (
                 <div key={i} className="relative flex gap-4 items-start">
                   <div
-                    className="proplay-icon-container h-10 w-10 shrink-0 mt-1 !rounded-full !border-2"
-                    style={{ '--dynamic-bg': s.bg, '--dynamic-accent': s.color } as React.CSSProperties}
+                    data-tone={s.tone}
+                    className="tone-icon h-10 w-10 shrink-0 mt-1 rounded-full border-2 flex items-center justify-center"
                   >
                     <s.icon size={17} />
                   </div>
                   <div className="flex-1 global-card mb-0 hover:border-amber-400 transition-colors">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
                       <span
-                        className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border"
-                        style={{ color: s.color, borderColor: s.border, background: s.bg }}
+                        data-tone={s.tone}
+                        className="tone-badge text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border"
                       >
                         {s.abbr}
                       </span>
@@ -694,10 +681,10 @@ export default function HomesteadPage() {
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-black bg-[#f5a51d] border border-black rounded-full px-3 py-1">
+                        <span key={j} data-tone={s.tone} className="tone-inline-chip flex items-center gap-1.5 text-xs font-medium rounded-full px-3 py-1">
                           <div
-                            className="proplay-icon-container h-4 w-4 !rounded-full shrink-0"
-                            style={{ '--dynamic-bg': s.bg, '--dynamic-accent': s.color } as React.CSSProperties}
+                            data-tone={s.tone}
+                            className="tone-icon h-4 w-4 rounded-full shrink-0 flex items-center justify-center"
                           >
                             <CheckCircle2 size={10} />
                           </div>
@@ -705,12 +692,9 @@ export default function HomesteadPage() {
                         </span>
                       ))}
                     </div>
-                    <div
-                      className="flex items-start gap-2 text-xs rounded-lg px-3 py-2.5 border"
-                      style={{ background: s.bg, borderColor: s.border }}
-                    >
-                      <Award size={12} style={{ color: s.color }} className="shrink-0 mt-0.5" />
-                      <span style={{ color: s.color }} className="font-semibold leading-snug">
+                    <div data-tone={s.tone} className="tone-card flex items-start gap-2 text-xs rounded-lg px-3 py-2.5 border">
+                      <Award size={12} className="tone-link shrink-0 mt-0.5" />
+                      <span className="tone-link font-semibold leading-snug">
                         <strong>ECH Role:</strong> {s.echRole}
                       </span>
                     </div>
@@ -720,7 +704,7 @@ export default function HomesteadPage() {
             </div>
 
             {/* Forkcast callout */}
-            <div className="global-card global-border-yellow bg-[#f5a51d]/30 flex flex-col sm:flex-row sm:items-center gap-4 mb-10">
+            <div className="global-card global-border-yellow flex flex-col sm:flex-row sm:items-center gap-4 mb-10">
               <div className="proplay-icon-container h-11 w-11 flex-shrink-0">
                 <TrendingUp className="h-5 w-5" />
               </div>
@@ -728,7 +712,7 @@ export default function HomesteadPage() {
                 <h4 className="global-card-title mb-0.5">Track the Upgrade Lifecycle Live</h4>
                 <p className="global-body text-sm">Forkcast.org shows real-time PFI/CFI/SFI/INU status for all active EIPs across upcoming Ethereum upgrades.</p>
               </div>
-              <Link href="https://forkcast.org" target="_blank" className="shrink-0 inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg border-2 transition-all hover:opacity-80" style={{ color: 'var(--color-yellow)', borderColor: 'var(--color-yellow)', background: 'white' }}>
+              <Link href="https://forkcast.org" target="_blank" className="shrink-0 inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg border-2 transition-all hover:opacity-80 text-brand-yellow border-current bg-transparent">
                 Forkcast.org <ExternalLink size={13} />
               </Link>
             </div>
@@ -738,7 +722,7 @@ export default function HomesteadPage() {
               <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
                 <Target className="h-4 w-4" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Impact</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Impact</p>
             </div>
             <h3 className="global-card-title mb-2">Why Clear Governance Matters</h3>
             <p className="global-body mb-5">Clear, documented governance processes have three concrete effects on the Ethereum ecosystem:</p>
@@ -749,35 +733,37 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
                       onClick={() => toggle(setOpenMatters, i)}
                     >
                       <div
-                        className="proplay-icon-container h-10 w-10 shrink-0"
-                        style={{ '--dynamic-bg': item.bg, '--dynamic-accent': item.color } as React.CSSProperties}
+                        data-tone={item.tone}
+                        className="tone-icon h-10 w-10 shrink-0 rounded-xl flex items-center justify-center"
                       >
                         <item.icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-black">{item.title}</div>
+                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5 line-clamp-1">{item.desc.slice(0, 80)}…</p>
                       </div>
-                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                      <ChevronDown
+                        size={16}
+                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                      />
                     </button>
                     {isOpen && (
-                      <div className="border-t border-black px-4 pb-4 pt-3">
+                      <div className="border-t border-[#262626] px-4 pb-4 pt-3">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.desc}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {item.bullets.map((b, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <div
-                                className="proplay-icon-container h-5 w-5 !rounded-full shrink-0 mt-0.5"
-                                style={{ '--dynamic-bg': item.bg, '--dynamic-accent': item.color } as React.CSSProperties}
+                                data-tone={item.tone}
+                                className="tone-icon h-5 w-5 rounded-full shrink-0 mt-0.5 flex items-center justify-center"
                               >
                                 <CheckCircle2 size={11} />
                               </div>
-                              <span className="text-sm text-black leading-snug">{b}</span>
+                              <span className="text-sm text-[#FBFBFB] leading-snug">{b}</span>
                             </div>
                           ))}
                         </div>
@@ -793,7 +779,7 @@ export default function HomesteadPage() {
               <span className="proplay-icon-container h-7 w-7 flex-shrink-0">
                 <ChevronRight className="h-4 w-4" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Explore</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Explore</p>
             </div>
             <h3 className="global-card-title mb-2">Explore Governance Resources</h3>
             <p className="global-body mb-5">Six essential resources for following, participating in, and contributing to Ethereum governance:</p>
@@ -804,33 +790,33 @@ export default function HomesteadPage() {
                   key={i}
                   href={link.href}
                   target="_blank"
-                  className="group relative flex flex-col rounded-xl border border-black bg-white overflow-hidden no-underline text-inherit hover:border-transparent hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-200 hover:-translate-y-1"
+                  className="group relative flex flex-col rounded-xl border border-[#262626] bg-[#1B1B1E] overflow-hidden no-underline text-inherit hover:border-transparent hover:shadow-none transition-all duration-200 hover:-translate-y-1"
                 >
                   {/* Top accent bar */}
-                  <div className="h-1 w-full" style={{ background: link.color }} />
+                  <div data-tone={link.tone} className="tone-accent-bar h-1 w-full" />
                   <div className="flex flex-col flex-1 gap-3 p-4">
                     <div className="flex items-center justify-between">
                       <span
-                        className="flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110"
-                        style={{ background: link.bg }}
+                        data-tone={link.tone}
+                        className="tone-icon flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110"
                       >
-                        <link.icon className="h-5 w-5" style={{ color: link.color }} />
+                        <link.icon className="h-5 w-5" />
                       </span>
                       <span
-                        className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full"
-                        style={{ color: link.color, background: link.bg }}
+                        data-tone={link.tone}
+                        className="tone-badge text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full"
                       >
                         {link.tag}
                       </span>
                     </div>
                     <div>
-                      <h4 className="font-extrabold text-base text-black leading-snug">{link.title}</h4>
-                      <p className="text-xs font-semibold" style={{ color: link.color }}>{link.subtitle}</p>
+                      <h4 className="font-extrabold text-base text-[#FBFBFB] leading-snug">{link.title}</h4>
+                      <p data-tone={link.tone} className="tone-link text-xs font-semibold">{link.subtitle}</p>
                     </div>
-                    <p className="text-sm text-black leading-relaxed flex-1">{link.desc}</p>
+                    <p className="text-sm text-[#FBFBFB]/80 leading-relaxed flex-1">{link.desc}</p>
                     <div
-                      className="flex items-center gap-1.5 pt-2 border-t border-black text-sm font-bold transition-all duration-150 group-hover:gap-2"
-                      style={{ color: link.color }}
+                      data-tone={link.tone}
+                      className="tone-link flex items-center gap-1.5 pt-2 border-t border-[#262626] text-sm font-bold transition-all duration-150 group-hover:gap-2"
                     >
                       Explore <ExternalLink size={12} />
                     </div>
@@ -859,28 +845,30 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
                       onClick={() => toggle(setOpenGov, i)}
                     >
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
                         <item.icon className="h-5 w-5 global-icon-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-black">{item.title}</div>
+                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
-                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                      <ChevronDown
+                        size={16}
+                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                      />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-black px-4 pb-4 pt-4">
+                      <div className="border-t border-[#262626] px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-black">{pt}</span>
+                              <span className="text-sm text-[#FBFBFB]">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -888,8 +876,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
-                                style={{ color: 'var(--color-yellow)' }}>
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline text-brand-yellow">
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
                             ))}
@@ -903,7 +890,7 @@ export default function HomesteadPage() {
             </div>
 
             {/* Key links callout */}
-            <div className="global-card global-border-yellow bg-[#f5a51d]/30">
+            <div className="global-card global-border-yellow">
               <div className="flex items-center gap-3 mb-3">
                 <TrendingUp className="h-5 w-5 global-icon-yellow shrink-0" />
                 <h3 className="global-card-title mb-0">Track Ethereum Governance Live</h3>
@@ -913,18 +900,18 @@ export default function HomesteadPage() {
                 <Link href="https://forkcast.org" target="_blank"
                   className="global-card flex flex-col gap-2 no-underline text-inherit hover:border-amber-400 transition-colors group">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm text-black">Forkcast.org</span>
-                    <ExternalLink size={13} className="text-black group-hover:text-amber-400 transition-colors" />
+                    <span className="font-bold text-sm text-[#FBFBFB]">Forkcast.org</span>
+                    <ExternalLink size={13} className="text-[#FBFBFB] group-hover:text-amber-400 transition-colors" />
                   </div>
                   <p className="global-body text-xs">Visual tracker for EIP inclusion stages across Ethereum upgrades. Maintained by the community.</p>
                 </Link>
                 <Link href="https://ps.ethereum.foundation" target="_blank"
                   className="global-card flex flex-col gap-2 no-underline text-inherit hover:border-amber-400 transition-colors group">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm text-black">Protocol Support Dashboard</span>
-                    <ExternalLink size={13} className="text-black group-hover:text-amber-400 transition-colors" />
+                    <span className="font-bold text-sm text-[#FBFBFB]">Protocol Support Dashboard</span>
+                    <ExternalLink size={13} className="text-[#FBFBFB] group-hover:text-amber-400 transition-colors" />
                   </div>
-                  <p className="global-body text-xs">Ethereum Foundation's Protocol Support page covering EIPs, client coordination, and upgrade tracking.</p>
+                  <p className="global-body text-xs">Ethereum Foundation&apos;s Protocol Support page covering EIPs, client coordination, and upgrade tracking.</p>
                 </Link>
               </div>
             </div>
@@ -933,22 +920,21 @@ export default function HomesteadPage() {
           {/* ── Section 2: The EIP Process (Lifecycle) ───────────────────── */}
           <section id="eip-process">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
                 <GitBranch className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 2</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Section 2</p>
             </div>
             <h2 className="global-section-title mb-2">The EIP Process</h2>
             <p className="global-body-lg mb-5">
-              What EIPs are, how they're structured, and the lifecycle every proposal passes through from concept to mainnet deployment.
+              What EIPs are, how they&apos;re structured, and the lifecycle every proposal passes through from concept to mainnet deployment.
             </p>
 
             {/* EIP Types */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
               {eipTypes.map((t, i) => (
                 <div key={i} className="global-card hover:border-amber-400 transition-colors">
-                  <span className="inline-block px-2.5 py-1 rounded-full text-xs font-bold mb-2"
-                    style={{ background: t.bg, color: t.color }}>{t.type}</span>
+                  <span data-tone={t.tone} className="tone-badge inline-block px-2.5 py-1 rounded-full text-xs font-bold mb-2">{t.type}</span>
                   <p className="global-body text-sm">{t.desc}</p>
                 </div>
               ))}
@@ -960,20 +946,19 @@ export default function HomesteadPage() {
               <div className="absolute left-5 top-10 bottom-10 w-[2px] bg-gradient-to-b from-gray-200 via-amber-200 to-gray-200 rounded-full hidden sm:block" />
               {eipStages.map((s, i) => (
                 <div key={s.stage} className="relative flex gap-4 items-start">
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 mt-1"
-                    style={{ background: s.bg, borderColor: s.border }}>
-                    <s.icon size={17} style={{ color: s.color }} />
+                  <div data-tone={s.tone} className="tone-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 mt-1">
+                    <s.icon size={17} />
                   </div>
                   <div className="flex-1 global-card mb-0 hover:border-amber-400 transition-colors">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="text-xs font-bold uppercase tracking-widest" style={{ color: s.color }}>Stage {i + 1}</span>
-                      <h4 className="global-card-title mb-0">{s.stage}</h4>
+                      <span data-tone={s.tone} className="tone-link text-xs font-bold uppercase tracking-widest">Stage {i + 1}</span>
+                      <h4 className="global-card-title mb-0 text-[#FBFBFB]">{s.stage}</h4>
                     </div>
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-black bg-[#f5a51d] border border-black rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} style={{ color: s.color }} /> {a}
+                        <span key={j} data-tone={s.tone} className="tone-inline-chip flex items-center gap-1.5 text-xs font-medium rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="tone-link" /> {a}
                         </span>
                       ))}
                     </div>
@@ -986,10 +971,10 @@ export default function HomesteadPage() {
           {/* ── Section 3: Network Upgrades ──────────────────────────────── */}
           <section id="network-upgrades">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
                 <Layers className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 3</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Section 3</p>
             </div>
             <h2 className="global-section-title mb-2">Network Upgrades</h2>
             <p className="global-body-lg mb-5">
@@ -1002,22 +987,24 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
                       onClick={() => toggle(setOpenUpgrades, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B1B1E] shrink-0">
                         <item.icon className="h-5 w-5 global-icon-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-black">{item.title}</div>
+                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
-                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                      <ChevronDown
+                        size={16}
+                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                      />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-black px-4 pb-4 pt-4">
+                      <div className="border-t border-[#262626] px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
@@ -1031,8 +1018,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
-                                style={{ color: 'var(--color-yellow)' }}>
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline text-brand-yellow">
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
                             ))}
@@ -1049,10 +1035,10 @@ export default function HomesteadPage() {
           {/* ── Section 4: Role of ECH Institute ────────────────────────── */}
           <section id="ech-role">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
                 <Award className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 4</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Section 4</p>
             </div>
             <h2 className="global-section-title mb-2">Role of ECH Institute</h2>
             <p className="global-body-lg mb-5">
@@ -1065,22 +1051,24 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
                       onClick={() => toggle(setOpenEch, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B1B1E] shrink-0">
                         <item.icon className="h-5 w-5 global-icon-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-black">{item.title}</div>
+                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
-                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                      <ChevronDown
+                        size={16}
+                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                      />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-black px-4 pb-4 pt-4">
+                      <div className="border-t border-[#262626] px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
@@ -1094,8 +1082,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline"
-                                style={{ color: 'var(--color-yellow)' }}>
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline text-brand-yellow">
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
                             ))}
@@ -1112,14 +1099,14 @@ export default function HomesteadPage() {
           {/* ── Section 5: Why It Matters ────────────────────────────────── */}
           <section id="why-it-matters">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
                 <Target className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 5</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Section 5</p>
             </div>
             <h2 className="global-section-title mb-2">Why This Matters</h2>
             <p className="global-body-lg mb-5">
-              Ethereum's decentralization is not self-sustaining. It requires active governance infrastructure, clear processes, and broad participation.
+              Ethereum&apos;s decentralization is not self-sustaining. It requires active governance infrastructure, clear processes, and broad participation.
             </p>
 
             <div className="flex flex-col gap-3">
@@ -1128,28 +1115,30 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[#f5a51d] transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
                       onClick={() => toggle(setOpenWhy, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B1B1E] shrink-0">
                         <item.icon className="h-5 w-5 global-icon-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-black">{item.title}</div>
+                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
-                      <ChevronDown size={16} className="text-black shrink-0 transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                      <ChevronDown
+                        size={16}
+                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                      />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-black px-4 pb-4 pt-4">
+                      <div className="border-t border-[#262626] px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-black">{pt}</span>
+                              <span className="text-sm text-[#FBFBFB]">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -1164,10 +1153,10 @@ export default function HomesteadPage() {
           {/* ── Section 6: Get Involved ──────────────────────────────────── */}
           <section id="get-involved">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
                 <Users className="h-4 w-4 global-icon-yellow" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Take the Next Step</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Take the Next Step</p>
             </div>
             <h2 className="global-section-title mb-5">Get Involved in Governance</h2>
 
@@ -1179,22 +1168,21 @@ export default function HomesteadPage() {
               ].map((card, i) => (
                 <Link key={i} href={card.link} target={card.external ? '_blank' : '_self'}
                   className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-amber-400 transition-colors">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B1B1E] shrink-0">
                     <card.icon className="h-5 w-5 global-icon-yellow" />
                   </div>
                   <div className="flex-1">
                     <h3 className="global-card-title mb-1">{card.title}</h3>
                     <p className="global-body text-sm">{card.desc}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-black"
-                    style={{ color: 'var(--color-yellow)' }}>
+                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-[#262626] text-brand-yellow">
                     {card.cta} <ArrowRight size={13} />
                   </div>
                 </Link>
               ))}
             </div>
 
-            <div className="global-card global-border-yellow text-center bg-gradient-to-br from-white to-amber-50">
+            <div className="global-card global-border-yellow text-center">
               <p className="global-body-lg mb-2"><strong>Participation &amp; Ecosystem Contribution</strong></p>
               <p className="global-body-lg mb-6">
                 ECH Institute is your starting point for understanding and contributing to Ethereum governance. Join the community, attend office hours, or simply start reading.
@@ -1203,7 +1191,7 @@ export default function HomesteadPage() {
                 <Link href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="btn btn-primary-white">
                   Join our Discord
                 </Link>
-                <Link href={ROUTES.getInvolved} className="btn btn-outline">
+                <Link href={ROUTES.getInvolved} className="btn btn-outline text-[#FBFBFB] border-[#262626]">
                   Get Involved
                 </Link>
               </div>
@@ -1215,3 +1203,5 @@ export default function HomesteadPage() {
     </main>
   );
 }
+
+

@@ -11,11 +11,11 @@ const fusaka = PODCAST_SERIES_PLAYLISTS.fusakaFiles;
 export default function FusakaFilesPage() {
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
-      <div className="border-b border-black bg-[#f5a51d]">
+      <div className="border-b border-black bg-[#F5A51D]">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 md:px-8">
           <Link
             href="/podcast"
-            className="mb-6 inline-flex items-center gap-2 text-black transition-colors hover:text-[#f5a51d] font-medium text-sm uppercase tracking-wider"
+            className="mb-6 inline-flex items-center gap-2 text-black transition-colors hover:text-[#F5A51D] font-medium text-sm uppercase tracking-wider"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Media Hub
           </Link>
@@ -132,3 +132,4 @@ export default function FusakaFilesPage() {
     </main>
   );
 }
+

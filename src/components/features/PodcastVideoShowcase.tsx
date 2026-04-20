@@ -90,7 +90,7 @@ export function HoverPreviewMedia({
           href={watchUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={`group/thumb relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-inset ${onTap ? 'pointer-events-none' : ''}`}
+          className={`group/thumb relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-brand)] focus-visible:ring-inset ${onTap ? 'pointer-events-none' : ''}`}
           tabIndex={onTap ? -1 : 0}
           aria-hidden={!!onTap}
         >
@@ -164,7 +164,7 @@ export function PodcastVideoShowcase({
   if (loading) {
     return (
       <div className="grid gap-5 lg:grid-cols-12 lg:gap-6">
-        <div className="animate-pulse overflow-hidden rounded-2xl border border-[#ced2d9] bg-white shadow-lg lg:col-span-7">
+        <div className="animate-pulse overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-white shadow-lg lg:col-span-7">
           <div className="aspect-video bg-gray-200" />
           <div className="space-y-3 p-6">
             <div className="h-3 w-24 rounded bg-gray-200" />
@@ -176,7 +176,7 @@ export function PodcastVideoShowcase({
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="flex animate-pulse gap-4 overflow-hidden rounded-xl border border-[#ced2d9] bg-white p-3 shadow-md"
+              className="flex animate-pulse gap-4 overflow-hidden rounded-xl border border-[var(--border-soft)] bg-white p-3 shadow-md"
             >
               <div className="aspect-video w-36 shrink-0 rounded-lg bg-gray-200 sm:w-40" />
               <div className="flex flex-1 flex-col justify-center space-y-2 py-1">
@@ -193,7 +193,7 @@ export function PodcastVideoShowcase({
 
   if (fetchError || videos.length === 0) {
     return (
-      <div className="rounded-2xl border border-[#ced2d9] bg-white p-8 text-center text-gray-600 shadow-md">
+      <div className="rounded-2xl border border-[var(--border-soft)] bg-white p-8 text-center text-gray-600 shadow-md">
         <p className="mb-4">{fetchError ?? 'No videos returned from the feed.'}</p>
         <Link
           href={channelBrowseUrl}
@@ -212,7 +212,7 @@ export function PodcastVideoShowcase({
 
   return (
     <div className="grid min-w-0 gap-5 lg:grid-cols-12 lg:items-stretch lg:gap-6">
-      <article className="group/card flex flex-col overflow-hidden rounded-2xl border border-[#ced2d9] bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)] transition duration-300 hover:border-amber-200/80 hover:shadow-[0_28px_60px_-12px_rgba(245,158,11,0.15)] lg:col-span-7">
+      <article className="group/card flex flex-col overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-white shadow-none transition duration-300 hover:border-amber-200/80 hover:shadow-none lg:col-span-7">
         <div className="relative">
           <div className="absolute left-4 top-4 z-20 flex flex-wrap items-center gap-2">
             <span className="rounded-md bg-zinc-900/85 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-amber-300 backdrop-blur-md">
@@ -237,7 +237,7 @@ export function PodcastVideoShowcase({
             className="aspect-video w-full"
           />
         </div>
-        <div className="flex flex-1 flex-col border-t border-[#ced2d9] bg-white p-5 sm:p-6">
+        <div className="flex flex-1 flex-col border-t border-[var(--border-soft)] bg-white p-5 sm:p-6">
           <h3 className="mb-4 text-lg font-bold leading-snug tracking-tight text-zinc-900 sm:text-xl">
             {featured.title}
           </h3>
@@ -262,7 +262,7 @@ export function PodcastVideoShowcase({
           return (
             <article
               key={video.id}
-              className="group/row flex gap-3 overflow-hidden rounded-xl border border-[#ced2d9] bg-white p-3 shadow-md transition duration-300 hover:border-amber-200/70 hover:shadow-lg sm:gap-4 sm:p-3.5"
+              className="group/row flex gap-3 overflow-hidden rounded-xl border border-[var(--border-soft)] bg-white p-3 shadow-md transition duration-300 hover:border-amber-200/70 hover:shadow-lg sm:gap-4 sm:p-3.5"
             >
               <div className="relative w-[42%] max-w-[200px] shrink-0 sm:w-40">
                 <HoverPreviewMedia
@@ -314,3 +314,4 @@ export function PodcastVideoShowcase({
     </div>
   );
 }
+

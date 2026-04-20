@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
+import { Geist, Geist_Mono, Syne, DM_Sans, Antonio } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
@@ -16,6 +15,24 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900", "1000"],
+});
+
+const antonio = Antonio({
+  variable: "--font-antonio",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -63,10 +80,10 @@ export const metadata: Metadata = {
     siteName: "ECH Institute",
     title: "ECH Institute Ethereum Protocol Governance & Coordination",
     description:
-      "ECH Institute supports Ethereum's protocol governance and coordination as a neutral public good — helping the ecosystem scale responsibly and sustainably.",
+      "Supporting Ethereum's protocol governance and coordination — helping the ecosystem scale responsibly and sustainably.",
     images: [
       {
-        url: "/assets/ech_full_logo.png",
+        url: "/ECH Institute Logo - White.png",
         width: 1200,
         height: 630,
         alt: "ECH Institute Ethereum Protocol Governance & Coordination",
@@ -78,15 +95,13 @@ export const metadata: Metadata = {
     title: "ECH Institute Ethereum Protocol Governance & Coordination",
     description:
       "Supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral 501(c)(3) public good.",
-    images: ["/assets/ech_full_logo.png"],
+    images: ["/ECH Institute Logo - White.png"],
     creator: "@ECHinstitute",
     site: "@ECHinstitute",
   },
   icons: {
-    icon: [
-      { url: "/assets/ech_full_logo.png", type: "image/png" },
-    ],
-    apple: "/assets/ech_full_logo.png",
+    icon: [{ url: "/ECH Institute Logo - White.png", type: "image/png" }],
+    apple: "/ECH Institute Logo - White.png",
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
@@ -104,13 +119,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-          rel="stylesheet"
-        />
         {/* Structured Data — Organization */}
         <script
           type="application/ld+json"
@@ -121,7 +129,7 @@ export default function RootLayout({
               name: "ECH Institute",
               alternateName: "ECH Institute Inc.",
               url: "https://www.echinstitute.org",
-              logo: "https://www.echinstitute.org/assets/ech_full_logo.png",
+              logo: "https://www.echinstitute.org/ECH Institute Logo - White.png",
               description:
                 "ECH Institute is a 501(c)(3) non-profit supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral public good. Founded July 11, 2024.",
               foundingDate: "2024-07-11",
@@ -145,14 +153,9 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${dmSans.variable} ${antonio.variable} antialiased theme-dark dark`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           <Web3Provider>
             <Navigation />
             <main className="w-full">

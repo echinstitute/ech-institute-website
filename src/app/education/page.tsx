@@ -3,14 +3,16 @@
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import {
-  GraduationCap, Play, FileText, BookOpen,
-  ArrowRight, Users, Zap, Star, Award, Globe,
+  Play, FileText, BookOpen,
+  ArrowRight, Users, Zap, Award, Globe,
   ChevronRight, ExternalLink, BookMarked, MessageSquare,
   Calendar, TrendingUp, Shield, Lightbulb, Target, CheckCircle2,
   ChevronDown, Video, GitBranch, AlertCircle,
   Clock, Layers, Network, Cpu, Building2
 } from 'lucide-react';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
+import { cn } from '@/lib/utils';
+import { StickySideNav } from '@/components/ui/StickySideNav';
 
 // ─── Sections for sticky nav ─────────────────────────────────────────────────
 const NAV_SECTIONS = [
@@ -114,32 +116,32 @@ const featuredGuides = [
 // ─── EIP Lifecycle Stages ─────────────────────────────────────────────────────
 const eipStages = [
   {
-    stage: 'Idea', icon: Lightbulb, color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb',
+    stage: 'Idea', icon: Lightbulb, tone: 'neutral',
     description: 'A concept is proposed informally via Ethereum Magicians or Discord. The community discusses feasibility and alignment with Ethereum\'s values.',
     actions: ['Post on Ethereum Magicians', 'Gather early feedback', 'Assess community interest'],
   },
   {
-    stage: 'Draft', icon: FileText, color: '#3b82f6', bg: '#eff6ff', border: '#bfdbfe',
+    stage: 'Draft', icon: FileText, tone: 'info',
     description: 'A formal EIP document is written following EIP-1 standards. It defines motivation, specification, rationale, and backwards compatibility.',
     actions: ['Write EIP using template', 'Submit PR to ethereum/EIPs', 'Assigned an EIP number'],
   },
   {
-    stage: 'Review', icon: AlertCircle, color: '#f59e0b', bg: '#fffbeb', border: '#fde68a',
+    stage: 'Review', icon: AlertCircle, tone: 'brand',
     description: 'EIP editors and the core developer community review the proposal for technical soundness, clarity, and compatibility with the protocol.',
     actions: ['EIP editor review', 'Core dev discussion', 'Technical revisions'],
   },
   {
-    stage: 'Last Call', icon: Clock, color: '#8b5cf6', bg: '#f5f3ff', border: '#ddd6fe',
+    stage: 'Last Call', icon: Clock, tone: 'violet',
     description: 'A final 2-week review window open to all stakeholders. The EIP is considered stable unless critical issues are raised.',
     actions: ['14-day public review', 'Stakeholder feedback', 'Final technical audit'],
   },
   {
-    stage: 'Final', icon: CheckCircle2, color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0',
+    stage: 'Final', icon: CheckCircle2, tone: 'success',
     description: 'The EIP is accepted as a standard. It may be included in a future network upgrade or used as a reference specification.',
     actions: ['Included in upgrade discussion', 'Client team implementation', 'Testnet deployment'],
   },
   {
-    stage: 'Deployed', icon: Cpu, color: '#d97706', bg: '#fffbeb', border: '#fde68a',
+    stage: 'Deployed', icon: Cpu, tone: 'warning',
     description: 'The EIP is live on Ethereum mainnet following a successful network upgrade. It is now enforced at the protocol level across all clients.',
     actions: ['Mainnet activation', 'Post-upgrade monitoring', 'Documentation finalized'],
   },
@@ -188,57 +190,57 @@ const tracks = [
 // ─── Timeline ─────────────────────────────────────────────────────────────────
 const timelineCards = [
   {
-    year: '2024', quarter: 'Q1', icon: Network, iconBg: '#f3f4f6', iconColor: '#4b5563',
-    badge: 'Inception', badgeCls: '#4b5563',
+    year: '2024', quarter: 'Q1', icon: Network, tone: 'neutral',
+    badge: 'Inception', badgeTone: 'neutral',
     title: 'Early Coordination Begins',
     description: 'Initial community coordination efforts for the Dencun upgrade and proto-danksharding (EIP-4844) communication.',
     highlight: 'Established the foundation for neutral coordination between protocol researchers and client teams.',
   },
   {
-    year: '2024', quarter: 'Q2', icon: Shield, iconBg: '#eff6ff', iconColor: '#1d4ed8',
-    badge: 'Institutional Planning', badgeCls: '#1d4ed8',
+    year: '2024', quarter: 'Q2', icon: Shield, tone: 'info',
+    badge: 'Institutional Planning', badgeTone: 'info',
     title: 'Legal Framework Design',
     description: 'Planning and design of the ECH Institute as a neutral 501(c)(3) entity to serve the Ethereum ecosystem long-term.',
     highlight: 'Defining the operational boundaries and commitment to public good infrastructure.',
   },
   {
-    year: '2024', quarter: 'Q3', icon: Award, iconBg: '#fef9c3', iconColor: '#b45309',
-    badge: '501(c)(3) Founded', badgeCls: '#d97706',
+    year: '2024', quarter: 'Q3', icon: Award, tone: 'warning',
+    badge: '501(c)(3) Founded', badgeTone: 'warning',
     title: 'ECH Institute Incorporated',
     description: 'On July 11, 2024, ECH Institute Inc. was formally registered as a nonprofit transitioning informal coordination into a structured institution.',
     highlight: 'First annual report published, establishing baseline transparency.',
   },
   {
-    year: '2024', quarter: 'Q4', icon: Video, iconBg: '#f3f4f6', iconColor: '#374151',
-    badge: '100+ Episodes', badgeCls: '#4b5563',
+    year: '2024', quarter: 'Q4', icon: Video, tone: 'neutral',
+    badge: '100+ Episodes', badgeTone: 'neutral',
     title: 'PEEPanEIP Reaches Milestone',
     description: 'The PEEPanEIP video series crossed 100 episodes covering EIPs from EIP-1559 to the latest Pectra research.',
     highlight: 'Now a primary technical archive for Ethereum Improvement Proposals.',
   },
   {
-    year: '2025', quarter: 'Q1', icon: Users, iconBg: '#f0fdf4', iconColor: '#15803d',
-    badge: 'New Program', badgeCls: '#15803d',
+    year: '2025', quarter: 'Q1', icon: Users, tone: 'success',
+    badge: 'New Program', badgeTone: 'success',
     title: 'WiEP Classroom Series Launched',
     description: 'The Women in Ethereum Protocol (WiEP) structured classroom series launched to onboard women into protocol development.',
     highlight: 'Dedicated mentorship and study groups for core protocol contribution.',
   },
   {
-    year: '2025', quarter: 'Q2', icon: Building2, iconBg: '#eff6ff', iconColor: '#1d4ed8',
-    badge: 'Governance', badgeCls: '#1d4ed8',
+    year: '2025', quarter: 'Q2', icon: Building2, tone: 'info',
+    badge: 'Governance', badgeTone: 'info',
     title: 'Board Maturity & Hudson Jameson',
     description: 'Veteran contributors joined the Board of Directors. Formalizing the "operating system" for Ethereum communication.',
     highlight: 'Ensuring predictable engineering delivery through neutral coordination.',
   },
   {
-    year: '2025', quarter: 'Q3', icon: GitBranch, iconBg: '#fffbeb', iconColor: '#d97706',
-    badge: 'Upgrade Coordination', badgeCls: '#d97706',
+    year: '2025', quarter: 'Q3', icon: GitBranch, tone: 'warning',
+    badge: 'Upgrade Coordination', badgeTone: 'warning',
     title: 'Pectra Upgrade Communication',
     description: 'Lead coordination for the Pectra network upgrade, managing consensus layer and execution layer communication.',
     highlight: 'Facilitating devnets, testnets, and community-wide readiness calls.',
   },
   {
-    year: '2026', quarter: 'Active', icon: Target, iconBg: '#f0fdf4', iconColor: '#059669',
-    badge: 'Active & Operational', badgeCls: '#059669',
+    year: '2026', quarter: 'Active', icon: Target, tone: 'success',
+    badge: 'Active & Operational', badgeTone: 'success',
     title: 'Education Hub & 2026 Roadmap',
     description: 'Coordinating the transition to a biannual upgrade schedule (Glamsterdam & Hegotá) alongside the Education Hub.',
     highlight: 'Empowering the community through structured protocol education.',
@@ -250,13 +252,11 @@ export default function EducationPage() {
   const [openTracks, setOpenTracks] = useState<Record<string, boolean>>({ beginner: true });
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [openGuides, setOpenGuides] = useState<Record<number, boolean>>({});
-  const [openFormats, setOpenFormats] = useState<Record<number, boolean>>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const toggleTrack = (id: string) => setOpenTracks(prev => ({ ...prev, [id]: !prev[id] }));
   const toggleItem = (key: string) => setOpenItems(prev => ({ ...prev, [key]: !prev[key] }));
   const toggleGuide = (i: number) => setOpenGuides(prev => ({ ...prev, [i]: !prev[i] }));
-  const toggleFormat = (i: number) => setOpenFormats(prev => ({ ...prev, [i]: !prev[i] }));
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -280,7 +280,7 @@ export default function EducationPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white pt-16 lg:pt-24">
+    <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24 text-[#FBFBFB]">
 
       {/* ── Hero — "proplay" inner-page style ──────────────── */}
       <section id="overview" className="page-hero">
@@ -308,7 +308,7 @@ export default function EducationPage() {
       </section>
 
       {/* ── Stats ────────────────────────────────────────────────────────── */}
-      <section className="border-b border-gray-100 bg-gray-50 py-6 px-4 md:px-8">
+      <section className="border-b border-[#262626] bg-[#1B1B1E] py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -318,8 +318,8 @@ export default function EducationPage() {
               { value: '3', label: 'Learning Tracks' },
             ].map((s, i) => (
               <div key={i}>
-                <div className="global-section-title" style={{ color: 'var(--color-yellow)' }}>{s.value}</div>
-                <div className="text-sm text-gray-500 font-medium mt-0.5">{s.label}</div>
+                <div className="global-section-title text-brand-yellow">{s.value}</div>
+                <div className="text-sm text-[#FBFBFB] font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -330,24 +330,7 @@ export default function EducationPage() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 flex gap-8 items-start">
 
         {/* Sticky Left Nav */}
-        <aside className="hidden lg:block w-52 xl:w-60 flex-shrink-0 sticky top-28 self-start">
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 px-2">On This Page</p>
-          <nav className="flex flex-col gap-0.5">
-            {NAV_SECTIONS.map(s => (
-              <button
-                key={s.id}
-                onClick={() => scrollToSection(s.id)}
-                className={`text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 border-l-2 ${activeSection === s.id
-                    ? 'bg-gray-100 text-black font-bold'
-                    : 'text-gray-500 hover:text-black hover:bg-gray-50 border-transparent'
-                  }`}
-                style={activeSection === s.id ? { borderLeftColor: 'var(--color-yellow)' } : {}}
-              >
-                {s.label}
-              </button>
-            ))}
-          </nav>
-        </aside>
+                <StickySideNav sections={NAV_SECTIONS} activeSection={activeSection} onSectionClick={scrollToSection} />
 
         {/* Main content */}
         <div className="flex-1 min-w-0 flex flex-col gap-16">
@@ -372,8 +355,8 @@ export default function EducationPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-base text-black">{f.title}</span>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full hidden sm:inline">{f.tag}</span>
+                        <span className="font-bold text-base text-[#FBFBFB]">{f.title}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#FBFBFB] bg-[#1B1B1E] px-2 py-0.5 rounded-full hidden sm:inline">{f.tag}</span>
                       </div>
                       <p className="text-xs text-amber-700 font-semibold">{f.subtitle}</p>
                     </div>
@@ -384,8 +367,8 @@ export default function EducationPage() {
                     <p className="global-body text-sm mb-3">{f.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {f.highlights.map((h, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} className="text-[#f5a51d]" /> {h}
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#1B1B1E] border border-[#262626] rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="text-brand-yellow" /> {h}
                         </span>
                       ))}
                     </div>
@@ -399,7 +382,7 @@ export default function EducationPage() {
           <section id="featured">
             <span className="global-section-tag">Deep Dives</span>
             <h2 className="global-section-title">Featured <em>Guides</em></h2>
-            <p className="global-body-lg mb-5">Comprehensive resources on Ethereum's core processes — expand each guide to read a full explanation.</p>
+            <p className="global-body-lg mb-5">Comprehensive resources on Ethereum&apos;s core processes — expand each guide to read a full explanation.</p>
 
             <div className="flex flex-col gap-3">
               {featuredGuides.map((g, i) => {
@@ -415,15 +398,14 @@ export default function EducationPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
-                          <span className="font-bold text-base text-black">{g.title}</span>
+                          <span className="font-bold text-base text-[#FBFBFB]">{g.title}</span>
                           <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full hidden sm:inline">{g.tag}</span>
                         </div>
                         <p className="global-body text-sm">{g.summary}</p>
                       </div>
                       <ChevronDown
                         size={16}
-                        className="text-gray-400 shrink-0 transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                        className={cn('text-gray-400 shrink-0 transition-transform duration-200', isOpen && 'is-open')}
                       />
                     </button>
 
@@ -434,7 +416,7 @@ export default function EducationPage() {
                           {g.steps.map((step, j) => (
                             <div key={j} className="flex items-start gap-3">
                               <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-50 text-amber-700 border border-amber-100 text-[10px] font-bold shrink-0 mt-0.5">{j + 1}</div>
-                              <span className="text-sm text-gray-600 leading-snug">{step}</span>
+                              <span className="text-sm text-[#FBFBFB]/80 leading-snug">{step}</span>
                             </div>
                           ))}
                         </div>
@@ -455,21 +437,20 @@ export default function EducationPage() {
             <div className="relative flex flex-col gap-3">
               <div className="absolute left-5 top-10 bottom-10 w-[2px] bg-gradient-to-b from-gray-200 via-amber-200 to-gray-200 rounded-full hidden sm:block" />
               {eipStages.map((s, i) => (
-                <div key={s.stage} className="relative flex gap-4 items-start">
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 mt-1"
-                    style={{ background: s.bg, borderColor: s.border }}>
-                    <s.icon size={17} style={{ color: s.color }} />
+                <div key={s.stage} data-tone={s.tone} className="relative flex gap-4 items-start">
+                  <div className="tone-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 mt-1">
+                    <s.icon size={17} />
                   </div>
                   <div className="flex-1 global-card mb-0 hover:border-amber-400 transition-colors">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="text-xs font-bold uppercase tracking-widest" style={{ color: s.color }}>Stage {i + 1}</span>
+                      <span className="tone-link text-xs font-bold uppercase tracking-widest">Stage {i + 1}</span>
                       <h3 className="global-card-title mb-0">{s.stage}</h3>
                     </div>
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} style={{ color: s.color }} /> {a}
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#1B1B1E] border border-[#262626] rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="tone-link" /> {a}
                         </span>
                       ))}
                     </div>
@@ -477,7 +458,7 @@ export default function EducationPage() {
                 </div>
               ))}
             </div>
-            <div className="global-card mt-4 global-border-yellow bg-amber-50/30 text-center">
+            <div className="global-card mt-4 bg-[#1B1B1E] border-[#F5A51D]/50 text-center">
               <p className="global-body">
                 <strong>ECH Institute&apos;s Role:</strong> We produce PEEPanEIP deep-dives for each significant EIP, host EIPIP calls that shepherd EIPs through review, and publish upgrade communication for each mainnet deployment.
               </p>
@@ -499,11 +480,13 @@ export default function EducationPage() {
                   >
                     <span className="text-2xl">{track.emoji}</span>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-lg text-black">{track.title}</h3>
-                      <p className="text-sm text-gray-500">{track.subtitle}</p>
+                      <h3 className="font-bold text-lg text-[#FBFBFB]">{track.title}</h3>
+                      <p className="text-sm text-[#FBFBFB]/60">{track.subtitle}</p>
                     </div>
-                    <ChevronDown size={18} className="text-gray-400 shrink-0 transition-transform duration-200"
-                      style={{ transform: openTracks[track.id] ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                    <ChevronDown
+                      size={18}
+                      className={cn('text-gray-400 shrink-0 transition-transform duration-200', openTracks[track.id] && 'is-open')}
+                    />
                   </button>
 
                   {openTracks[track.id] && (
@@ -517,15 +500,16 @@ export default function EducationPage() {
                               className="w-full flex items-center gap-3 px-5 py-3.5 text-left hover:bg-gray-50 transition-colors"
                               onClick={() => toggleItem(key)}
                             >
-                              <ChevronRight size={14} className="text-amber-400 shrink-0 transition-transform duration-150"
-                                style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }} />
-                              <span className="flex-1 font-semibold text-sm text-gray-900">{item.title}</span>
+                              <ChevronRight
+                                size={14}
+                                className={cn('text-amber-400 shrink-0 transition-transform duration-150', isOpen && 'is-open-right')}
+                              />
+                              <span className="flex-1 font-semibold text-sm text-[#FBFBFB]">{item.title}</span>
                               {isOpen && (
                                 <Link href={item.link}
                                   target={item.link.startsWith('http') ? '_blank' : '_self'}
                                   onClick={e => e.stopPropagation()}
-                                  className="text-xs font-bold border border-gray-200 rounded-full px-3 py-1 hover:border-amber-400 transition-colors shrink-0 no-underline"
-                                  style={{ color: 'var(--color-yellow)' }}>
+                                  className="text-xs font-bold border border-gray-200 rounded-full px-3 py-1 hover:border-amber-400 transition-colors shrink-0 no-underline text-brand-yellow">
                                   {item.cta} <ExternalLink size={10} className="inline ml-0.5" />
                                 </Link>
                               )}
@@ -553,30 +537,32 @@ export default function EducationPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
               {timelineCards.map((card, i) => (
-                <div key={i} className="global-card flex flex-col gap-3 hover:border-amber-400 transition-colors">
+                <div key={i} data-tone={card.tone} className="global-card flex flex-col gap-3 hover:border-amber-400 transition-colors">
                   <div className="flex items-start justify-between gap-2">
-                    <div className="proplay-icon-container h-10 w-10 shrink-0" style={{ '--dynamic-accent': card.iconColor } as React.CSSProperties}>
+                    <div className="tone-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
                       <card.icon size={18} />
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border shrink-0"
-                      style={{ color: card.badgeCls, borderColor: `${card.badgeCls}40`, background: `${card.badgeCls}0f` }}>
+                    <span data-tone={card.badgeTone} className="tone-badge text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border shrink-0">
                       {card.badge}
                     </span>
                   </div>
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">{card.year} · {card.quarter}</div>
-                    <h3 className="global-card-title mb-1">{card.title}</h3>
-                    <p className="global-body text-sm">{card.description}</p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg px-3 py-2.5 border border-gray-100 mt-auto">
-                    <p className="text-xs text-gray-500 leading-relaxed">{card.highlight}</p>
+                  <div className="flex-1 flex flex-col">
+                    <div className="flex items-center gap-1.5 mb-1.5">
+                      <span className="text-xs font-bold text-brand-yellow">{card.year}</span>
+                      <span className="h-1 w-1 rounded-full bg-[#262626]" />
+                      <span className="text-xs font-bold text-[#FBFBFB]/50">{card.quarter}</span>
+                    </div>
+                    <h3 className="global-card-title text-base mb-1.5">{card.title}</h3>
+                    <p className="global-body text-xs leading-relaxed mb-3">{card.description}</p>
+                    <div className="mt-auto pt-3 border-t border-[#262626] flex items-start gap-2">
+                      <Zap size={12} className="text-brand-yellow shrink-0 mt-0.5" />
+                      <p className="text-[11px] font-medium text-[#FBFBFB]/70 leading-normal italic">{card.highlight}</p>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </section>
-
-          {/* ── Next Steps ───────────────────────────────────────────────── */}
           <section id="next-steps">
             <span className="global-section-tag">Take the Next Step</span>
             <h2 className="global-section-title">Get Involved in <em>Governance</em></h2>
@@ -595,14 +581,14 @@ export default function EducationPage() {
                     <h3 className="global-card-title mb-1">{card.title}</h3>
                     <p className="global-body text-sm">{card.desc}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-gray-100" style={{ color: 'var(--color-yellow)' }}>
+                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-gray-100 text-brand-yellow">
                     {card.cta} <ArrowRight size={13} />
                   </div>
                 </Link>
               ))}
             </div>
 
-            <div className="global-card global-border-yellow text-center bg-gradient-to-br from-white to-amber-50">
+            <div className="global-card text-center bg-[#1B1B1E] border-[#F5A51D]/50">
               <p className="global-body-lg mb-2"><strong>Participation &amp; Ecosystem Contribution</strong></p>
               <p className="global-body-lg mb-6">You can contribute through documentation, content creation, community outreach, and taking part in governance discussions. ECH Institute is your starting point.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -617,3 +603,4 @@ export default function EducationPage() {
     </main>
   );
 }
+

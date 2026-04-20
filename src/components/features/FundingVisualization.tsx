@@ -37,10 +37,10 @@ const totalOctantAmount = octantData.reduce((sum, e) => sum + e.amount, 0);
 
 // Pie chart colors
 const pieColors = [
-  '#fbbf24', // yellow-400
-  '#f59e0b', // yellow-500
-  '#d97706', // yellow-600
-  '#92400e', // yellow-800
+  'var(--tone-brand-solid)',
+  'var(--accent-brand-strong)',
+  'var(--tone-warning-solid)',
+  'var(--tone-warning-border)',
 ];
 
 // Calculate pie chart segments
@@ -182,12 +182,11 @@ export function FundingVisualization() {
                     <path
                       d={segment.path}
                       fill={segment.color}
-                      stroke="white"
+                      stroke="var(--color-white)"
                       strokeWidth="2"
-                      className="cursor-pointer transition-opacity duration-200"
-                      style={{
-                        opacity: hoveredSegment === index ? 1 : hoveredSegment === null ? 1 : 0.4,
-                      }}
+                      className={`cursor-pointer transition-opacity duration-200 ${
+                        hoveredSegment === index || hoveredSegment === null ? 'opacity-100' : 'opacity-40'
+                      }`}
                       onMouseEnter={() => setHoveredSegment(index)}
                     />
                   </g>
@@ -212,10 +211,7 @@ export function FundingVisualization() {
                   }`}
                   onMouseEnter={() => setHoveredSegment(index)}
                 >
-                  <div
-                    className="w-4 h-4 md:w-5 md:h-5 rounded flex-shrink-0"
-                    style={{ backgroundColor: segment.color }}
-                  />
+                  <div className={`funding-segment-swatch funding-segment-swatch--${index} w-4 h-4 md:w-5 md:h-5 rounded flex-shrink-0`} />
                   <span className="font-semibold text-gray-900">{segment.epoch}</span>
                 </div>
               ))}

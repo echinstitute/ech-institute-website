@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-  MessageSquare, ExternalLink, Users, Code, Shield,
+  MessageSquare, Users, Code, Shield,
   Heart, Github, ArrowRight, Zap, BookOpen, Globe,
-  Calendar, GitBranch, CheckCircle2, Star
+  Calendar, GitBranch, CheckCircle2
 } from "lucide-react";
 import Link from "next/link";
 
@@ -25,8 +25,7 @@ const communityLinks = [
     cta: "Get Involved",
     href: "https://ethereum.org/en/community/get-involved/#ethereum-jobs/",
     icon: Users,
-    accent: '#3b82f6',
-    iconBg: '#eff6ff',
+    tone: "info",
   },
   {
     title: "Ethereum Magicians",
@@ -35,8 +34,16 @@ const communityLinks = [
     cta: "Join Forum",
     href: "https://ethereum-magicians.org/faq",
     icon: BookOpen,
-    accent: '#8b5cf6',
-    iconBg: '#f5f3ff',
+    tone: "violet",
+  },
+  {
+    title: "EthSearch",
+    category: "Community",
+    description: "A comprehensive community search engine focused on indexing Ethereum technical research, EIPs, and historical meeting notes.",
+    cta: "Start Searching",
+    href: "https://ethsearch.org/",
+    icon: Globe,
+    tone: "success",
   },
   {
     title: "Ethereum Testing Suite",
@@ -45,8 +52,7 @@ const communityLinks = [
     cta: "View Issues",
     href: "https://github.com/ethereum/eth-tester/issues",
     icon: Code,
-    accent: '#10b981',
-    iconBg: '#f0fdf4',
+    tone: "success",
   },
   {
     title: "Lighthouse",
@@ -55,8 +61,7 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://lighthouse.sigmaprime.io/",
     icon: Shield,
-    accent: '#3b82f6',
-    iconBg: '#eff6ff',
+    tone: "info",
   },
   {
     title: "Lodestar",
@@ -65,8 +70,7 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://lodestar.chainsafe.io/",
     icon: Shield,
-    accent: '#8b5cf6',
-    iconBg: '#f5f3ff',
+    tone: "violet",
   },
   {
     title: "Nimbus",
@@ -75,8 +79,7 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://nimbus.team/",
     icon: Shield,
-    accent: '#10b981',
-    iconBg: '#f0fdf4',
+    tone: "success",
   },
   {
     title: "Prysm",
@@ -85,8 +88,7 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://docs.prylabs.network/docs/getting-started",
     icon: Shield,
-    accent: '#3b82f6',
-    iconBg: '#eff6ff',
+    tone: "info",
   },
   {
     title: "Teku",
@@ -95,8 +97,7 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://consensys.io/teku",
     icon: Shield,
-    accent: '#8b5cf6',
-    iconBg: '#f5f3ff',
+    tone: "violet",
   },
   {
     title: "Besu",
@@ -105,8 +106,7 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://www.hyperledger.org/projects/besu",
     icon: Code,
-    accent: '#10b981',
-    iconBg: '#f0fdf4',
+    tone: "success",
   },
   {
     title: "Erigon",
@@ -115,8 +115,7 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://erigon.tech/",
     icon: Code,
-    accent: '#3b82f6',
-    iconBg: '#eff6ff',
+    tone: "info",
   },
   {
     title: "Go Ethereum (Geth)",
@@ -125,8 +124,7 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://geth.ethereum.org/docs/developers/geth-developer/contributing",
     icon: Code,
-    accent: '#8b5cf6',
-    iconBg: '#f5f3ff',
+    tone: "violet",
   },
   {
     title: "Nethermind",
@@ -135,16 +133,33 @@ const communityLinks = [
     cta: "Contribute",
     href: "https://www.nethermind.io/",
     icon: Code,
-    accent: '#10b981',
-    iconBg: '#f0fdf4',
+    tone: "success",
+  },
+  {
+    title: "Reth",
+    category: "Execution Client",
+    description: "A high-performance, modular Ethereum execution client written in Rust, focused on performance and developer modularity.",
+    cta: "Contribute",
+    href: "https://reth.rs/",
+    icon: Code,
+    tone: "info",
+  },
+  {
+    title: "Nimbus",
+    category: "Execution Client",
+    description: "A lightweight, secure execution client designed for resource-constrained devices, part of the Nimbus client suite.",
+    cta: "Contribute",
+    href: "https://nimbus.team/",
+    icon: Code,
+    tone: "success",
   },
 ];
 
 const ways = [
-  { icon: Code, title: "Development", desc: "Write code, review PRs, fix bugs across Ethereum clients." },
-  { icon: BookOpen, title: "Documentation", desc: "Write guides, translate content, create tutorials." },
-  { icon: Globe, title: "Community Outreach", desc: "Grow the community through events and education." },
-  { icon: Zap, title: "EIP Editing", desc: "Review and shepherd Ethereum Improvement Proposals." },
+  { icon: GitBranch, title: "Consensus Tracking", desc: "Monitor and document technical consensus across All Core Devs workstreams." },
+  { icon: Zap, title: "Governance Triage", desc: "Help triage EIPs and facilitate the path from Draft to Final state." },
+  { icon: Shield, title: "Institutional Support", desc: "Assist in organizational bridging between legacy systems and Ethereum." },
+  { icon: BookOpen, title: "Technical Scribing", desc: "Provide high-fidelity documentation for critical meeting decisions." },
 ];
 
 // Direct participation actions with the correct links
@@ -193,10 +208,10 @@ export default function GetInvolvedPage() {
     : communityLinks.filter((l) => l.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-white pt-16 lg:pt-24">
+    <main className="min-h-screen pt-16 lg:pt-24 bg-[var(--background)] text-[var(--text-primary)] transition-colors duration-300">
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="py-8 px-4 md:py-16 md:px-8 bg-white border-b border-black">
+      <section className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             {/* Left — copy */}
@@ -232,28 +247,68 @@ export default function GetInvolvedPage() {
             </div>
 
             {/* Right — ways to contribute mini-grid */}
-            <div className="grid grid-cols-2 gap-3">
-              {ways.map(({ icon: Icon, title, desc }) => (
-                <div
-                  key={title}
-                  className="global-card flex flex-col gap-2 hover:border-amber-400 transition-all hover:-translate-y-1 hover:shadow-md group"
-                >
-                  <span className="proplay-icon-container h-10 w-10 flex-shrink-0">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <p className="font-bold text-sm text-black">{title}</p>
-                  <p className="text-xs text-black leading-snug">{desc}</p>
-                </div>
-              ))}
+            {/* Right — Interactive Role Proximity (Radar Style) */}
+            <div className="relative h-[400px] w-full flex items-center justify-center group/radar overflow-hidden">
+              {/* Radar Background Rings */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
+                <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
+                {/* Crosshairs */}
+                <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
+                <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
+              </div>
+
+              {/* Central Radar Core (No Glow) */}
+              <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--border-soft)] opacity-20" />
+
+              {/* The 4 Role Spheres */}
+              <div className="absolute inset-0">
+                {ways.map(({ icon: Icon, title, desc }, index) => {
+                  // Position roles in a diamond / circular pattern
+                  const positions = [
+                    "top-[10%] left-1/2 -translate-x-1/2", // 01 - Top
+                    "right-[10%] top-1/2 -translate-y-1/2", // 02 - Right
+                    "bottom-[10%] left-1/2 -translate-x-1/2", // 03 - Bottom
+                    "left-[10%] top-1/2 -translate-y-1/2", // 04 - Left
+                  ];
+                  
+                  return (
+                    <div
+                      key={title}
+                      className={`absolute ${positions[index]} group/sphere z-20`}
+                    >
+                      {/* Floating Sphere */}
+                      <div className="relative flex flex-col items-center">
+                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer">
+                          <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:text-[var(--accent-brand)] transition-colors" />
+                          
+                          {/* Radial Scanning Effect */}
+                          <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
+                        </div>
+
+                        {/* Title - Floating Badge */}
+                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-opacity">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">0{index + 1} {title}</span>
+                        </div>
+
+                        {/* Description - Revealed on Hover */}
+                        <div className="absolute top-1/2 left-full ml-6 w-48 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-[var(--surface-card-theme)] border border-[var(--accent-brand)] p-4 rounded-xl shadow-2xl transition-all duration-300 -translate-x-4 group-hover/sphere:translate-x-0 z-50">
+                          <div className="absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2" />
+                          <p className="text-[11px] font-black uppercase tracking-widest text-[var(--accent-brand)] mb-1">Impact Layer</p>
+                          <p className="text-[12px] text-[var(--text-base)] font-medium leading-[1.4]">{desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-
-
       {/* ── Participation Actions + Quote — side by side ──────────────── */}
-      <section className="py-10 px-4 md:py-14 md:px-8 border-b border-black bg-[#f5a51d]">
+      <section className="py-10 px-4 md:py-14 md:px-8 border-b border-[var(--border-soft)]">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8 items-start">
 
@@ -261,18 +316,18 @@ export default function GetInvolvedPage() {
             <div className="flex flex-col justify-between h-full">
               <div className="mb-5">
                 <p className="text-xs font-bold uppercase tracking-widest text-black mb-1">Direct Participation</p>
-                <h2 className="global-section-title">How To Get Involved</h2>
+                <h2 className="global-section-title">How To Get <em>Involved</em></h2>
               </div>
-              <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50 flex flex-col gap-4 flex-1">
-                <div className="text-5xl font-black leading-none" style={{ color: 'var(--color-yellow)', opacity: 0.4 }}>&ldquo;</div>
-                <blockquote className="text-lg sm:text-xl font-extrabold text-black leading-snug -mt-4">
+              <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] flex flex-col gap-4 flex-1">
+                <div className="text-5xl font-black leading-none text-[var(--accent-brand)] opacity-40">&ldquo;</div>
+                <blockquote className="text-lg sm:text-xl font-extrabold text-[var(--text-base)] leading-snug -mt-4">
                   ECH is not just an organization.
                   <br />
                   It is the home, school, and gathering place for Ethereum governance.
                 </blockquote>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#f5a51d] mt-1">ECH Institute Mission</p>
-                <div className="mt-auto pt-4 border-t border-[#f5a51d]">
-                  <p className="global-body text-sm">Start participating in Ethereum governance today with these direct entry points curated by ECH Institute.</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-[var(--accent-brand)] mt-1">ECH Institute Mission</p>
+                <div className="mt-auto pt-4 border-t border-[var(--accent-brand)]">
+                  <p className="global-body text-sm text-[var(--text-soft)]">Start participating in Ethereum governance today with these direct entry points curated by ECH Institute.</p>
                 </div>
               </div>
             </div>
@@ -286,7 +341,7 @@ export default function GetInvolvedPage() {
                     key={i}
                     href={action.href}
                     target="_blank"
-                    className="global-card flex flex-col gap-3 no-underline text-inherit bg-white hover:border-amber-400 transition-all hover:-translate-y-1 hover:shadow-md group"
+                    className="global-card flex flex-col gap-4 no-underline text-inherit bg-[var(--surface-card-theme)] border-[var(--border-soft)] hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
                   >
                     <div className="proplay-icon-container h-11 w-11 flex-shrink-0">
                       <Icon className="h-5 w-5" />
@@ -296,8 +351,7 @@ export default function GetInvolvedPage() {
                       <p className="global-body text-sm">{action.desc}</p>
                     </div>
                     <div
-                      className="flex items-center gap-1.5 text-sm font-bold pt-3 border-t border-black group-hover:gap-2 transition-all"
-                      style={{ color: 'var(--color-yellow)' }}
+                      className="flex items-center gap-1.5 text-sm font-bold pt-3 border-t border-black group-hover:gap-2 transition-all text-brand-yellow"
                     >
                       {action.cta} <ArrowRight size={13} />
                     </div>
@@ -316,8 +370,8 @@ export default function GetInvolvedPage() {
           {/* Section header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-black mb-1">Ecosystem</p>
-              <h2 className="global-section-title">The Ethereum Community</h2>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--accent-brand)] mb-2">Ecosystem</p>
+              <h2 className="global-section-title">The Ethereum <em>Community</em></h2>
               <p className="global-body-lg mt-1">Opportunities for every background and skill-set.</p>
             </div>
 
@@ -328,10 +382,10 @@ export default function GetInvolvedPage() {
                   key={key}
                   onClick={() => setActiveCategory(key)}
                   className={[
-                    "px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide border-2 transition-all duration-150",
+                    "px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border-2 transition-all duration-200",
                     activeCategory === key
-                      ? "border-gray-800 bg-gray-800 text-white"
-                      : "border-black bg-white text-black hover:border-gray-700 hover:text-black",
+                      ? "border-[var(--accent-brand)] bg-[var(--accent-brand)] text-[var(--theme-on-accent)] shadow-lg shadow-[var(--accent-brand)]/20"
+                      : "border-[var(--border-soft)] bg-[var(--surface-card-theme)] text-[var(--text-soft)] hover:border-[var(--accent-brand)] hover:text-[var(--accent-brand)]",
                   ].join(" ")}
                 >
                   {label}
@@ -342,54 +396,43 @@ export default function GetInvolvedPage() {
 
           {/* Cards grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filtered.map((link, i) => {
-              const Icon = link.icon;
-              return (
-                <Link
-                  key={i}
-                  href={link.href}
-                  target="_blank"
-                  className="group relative flex flex-col rounded-xl border border-black bg-white overflow-hidden no-underline text-inherit hover:border-transparent hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-200 hover:-translate-y-1"
-                >
-                  {/* Colored top accent bar */}
-                  <div
-                    className="h-1 w-full transition-all duration-200"
-                    style={{ background: link.accent }}
-                  />
+              {filtered.map((link, i) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={i}
+                    href={link.href}
+                    target="_blank"
+                    data-tone={link.tone}
+                    className="group relative flex flex-col rounded-xl border border-[var(--border-soft)] bg-[var(--surface-card-theme)] overflow-hidden no-underline text-inherit hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    {/* Colored top accent bar */}
+                  <div className="tone-accent-bar h-1 w-full transition-all duration-300 group-hover:h-1.5" />
 
-                  <div className="flex flex-col flex-1 gap-3 p-5">
+                  <div className="flex flex-col flex-1 gap-4 p-6">
                     {/* Icon row */}
                     <div className="flex items-center justify-between">
-                      <span
-                        className="proplay-icon-container h-11 w-11 flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
-                        style={{ '--dynamic-accent': link.accent } as React.CSSProperties}
-                      >
+                      <span className="tone-icon flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <span
-                        className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full"
-                        style={{ color: link.accent, background: link.iconBg }}
-                      >
+                      <span className="tone-badge text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-muted)]">
                         {link.category.replace(" Client", "")}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-extrabold text-base text-black leading-snug group-hover:text-black">
+                    <h3 className="font-extrabold text-lg text-[var(--text-base)] leading-snug group-hover:text-[var(--accent-brand)] transition-colors">
                       {link.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-black leading-relaxed flex-1">
+                    <p className="text-sm text-[var(--text-soft)] leading-relaxed flex-1">
                       {link.description}
                     </p>
 
                     {/* CTA row */}
-                    <div
-                      className="flex items-center gap-1.5 pt-3 border-t border-black text-sm font-bold transition-all duration-150 group-hover:gap-2"
-                      style={{ color: link.accent }}
-                    >
-                      {link.cta} <ArrowRight size={13} />
+                    <div className="tone-link flex items-center gap-2 pt-4 border-t border-[var(--border-soft)] text-xs font-black uppercase tracking-widest transition-all duration-200 group-hover:gap-3 group-hover:text-[var(--accent-brand)]">
+                      {link.cta} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
                 </Link>
@@ -403,18 +446,17 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* ── CTA Banner ────────────────────────────────────────────────── */}
-      <section className="border-t border-black bg-[#f5a51d] py-10 px-4 md:px-8">
+      <section className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
         <div className="max-w-7xl mx-auto">
-          <div className="global-card global-border-yellow bg-gradient-to-br from-white to-amber-50">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="flex items-start gap-4">
-                <span className="proplay-icon-container h-11 w-11 flex-shrink-0">
-                  <Heart className="h-5 w-5" />
+          <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)]">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+              <div className="flex items-start gap-5">
+                <span className="proplay-icon-container h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20">
+                  <Heart className="h-6 w-6" />
                 </span>
                 <div>
-                  <h3 className="global-card-title">Ready to shape the future?</h3>
-                  <p className="global-body text-sm mt-1 max-w-md">
+                  <h3 className="global-card-title text-xl md:text-2xl">Ready to shape the <em>future?</em></h3>
+                  <p className="global-body text-sm mt-2 max-w-md text-[var(--text-soft)]">
                     Every contribution, no matter how small, helps strengthen the Ethereum ecosystem. Join the ECH Institute community today.
                   </p>
                 </div>
@@ -439,8 +481,7 @@ export default function GetInvolvedPage() {
               </div>
             </div>
 
-            {/* Quick links row */}
-            <div className="mt-6 pt-5 border-t border-[#f5a51d] grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="mt-8 pt-6 border-t border-[var(--border-soft)] grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { label: 'Office Hours', href: 'https://github.com/ethereum/pm/issues?q=is%3Aissue%20state%3Aopen%20office%20hour' },
                 { label: 'EIPIP Governance', href: 'https://github.com/ethereum/pm/issues?q=is%3Aissue%20state%3Aopen%20eipip' },
@@ -448,10 +489,9 @@ export default function GetInvolvedPage() {
                 { label: 'GitHub Organization', href: 'https://github.com/echinstitute' },
               ].map((item, i) => (
                 <Link key={i} href={item.href} target="_blank"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold no-underline transition-colors group"
-                  style={{ color: 'var(--color-yellow)' }}>
-                  <CheckCircle2 size={13} className="global-icon-yellow" />
-                  <span className="group-hover:underline">{item.label}</span>
+                  className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest no-underline transition-all group text-[var(--accent-brand)] hover:scale-105 origin-left">
+                  <CheckCircle2 size={14} className="text-[var(--accent-brand)]" />
+                  <span>{item.label}</span>
                 </Link>
               ))}
             </div>

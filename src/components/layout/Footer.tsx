@@ -45,12 +45,20 @@ export default function Footer() {
     },
   ];
 
-  const footerLinks = [
-    { name: 'Education', href: ROUTES.education },
-    { name: 'Homestead', href: ROUTES.homestead },
-    // { name: 'About', href: ROUTES.about },
-    { name: 'Support', href: ROUTES.support },
+  const programsLinks = [
+    { name: 'EIP Support', href: ROUTES.eipSupport },
+    { name: 'Upgrade Education', href: ROUTES.education },
+    { name: 'Podcast & Content', href: ROUTES.podcast },
+    { name: 'Women in Ethereum', href: ROUTES.wiep },
+    { name: 'Events & Workshops', href: ROUTES.events },
+  ];
+
+  const navigationLinks = [
     { name: 'Brand', href: ROUTES.brand },
+    { name: 'About', href: ROUTES.about },
+    { name: 'Support', href: ROUTES.support },
+    { name: 'Homestead', href: ROUTES.homestead },
+    { name: 'Get Involved', href: ROUTES.getInvolved },
   ];
 
   return (
@@ -63,11 +71,12 @@ export default function Footer() {
             <div className="footer-brand-content">
               <div className="footer-logo-title">
                 <Image
-                  src="/assets/ech_full_logo.png"
+                  src="/ECH Institute Logo - White.png"
                   alt="ECH Institute Logo"
-                  width={48}
-                  height={48}
-                  className="footer-logo"
+                  width={240}
+                  height={60}
+                  unoptimized
+                  className="h-10 md:h-12 w-auto object-contain"
                 />
                 <div className="flex flex-col -space-y-0.5">
                   <h2 className="footer-title">ECH Institute</h2>
@@ -77,16 +86,29 @@ export default function Footer() {
                 </div>
               </div>
               <p className="footer-tagline mt-4">
-                Education, Community, Homesteading!
-              </p>
+                Supporting the Ethereum ecosystem through education, community building, and protocol stewardship. 501(c)(3) nonprofit since July 2024.              </p>
             </div>
           </div>
 
-          {/* Links Section */}
+          {/* Programs Section */}
           <div className="footer-links-section">
-            <h3 className="footer-section-title">Links</h3>
+            <h3 className="footer-section-title">Programs</h3>
             <ul className="footer-links-list">
-              {footerLinks.map((link) => (
+              {programsLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="footer-link">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Navigation Section */}
+          <div className="footer-links-section">
+            <h3 className="footer-section-title">Navigation</h3>
+            <ul className="footer-links-list">
+              {navigationLinks.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="footer-link">
                     {link.name}
@@ -131,7 +153,7 @@ export default function Footer() {
             <span>All content and resources on our website are for educational purposes only.</span>
           </div>
           <div className="footer-copyright">
-            <span>&copy; {currentYear} ECH Institute, Inc.</span>
+            <span>&copy; {currentYear} ECH Institute, Inc. ·501(c)(3) Nonprofit </span>
           </div>
         </div>
       </div>

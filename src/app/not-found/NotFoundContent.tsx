@@ -2,23 +2,17 @@ import Link from 'next/link';
 
 export default function NotFoundContent() {
   return (
-    <main className="min-h-[calc(100vh-200px)] bg-white flex items-center justify-center px-4 py-8 sm:py-12 md:py-16">
+    <main className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-8 sm:py-12 md:py-16">
       <div className="max-w-[800px] w-full text-center">
-        <div className="bg-white p-6 sm:p-10 md:p-14 rounded-2xl sm:rounded-3xl shadow-2xl border-2 border-yellow-400">
-          <h1
-            className="text-[clamp(5rem,20vw,12rem)] font-extrabold leading-none text-white drop-shadow-sm"
-            style={{
-              WebkitTextStroke: '3px #facc15',
-              textShadow: '0 0 8px rgba(250, 204, 21, 0.8), 0 0 18px rgba(250, 204, 21, 0.55)',
-            }}
-          >
+        <div className="not-found-panel p-6 sm:p-10 md:p-14 rounded-2xl sm:rounded-3xl shadow-2xl">
+          <h1 className="not-found-code text-[clamp(5rem,20vw,12rem)] font-extrabold leading-none text-white drop-shadow-sm">
             404
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mt-4 mb-6">
             Page Not Found
           </h2>
           <p className="text-base sm:text-lg text-black max-w-[500px] mx-auto mb-8 sm:mb-10 leading-relaxed">
-            Oops! The page you're looking for doesn't exist or has been moved.
+            Oops! The page you&apos;re looking for doesn&apos;t exist or has been moved.
           </p>
           <div className="flex justify-center">
             <Link

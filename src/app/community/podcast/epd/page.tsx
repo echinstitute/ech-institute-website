@@ -11,11 +11,11 @@ const epd = PODCAST_SERIES_PLAYLISTS.epd;
 export default function EPDPage() {
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
-      <div className="border-b border-black bg-[#f5a51d]">
+      <div className="border-b border-black bg-[#F5A51D]">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 md:px-8">
           <Link
             href="/podcast"
-            className="mb-4 inline-flex items-center gap-2 text-black transition-colors hover:text-[#f5a51d] global-body"
+            className="mb-4 inline-flex items-center gap-2 text-black transition-colors hover:text-[#F5A51D] global-body"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Podcast
           </Link>
@@ -67,9 +67,9 @@ export default function EPDPage() {
 
       {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
         <div className="mx-auto mb-6 max-w-4xl">
-          <section className="rounded-xl border border-black bg-[#f5a51d]/80 p-6 sm:p-8">
+          <section className="rounded-xl border border-black bg-[#F5A51D]/80 p-6 sm:p-8">
             <div className="mb-4 flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f5a51d]">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5A51D]">
                 <Code className="global-icon-yellow h-6 w-6" />
               </span>
               <h2 className="global-section-title mb-0">Format</h2>
@@ -153,3 +153,4 @@ export default function EPDPage() {
     </main>
   );
 }
+

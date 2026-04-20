@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://www.echinstitute.org/support",
     images: [
       {
-        url: "/assets/ech_full_logo.png",
+        url: "/ECH Institute Logo - White.png",
         width: 1200,
         height: 630,
         alt: "Support ECH Institute",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Support ECH Institute Ethereum Public Good",
     description:
       "Support 501(c)(3) non-profit ECH Institute powering Ethereum protocol governance, EIP coordination, and community education.",
-    images: ["/assets/ech_full_logo.png"],
+    images: ["/ECH Institute Logo - White.png"],
   },
   alternates: {
     canonical: "https://www.echinstitute.org/support",

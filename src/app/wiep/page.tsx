@@ -12,11 +12,11 @@ const WIEP_YOUTUBE_VIDEOS = 'https://www.youtube.com/@wiepteam/videos';
 export default function WiEPPage() {
   return (
     <main className="min-h-screen bg-white pt-16 lg:pt-24">
-      <div className="border-b border-black bg-[#f5a51d]">
+      <div className="border-b border-black bg-[#F5A51D]">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 md:px-8">
           <Link
             href="/podcast"
-            className="mb-4 inline-flex items-center gap-2 text-black transition-colors hover:text-[#f5a51d] global-body"
+            className="mb-4 inline-flex items-center gap-2 text-black transition-colors hover:text-[#F5A51D] global-body"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Podcast
           </Link>
@@ -193,7 +193,7 @@ export default function WiEPPage() {
                     href={wiepPl.playlistUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-[#f5a51d] hover:underline"
+                    className="font-medium text-[#F5A51D] hover:underline"
                   >
                     Women Powering Web3 (YouTube)
                   </a>
@@ -204,7 +204,7 @@ export default function WiEPPage() {
                     href={WIEP_YOUTUBE_VIDEOS}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-[#f5a51d] hover:underline"
+                    className="font-medium text-[#F5A51D] hover:underline"
                   >
                     youtube.com/@wiepteam
                   </a>
@@ -217,3 +217,4 @@ export default function WiEPPage() {
     </main>
   );
 }
+

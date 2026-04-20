@@ -43,13 +43,13 @@ export default function EventsPage() {
     modalImagesRef.current = images;
     setCurrentImageIndex(index);
     setModalOpen(true);
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.classList.add('no-scroll'); // Prevent background scrolling
   };
 
   // Close image modal
   const closeImageModal = () => {
     setModalOpen(false);
-    document.body.style.overflow = ''; // Restore scrolling
+    document.body.classList.remove('no-scroll'); // Restore scrolling
   };
 
   // Navigate to previous image
@@ -72,7 +72,7 @@ export default function EventsPage() {
 
       if (e.key === 'Escape') {
         setModalOpen(false);
-        document.body.style.overflow = '';
+        document.body.classList.remove('no-scroll');
       } else if (e.key === 'ArrowLeft') {
         setCurrentImageIndex((prev) => (prev === 0 ? imagesLength - 1 : prev - 1));
       } else if (e.key === 'ArrowRight') {
@@ -511,7 +511,7 @@ export default function EventsPage() {
                               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement;
-                                target.style.display = 'none';
+                                target.classList.add('hidden');
                                 const parent = target.parentElement;
                                 if (parent && !parent.querySelector('.photo-error')) {
                                   const errorDiv = document.createElement('div');
@@ -572,7 +572,7 @@ export default function EventsPage() {
                 priority={currentImageIndex === 0}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
+                  target.classList.add('hidden');
                   const errorDiv = document.createElement('div');
                   errorDiv.className = 'image-error-message';
                   errorDiv.textContent = 'Image format not supported. Please convert .HEIC files to .jpg or .png';
@@ -594,3 +594,5 @@ export default function EventsPage() {
     </main>
   );
 }
+
+

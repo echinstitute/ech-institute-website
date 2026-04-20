@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import {
@@ -18,9 +19,9 @@ import {
   Code,
   GraduationCap,
 } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
+// import { ThemeToggle } from '@/components/layout/ThemeToggle';
 
 // ==========================================
 // CUSTOMIZABLE MENU ITEMS
@@ -150,10 +151,12 @@ const menuItems: MenuConfig = {
 // NAVIGATION COMPONENT
 // ==========================================
 
+const NAVBAR_HEIGHT = 88;
+
 export default function Navigation() {
   const pathname = usePathname();
-  const { theme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [logoFallback, setLogoFallback] = useState(false);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [hoveredNavItem, setHoveredNavItem] = useState<string | null>(null); // Track hovered nav items without subItems
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
@@ -162,26 +165,6 @@ export default function Navigation() {
   const [openMobileSubMenu, setOpenMobileSubMenu] = useState<string | null>(null); // Track which nested sub-menu is open (format: "parentKey-index")
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [mounted, setMounted] = useState(false);
-  const [navbarHeight, setNavbarHeight] = useState(80); // Default height
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Calculate navbar height dynamically
-  useEffect(() => {
-    const updateNavbarHeight = () => {
-      if (navbarRef.current) {
-        const height = navbarRef.current.offsetHeight;
-        setNavbarHeight(height);
-      }
-    };
-
-    updateNavbarHeight();
-    window.addEventListener('resize', updateNavbarHeight);
-    return () => window.removeEventListener('resize', updateNavbarHeight);
-  }, []);
 
   // Auto-close mobile menu when screen width becomes large
   useEffect(() => {
@@ -190,7 +173,7 @@ export default function Navigation() {
         setIsMenuOpen(false);
         setOpenMobileMenu(null);
         setOpenMobileSubMenu(null);
-        document.body.style.overflow = '';
+        setBodyScrollLock(false);
       }
     };
 
@@ -203,11 +186,14 @@ export default function Navigation() {
     link.startsWith('http://') || link.startsWith('https://');
 
   const getLinkUrl = (link: string) => link;
+
+  const setBodyScrollLock = (locked: boolean) => {
+    document.body.classList.toggle('no-scroll', locked);
+  };
   
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const navbarRef = useRef<HTMLElement>(null);
 
   // Handle smooth scrolling for hash links
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -215,7 +201,7 @@ export default function Navigation() {
     setIsMenuOpen(false);
     setOpenMobileMenu(null);
     setOpenMobileSubMenu(null);
-    document.body.style.overflow = '';
+    setBodyScrollLock(false);
     
     // Close desktop dropdown menu
     setHoveredMenu(null);
@@ -231,9 +217,8 @@ export default function Navigation() {
       if (path === pathname || path === '') {
         const element = document.querySelector(hash);
         if (element) {
-          const navbarHeight = 80;
           const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+          const offsetPosition = elementPosition + window.pageYOffset - NAVBAR_HEIGHT;
           
           window.scrollTo({
             top: offsetPosition,
@@ -389,9 +374,8 @@ export default function Navigation() {
   return (
     <>
       <nav 
-        ref={navbarRef}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 border-b border-[#e2e8f0] bg-white shadow-sm transition-transform duration-300 ease-in-out",
+          "nav-shell fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out",
           isNavbarVisible ? "translate-y-0" : "-translate-y-full"
         )}
       >
@@ -400,37 +384,28 @@ export default function Navigation() {
             {/* LEFT SIDE: Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 sm:gap-3 font-bold hover:text-[#facc14] transition-colors pr-2 sm:pr-4 lg:pr-12 z-10 flex-shrink-0 no-underline min-w-0"
-              style={{ textDecoration: 'none' }}
+              className="nav-brand-link flex items-center gap-2 sm:gap-3 font-bold transition-colors pr-2 sm:pr-4 lg:pr-12 z-10 flex-shrink-0 no-underline min-w-0"
             >
               <span className="sr-only">ECH Institute</span>
-              <img
-                src="/assets/ech_full_logo.png"
-                alt="ECH Institute"
-                className="h-7 sm:h-8 md:h-10 lg:h-11 xl:h-12 w-auto flex-shrink-0"
-                onError={(e) => {
-                  // Fallback to text if image fails to load
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent && !parent.querySelector('.logo-fallback')) {
-                    const fallback = document.createElement('span');
-                    fallback.className = 'logo-fallback';
-                    fallback.textContent = 'ECH Institute';
-                    parent.appendChild(fallback);
-                  }
-                }}
-              />
+              {!logoFallback ? (
+                <Image
+                  src="/ECH Institute Logo - White.png"
+                  alt="ECH Institute"
+                  width={300}
+                  height={80}
+                  priority
+                  unoptimized
+                  className="h-8 sm:h-9 md:h-11 lg:h-12 xl:h-14 w-auto flex-shrink-0 object-contain"
+                  onError={() => setLogoFallback(true)}
+                />
+              ) : (
+                <span className="logo-fallback">ECH Institute</span>
+              )}
               <div className="flex flex-col -space-y-0.5">
-                <span className={cn(
-                  "font-[family-name:var(--font-family-nav)] font-bold transition-colors inline whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl",
-                  mounted && theme === 'dark' 
-                    ? 'text-white' 
-                    : 'text-black'
-                )}>
+                <span className="nav-brand-name font-[family-name:var(--font-family-nav)] font-bold transition-colors inline whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl">
                   ECH Institute
                 </span>
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--color-yellow)] mt-0 whitespace-nowrap">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--accent-brand)] mt-0 whitespace-nowrap">
                   Nonprofit Organization
                 </span>
               </div>
@@ -453,19 +428,17 @@ export default function Navigation() {
                       className={cn(
                         'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center focus:outline-none focus-visible:outline-none focus:ring-0 no-underline whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
                         hoveredMenu === key
-                          ? 'bg-gray-100 text-black'
-                          : 'text-[#4c5663] hover:bg-gray-100 hover:text-black'
+                          ? 'bg-[var(--surface-card-muted)] text-[var(--text-base)]'
+                          : 'text-[var(--text-soft)] hover:bg-[var(--surface-card-muted)] hover:text-[var(--text-base)]'
                       )}
-                      style={{ textDecoration: 'none', fontFamily: 'var(--font-family-nav)' }}
                     >
                       <span
                         className={cn(
                           'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
                           hoveredMenu === key
-                            ? 'text-black'
-                            : 'text-[#4c5663]'
+                            ? 'text-[var(--text-base)]'
+                            : 'text-[var(--text-soft)]'
                         )}
-                        style={{ fontFamily: 'var(--font-family-nav)' }}
                       >
                         {item.title}
                       </span>
@@ -493,24 +466,17 @@ export default function Navigation() {
                         }}
                         className={cn(
                           'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
-                          'visited:text-[#4c5663] active:text-[#4c5663]',
+                          'visited:text-[var(--text-soft)] active:text-[var(--text-soft)]',
                           hoveredNavItem === key
-                            ? 'bg-gray-100 text-black visited:text-black active:text-black'
-                            : 'text-[#4c5663] hover:bg-gray-100 hover:!text-black visited:text-[#4c5663] active:text-[#4c5663]'
+                            ? 'bg-[var(--surface-card-muted)] text-[var(--text-base)] visited:text-[var(--text-base)] active:text-[var(--text-base)]'
+                            : 'text-[var(--text-soft)] hover:bg-[var(--surface-card-muted)] hover:!text-[var(--text-base)] visited:text-[var(--text-soft)] active:text-[var(--text-soft)]'
                         )}
-                        style={{ 
-                          fontFamily: 'var(--font-family-nav)', 
-                          textDecoration: 'none' 
-                        }}
                       >
                         <span 
                           className={cn(
-                            'font-bold uppercase visited:text-[#4c5663] active:text-[#4c5663] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
-                            hoveredNavItem === key ? 'text-black visited:text-black active:text-black' : 'text-[#4c5663] hover:!text-black'
+                            'font-bold uppercase visited:text-[var(--text-soft)] active:text-[var(--text-soft)] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
+                            hoveredNavItem === key ? 'text-[var(--text-base)] visited:text-[var(--text-base)] active:text-[var(--text-base)]' : 'text-[var(--text-soft)] hover:!text-[var(--text-base)]'
                           )}
-                          style={{ 
-                            fontFamily: 'var(--font-family-nav)'
-                          }}
                         >
                           {item.title}
                         </span>
@@ -539,7 +505,7 @@ export default function Navigation() {
                           setHoveredMenu(null);
                           setHoveredSection(null);
                           setClickedSection(null);
-                          document.body.style.overflow = '';
+                          setBodyScrollLock(false);
                         }
                       }}
                       onMouseEnter={() => {
@@ -556,22 +522,15 @@ export default function Navigation() {
                       data-nav-hovered={isHovered ? 'true' : 'false'}
                       className={cn(
                         'nav-link-item font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
-                        isActive && 'bg-gray-100 text-black',
-                        !isActive && 'text-[#4c5663] hover:bg-gray-100 hover:text-black'
+                        isActive && 'bg-[var(--surface-card-muted)] text-[var(--text-base)]',
+                        !isActive && 'text-[var(--text-soft)] hover:bg-[var(--surface-card-muted)] hover:text-[var(--text-base)]'
                       )}
-                      style={{ 
-                        fontFamily: 'var(--font-family-nav)', 
-                        textDecoration: 'none'
-                      }}
                     >
                       <span 
                         className={cn(
                           'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
-                          shouldBeBlack ? 'text-black' : 'text-[#4c5663]'
+                          shouldBeBlack ? 'text-[var(--text-base)]' : 'text-[var(--text-soft)]'
                         )}
-                        style={{ 
-                          fontFamily: 'var(--font-family-nav)'
-                        }}
                       >
                         {item.title}
                       </span>
@@ -582,9 +541,10 @@ export default function Navigation() {
             </div>
 
             {/* RIGHT SIDE: Theme Toggle & Mobile Menu Button */}
-            <div className="flex items-center gap-2 ml-auto">
-              {/* Theme Toggle - Commented out as not currently used */}
-              {/* <ThemeToggle /> */}
+            <div className="flex items-center gap-4 ml-auto">
+              {/* <div>
+                <ThemeToggle />
+              </div> */}
               {/* Mobile Menu Toggle Button - Only shows when navbar items are hidden (below lg breakpoint) */}
               <button
                 onClick={(e) => {
@@ -607,12 +567,12 @@ export default function Navigation() {
                   }
                   // Force a re-render by updating state
                   if (newMenuState) {
-                    document.body.style.overflow = 'hidden';
+                    setBodyScrollLock(true);
                   } else {
-                    document.body.style.overflow = '';
+                    setBodyScrollLock(false);
                   }
                 }}
-                className="flex lg:!hidden p-2 rounded-md hover:bg-gray-100 transition-colors text-black z-[100] relative flex-shrink-0 items-center justify-center"
+                className="flex lg:!hidden p-2 rounded-md hover:bg-[var(--surface-card-muted)] transition-colors text-[var(--text-base)] z-[100] relative flex-shrink-0 items-center justify-center"
                 aria-label="Toggle menu"
                 type="button"
                 aria-expanded={isMenuOpen}
@@ -632,8 +592,7 @@ export default function Navigation() {
           <>
             {/* Backdrop */}
             <div
-              className="hidden lg:block fixed inset-0 bg-black/20 z-40"
-              style={{ top: `${navbarHeight}px` }}
+              className="nav-overlay-offset hidden lg:block fixed inset-0 bg-[var(--surface-overlay)] opacity-70 z-40"
               onMouseEnter={handleDropdownEnter}
               onMouseLeave={handleDropdownLeave}
             />
@@ -641,8 +600,7 @@ export default function Navigation() {
             {/* Mega Menu */}
             <div
               ref={dropdownRef}
-              className="hidden lg:block fixed inset-x-0 bg-[#f1f5f9] z-50 border-t border-[#e2e8f0] shadow-lg rounded-b-lg"
-              style={{ top: `${navbarHeight}px` }}
+              className="nav-panel-offset hidden lg:block fixed inset-x-0 bg-[var(--surface-card-theme)] z-50 border-t border-[var(--border-soft)] shadow-lg rounded-b-lg"
               onMouseEnter={handleDropdownEnter}
               onMouseLeave={handleDropdownLeave}
             >
@@ -653,7 +611,7 @@ export default function Navigation() {
                 <div className="flex gap-8">
                   {/* LEFT: Fixed width menu list - showing all sub-items of current menu */}
                   <div className="w-80 flex-shrink-0">
-                    <div className="space-y-2 py-2 max-h-[calc(100vh-12rem)] overflow-y-auto pr-2 mega-menu-scroll" style={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
+                    <div className="nav-scroll-panel space-y-2 py-2 max-h-[calc(100vh-12rem)] overflow-y-auto pr-2 mega-menu-scroll">
                       {currentMenu.subItems.map((subItem, index) => {
                         // Check if this sub-item has nested sub-items
                         const hasNestedSubItems = 'subItems' in subItem && subItem.subItems && subItem.subItems.length > 0;
@@ -670,31 +628,31 @@ export default function Navigation() {
                                 className={cn(
                                   'w-full flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border cursor-pointer focus:outline-none focus-visible:outline-none',
                                   isHovered || clickedSection === `${hoveredMenu}-${index}`
-                                    ? 'bg-white border-[#facc14] shadow-md'
-                                    : 'bg-white border-[#e2e8f0] hover:bg-white hover:border-[#facc14] hover:shadow-md'
+                                    ? 'bg-[var(--surface-card-theme)] border-[var(--accent-brand)] shadow-md'
+                                    : 'bg-[var(--surface-card-theme)] border-[var(--border-soft)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md'
                                 )}
                               >
                                 <div className={cn(
                                   'flex-shrink-0 w-10 h-10 rounded-md flex items-center justify-center transition-colors bg-transparent',
                                   isHovered || clickedSection === `${hoveredMenu}-${index}`
-                                    ? 'text-[#facc14]'
-                                    : 'text-black'
+                                    ? 'text-[var(--accent-brand)]'
+                                    : 'text-[var(--text-base)]'
                                 )}>
                                   <subItem.icon className="h-5 w-5" />
                                 </div>
                                 <div className="flex-1 text-left">
                                   <div className={cn(
                                     'font-medium text-base',
-                                    isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-black' : 'text-[#4c5663]'
+                                    isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[var(--text-base)]' : 'text-[var(--text-soft)]'
                                   )}>{subItem.title}</div>
-                                  <div className="text-sm text-[#4c5663] mt-0.5">
+                                  <div className="text-sm text-[var(--text-soft)] mt-0.5">
                                     {subItem.description}
                                   </div>
                                 </div>
                                 <ChevronRight className={cn(
                                   'h-5 w-5 flex-shrink-0 transition-colors',
-                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[#facc14]' : 'text-[#4c5663]'
-                                )} />
+                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[var(--accent-brand)]' : 'text-[var(--text-soft)]'
+                                )}/>
                               </div>
                             ) : (
                               (() => {
@@ -711,14 +669,14 @@ export default function Navigation() {
                                       onMouseEnter={() => {
                                         setHoveredSection(null);
                                       }}
-                                      className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[#e2e8f0] bg-white hover:bg-white hover:border-[#facc14] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                      className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                     >
-                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#facc14] transition-colors">
+                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center group-hover:text-[var(--accent-brand)] transition-colors">
                                         <subItem.icon className="h-5 w-5" />
                                       </div>
                                       <div className="flex-1 text-left">
-                                        <div className="font-medium text-base text-[#4c5663] group-hover:text-black">{subItem.title}</div>
-                                        <div className="text-sm text-[#4c5663] mt-0.5">
+                                        <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)]">{subItem.title}</div>
+                                        <div className="text-sm text-[var(--text-soft)] mt-0.5">
                                           {subItem.description}
                                         </div>
                                       </div>
@@ -735,14 +693,14 @@ export default function Navigation() {
                                       // Clear hovered section when hovering non-nested items
                                       setHoveredSection(null);
                                     }}
-                                    className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[#e2e8f0] bg-white hover:bg-white hover:border-[#facc14] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                    className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#facc14] transition-colors">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center group-hover:text-[var(--accent-brand)] transition-colors">
                                       <subItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 text-left">
-                                      <div className="font-medium text-base text-[#4c5663] group-hover:text-black">{subItem.title}</div>
-                                      <div className="text-sm text-[#4c5663] mt-0.5">
+                                      <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)]">{subItem.title}</div>
+                                      <div className="text-sm text-[var(--text-soft)] mt-0.5">
                                         {subItem.description}
                                       </div>
                                     </div>
@@ -758,7 +716,7 @@ export default function Navigation() {
 
                   {/* RIGHT: Only show when at least one sub-item has nested sub-items */}
                   {currentMenu.subItems.some((s) => 'subItems' in s && s.subItems && s.subItems.length > 0) && (
-                  <div className="flex-1 border-l border-[#e2e8f0] pl-8 max-h-[calc(100vh-12rem)] overflow-y-auto mega-menu-scroll" style={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
+                  <div className="nav-scroll-panel flex-1 border-l border-[var(--border-soft)] pl-8 max-h-[calc(100vh-12rem)] overflow-y-auto mega-menu-scroll">
                     {(() => {
                       // Find the hovered or clicked sub-item that has nested sub-items
                       const activeSection = clickedSection || hoveredSection;
@@ -772,7 +730,7 @@ export default function Navigation() {
                       if (!activeSection || !hasNestedSubItems) {
                         return (
                           <div className="flex items-center justify-center min-h-[120px] py-2">
-                            <p className="text-[#64748b] text-sm">
+                            <p className="text-[var(--text-soft)] text-sm">
                               Hover over a menu item to see options
                             </p>
                           </div>
@@ -783,11 +741,11 @@ export default function Navigation() {
                       
                       return (
                         <div className="py-3 pe-3">
-                          <div className="mb-3 border-b border-[#e2e8f0]">
-                            <h3 className="text-lg font-semibold text-black mb-2">
+                          <div className="mb-3 border-b border-[var(--border-soft)]">
+                            <h3 className="text-lg font-semibold text-[var(--text-base)] mb-2">
                               {activeSubItem.title}
                             </h3>
-                            <p className="text-sm text-[#64748b]">
+                            <p className="text-sm text-[var(--text-soft)]">
                               {activeSubItem.description}
                             </p>
                           </div>
@@ -803,16 +761,16 @@ export default function Navigation() {
                                     href={linkUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[#e2e8f0] bg-white hover:bg-white hover:border-[#facc14] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                    className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#facc14] transition-colors mt-0.5">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center group-hover:text-[var(--accent-brand)] transition-colors mt-0.5">
                                       <nestedItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                      <div className="font-medium text-base text-[#4c5663] group-hover:text-black mb-1">
+                                      <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)] mb-1">
                                         {nestedItem.title}
                                       </div>
-                                      <div className="text-sm text-[#4c5663]">
+                                      <div className="text-sm text-[var(--text-soft)]">
                                         {nestedItem.description}
                                       </div>
                                     </div>
@@ -825,16 +783,16 @@ export default function Navigation() {
                                   key={nestedIndex}
                                   href={nestedItem.link}
                                   onClick={(e) => handleLinkClick(e, nestedItem.link)}
-                                  className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[#e2e8f0] bg-white hover:bg-white hover:border-[#facc14] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                  className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                 >
-                                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center group-hover:text-[#facc14] transition-colors mt-0.5">
+                                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center group-hover:text-[var(--accent-brand)] transition-colors mt-0.5">
                                     <nestedItem.icon className="h-5 w-5" />
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <div className="font-medium text-base text-[#4c5663] group-hover:text-black mb-1">
+                                    <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)] mb-1">
                                       {nestedItem.title}
                                     </div>
-                                    <div className="text-sm text-[#4c5663]">
+                                    <div className="text-sm text-[var(--text-soft)]">
                                       {nestedItem.description}
                                     </div>
                                   </div>
@@ -860,25 +818,23 @@ export default function Navigation() {
         <>
           {/* Backdrop */}
           <div 
-              className="lg:hidden fixed inset-0 bg-black/20 z-[90]"
-              style={{ top: `${navbarHeight}px` }}
+              className="nav-overlay-offset lg:hidden fixed inset-0 bg-[var(--surface-overlay)] opacity-70 z-[90]"
             onClick={() => {
               setIsMenuOpen(false);
               setOpenMobileMenu(null);
               setOpenMobileSubMenu(null);
-              document.body.style.overflow = '';
+              setBodyScrollLock(false);
             }}
           />
           {/* Mobile Menu */}
           <div 
-            className="lg:hidden fixed inset-x-0 bottom-0 bg-white border-t border-[#e2e8f0] z-[100] overflow-y-auto shadow-lg"
-            style={{ top: `${navbarHeight}px`, display: 'block', visibility: 'visible', pointerEvents: 'auto' }}
+            className="nav-panel-offset lg:hidden fixed inset-x-0 bottom-0 bg-[var(--surface-card-theme)] border-t border-[var(--border-soft)] z-[100] overflow-y-auto shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="container max-w-7xl mx-auto px-2 sm:px-4 pt-8 pb-8">
               <div className="space-y-1 pt-2 pb-4">
                 {Object.entries(menuItems).map(([key, item]) => (
-                  <div key={key} className="border-b border-[#e2e8f0] last:border-0">
+                  <div key={key} className="border-b border-[var(--border-soft)] last:border-0">
                     {item.subItems && item.subItems.length > 0 ? (
                       <div className="py-2">
                         {/* Clickable header to toggle dropdown */}
@@ -886,22 +842,22 @@ export default function Navigation() {
                           onClick={() => {
                             setOpenMobileMenu(openMobileMenu === key ? null : key);
                           }}
-                          className="w-full flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0"
+                          className="w-full flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0"
                         >
-                          <div className="w-10 h-10 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                          <div className="w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
                             <item.icon className="h-5 w-5" />
                           </div>
                           <div className="flex-1 text-left">
-                            <div className="font-medium text-sm text-black">
+                            <div className="font-medium text-sm text-[var(--text-base)]">
                               {item.title}
                             </div>
-                            <div className="text-xs text-[#4c5663]">
+                            <div className="text-xs text-[var(--text-soft)]">
                               {item.description}
                             </div>
                           </div>
                           <ChevronRight 
                             className={cn(
-                              "h-5 w-5 text-[#4c5663] transition-transform duration-200 flex-shrink-0",
+                              "h-5 w-5 text-[var(--text-soft)] transition-transform duration-200 flex-shrink-0",
                               openMobileMenu === key ? "rotate-90" : ""
                             )}
                           />
@@ -923,22 +879,22 @@ export default function Navigation() {
                                       onClick={() => {
                                         setOpenMobileSubMenu(openMobileSubMenu === subMenuKey ? null : subMenuKey);
                                       }}
-                                      className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 text-left"
+                                      className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 text-left"
                                     >
-                                      <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                      <div className="w-8 h-8 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
                                         <subItem.icon className="h-4 w-4" />
                                       </div>
                                       <div className="flex-1">
-                                        <div className="font-medium text-sm text-black">
+                                        <div className="font-medium text-sm text-[var(--text-base)]">
                                           {subItem.title}
                                         </div>
-                                        <div className="text-xs text-[#4c5663]">
+                                        <div className="text-xs text-[var(--text-soft)]">
                                           {subItem.description}
                                         </div>
                                       </div>
                                       <ChevronRight 
                                         className={cn(
-                                          "h-4 w-4 text-[#4c5663] transition-transform duration-200 flex-shrink-0",
+                                          "h-4 w-4 text-[var(--text-soft)] transition-transform duration-200 flex-shrink-0",
                                           openMobileSubMenu === subMenuKey ? "rotate-90" : ""
                                         )}
                                       />
@@ -960,16 +916,16 @@ export default function Navigation() {
                                                 onClick={(e) => {
                                                   handleLinkClick(e, nestedItem.link);
                                                 }}
-                                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
+                                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                               >
-                                                <div className="w-6 h-6 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                                <div className="w-6 h-6 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
                                                   <nestedItem.icon className="h-3 w-3" />
                                                 </div>
                                                 <div className="flex-1">
-                                                  <div className="font-medium text-xs text-black">
+                                                  <div className="font-medium text-xs text-[var(--text-base)]">
                                                     {nestedItem.title}
                                                   </div>
-                                                  <div className="text-xs text-[#4c5663]">
+                                                  <div className="text-xs text-[var(--text-soft)]">
                                                     {nestedItem.description}
                                                   </div>
                                                 </div>
@@ -984,16 +940,16 @@ export default function Navigation() {
                                               onClick={(e) => {
                                                 handleLinkClick(e, nestedItem.link);
                                               }}
-                                              className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
+                                              className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                             >
-                                              <div className="w-6 h-6 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                              <div className="w-6 h-6 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
                                                 <nestedItem.icon className="h-3 w-3" />
                                               </div>
                                               <div className="flex-1">
-                                                <div className="font-medium text-xs text-black">
+                                                <div className="font-medium text-xs text-[var(--text-base)]">
                                                   {nestedItem.title}
                                                 </div>
-                                                <div className="text-xs text-[#4c5663]">
+                                                <div className="text-xs text-[var(--text-soft)]">
                                                   {nestedItem.description}
                                                 </div>
                                               </div>
@@ -1017,17 +973,16 @@ export default function Navigation() {
                                     onClick={(e) => {
                                       handleLinkClick(e, subItem.link);
                                     }}
-                                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
-                                    style={{ textDecoration: 'none' }}
+                                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                   >
-                                    <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                    <div className="w-8 h-8 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
                                       <subItem.icon className="h-4 w-4" />
                                     </div>
                                     <div className="flex-1">
-                                      <div className="font-medium text-sm text-black" style={{ textDecoration: 'none' }}>
+                                      <div className="font-medium text-sm text-[var(--text-base)]">
                                         {subItem.title}
                                       </div>
-                                      <div className="text-xs text-[#4c5663]" style={{ textDecoration: 'none' }}>
+                                      <div className="text-xs text-[var(--text-soft)]">
                                         {subItem.description}
                                       </div>
                                     </div>
@@ -1042,17 +997,16 @@ export default function Navigation() {
                                   onClick={(e) => {
                                     handleLinkClick(e, subItem.link);
                                   }}
-                                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
-                                  style={{ textDecoration: 'none' }}
+                                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                 >
-                                  <div className="w-8 h-8 rounded-md bg-transparent text-black flex items-center justify-center flex-shrink-0 group-hover:text-[#facc14] transition-colors">
+                                  <div className="w-8 h-8 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
                                     <subItem.icon className="h-4 w-4" />
                                   </div>
                                   <div className="flex-1">
-                                    <div className="font-medium text-sm text-black" style={{ textDecoration: 'none' }}>
+                                    <div className="font-medium text-sm text-[var(--text-base)]">
                                       {subItem.title}
                                     </div>
-                                    <div className="text-xs text-[#4c5663]" style={{ textDecoration: 'none' }}>
+                                    <div className="text-xs text-[var(--text-soft)]">
                                       {subItem.description}
                                     </div>
                                   </div>
@@ -1067,21 +1021,21 @@ export default function Navigation() {
                         href={item.link}
                         onClick={(e) => handleLinkClick(e, item.link)}
                         className={cn(
-                          'flex items-center gap-3 py-4 hover:bg-gray-100 transition-colors rounded-lg px-2 group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline',
-                          pathname === item.link ? 'bg-gray-100' : ''
+                          'flex items-center gap-3 py-4 hover:bg-[var(--surface-card-muted)] transition-colors rounded-lg px-2 group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline',
+                          pathname === item.link ? 'bg-[var(--surface-card-muted)]' : ''
                         )}
                       >
                         <div className={cn(
                           'w-10 h-10 rounded-md bg-transparent flex items-center justify-center flex-shrink-0 transition-colors',
-                          pathname === item.link ? 'text-[#facc14]' : 'text-black group-hover:text-[#facc14]'
+                          pathname === item.link ? 'text-[var(--accent-brand)]' : 'text-[var(--text-base)] group-hover:text-[var(--accent-brand)]'
                         )}>
                           <item.icon className="h-5 w-5" />
                         </div>
                         <div>
-                          <div className="font-medium text-sm text-black">
+                          <div className="font-medium text-sm text-[var(--text-base)]">
                             {item.title}
                           </div>
-                          <div className="text-xs text-[#4c5663]">
+                          <div className="text-xs text-[var(--text-soft)]">
                             {item.description}
                           </div>
                         </div>
@@ -1097,3 +1051,5 @@ export default function Navigation() {
     </>
   );
 }
+
+

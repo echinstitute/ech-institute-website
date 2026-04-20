@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: "https://www.echinstitute.org/podcast",
     images: [
       {
-        url: "/assets/ech_full_logo.png",
+        url: "/ECH Institute Logo - White.png",
         width: 1200,
         height: 630,
         alt: "ECH Institute Podcast & Media Hub",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "ECH Institute Podcast — PEEPanEIP, Fusaka Files & More",
     description:
       "Deep-dives into EIPs, Fusaka upgrade series, WiEP study groups, and All Core Devs session archives for the global Ethereum developer community.",
-    images: ["/assets/ech_full_logo.png"],
+    images: ["/ECH Institute Logo - White.png"],
   },
   alternates: {
     canonical: "https://www.echinstitute.org/podcast",

@@ -389,7 +389,7 @@ export default function Navigation() {
               <span className="sr-only">ECH Institute</span>
               {!logoFallback ? (
                 <Image
-                  src="/ECH Institute Logo - White.png"
+                  src="/assets/logo/ECH Institute Logo - White.png"
                   alt="ECH Institute"
                   width={300}
                   height={80}
@@ -406,7 +406,7 @@ export default function Navigation() {
                   ECH Institute
                 </span>
                 <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--accent-brand)] mt-0 whitespace-nowrap">
-                  Nonprofit Organization
+                  {/* Nonprofit Organization */} People | Process | Protocol
                 </span>
               </div>
             </Link>

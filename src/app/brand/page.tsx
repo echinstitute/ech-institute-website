@@ -117,7 +117,7 @@ function ColorSwatch({
 
   return (
     <div className="brand-swatch-card group">
-      <div 
+      <div
         className={cn("brand-swatch-preview h-40 cursor-pointer overflow-hidden border border-[#262626] relative z-10 shadow-inner", swatchClass)}
         style={{ backgroundColor: hex || '#333' }}
         onClick={handleCopy}
@@ -128,7 +128,7 @@ function ColorSwatch({
         <div className="absolute bottom-3 right-3 z-20 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-white/10">
           <span className="text-[11px] font-mono text-[#FBFBFB] font-bold tracking-tighter uppercase">{hex}</span>
         </div>
-        
+
         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
           <button className="p-3 bg-black/50 backdrop-blur-xl rounded-2xl scale-90 group-hover:scale-100 transition-all border border-white/20">
             {copied ? <Check size={18} className="text-[#F5A51D]" /> : <Copy size={18} className="text-white" />}
@@ -195,7 +195,7 @@ function TypeSample({
     <div className="brand-type-board group">
       {/* Background Blueprint Grid */}
       <div className="brand-type-blueprint" />
-      
+
       {/* Background Glyph Backdrop */}
       <div className={cn("brand-glyph-backdrop", familyClass === 'brand-type-family--heading' ? 'font-syne' : 'font-sans')}>
         Aa
@@ -209,11 +209,11 @@ function TypeSample({
               <div className="w-6 h-[1px] bg-[var(--accent-brand)]" />
               <span className="brand-type-label !mb-0">{label} Family</span>
             </div>
-            
+
             <h3 className={cn('text-4xl font-extrabold text-[#FBFBFB] tracking-tight mb-2', familyClass)}>
               {fontName || familyClass.replace('brand-type-family--', '')}
             </h3>
-            
+
             <p className="text-sm text-[#878787] mt-6 leading-relaxed max-w-[240px]">
               Institutional standard for {category === 'heading' ? 'high-impact statements and brand headings' : 'reading experiences, interface logic, and metadata'}.
             </p>
@@ -222,7 +222,7 @@ function TypeSample({
           <div className="brand-type-spec-list">
             <div className="brand-type-spec-item">
               <span className="brand-type-spec-label">Range</span>
-              <span className="brand-type-spec-value">{weights[weights.length-1].weight} — {weights[0].weight}</span>
+              <span className="brand-type-spec-value">{weights[weights.length - 1].weight} — {weights[0].weight}</span>
             </div>
             <div className="brand-type-spec-item">
               <span className="brand-type-spec-label">Role</span>
@@ -237,7 +237,7 @@ function TypeSample({
             <div key={name} className="flex flex-col gap-5 group/weight relative">
               {/* Metric Line (Baseline) */}
               <div className="brand-metric-baseline bottom-0 scale-x-0 group-hover/weight:scale-x-100 transition-transform origin-left duration-700" />
-              
+
               <div className="flex items-center justify-between">
                 <span className={cn(
                   "brand-type-weight-name text-[9px] uppercase tracking-[0.4em] transition-colors",
@@ -249,14 +249,14 @@ function TypeSample({
                   WGT: {weight}
                 </span>
               </div>
-              
+
               <p
                 className={cn(
                   "text-4xl md:text-6xl tracking-tighter text-[#FBFBFB] leading-[0.85] transition-all duration-300",
                   category === 'heading' ? 'font-syne' : 'font-sans',
                   "group-hover/weight:pl-2"
                 )}
-                style={{ 
+                style={{
                   fontWeight: weight,
                   opacity: weight === 800 ? 1 : weight === 700 ? 0.9 : 0.8
                 }}
@@ -332,7 +332,7 @@ export default function BrandPage() {
               <span className="text-[#F5A51D] italic font-syne font-medium">Coordination.</span>
             </h1>
             <p className="text-xl text-[#FBFBFB] font-medium leading-relaxed mb-4 max-w-xl animate-fade-up delay-1">
-              The ECH Institute brand system engineered for institutional trust, 
+              The ECH Institute brand system engineered for institutional trust,
               visual clarity, and technical excellence across the Ethereum ecosystem.
             </p>
             <div className="flex flex-wrap gap-5 animate-fade-up delay-2 ">
@@ -348,7 +348,7 @@ export default function BrandPage() {
           <div className="relative flex justify-center items-center animate-fade-in py-10 lg:py-0">
             <div className="relative group">
               <Image
-                src="/assets/images/Catty.webp"
+                src="/assets/logo/Cat with Laptop.svg"
                 alt="ECH Institute Cat"
                 width={550}
                 height={550}
@@ -364,10 +364,10 @@ export default function BrandPage() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 flex gap-12 items-start">
 
         {/* Sticky Left Nav */}
-        <StickySideNav 
-          sections={NAV_SECTIONS} 
-          activeSection={activeSection} 
-          onSectionClick={scrollToSection} 
+        <StickySideNav
+          sections={NAV_SECTIONS}
+          activeSection={activeSection}
+          onSectionClick={scrollToSection}
         />
 
         {/* Content Area */}
@@ -376,14 +376,14 @@ export default function BrandPage() {
           <section id="logo" className="scroll-mt-28">
             <SectionHeader label="01 — Identity" title={<>Logo <em>Marks</em></>} />
             <p className="global-body-lg mb-10 max-w-2xl text-[#FBFBFB]">
-              Our identity is built around the ECH mark. Use these approved variations 
+              Our identity is built around the ECH mark. Use these approved variations
               to ensure institutional consistency across all media.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <LogoCard src="/ECH Institute Logo - Black.png" label="Primary Logo (Dark)" />
-              <LogoCard src="/ECH Institute Logo - White.png" label="Inverted Logo (Light)" dark />
-              <LogoCard src="/ECH Institute Logo - White.png" label="Landscape Mark" isHorizontal />
+              <LogoCard src="/assets/logo/ECH Institute Logo - Black.png" label="Primary Logo (Dark)" />
+              <LogoCard src="/assets/logo/ECH Institute Logo - White.png" label="Inverted Logo (Light)" dark />
+              <LogoCard src="/assets/logo/ECH Institute Logo - White.png" label="Landscape Mark" isHorizontal />
             </div>
           </section>
 
@@ -392,7 +392,7 @@ export default function BrandPage() {
           <section id="color" className="scroll-mt-28">
             <SectionHeader label="02 — Color Palette" title={<>Institutional <em>Spectrum</em></>} />
             <p className="global-body-lg mb-12 max-w-3xl text-[#FBFBFB]">
-              Consistent use of color is vital to the ECH brand. Our palette is built on a 
+              Consistent use of color is vital to the ECH brand. Our palette is built on a
               foundation of depth, institutional trust, and high-contrast accessibility.
             </p>
 
@@ -441,7 +441,7 @@ export default function BrandPage() {
                 <h3 className="brand-subsection-title">Institutional Theme Strategy</h3>
                 <p className="text-[#FBFBFB] text-sm max-w-2xl">We maintain a single institutional pallet that adapts role responsibility between Light and Dark canvases.</p>
               </div>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {THEME_APPLICATIONS.map(({ title, description, chips }) => (
                   <div key={title} className="theme-strategy-board flex flex-col gap-8 transition-all hover:border-[#F5A51D]/30">
@@ -454,9 +454,9 @@ export default function BrandPage() {
                     </div>
 
                     <p className="text-[#FBFBFB] text-sm leading-relaxed font-medium min-h-[60px]">{description}</p>
-                    
+
                     <div className="grid grid-cols-1 gap-2">
-                       {chips.map(({ label }) => (
+                      {chips.map(({ label }) => (
                         <div key={label} className="bg-[#151419] border border-[#262626] px-5 py-4 rounded-xl flex items-center justify-between group/chip hover:border-[#F5A51D]/50 transition-colors">
                           <span className="text-[10px] text-[#FBFBFB] font-black uppercase tracking-widest group-hover/chip:text-[#FBFBFB] transition-colors">{label.split(' ')[0]}</span>
                           <span className="text-xs font-mono text-[#F5A51D] font-bold">{label.split(' ')[1]}</span>
@@ -474,8 +474,8 @@ export default function BrandPage() {
           <section id="typography" className="scroll-mt-28">
             <SectionHeader label="03 — Typography" title={<>Institutional <em>Typefaces</em></>} />
             <p className="global-body-lg mb-10 max-w-2xl">
-              Our typography reflects a balance between technical precision and 
-              human coordination. We use <strong>Syne</strong> for high-impact statements and  
+              Our typography reflects a balance between technical precision and
+              human coordination. We use <strong>Syne</strong> for high-impact statements and
               <strong> DM Sans</strong> for all supporting communication.
             </p>
 
@@ -509,13 +509,13 @@ export default function BrandPage() {
               {/* Construction Lines Decorative Overlay */}
               <div className="absolute top-0 bottom-0 left-[16.66%] w-[1px] bg-[#262626] pointer-events-none" />
               <div className="absolute top-0 bottom-0 left-[41.66%] w-[1px] bg-[#262626] pointer-events-none" />
-              
+
               <div className="grid grid-cols-12 gap-0 border-b border-[#262626] bg-black/40 relative z-10">
                 <div className="col-span-2 p-6 text-[10px] font-mono text-[#878787] uppercase tracking-widest border-r border-[#262626]">Tag</div>
                 <div className="col-span-3 p-6 text-[10px] font-mono text-[#878787] uppercase tracking-widest border-r border-[#262626]">Metric Details</div>
                 <div className="col-span-7 p-6 text-[10px] font-mono text-[#878787] uppercase tracking-widest">Visual Specification</div>
               </div>
-              
+
               {[
                 { label: 'Display Large', size: '72/64px', tracking: '-0.04em', sample: 'Main Identity', className: 'text-[3.5rem] font-syne font-extrabold' },
                 { label: 'H1 / Header', size: '48/44px', tracking: '-0.02em', sample: 'Educational Programs', className: 'text-[2.2rem] font-syne font-bold' },
@@ -559,20 +559,20 @@ export default function BrandPage() {
             <h3 className="brand-subsection-title">Cat Mascots</h3>
             <div className="brand-asset-grid">
               {[
-                { src: '/cat5.png', label: 'Cat Hero' },
-                { src: '/cat_head.png', label: 'Cat Head' },
-                { src: '/cat_laptop.png', label: 'Cat Laptop' },
-                { src: '/assets/cat_peek.png', label: 'Cat Peek' },
-                { src: '/assets/images/Catty.webp', label: 'catty Laptop' },
+                { src: '/assets/logo/cat5.png', label: 'Cat Hero' },
+                { src: '/assets/logo/cat_head.png', label: 'Cat Head' },
+                { src: '/assets/logo/cat_laptop.png', label: 'Cat Laptop' },
+                { src: '/assets/logo/cat_peek.png', label: 'Cat Peek' },
+                { src: '/assets/logo/Cat with Laptop.svg', label: 'catty Laptop' },
               ].map(({ src, label }) => (
                 <div key={label} className="brand-asset-card">
                   <div className="brand-asset-preview">
-                    <Image 
-                      src={src} 
-                      alt={label} 
-                      width={120} 
-                      height={120} 
-                      className="brand-asset-image object-contain w-full h-auto" 
+                    <Image
+                      src={src}
+                      alt={label}
+                      width={120}
+                      height={120}
+                      className="brand-asset-image object-contain w-full h-auto"
                     />
                   </div>
                   <div className="flex items-center justify-between w-full px-4 py-3">
@@ -588,16 +588,16 @@ export default function BrandPage() {
             <h3 className="brand-subsection-title mt-12">Secondary Marks & Elements</h3>
             <div className="brand-asset-grid">
               {[
-                { src: '/about_no_pic.png', label: 'Cat Icon' },
-                { src: '/cat_white.png', label: 'Cat White' },
-                { src: '/icon-paw.png', label: 'Paw Icon' },
-                { src: '/paw_yarn.png', label: 'Paw & Yarn' },
-                { src: '/paw2.png', label: 'Paw Print 2' },
-                { src: '/paw3.png', label: 'Paw Print 3' },
-                { src: '/paw4.png', label: 'Paw Print 4' },
-                { src: '/paws.png', label: 'Paws Group' },
-                { src: '/retro_tv.png', label: 'Retro TV' },
-                { src: '/yarn.png', label: 'Yarn Ball' },
+                { src: '/assets/logo/about_no_pic.png', label: 'Cat Icon' },
+                { src: '/assets/logo/cat_white.png', label: 'Cat White' },
+                { src: '/assets/logo/icon-paw.png', label: 'Paw Icon' },
+                { src: '/assets/logo/paw_yarn.png', label: 'Paw & Yarn' },
+                { src: '/assets/logo/paw2.png', label: 'Paw Print 2' },
+                { src: '/assets/logo/paw3.png', label: 'Paw Print 3' },
+                { src: '/assets/logo/paw4.png', label: 'Paw Print 4' },
+                { src: '/assets/logo/paws.png', label: 'Paws Group' },
+                { src: '/assets/logo/retro_tv.png', label: 'Retro TV' },
+                { src: '/assets/logo/yarn.png', label: 'Yarn Ball' },
               ].map(({ src, label }) => (
                 <div key={label} className="brand-asset-card">
                   <div className="brand-asset-preview">
@@ -620,17 +620,17 @@ export default function BrandPage() {
           <section id="ui" className="scroll-mt-28">
             <SectionHeader label="05 — UI Components" title={<>Buttons &amp; <em>Badges</em></>} />
             <p className="global-body-lg mb-10 max-w-2xl text-[var(--text-secondary)]">
-              Our UI elements enforce brand consistency through semi-rounded surfaces, 
+              Our UI elements enforce brand consistency through semi-rounded surfaces,
               disciplined accent placement, and industrial-grade metrics that adapt to both light and dark themes.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Proplay Button Strategy Board */}
               <div className="bg-[var(--surface-card)] border border-[var(--border-soft)] rounded-3xl p-10 flex flex-col relative overflow-hidden group">
-                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                   <div className="w-16 h-16 border-r border-t border-[var(--text-primary)]" />
-                 </div>
-                 
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <div className="w-16 h-16 border-r border-t border-[var(--text-primary)]" />
+                </div>
+
                 <span className="text-[10px] font-black text-[var(--text-secondary)] uppercase tracking-[0.3em] border-b border-[var(--border-soft)] pb-6 mb-8">Button Mechanics</span>
                 <div className="flex flex-col gap-12">
                   <div className="flex flex-col gap-4">
@@ -639,7 +639,7 @@ export default function BrandPage() {
                     </button>
                     <span className="text-[9px] font-mono text-[var(--text-secondary)] uppercase">Weight: 900 // Rounding: 16px // Accent: var(--accent-brand)</span>
                   </div>
-                  
+
                   <div className="flex flex-col gap-4">
                     <button className="global-btn global-btn-outline w-full md:w-auto">
                       Secondary Support
@@ -652,8 +652,8 @@ export default function BrandPage() {
               {/* Proplay Badge Strategy Board */}
               <div className="bg-[var(--surface-card)] border border-[var(--border-soft)] rounded-3xl p-10 flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                   <div className="w-16 h-16 border-r border-t border-[var(--text-primary)]" />
-                 </div>
+                  <div className="w-16 h-16 border-r border-t border-[var(--text-primary)]" />
+                </div>
 
                 <span className="text-[10px] font-black text-[var(--text-secondary)] uppercase tracking-[0.3em] border-b border-[var(--border-soft)] pb-6 mb-8">Metadata Badges</span>
                 <div className="flex flex-col gap-8">
@@ -679,19 +679,19 @@ export default function BrandPage() {
 
       <section className="brand-section bg-[#151419] py-24 lg:py-48 border-t border-[#262626] relative overflow-hidden">
         {/* Massive geometric background mark removed as requested */}
-        
+
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="bg-[#1B1B1E] border-2 border-[#262626] rounded-[60px] p-12 md:p-32 overflow-hidden group transition-all hover:border-[#F5A51D]/20">
             {/* Inner glow effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#F5A51D]/[0.02] to-transparent pointer-events-none" />
-            
+
             <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
               <div className="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 relative">
                 <div className="relative w-full h-full bg-[#F5A51D] rounded-[40px] p-8 flex items-center justify-center rotate-3 group-hover:rotate-0 transition-transform duration-700">
-                  <Image src="/cat5.png" alt="ECH Cat" width={280} height={280} className="object-contain" />
+                  <Image src="/assets/logo/cat5.png" alt="ECH Cat" width={280} height={280} className="object-contain" />
                 </div>
               </div>
-              
+
               <div className="flex-1 text-center lg:text-left relative z-10">
                 <div className="flex flex-col gap-8">
                   <div className="hidden md:flex items-center gap-4 animate-fade-in">
@@ -705,14 +705,14 @@ export default function BrandPage() {
                   <p className="text-[#FBFBFB] text-xl md:text-2xl font-medium max-w-2xl leading-relaxed mt-4">
                     Access our high-fidelity asset library and join hundreds of Ethereum contributors building with the ECH brand system.
                   </p>
-                  
+
                   <div className="flex flex-wrap justify-center lg:justify-start gap-8 mt-10">
                     <a href="/icon_pack.zip" download className="global-btn global-btn-primary px-12 py-7 transition-all group/btn">
-                      <Download size={28} strokeWidth={3} className="group-hover/btn:animate-bounce mr-4" /> 
+                      <Download size={28} strokeWidth={3} className="group-hover/btn:animate-bounce mr-4" />
                       <span className="text-xl">Download Institutional Kit</span>
                     </a>
                     <a href="mailto:team@ethcatherders.com" className="global-btn global-btn-outline px-12 py-7">
-                      <ExternalLink size={28} strokeWidth={3} className="mr-4" /> 
+                      <ExternalLink size={28} strokeWidth={3} className="mr-4" />
                       <span className="text-xl">Technical Support</span>
                     </a>
                   </div>

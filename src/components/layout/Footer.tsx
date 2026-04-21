@@ -71,7 +71,7 @@ export default function Footer() {
             <div className="footer-brand-content">
               <div className="footer-logo-title">
                 <Image
-                  src="/ECH Institute Logo - White.png"
+                  src="/assets/logo/ECH Institute Logo - White.png"
                   alt="ECH Institute Logo"
                   width={240}
                   height={60}

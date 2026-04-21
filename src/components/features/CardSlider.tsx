@@ -169,7 +169,7 @@ export default function CardSlider() {
                         alt={card.name}
                         className="card-slider-image"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/images/cat_head.png';
+                          (e.target as HTMLImageElement).src = '/assets/logo/cat_head.png';
                         }}
                       />
                     </div>
@@ -258,7 +258,7 @@ export default function CardSlider() {
                       alt={card.name}
                       className="card-slider-image"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/images/cat_head.png';
+                        (e.target as HTMLImageElement).src = '/assets/logo/cat_head.png';
                       }}
                     />
                   </div>

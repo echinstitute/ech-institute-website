@@ -83,7 +83,7 @@ export const metadata: Metadata = {
       "Supporting Ethereum's protocol governance and coordination — helping the ecosystem scale responsibly and sustainably.",
     images: [
       {
-        url: "/ECH Institute Logo - White.png",
+        url: "/assets/logo/ECH Institute Logo - White.png",
         width: 1200,
         height: 630,
         alt: "ECH Institute Ethereum Protocol Governance & Coordination",
@@ -95,13 +95,13 @@ export const metadata: Metadata = {
     title: "ECH Institute Ethereum Protocol Governance & Coordination",
     description:
       "Supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral 501(c)(3) public good.",
-    images: ["/ECH Institute Logo - White.png"],
+    images: ["/assets/logo/ECH Institute Logo - White.png"],
     creator: "@ECHinstitute",
     site: "@ECHinstitute",
   },
   icons: {
-    icon: [{ url: "/ECH Institute Logo - White.png", type: "image/png" }],
-    apple: "/ECH Institute Logo - White.png",
+    icon: [{ url: "/assets/logo/ECH Institute Logo - White.png", type: "image/png" }],
+    apple: "/assets/logo/ECH Institute Logo - White.png",
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
@@ -129,7 +129,7 @@ export default function RootLayout({
               name: "ECH Institute",
               alternateName: "ECH Institute Inc.",
               url: "https://www.echinstitute.org",
-              logo: "https://www.echinstitute.org/ECH Institute Logo - White.png",
+              logo: "https://www.echinstitute.org/assets/logo/ECH Institute Logo - White.png",
               description:
                 "ECH Institute is a 501(c)(3) non-profit supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral public good. Founded July 11, 2024.",
               foundingDate: "2024-07-11",

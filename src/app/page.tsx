@@ -52,9 +52,10 @@ export default function Home() {
     <div className="home-page">
 
       {/* ── Hero ── */}
-      <section className="hero pt-10 pb-12 md:pt-16 md:pb-20" id="hero">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16 w-full flex flex-col md:flex-row items-center gap-12">
-          <div className="hero-content flex-1 text-left">
+      <section className="hero" id="hero">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16 w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 md:gap-12">
+          {/* ── Left: text content ── */}
+          <div className="hero-content flex-1 text-center md:text-left pt-16 pb-8 md:py-0 flex flex-col items-center md:items-start">
             <div className="hero-badge animate-fade-up">
               <span className="badge-dot"></span>
               501(c)(3) Nonprofit · Est. 2024
@@ -64,20 +65,23 @@ export default function Home() {
             <p className="hero-subtitle animate-fade-up delay-2">
               ECH Institute is committed to empowering individuals with knowledge, strengthening communities, and supporting ecosystem projects. Our work focuses on creating meaningful change while serving the broader ecosystem as a public good.
             </p>
-            <div className="hero-buttons animate-fade-up delay-3">
+            <div className="hero-buttons animate-fade-up delay-3 flex flex-wrap gap-4 justify-center md:justify-start">
               <Link href="#programs" className="btn btn-primary">Our Programs</Link>
               <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
             </div>
           </div>
-          <div className="hero-image flex-1 hidden md:flex justify-end relative">
-            <div className="relative w-full max-w-xl aspect-[1/1] md:aspect-auto">
+
+          {/* ── Right: mascot image ── */}
+          <div className="hero-image flex-1 animate-fade-up delay-4">
+            <div className="hero-mascot-wrap">
+              <div className="hero-mascot"></div>
               <Image
-                src="/assets/images/Catty.webp"
+                src="/assets/logo/Cat with Laptop.svg"
                 alt="ECH Institute mascot"
-                width={500}
-                height={500}
+                width={1500}
+                height={1500}
                 priority
-                className="object-contain w-full h-auto"
+                className="hero-mascot-img "
               />
             </div>
           </div>
@@ -86,7 +90,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */} 
       </div>
 
       {/* ── Who We Are ── */}
@@ -147,7 +151,7 @@ export default function Home() {
                 </div>
                 <div className="p-8 lg:p-10 border-t border-border bg-card relative">
                   <div className="absolute -top-6 left-10 w-12 h-12 bg-accent rounded-2xl flex items-center justify-center shadow-lg">
-                    <Quote className="h-6 w-6 text-accent-foreground" />
+                    <Quote className="h-6 w-6 text-accent-foreground text-white" />
                   </div>
                   <p className="text-lg font-syne font-bold text-foreground leading-snug mb-6 pt-4 italic">
                     &ldquo;We don&apos;t just help communities. We are an active part of the Ethereum fabric.&rdquo;
@@ -165,12 +169,12 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
       {/* ══════════════════════════════════════════════════
-          OUR JOURNEY — Infographic Timeline
+          OUR JOURNEY Infographic Timeline
       ══════════════════════════════════════════════════ */}
       <section className="proplay-section bg-background relative" id="evolution">
         <div className="evo-container">
@@ -287,7 +291,7 @@ export default function Home() {
               <div className="evo-col">
                 <div className="evo-text-block">
                   <strong className="evo-blk-title">EVENT SUPPORT</strong>
-                  <span className="evo-blk-body">Supporting Road to Devcon — bringing the biggest festival of Ethereum to India.</span>
+                  <span className="evo-blk-body">Supporting Road to Devcon bringing the biggest festival of Ethereum to India.</span>
                 </div>
               </div>
 
@@ -299,7 +303,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
@@ -316,10 +320,12 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link href={ROUTES.education} className="program-img-card group lg:row-span-2 relative overflow-hidden">
-              <Image src="/assets/How We Work with EF.webp" alt="Education" fill className="bg-img object-cover" />
-              <div className="overlay-dark-gradient absolute inset-0"></div>
-              <div className="content relative z-10">
+            {/* Flagship – full-bleed hero */}
+            <Link href={ROUTES.education} className="program-img-card program-img-card--hero group lg:row-span-2">
+              <div className="card-img">
+                <Image src="/assets/images/How We Work with EF.webp" alt="Education" fill className="bg-img object-cover" />
+              </div>
+              <div className="content">
                 <span className="badge">FLAGSHIP PROGRAM</span>
                 <h3>Education &amp; Literacy</h3>
                 <p>Centered on improving understanding of Ethereum network upgrades and governance processes through structured explanations, documentation, and coordination.</p>
@@ -330,8 +336,9 @@ export default function Home() {
             </Link>
 
             <Link href={ROUTES.eipSupport} className="program-img-card group">
-              <img src="/assets/EIP Summit Group Photo.webp" alt="EIP Support" className="bg-img" />
-              <div className="overlay-dark-gradient"></div>
+              <div className="card-img">
+                <img src="/assets/images/EIP Summit Workshop.jpg" alt="EIP Support" className="bg-img" />
+              </div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">GOVERNANCE</span>
                 <h3>EIP Support</h3>
@@ -343,8 +350,9 @@ export default function Home() {
             </Link>
 
             <Link href={ROUTES.podcast} className="program-img-card group">
-              <img src="/assets/IMG_355.webp" alt="Podcast" className="bg-img" />
-              <div className="overlay-dark-gradient"></div>
+              <div className="card-img">
+                <img src="/assets/images/Podcast Content.webp" alt="Podcast" className="bg-img" />
+              </div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">CONTENT</span>
                 <h3>Podcast &amp; Content</h3>
@@ -356,8 +364,9 @@ export default function Home() {
             </Link>
 
             <Link href={ROUTES.communityPartnerships} className="program-img-card group">
-              <img src="/assets/Who We Serve.webp" alt="Community Partnerships" className="bg-img" />
-              <div className="overlay-dark-gradient"></div>
+              <div className="card-img">
+                <img src="/assets/images/Who We Are.webp" alt="Community Partnerships" className="bg-img" />
+              </div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">COMMUNITY</span>
                 <h3>Community Partnerships</h3>
@@ -369,8 +378,9 @@ export default function Home() {
             </Link>
 
             <Link href={ROUTES.wiep} className="program-img-card group">
-              <img src="/assets/IMG_3600.webp" alt="Women in Protocol" className="bg-img" />
-              <div className="overlay-dark-gradient"></div>
+              <div className="card-img">
+                <img src="/assets/images/Women in Protocol.webp" alt="Women in Protocol" className="bg-img" />
+              </div>
               <div className="content">
                 <span className="badge">INCLUSION</span>
                 <h3>Women in Protocol</h3>
@@ -382,21 +392,24 @@ export default function Home() {
             </Link>
 
             <Link href={ROUTES.institutionalBridging} className="program-img-card group">
-              <img src="/assets/Enterprise & Institutional View.webp" alt="Institutional Bridging" className="bg-img" />
-              <div className="overlay-dark-gradient"></div>
+              <div className="card-img">
+                <img src="/assets/images/Enterprise & Institutional View.webp" alt="Institutional Bridging" className="bg-img" />
+              </div>
               <div className="content">
                 <span className="badge !bg-gray-200 !text-gray-800">INSTITUTIONAL</span>
                 <h3>Institutional Bridging</h3>
                 <p>Bridging Ethereum governance with enterprise stakeholders through education and dialogue.</p>
                 <div className="btn-wrap">
-                  <span className="program-img-card-btn ">View Program &rarr;</span>
+                  <span className="program-img-card-btn">View Program &rarr;</span>
                 </div>
               </div>
             </Link>
 
-            <Link href={ROUTES.events} className="program-img-card group md:col-span-2 lg:col-span-2 min-h-80">
-              <img src="/assets/2025 recap.webp" alt="Events" className="bg-img" />
-              <div className="overlay-dark-gradient"></div>
+            {/* Events – full-bleed hero, spans 2 cols */}
+            <Link href={ROUTES.events} className="program-img-card program-img-card--hero group md:col-span-2 lg:col-span-2">
+              <div className="card-img">
+                <img src="/assets/images/Events Workshops.webp" alt="Events" className="bg-img" />
+              </div>
               <div className="content md:w-3/4 lg:w-3/4">
                 <span className="badge">ECOSYSTEM FESTIVALS</span>
                 <h3>Events &amp; Workshops</h3>
@@ -412,7 +425,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
@@ -427,56 +440,58 @@ export default function Home() {
             </div>
             <button className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</button>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Card 1: Network Upgrades */}
-            <div className="flex flex-col xl:flex-row bg-[var(--surface-card-theme)] overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 h-full group animate-on-scroll">
-              <div className="bg-gray-50/50 group-hover:bg-[var(--border-soft)] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[var(--border-soft)]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-3">2</span>
-                <h3 className="font-syne font-bold text-lg text-[var(--text-base)]">Network Upgrades</h3>
-              </div>
-              <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
-                <p className="global-body font-medium text-[var(--text-base)] mb-4">Over the twelve months, we supported the Dencun upgrade and the Pectra upgrade.</p>
-                <p className="global-body text-[var(--text-soft)]">We livestreamed both upgrades with community partners. We invited core EIP proposal Authors to share about the significance of the upgrades to scale Ethereum.</p>
+            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll">
+              <div className="flex flex-col items-center text-center">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">12+</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Network Upgrades</h3>
+                <p className="global-body text-sm text-[var(--text-soft)]">Coordinating and broadcasting every Ethereum network upgrade since 2019.</p>
               </div>
             </div>
 
-            {/* Card 2: Podcasts Produced */}
-            <div className="flex flex-col xl:flex-row bg-[var(--surface-card-theme)] overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 h-full group animate-on-scroll delay-1">
-              <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%] order-2 xl:order-1">
-                <p className="global-body font-medium text-[var(--text-base)] mb-4">We produced 13 videos on the Dencun upgrade, 18 videos on the Pectra upgrade and featured 23 independent projects on Ecosystem Project Demo.</p>
-                <p className="global-body text-[var(--text-soft)] mb-2">We also coordinated and published:</p>
-                <ul className="list-disc list-inside global-body text-[var(--text-soft)] space-y-1 ml-2">
-                  <li>30+ Eth Multicall</li>
-                  <li>12+ ePBS Breakout Room</li>
-                  <li>25+ EOF Implementers Meetings</li>
-                </ul>
-              </div>
-              <div className="bg-gray-50/50 group-hover:bg-[var(--border-soft)] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[var(--border-soft)]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-3">108+</span>
-                <h3 className="font-syne font-bold text-lg text-[var(--text-base)]">Podcasts Produced</h3>
+            {/* Card 2: Educational Podcasts */}
+            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-1">
+              <div className="flex flex-col items-center text-center">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">200+</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Educational Podcasts</h3>
+                <p className="global-body text-sm text-[var(--text-soft)]">Inviting EIP authors to explain protocol changes in plain language for the ecosystem.</p>
               </div>
             </div>
 
-            {/* Card 3: Community Members */}
-            <div className="flex flex-col xl:flex-row bg-[var(--surface-card-theme)] overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 h-full group animate-on-scroll delay-2">
-              <div className="bg-gray-50/50 group-hover:bg-[var(--border-soft)] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] border-b xl:border-b-0 xl:border-r border-[var(--border-soft)]">
-                <span className="text-4xl sm:text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-3">8.2K+</span>
-                <h3 className="font-syne font-bold !text-base sm:!text-lg text-[var(--text-base)]">Community Members</h3>
-              </div>
-              <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%]">
-                <p className="global-body font-medium text-[var(--text-base)] leading-relaxed">Partnering over 5 global communities for events, Over 8200 people followed us on X/Twitter and hosting over 2,900 members on Discord, our community is growing!</p>
+            {/* Card 3: WIEP Cohorts */}
+            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-2">
+              <div className="flex flex-col items-center text-center">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">4</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">WIEP Cohorts</h3>
+                <p className="global-body text-sm text-[var(--text-soft)]">Empowering technical women through hands-on study groups and mentorship.</p>
               </div>
             </div>
 
-            {/* Card 4: ECH Core Efficiency */}
-            <div className="flex flex-col xl:flex-row bg-[var(--surface-card-theme)] overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 h-full group animate-on-scroll delay-3">
-              <div className="p-8 xl:p-10 flex flex-col justify-center xl:w-[60%] order-2 xl:order-1">
-                <p className="global-body font-medium text-[var(--text-base)] mb-4">Managing robust operations entirely transparently, providing a critical resource layer for developers and Ethereum ecosystem stakeholders.</p>
-                <p className="global-body text-[var(--text-soft)]">Through our flagship initiatives, we streamline technical standard documentation, global mentorship, and core institutional outreach.</p>
+            {/* Card 4: PRs Reviewed */}
+            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-3">
+              <div className="flex flex-col items-center text-center">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">1100+</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">PRs Reviewed</h3>
+                <p className="global-body text-sm text-[var(--text-soft)]">In-depth technical reviews conducted during ECH Office Hours for EIP authors and contributors.</p>
               </div>
-              <div className="bg-gray-50/50 group-hover:bg-[var(--border-soft)] transition-colors duration-300 p-8 xl:p-10 flex flex-col justify-center items-center text-center xl:w-[40%] order-1 xl:order-2 border-b xl:border-b-0 xl:border-l border-[var(--border-soft)]">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-3">7+</span>
-                <h3 className="font-syne font-bold text-lg text-[var(--text-base)]">Core Programs</h3>
+            </div>
+
+            {/* Card 5: Community Members */}
+            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-4">
+              <div className="flex flex-col items-center text-center">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">20,000+</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Community Members</h3>
+                <p className="global-body text-sm text-[var(--text-soft)]">A global network of contributors, developers, and ecosystem stakeholders.</p>
+              </div>
+            </div>
+
+            {/* Card 6: EIP Editing Hours */}
+            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-5">
+              <div className="flex flex-col items-center text-center">
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">100+</span>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">EIP Editing Hours</h3>
+                <p className="global-body text-sm text-[var(--text-soft)]">Supporting the EIP and ERC lifecycle from draft review to finalization.</p>
               </div>
             </div>
           </div>
@@ -485,7 +500,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
@@ -494,7 +509,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
           <div className="hidden lg:flex lg:col-span-5 items-center justify-center relative h-[400px]">
             <div className="gi-mascot-wrap">
-              <img src="/assets/images/cat-peek.webp" alt="Cat peeking" className="relative z-10 w-[320px] h-auto object-contain drop-shadow-2xl animate-float" />
+              <img src="/assets/logo/cat5.png" alt="Cat peeking" className="relative z-10 w-[400px] h-auto object-contain" />
             </div>
           </div>
           <div className="lg:col-span-7 animate-on-scroll">
@@ -515,7 +530,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
@@ -534,17 +549,17 @@ export default function Home() {
         <div className="marquee-container">
           <div className="marquee-track">
             {[
-              { id: 'ef', src: "/logos/ethereum-foundation-logo.svg", alt: "Ethereum Foundation", size: "scale-[3.5]", href: "https://ethereum.org" },
-              { id: 'gitcoin', src: "/logos/gitcoin.svg", alt: "Gitcoin", href: "https://gitcoin.co" },
-              { id: 'eipsinsight', src: "/logos/EIPsInsights.gif", alt: "EIPs Insight",size: "scale-[1.5]", href: "https://eipsinsight.com/" },
-              { id: 'optimism', src: "/logos/Optimism-logo.png", alt: "Optimism", href: "https://optimism.io" },
-              { id: 'ethpune', src: "/logos/ETH Pune.png", alt: "ETH Pune", size: "scale-[3]", href: "https://www.ethpune.com/" },
-              { id: 'octant', src: "/logos/octant-logo.svg", alt: "Octant", href: "https://octant.app" },
-              // { id: 'ethstaker', src: "/logos/ethstaker-logo.svg", alt: "EthStaker", href: "https://ethstaker.cc" },
-              { id: 'magicians', src: "/logos/ethereum magicians logo.png", alt: "Ethereum Magicians",size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
-              { id: 'ethcluj', src: "/logos/EthCluj-logo.png", alt: "EthCluj", href: "https://ethcluj.ro" },
-              { id: 'eea', src: "/logos/enterpriseethereumalliance_logo.png", alt: "Enterprise Ethereum Alliance", href: "https://entethalliance.org" },
-              { id: 'edcon', src: "/logos/EDCON-logo.png", alt: "EDCON", href: "https://edcon.io" }
+              { id: 'ef', src: "/assets/Supported by logo//ethereum-foundation-logo.svg", alt: "Ethereum Foundation", size: "scale-[3.5]", href: "https://ethereum.org" },
+              { id: 'gitcoin', src: "/assets/Supported by logo//gitcoin.svg", alt: "Gitcoin", href: "https://gitcoin.co" },
+              { id: 'eipsinsight', src: "/assets/Supported by logo//EIPsInsights.gif", alt: "EIPs Insight",size: "scale-[1.5]", href: "https://eipsinsight.com/" },
+              { id: 'optimism', src: "/assets/Supported by logo//Optimism-logo.png", alt: "Optimism", href: "https://optimism.io" },
+              { id: 'ethpune', src: "/assets/Supported by logo//ETH Pune.png", alt: "ETH Pune", size: "scale-[3]", href: "https://www.ethpune.com/" },
+              { id: 'octant', src: "/assets/Supported by logo//octant-logo.svg", alt: "Octant", href: "https://octant.app" },
+              // { id: 'ethstaker', src: "/assets/Supported by logo//ethstaker-logo.svg", alt: "EthStaker", href: "https://ethstaker.cc" },
+              { id: 'magicians', src: "/assets/Supported by logo//ethereum magicians logo.png", alt: "Ethereum Magicians",size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
+              { id: 'ethcluj', src: "/assets/Supported by logo//EthCluj-logo.png", alt: "EthCluj", href: "https://ethcluj.ro" },
+              { id: 'eea', src: "/assets/Supported by logo//enterpriseethereumalliance_logo.png", alt: "Enterprise Ethereum Alliance", href: "https://entethalliance.org" },
+              { id: 'edcon', src: "/assets/Supported by logo//EDCON-logo.png", alt: "EDCON", href: "https://edcon.io" }
             ].map((partner) => (
               <Link key={partner.id} href={partner.href} target="_blank" rel="noopener noreferrer" className="marquee-item px-16 md:px-24">
                 <div className="h-8 md:h-10 flex items-center justify-center">
@@ -558,17 +573,17 @@ export default function Home() {
             ))}
             {/* Duplicated for smooth loop */}
             {[
-              { id: 'ef-clone', src: "/logos/ethereum-foundation-logo.svg", alt: "Ethereum Foundation", size: "scale-[3.5]", href: "https://ethereum.org" },
-              { id: 'gitcoin-clone', src: "/logos/gitcoin.svg", alt: "Gitcoin", href: "https://gitcoin.co" },
-              { id: 'eipsinsight-clone', src: "/logos/EIPsInsights.gif", alt: "EIPs Insight",size: "scale-[1.5]", href: "https://eipsinsight.com/" },
-              { id: 'optimism-clone', src: "/logos/Optimism-logo.png", alt: "Optimism", href: "https://optimism.io" },
-              { id: 'ethpune-clone', src: "/logos/ETH Pune.png", size: "scale-[3]", alt: "ETH Pune", href: "https://www.ethpune.com/" },
-              { id: 'octant-clone', src: "/logos/octant-logo.svg", alt: "Octant", href: "https://octant.app" },
-              // { id: 'ethstaker-clone', src: "/logos/ethstaker-logo.svg", alt: "EthStaker", href: "https://ethstaker.cc" },
-              { id: 'magicians-clone', src: "/logos/ethereum magicians logo.png", alt: "Ethereum Magicians",size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
-              { id: 'ethcluj-clone', src: "/logos/EthCluj-logo.png", alt: "EthCluj", href: "https://ethcluj.ro" },
-              { id: 'eea-clone', src: "/logos/enterpriseethereumalliance_logo.png", alt: "Enterprise Ethereum Alliance", href: "https://entethalliance.org" },
-              { id: 'edcon-clone', src: "/logos/EDCON-logo.png", alt: "EDCON", href: "https://edcon.io" }
+              { id: 'ef-clone', src: "/assets/Supported by logo//ethereum-foundation-logo.svg", alt: "Ethereum Foundation", size: "scale-[3.5]", href: "https://ethereum.org" },
+              { id: 'gitcoin-clone', src: "/assets/Supported by logo//gitcoin.svg", alt: "Gitcoin", href: "https://gitcoin.co" },
+              { id: 'eipsinsight-clone', src: "/assets/Supported by logo//EIPsInsights.gif", alt: "EIPs Insight",size: "scale-[1.5]", href: "https://eipsinsight.com/" },
+              { id: 'optimism-clone', src: "/assets/Supported by logo//Optimism-logo.png", alt: "Optimism", href: "https://optimism.io" },
+              { id: 'ethpune-clone', src: "/assets/Supported by logo//ETH Pune.png", size: "scale-[3]", alt: "ETH Pune", href: "https://www.ethpune.com/" },
+              { id: 'octant-clone', src: "/assets/Supported by logo//octant-logo.svg", alt: "Octant", href: "https://octant.app" },
+              // { id: 'ethstaker-clone', src: "/assets/Supported by logo//ethstaker-logo.svg", alt: "EthStaker", href: "https://ethstaker.cc" },
+              { id: 'magicians-clone', src: "/assets/Supported by logo//ethereum magicians logo.png", alt: "Ethereum Magicians",size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
+              { id: 'ethcluj-clone', src: "/assets/Supported by logo//EthCluj-logo.png", alt: "EthCluj", href: "https://ethcluj.ro" },
+              { id: 'eea-clone', src: "/assets/Supported by logo//enterpriseethereumalliance_logo.png", alt: "Enterprise Ethereum Alliance", href: "https://entethalliance.org" },
+              { id: 'edcon-clone', src: "/assets/Supported by logo//EDCON-logo.png", alt: "EDCON", href: "https://edcon.io" }
             ].map((partner) => (
               <Link key={partner.id} href={partner.href} target="_blank" rel="noopener noreferrer" className="marquee-item px-16 md:px-24">
                 <div className="h-8 md:h-10 flex items-center justify-center">
@@ -586,14 +601,11 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
+                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
       <section className="proplay-section bg-[#151419] relative overflow-hidden" id="contact">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(245,165,29,0.03)_0%,transparent_50%)]"></div>
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_70%_50%,rgba(245,165,29,0.02)_0%,transparent_70%)] pointer-events-none"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#F5A51D] opacity-[0.01] blur-[120px] rounded-full pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <div className="animate-on-scroll">
@@ -659,7 +671,7 @@ export default function Home() {
                   {isSubmitted ? (
                     <div className="py-12 text-center animate-fade-in flex flex-col items-center">
                       <div className="mb-8 p-4 bg-[#151419] rounded-2xl border border-[#262626]">
-                        <img src="/ECH Institute Logo - White.png" alt="ECH Institute" className="h-12 w-auto object-contain brightness-0 invert" />
+                        <img src="/assets/logo/ECH Institute Logo - White.png" alt="ECH Institute" className="h-12 w-auto object-contain brightness-0 invert" />
                       </div>
                       <div className="w-20 h-20 bg-[#F5A51D] text-[#151419] rounded-full flex items-center justify-center mb-8 shadow-lg shadow-yellow-500/20">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
@@ -751,12 +763,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Divider */}
-      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" />
-      </div>
-
 
       <FAQSection />
     </div>

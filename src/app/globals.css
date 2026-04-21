@@ -929,16 +929,15 @@
   }
 }
 
-  /* ---- Program Image Cards (Refactored visual grid) ---- */
+  /* ---- Program Image Cards ---- */
   .program-img-card {
     position: relative;
     border-radius: 16px;
     overflow: hidden;
-    background-color: var(--surface-card-theme);
-    min-height: 400px;
+    background-color: #151419;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     box-shadow: none;
     transition: transform 0.3s cubic-bezier(0.19,1,0.22,1), box-shadow 0.3s ease;
     border: 1px solid var(--border-soft);
@@ -948,41 +947,39 @@
     box-shadow: none;
     border-color: var(--accent-brand);
   }
-  .program-img-card .bg-img {
+
+  /* Image section – 16:9 aspect ratio, full width, no horizontal crop */
+  .program-img-card .card-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .program-img-card .card-img .bg-img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0;
+    object-position: center top;
+    display: block;
     transition: transform 0.6s cubic-bezier(0.19,1,0.22,1);
   }
-  .program-img-card:hover .bg-img {
-    transform: scale(1.08);
+  .program-img-card:hover .card-img .bg-img {
+    transform: scale(1.06);
   }
-  .program-img-card .overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, 
-      rgba(21, 20, 25, 0.2) 0%, 
-      rgba(21, 20, 25, 0.5) 40%, 
-      rgba(21, 20, 25, 0.9) 100%
-    );
-    opacity: 1;
-    z-index: 1;
-    transition: opacity 0.4s ease;
-  }
-  .program-img-card:hover .overlay {
-    opacity: 0.8;
-  }
+
+  /* Content panel below image */
   .program-img-card .content {
     position: relative;
     z-index: 2;
-    padding: 2rem;
+    padding: 1.5rem 1.75rem;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    justify-content: flex-end;
+    flex: 1;
+    justify-content: space-between;
+    background: #151419;
   }
   .program-img-card .badge {
     align-self: flex-start;
@@ -994,35 +991,33 @@
     background: var(--accent-brand);
     color: var(--theme-on-accent);
     text-transform: uppercase;
-    margin-bottom: 1rem;
-    box-shadow: none;
+    margin-bottom: 0.75rem;
   }
   .program-img-card h3 {
     font-family: 'Syne', sans-serif !important;
-    color: var(--footer-text);
-    font-size: 1.4rem;
+    color: #FBFBFB;
+    font-size: 1.25rem;
     font-weight: 800;
     line-height: 1.2;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
   }
   .program-img-card p {
-    color: var(--text-soft);
+    color: #878787;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.875rem;
+    line-height: 1.65;
     margin-bottom: 0;
-    transition: transform 0.4s ease;
   }
   .program-img-card .btn-wrap {
     overflow: hidden;
     margin-top: 0;
     max-height: 0;
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
     transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease, margin-top 0.4s ease;
   }
   .program-img-card:hover .btn-wrap {
-    margin-top: 1.25rem;
+    margin-top: 1rem;
     max-height: 50px;
     opacity: 1;
     transform: translateY(0);
@@ -1039,7 +1034,41 @@
     letter-spacing: 0.1em;
   }
   .program-img-card-btn:hover {
-    color: var(--footer-text);
+    color: #FBFBFB;
+  }
+
+  /* ── HERO variant: full-bleed image with overlay (Education flagship + Events) ── */
+  .program-img-card--hero {
+    min-height: 480px;
+    justify-content: flex-end;
+  }
+  .program-img-card--hero .card-img {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: unset;
+    height: 100%;
+  }
+  .program-img-card--hero .card-img .bg-img {
+    object-position: center center;
+  }
+  .program-img-card--hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(21,20,25,0.1) 0%,
+      rgba(21,20,25,0.55) 45%,
+      rgba(21,20,25,0.95) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+  .program-img-card--hero .content {
+    background: transparent;
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    flex: unset;
   }
 
   /* ---- Buttons (yellow, black, white; responsive; hover) ---- */
@@ -1546,7 +1575,7 @@
   }
 
   .footer-email {
-    font-size: var(--font-size-lg) !important;
+    font-size: var(--font-size-base) !important;
     color: var(--footer-text) !important;
     text-decoration: none !important;
     display: block !important;
@@ -3016,13 +3045,11 @@ section a:hover {
 }
 .home-page .hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
-  overflow: hidden;
   width: 100%;
   background: var(--background);
-  padding: 20px 0;
 }
 
 .home-page .hero > * {
@@ -3037,52 +3064,112 @@ section a:hover {
   display: none;
 }
 
-/* Hero section image padding - Modified for proper spacing and responsive display */
+/* ─── Hero Image Container ─── */
 .home-page .hero-image {
   position: relative;
-  width: 40%;
+  flex: 1;
   z-index: 5;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  margin: 0;
+  padding: 0 0 0 24px;
+  min-height: 560px;
   opacity: 1 !important;
-  transition: transform 0.1s ease-out;
-  order: 2;
-  min-height: auto;
+  transition: all 0.4s ease-out;
 }
 
-.home-page .hero-image img {
+.home-page .hero-image .hero-mascot-wrap {
+  position: relative;
   width: 100%;
-  max-width: 130%;
-  height: auto;
-  max-height: 90vh;
-  object-fit: contain;
-  object-position: center;
-  display: block;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Ambient glow behind mascot */
+.home-page .hero-image .hero-mascot-glow {
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(ellipse at center, rgba(245,165,29,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-page .hero-image img,
+.home-page .hero-image .hero-mascot-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  max-height: 75vh;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  filter: drop-shadow(0 32px 80px rgba(0,0,0,0.18));
+  transition: transform 0.6s cubic-bezier(0.19,1,0.22,1);
+}
+
+.home-page .hero-image img:hover,
+.home-page .hero-image .hero-mascot-img:hover {
+  transform: scale(1.04) translateY(-6px);
+}
+
+/* ─── Responsive ─── */
 @media (min-width: 1400px) {
+  .home-page .hero {
+    min-height: 90vh;
+  }
   .home-page .hero-image {
-    padding: 100px 20px 0px 0px;
+    min-height: 640px;
+    padding-left: 32px;
+  }
+  .home-page .hero-image .hero-mascot-wrap {
+    max-width: 680px;
   }
 }
 
 @media (max-width: 1024px) {
+  .home-page .hero {
+    min-height: 70vh;
+  }
   .home-page .hero-image {
-    padding: 30px 15px;
+    min-height: 460px;
+    padding: 0 16px;
   }
 }
 
+/* Mobile: stack vertically, image centered below text */
 @media (max-width: 768px) {
+  .home-page .hero {
+    min-height: auto;
+  }
   .home-page .hero-image {
-    display: none !important;
+    display: flex !important;
+    width: 100%;
+    min-height: 320px;
+    padding: 0 16px;
+    justify-content: center;
+  }
+  .home-page .hero-image .hero-mascot-wrap {
+    max-width: 360px;
+  }
+  .home-page .hero-image img,
+  .home-page .hero-image .hero-mascot-img {
+    max-height: 55vw;
   }
 }
 
 
+/* Mascot floating animation */
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+.animate-float {
+  animation: mascot-float 5s ease-in-out infinite;
+}
 
 .particles {
   position: absolute;

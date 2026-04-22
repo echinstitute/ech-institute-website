@@ -709,11 +709,22 @@
     z-index: 0;
   }
 
-  /* Inner container */
+  /* Inner container - Updated for Proplay 1500px Max Width & Grid */
   main .page-hero-inner {
     position: relative;
     z-index: 1;
-    max-width: 900px;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    main .page-hero-inner {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+    }
   }
 
   /* Eyebrow tag ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â like reference .tag ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â small amber line + TEXT */
@@ -929,32 +940,67 @@
   }
 }
 
-  /* ---- Program Image Cards ---- */
+  /* ============================================
+     PROGRAM IMAGE CARDS — "WHAT WE DO" Section
+     Dark-mode premium card grid, matches reference
+     ============================================ */
+
+  /* Section wrapper override — force dark background */
+  section#programs.proplay-section {
+    background: #0c0c0e !important;
+  }
+
+  /* Section header text overrides for dark bg */
+  section#programs .global-section-tag {
+    color: var(--color-yellow) !important;
+  }
+  section#programs .global-section-title {
+    color: #f5f5f5 !important;
+  }
+  section#programs .global-section-title em {
+    color: var(--color-yellow) !important;
+  }
+  section#programs .global-body-lg,
+  section#programs .global-body-lead {
+    color: #9a9a9a !important;
+  }
+
+  /* ---- Card base ---- */
   .program-img-card {
     position: relative;
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
-    background-color: #151419;
+    background-color: #111114;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    box-shadow: none;
-    transition: transform 0.3s cubic-bezier(0.19,1,0.22,1), box-shadow 0.3s ease;
-    border: 1px solid var(--border-soft);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.35s cubic-bezier(0.19,1,0.22,1),
+                border-color 0.25s ease,
+                box-shadow 0.35s ease;
   }
   .program-img-card:hover {
-    transform: translateY(-8px);
-    box-shadow: none;
+    transform: translateY(-6px);
     border-color: var(--accent-brand);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.55);
   }
 
-  /* Image section – 16:9 aspect ratio, full width, no horizontal crop */
+  /* ---- Image area: taller 4:3 ratio for visual impact ---- */
   .program-img-card .card-img {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     flex-shrink: 0;
+  }
+  /* Gradient scrim from bottom so text is always legible */
+  .program-img-card .card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(17,17,20,0.65) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 1;
   }
   .program-img-card .card-img .bg-img {
     position: absolute;
@@ -962,116 +1008,397 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
     display: block;
-    transition: transform 0.6s cubic-bezier(0.19,1,0.22,1);
+    transition: transform 0.65s cubic-bezier(0.19,1,0.22,1);
   }
   .program-img-card:hover .card-img .bg-img {
-    transform: scale(1.06);
+    transform: scale(1.07);
   }
 
-  /* Content panel below image */
+  /* ---- Content panel ---- */
   .program-img-card .content {
     position: relative;
     z-index: 2;
-    padding: 1.5rem 1.75rem;
+    padding: 1.25rem 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
     flex: 1;
-    justify-content: space-between;
-    background: #151419;
+    background: #111114;
+    border-top: 1px solid rgba(255,255,255,0.05);
   }
+
+  /* ---- Category badge ---- */
   .program-img-card .badge {
     align-self: flex-start;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 800;
-    letter-spacing: 0.15em;
-    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.18em;
+    padding: 0.22rem 0.55rem;
     border-radius: 4px;
     background: var(--accent-brand);
-    color: var(--theme-on-accent);
+    color: #000;
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.65rem;
+    line-height: 1.6;
   }
+  /* Governance badge — light grey */
+  .program-img-card .badge.badge-grey,
+  .program-img-card .badge.\!bg-gray-200 {
+    background: rgba(255,255,255,0.14) !important;
+    color: #e5e5e5 !important;
+  }
+
+  /* ---- Card title ---- */
   .program-img-card h3 {
     font-family: 'Syne', sans-serif !important;
-    color: #FBFBFB;
-    font-size: 1.25rem;
+    color: #f0f0f0;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 0.6rem;
+    line-height: 1.22;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.01em;
   }
+
+  /* ---- Card description ---- */
   .program-img-card p {
-    color: #878787;
+    color: #7a7a7a;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
-    line-height: 1.65;
-    margin-bottom: 0;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
   }
+
+  /* ---- "View Program" CTA — hidden until hover ---- */
   .program-img-card .btn-wrap {
     overflow: hidden;
     margin-top: 0;
     max-height: 0;
     opacity: 0;
-    transform: translateY(8px);
-    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease, margin-top 0.4s ease;
+    transform: translateY(6px);
+    transition:
+      max-height 0.38s ease,
+      opacity 0.35s ease,
+      transform 0.35s ease,
+      margin-top 0.35s ease;
   }
   .program-img-card:hover .btn-wrap {
     margin-top: 1rem;
-    max-height: 50px;
+    max-height: 48px;
     opacity: 1;
     transform: translateY(0);
   }
   .program-img-card-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.8rem;
+    font-weight: 700;
+    font-size: 0.75rem;
     color: var(--accent-brand);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
+    transition: color 0.2s ease;
   }
   .program-img-card-btn:hover {
-    color: #FBFBFB;
+    color: #fff;
   }
 
-  /* ── HERO variant: full-bleed image with overlay (Education flagship + Events) ── */
+  /* ---- Responsive grid refinements ---- */
+  @media (max-width: 639px) {
+    .program-img-card .card-img {
+      aspect-ratio: 16 / 9;
+    }
+    .program-img-card .content {
+      padding: 1rem 1.25rem 1.25rem;
+    }
+  }
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .program-img-card .card-img {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  /* ── HERO card variant (unchanged functionality) ── */
   .program-img-card--hero {
-    min-height: 480px;
-    justify-content: flex-end;
+    min-height: auto;
   }
   .program-img-card--hero .card-img {
-    position: absolute;
-    inset: 0;
-    aspect-ratio: unset;
-    height: 100%;
+    position: relative;
+    inset: auto;
+    aspect-ratio: 16 / 9;
+    height: auto;
   }
   .program-img-card--hero .card-img .bg-img {
-    object-position: center center;
+    object-position: center top;
   }
   .program-img-card--hero::after {
-    content: '';
+    display: none;
+  }
+  .program-img-card--hero .content {
+    background: #111114;
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem 1.75rem;
+    flex: 1;
+  }
+
+  /* ============================================================
+     PGRID — Bento Mosaic Grid  (WHAT WE DO section)
+     Matches the reference image layout exactly.
+     3-col desktop:  col1=tall (row-span 2), cols 2-3 = 2x2,
+                     bottom row = col1 normal + col2-3 wide card
+     ============================================================ */
+
+  /* ── Section background ── */
+  section#programs.proplay-section {
+    background: #0c0c0e !important;
+  }
+  section#programs .global-section-tag { color: var(--color-yellow) !important; }
+  section#programs .global-section-title { color: #f5f5f5 !important; }
+  section#programs .global-section-title em { color: var(--color-yellow) !important; }
+  section#programs .global-body-lg,
+  section#programs .global-body-lead { color: #8a8a8a !important; }
+
+  /* ── Grid container ── */
+  .pgrid-bento {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 280px;
+  }
+
+  /* Tablet: 2-column uniform */
+  @media (min-width: 640px) {
+    .pgrid-bento {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 280px;
+    }
+  }
+
+  /* Desktop: 3-column bento layout */
+  @media (min-width: 1024px) {
+    .pgrid-bento {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 280px);
+      gap: 12px;
+    }
+    /* Card 1: tall — col 1, rows 1-2 */
+    .pgrid-bento .pgrid-card:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+    /* Cards 2-5: col 2-3, rows 1-2 (normal) */
+    .pgrid-bento .pgrid-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .pgrid-bento .pgrid-card:nth-child(3) { grid-column: 3; grid-row: 1; }
+    .pgrid-bento .pgrid-card:nth-child(4) { grid-column: 2; grid-row: 2; }
+    .pgrid-bento .pgrid-card:nth-child(5) { grid-column: 3; grid-row: 2; }
+    /* Card 6: col 1, row 3 */
+    .pgrid-bento .pgrid-card:nth-child(6) { grid-column: 1; grid-row: 3; }
+    /* Card 7: wide — col 2-3, row 3 */
+    .pgrid-bento .pgrid-card:nth-child(7) { grid-column: 2 / 4; grid-row: 3; }
+  }
+
+  /* ── Individual card ── */
+  .pgrid-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111114;
+    display: block;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition:
+      transform 0.32s cubic-bezier(0.19,1,0.22,1),
+      border-color 0.25s ease,
+      box-shadow 0.32s ease;
+    cursor: pointer;
+  }
+  .pgrid-card:hover {
+    transform: translateY(-5px) scale(1.012);
+    border-color: var(--accent-brand);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  }
+
+  /* ── Full-bleed image ── */
+  .pgrid-img {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom,
-      rgba(21,20,25,0.1) 0%,
-      rgba(21,20,25,0.55) 45%,
-      rgba(21,20,25,0.95) 100%
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.19,1,0.22,1);
+    z-index: 0;
+  }
+  .pgrid-card:hover .pgrid-img {
+    transform: scale(1.07);
+  }
+
+  /* ── Gradient overlay scrim (dark at bottom) ── */
+  .pgrid-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(8, 8, 10, 0.92) 0%,
+      rgba(8, 8, 10, 0.6) 40%,
+      rgba(8, 8, 10, 0.1) 70%,
+      transparent 100%
     );
     z-index: 1;
     pointer-events: none;
+    transition: background 0.3s ease;
   }
-  .program-img-card--hero .content {
-    background: transparent;
-    position: relative;
-    z-index: 2;
-    padding: 2rem;
-    flex: unset;
+  .pgrid-card:hover .pgrid-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(8, 8, 10, 0.97) 0%,
+      rgba(8, 8, 10, 0.72) 45%,
+      rgba(8, 8, 10, 0.18) 72%,
+      transparent 100%
+    );
   }
 
-  /* ---- Buttons (yellow, black, white; responsive; hover) ---- */
+  /* ── Text content pinned to bottom ── */
+  .pgrid-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 1.25rem 1.4rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  /* ── Badge ── */
+  .pgrid-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    line-height: 1.7;
+    margin-bottom: 0.2rem;
+  }
+  .pgrid-badge--yellow {
+    background: var(--accent-brand);
+    color: #000;
+  }
+  .pgrid-badge--grey {
+    background: rgba(255,255,255,0.15);
+    color: #e0e0e0;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Title ── */
+  .pgrid-title {
+    font-family: 'Syne', sans-serif !important;
+    font-weight: 800;
+    font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+    color: #f2f2f2;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  /* ── Description ── */
+  .pgrid-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: #9a9a9a;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 50ch;
+    /* Hidden by default, revealed on hover */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+      max-height 0.35s ease,
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+  .pgrid-card:hover .pgrid-desc {
+    max-height: 80px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── CTA arrow ── */
+  .pgrid-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    color: var(--accent-brand);
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+      max-height 0.35s ease 0.05s,
+      opacity 0.3s ease 0.05s,
+      transform 0.3s ease 0.05s;
+  }
+  .pgrid-card:hover .pgrid-cta {
+    max-height: 30px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Mobile: stack single column, shorter cards ── */
+  @media (max-width: 639px) {
+    .pgrid-bento {
+      grid-auto-rows: 220px;
+      gap: 8px;
+    }
+    .pgrid-content {
+      padding: 1rem 1.1rem 1.1rem;
+    }
+    /* Always show desc on mobile (no hover) */
+    .pgrid-desc {
+      max-height: 60px;
+      opacity: 1;
+      transform: none;
+    }
+    .pgrid-cta {
+      max-height: 24px;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ── Tablet: 2-col, override nth-child positioning ── */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .pgrid-bento {
+      grid-auto-rows: 250px;
+      gap: 10px;
+    }
+    /* Reset any desktop grid assignments */
+    .pgrid-bento .pgrid-card:nth-child(n) {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    /* Wide card still spans full width on tablet */
+    .pgrid-bento .pgrid-card--wide {
+      grid-column: 1 / -1;
+    }
+  }
+
+
   .global-btn {
     display: inline-flex;
     align-items: center;
@@ -2040,14 +2367,21 @@
 
 /* Brand page 2-col hero grid */
 .brand-hero-2col {
-  max-width: 1280px;
+  max-width: 1500px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
   align-items: center;
   position: relative;
   z-index: 1;
+}
+
+.brand-hero-image-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {

@@ -143,7 +143,7 @@ export default function Home() {
               <div className="flex flex-col shadow-2xl rounded-[32px] overflow-hidden bg-card border border-border">
                 <div className="aspect-[4/3] relative w-full overflow-hidden">
                   <Image
-                    src="/assets/EIP Summit Group Photo.webp"
+                    src="/assets/images/EIP Summit Group Photo.webp"
                     alt="ECH Institute community at EIP Summit"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-700"
@@ -319,104 +319,83 @@ export default function Home() {
               <p className="global-body-lg text-left lg:text-right text-gray-600 mb-0 lg:pb-1">Each ECH program supports Ethereum governance through clear processes, coordination, and participation focused on long-term, sustainable outcomes rather than short-term fixes.</p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Flagship – full-bleed hero */}
-            <Link href={ROUTES.education} className="program-img-card program-img-card--hero group lg:row-span-2">
-              <div className="card-img">
-                <Image src="/assets/images/How We Work with EF.webp" alt="Education" fill className="bg-img object-cover" />
-              </div>
-              <div className="content">
-                <span className="badge">FLAGSHIP PROGRAM</span>
-                <h3>Education &amp; Literacy</h3>
-                <p>Centered on improving understanding of Ethereum network upgrades and governance processes through structured explanations, documentation, and coordination.</p>
-                <div className="btn-wrap">
-                  <span className="program-img-card-btn">View Program &rarr;</span>
-                </div>
+          {/* Bento mosaic grid */}
+          <div className="pgrid-bento">
+            {/* Card 1 — tall (row span 2) */}
+            <Link href={ROUTES.education} className="pgrid-card pgrid-card--tall group">
+              <img src="/assets/images/How We Work with EF.webp" alt="Education" className="pgrid-img" />
+              <div className="pgrid-overlay" />
+              <div className="pgrid-content">
+                <span className="pgrid-badge pgrid-badge--grey">FLAGSHIP PROGRAM</span>
+                <h3 className="pgrid-title">Education &amp; Literacy</h3>
+                <p className="pgrid-desc">Centered on improving understanding of Ethereum network upgrades and governance processes.</p>
+                <span className="pgrid-cta">View Program →</span>
               </div>
             </Link>
-
-            <Link href={ROUTES.eipSupport} className="program-img-card group">
-              <div className="card-img">
-                <img src="/assets/images/EIP Summit Workshop.jpg" alt="EIP Support" className="bg-img" />
-              </div>
-              <div className="content">
-                <span className="badge !bg-gray-200 !text-gray-800">GOVERNANCE</span>
-                <h3>EIP Support</h3>
-                <p>Strengthening the Ethereum Improvement Proposal process through structure and coordinated reviews.</p>
-                <div className="btn-wrap">
-                  <span className="program-img-card-btn">View Program &rarr;</span>
-                </div>
+            {/* Card 2 */}
+            <Link href={ROUTES.eipSupport} className="pgrid-card group">
+              <img src="/assets/images/EIP Summit Workshop.jpg" alt="EIP Support" className="pgrid-img" />
+              <div className="pgrid-overlay" />
+              <div className="pgrid-content">
+                <span className="pgrid-badge pgrid-badge--grey">GOVERNANCE</span>
+                <h3 className="pgrid-title">EIP Support</h3>
+                <p className="pgrid-desc">Strengthening the Ethereum Improvement Proposal process through structure and coordinated reviews.</p>
+                <span className="pgrid-cta">View Program →</span>
               </div>
             </Link>
-
-            <Link href={ROUTES.podcast} className="program-img-card group">
-              <div className="card-img">
-                <img src="/assets/images/Podcast Content.webp" alt="Podcast" className="bg-img" />
-              </div>
-              <div className="content">
-                <span className="badge !bg-gray-200 !text-gray-800">CONTENT</span>
-                <h3>Podcast &amp; Content</h3>
-                <p>Translating complex Ethereum governance into accessible knowledge through videos and podcasts.</p>
-                <div className="btn-wrap">
-                  <span className="program-img-card-btn">View Program &rarr;</span>
-                </div>
+            {/* Card 3 */}
+            <Link href={ROUTES.podcast} className="pgrid-card group">
+              <img src="/assets/images/Podcast Content.webp" alt="Podcast" className="pgrid-img" />
+              <div className="pgrid-overlay" />
+              <div className="pgrid-content">
+                <span className="pgrid-badge pgrid-badge--grey">CONTENT</span>
+                <h3 className="pgrid-title">Podcast &amp; Content</h3>
+                <p className="pgrid-desc">Translating complex Ethereum governance into accessible knowledge through videos and podcasts.</p>
+                <span className="pgrid-cta">View Program →</span>
               </div>
             </Link>
-
-            <Link href={ROUTES.communityPartnerships} className="program-img-card group">
-              <div className="card-img">
-                <img src="/assets/images/Who We Are.webp" alt="Community Partnerships" className="bg-img" />
-              </div>
-              <div className="content">
-                <span className="badge !bg-gray-200 !text-gray-800">COMMUNITY</span>
-                <h3>Community Partnerships</h3>
-                <p>Collaborating with ecosystem communities to expand participation in Ethereum governance.</p>
-                <div className="btn-wrap">
-                  <span className="program-img-card-btn">View Program &rarr;</span>
-                </div>
+            {/* Card 4 */}
+            <Link href={ROUTES.communityPartnerships} className="pgrid-card group">
+              <img src="/assets/images/Who We Are.webp" alt="Community Partnerships" className="pgrid-img" />
+              <div className="pgrid-overlay" />
+              <div className="pgrid-content">
+                <span className="pgrid-badge pgrid-badge--grey">COMMUNITY</span>
+                <h3 className="pgrid-title">Community Partnerships</h3>
+                <p className="pgrid-desc">Collaborating with ecosystem communities to expand participation in Ethereum governance.</p>
+                <span className="pgrid-cta">View Program →</span>
               </div>
             </Link>
-
-            <Link href={ROUTES.wiep} className="program-img-card group">
-              <div className="card-img">
-                <img src="/assets/images/Women in Protocol.webp" alt="Women in Protocol" className="bg-img" />
-              </div>
-              <div className="content">
-                <span className="badge">INCLUSION</span>
-                <h3>Women in Protocol</h3>
-                <p>Supporting women entering Ethereum governance through mentorship and education.</p>
-                <div className="btn-wrap">
-                  <span className="program-img-card-btn">View Program &rarr;</span>
-                </div>
+            {/* Card 5 */}
+            <Link href={ROUTES.wiep} className="pgrid-card group">
+              <img src="/assets/images/Women in Protocol.webp" alt="Women in Protocol" className="pgrid-img" />
+              <div className="pgrid-overlay" />
+              <div className="pgrid-content">
+                <span className="pgrid-badge pgrid-badge--grey">INCLUSION</span>
+                <h3 className="pgrid-title">Women in Protocol</h3>
+                <p className="pgrid-desc">Supporting women entering Ethereum governance through mentorship and education.</p>
+                <span className="pgrid-cta">View Program →</span>
               </div>
             </Link>
-
-            <Link href={ROUTES.institutionalBridging} className="program-img-card group">
-              <div className="card-img">
-                <img src="/assets/images/Enterprise & Institutional View.webp" alt="Institutional Bridging" className="bg-img" />
-              </div>
-              <div className="content">
-                <span className="badge !bg-gray-200 !text-gray-800">INSTITUTIONAL</span>
-                <h3>Institutional Bridging</h3>
-                <p>Bridging Ethereum governance with enterprise stakeholders through education and dialogue.</p>
-                <div className="btn-wrap">
-                  <span className="program-img-card-btn">View Program &rarr;</span>
-                </div>
+            {/* Card 6 */}
+            <Link href={ROUTES.institutionalBridging} className="pgrid-card group">
+              <img src="/assets/images/Enterprise & Institutional View.webp" alt="Institutional Bridging" className="pgrid-img" />
+              <div className="pgrid-overlay" />
+              <div className="pgrid-content">
+                <span className="pgrid-badge pgrid-badge--grey">INSTITUTIONAL</span>
+                <h3 className="pgrid-title">Institutional Bridging</h3>
+                <p className="pgrid-desc">Bridging Ethereum governance with enterprise stakeholders through education and dialogue.</p>
+                <span className="pgrid-cta">View Program →</span>
               </div>
             </Link>
-
-            {/* Events – full-bleed hero, spans 2 cols */}
-            <Link href={ROUTES.events} className="program-img-card program-img-card--hero group md:col-span-2 lg:col-span-2">
-              <div className="card-img">
-                <img src="/assets/images/Events Workshops.webp" alt="Events" className="bg-img" />
-              </div>
-              <div className="content md:w-3/4 lg:w-3/4">
-                <span className="badge">ECOSYSTEM FESTIVALS</span>
-                <h3>Events &amp; Workshops</h3>
-                <p>Organizing roundtables and workshops that bring the ecosystem together for discussion around EIPs and emerging standards.</p>
-                <div className="btn-wrap">
-                  <span className="program-img-card-btn">View Program &rarr;</span>
-                </div>
+            {/* Card 7 — wide (col span 2) */}
+            <Link href={ROUTES.events} className="pgrid-card pgrid-card--wide group">
+              <img src="/assets/images/Events Workshops.webp" alt="Events" className="pgrid-img" />
+              <div className="pgrid-overlay" />
+              <div className="pgrid-content">
+                <span className="pgrid-badge pgrid-badge--grey">ECOSYSTEM FESTIVALS</span>
+                <h3 className="pgrid-title">Events &amp; Workshops</h3>
+                <p className="pgrid-desc">Organizing roundtables and workshops that bring the ecosystem together for discussion around EIPs and emerging standards.</p>
+                <span className="pgrid-cta">View Program →</span>
               </div>
             </Link>
           </div>

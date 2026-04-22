@@ -285,7 +285,8 @@ export default function EducationPage() {
       {/* ── Hero — "proplay" inner-page style ──────────────── */}
       <section id="overview" className="page-hero">
         <div className="page-hero-inner">
-          <div className="page-hero-tag">
+          <div className="flex flex-col">
+            <div className="page-hero-tag">
             <span className="page-hero-dot" />
             ECH Institute · Education Programs
           </div>
@@ -303,6 +304,18 @@ export default function EducationPage() {
             <Link href={EXTERNAL_LINKS.blog} target="_blank" className="btn btn-outline">
               <FileText size={16} /> Read the Blog
             </Link>
+          </div>
+          </div>
+
+          <div className="hidden lg:flex justify-center items-center relative w-full h-[350px]">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="absolute w-[200px] h-[200px] bg-[#F5A51D]/10 rounded-full blur-[80px]" />
+              <div className="absolute w-[180px] h-[180px] border border-[#F5A51D]/20 rounded-full animate-[ping_4s_linear_infinite]" />
+              <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
+            </div>
+            <div className="relative z-10 proplay-icon-container flex items-center justify-center h-48 w-48 rounded-full border-4 border-[#151419] bg-[#1B1B1E] shadow-2xl shadow-[#F5A51D]/20">
+              <BookOpen className="h-24 w-24 text-brand-yellow drop-shadow-lg" />
+            </div>
           </div>
         </div>
       </section>
@@ -322,6 +335,17 @@ export default function EducationPage() {
                 <div className="text-sm text-[#FBFBFB] font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
+          </div>
+
+          <div className="hidden lg:flex justify-center items-center relative w-full h-[350px]">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="absolute w-[200px] h-[200px] bg-[#F5A51D]/10 rounded-full blur-[80px]" />
+              <div className="absolute w-[180px] h-[180px] border border-[#F5A51D]/20 rounded-full animate-[ping_4s_linear_infinite]" />
+              <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
+            </div>
+            <div className="relative z-10 proplay-icon-container flex items-center justify-center h-48 w-48 rounded-full border-4 border-[#151419] bg-[#1B1B1E] shadow-2xl shadow-[#F5A51D]/20">
+              <BookOpen className="h-24 w-24 text-brand-yellow drop-shadow-lg" />
+            </div>
           </div>
         </div>
       </section>

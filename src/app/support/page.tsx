@@ -311,25 +311,41 @@ export default function SupportPage() {
       {/* ── Hero — "proplay" inner-page style ──────────────── */}
       <section className="page-hero">
         <div className="page-hero-inner">
-          <div className="page-hero-tag">
-            <span className="page-hero-dot" />
-            501(c)(3) Public Charity
+          {/* Left Column: Text */}
+          <div className="flex flex-col">
+            <div className="page-hero-tag">
+              <span className="page-hero-dot" />
+              501(c)(3) Public Charity
+            </div>
+            <h1 className="page-hero-title">
+              Support <em>ECH</em><br />Institute
+            </h1>
+            <p className="page-hero-desc">
+              Ethereum governance is a public good. The processes that enable Ethereum to evolve are
+              critical — but often underfunded. ECH Institute ensures these processes remain open,
+              transparent, and accessible.
+            </p>
+            <div className="page-hero-actions">
+              <button onClick={() => scrollToSection("donate")} className="btn btn-primary">
+                <Heart className="h-4 w-4" /> Make a Donation
+              </button>
+              <button onClick={() => scrollToSection("why-support")} className="btn btn-outline">
+                Learn Why It Matters
+              </button>
+            </div>
           </div>
-          <h1 className="page-hero-title">
-            Support <em>ECH</em><br />Institute
-          </h1>
-          <p className="page-hero-desc">
-            Ethereum governance is a public good. The processes that enable Ethereum to evolve are
-            critical — but often underfunded. ECH Institute ensures these processes remain open,
-            transparent, and accessible.
-          </p>
-          <div className="page-hero-actions">
-            <button onClick={() => scrollToSection("donate")} className="btn btn-primary">
-              <Heart className="h-4 w-4" /> Make a Donation
-            </button>
-            <button onClick={() => scrollToSection("why-support")} className="btn btn-outline">
-              Learn Why It Matters
-            </button>
+
+          {/* Right Column: Icon Visualization */}
+          <div className="hidden lg:flex justify-center items-center relative w-full h-[350px]">
+            {/* Background glowing effects */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="absolute w-[200px] h-[200px] bg-[#F5A51D]/10 rounded-full blur-[80px]" />
+              <div className="absolute w-[180px] h-[180px] border border-[#F5A51D]/20 rounded-full animate-[ping_4s_linear_infinite]" />
+              <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
+            </div>
+            <div className="relative z-10 proplay-icon-container flex items-center justify-center h-48 w-48 rounded-full border-4 border-[#151419] bg-[#1B1B1E] shadow-2xl shadow-[#F5A51D]/20">
+              <Heart className="h-24 w-24 text-brand-yellow drop-shadow-lg" />
+            </div>
           </div>
         </div>
       </section>

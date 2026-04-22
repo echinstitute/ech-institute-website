@@ -212,7 +212,7 @@ export default function GetInvolvedPage() {
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1500px] mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             {/* Left — copy */}
             <div className="flex flex-col gap-5">
@@ -248,7 +248,7 @@ export default function GetInvolvedPage() {
 
             {/* Right — ways to contribute mini-grid */}
             {/* Right — Interactive Role Proximity (Radar Style) */}
-            <div className="relative h-[400px] w-full flex items-center justify-center group/radar overflow-hidden">
+            <div className="relative h-[400px] w-full flex items-center justify-center group/radar">
               {/* Radar Background Rings */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
@@ -271,7 +271,22 @@ export default function GetInvolvedPage() {
                     "bottom-[10%] left-1/2 -translate-x-1/2", // 03 - Bottom
                     "left-[10%] top-1/2 -translate-y-1/2", // 04 - Left
                   ];
-                  
+
+                  // Tooltips point INWARD towards the center of the radar to avoid clipping
+                  const tooltipPos = [
+                    "top-full mt-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 -translate-y-4", // Top sphere points down
+                    "right-full mr-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 translate-x-4", // Right sphere points left
+                    "bottom-full mb-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 translate-y-4", // Bottom sphere points up
+                    "left-full ml-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 -translate-x-4", // Left sphere points right
+                  ];
+
+                  const arrowPos = [
+                    "absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-l border-[var(--accent-brand)] rotate-45", // Top sphere arrow points up
+                    "absolute top-1/2 -right-2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-r border-[var(--accent-brand)] rotate-45 -translate-y-1/2", // Right sphere arrow points right
+                    "absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-b border-r border-[var(--accent-brand)] rotate-45", // Bottom sphere arrow points down
+                    "absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2", // Left sphere arrow points left
+                  ];
+
                   return (
                     <div
                       key={title}
@@ -279,7 +294,7 @@ export default function GetInvolvedPage() {
                     >
                       {/* Floating Sphere */}
                       <div className="relative flex flex-col items-center">
-                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer">
+                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer relative z-10">
                           <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:text-[var(--accent-brand)] transition-colors" />
                           
                           {/* Radial Scanning Effect */}
@@ -292,10 +307,10 @@ export default function GetInvolvedPage() {
                         </div>
 
                         {/* Description - Revealed on Hover */}
-                        <div className="absolute top-1/2 left-full ml-6 w-48 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-[var(--surface-card-theme)] border border-[var(--accent-brand)] p-4 rounded-xl shadow-2xl transition-all duration-300 -translate-x-4 group-hover/sphere:translate-x-0 z-50">
-                          <div className="absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2" />
+                        <div className={`absolute ${tooltipPos[index]} w-48 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-[var(--surface-card-theme)] border border-[var(--accent-brand)] p-4 rounded-xl shadow-2xl transition-all duration-300 z-50`}>
+                          <div className={arrowPos[index]} />
                           <p className="text-[11px] font-black uppercase tracking-widest text-[var(--accent-brand)] mb-1">Impact Layer</p>
-                          <p className="text-[12px] text-[var(--text-base)] font-medium leading-[1.4]">{desc}</p>
+                          <p className="text-[12px] text-[var(--text-base)] font-medium leading-[1.4] relative z-10">{desc}</p>
                         </div>
                       </div>
                     </div>

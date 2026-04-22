@@ -635,8 +635,8 @@ export default function Navigation() {
                                 <div className={cn(
                                   'flex-shrink-0 w-10 h-10 rounded-md flex items-center justify-center transition-colors bg-transparent',
                                   isHovered || clickedSection === `${hoveredMenu}-${index}`
-                                    ? 'text-[var(--accent-brand)]'
-                                    : 'text-[var(--text-base)]'
+                                    ? 'text-[#FBFBFB]'
+                                    : 'text-[#FBFBFB]'
                                 )}>
                                   <subItem.icon className="h-5 w-5" />
                                 </div>
@@ -651,7 +651,7 @@ export default function Navigation() {
                                 </div>
                                 <ChevronRight className={cn(
                                   'h-5 w-5 flex-shrink-0 transition-colors',
-                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[var(--accent-brand)]' : 'text-[var(--text-soft)]'
+                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[#FBFBFB]' : 'text-[#FBFBFB]'
                                 )}/>
                               </div>
                             ) : (
@@ -671,7 +671,7 @@ export default function Navigation() {
                                       }}
                                       className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                     >
-                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center group-hover:text-[var(--accent-brand)] transition-colors">
+                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center group-hover:text-[#FBFBFB] transition-colors">
                                         <subItem.icon className="h-5 w-5" />
                                       </div>
                                       <div className="flex-1 text-left">
@@ -695,7 +695,7 @@ export default function Navigation() {
                                     }}
                                     className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center group-hover:text-[var(--accent-brand)] transition-colors">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center group-hover:text-[#FBFBFB] transition-colors">
                                       <subItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 text-left">
@@ -763,7 +763,7 @@ export default function Navigation() {
                                     rel="noopener noreferrer"
                                     className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center group-hover:text-[var(--accent-brand)] transition-colors mt-0.5">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center group-hover:text-[#FBFBFB] transition-colors mt-0.5">
                                       <nestedItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 min-w-0">
@@ -785,7 +785,7 @@ export default function Navigation() {
                                   onClick={(e) => handleLinkClick(e, nestedItem.link)}
                                   className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                 >
-                                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center group-hover:text-[var(--accent-brand)] transition-colors mt-0.5">
+                                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center group-hover:text-[#FBFBFB] transition-colors mt-0.5">
                                     <nestedItem.icon className="h-5 w-5" />
                                   </div>
                                   <div className="flex-1 min-w-0">
@@ -844,7 +844,7 @@ export default function Navigation() {
                           }}
                           className="w-full flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0"
                         >
-                          <div className="w-10 h-10 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
+                          <div className="w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
                             <item.icon className="h-5 w-5" />
                           </div>
                           <div className="flex-1 text-left">
@@ -857,7 +857,7 @@ export default function Navigation() {
                           </div>
                           <ChevronRight 
                             className={cn(
-                              "h-5 w-5 text-[var(--text-soft)] transition-transform duration-200 flex-shrink-0",
+                              "h-5 w-5 text-[#FBFBFB] transition-transform duration-200 flex-shrink-0",
                               openMobileMenu === key ? "rotate-90" : ""
                             )}
                           />
@@ -881,7 +881,7 @@ export default function Navigation() {
                                       }}
                                       className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 text-left"
                                     >
-                                      <div className="w-8 h-8 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
+                                      <div className="w-8 h-8 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
                                         <subItem.icon className="h-4 w-4" />
                                       </div>
                                       <div className="flex-1">
@@ -894,7 +894,7 @@ export default function Navigation() {
                                       </div>
                                       <ChevronRight 
                                         className={cn(
-                                          "h-4 w-4 text-[var(--text-soft)] transition-transform duration-200 flex-shrink-0",
+                                          "h-4 w-4 text-[#FBFBFB] transition-transform duration-200 flex-shrink-0",
                                           openMobileSubMenu === subMenuKey ? "rotate-90" : ""
                                         )}
                                       />
@@ -918,7 +918,7 @@ export default function Navigation() {
                                                 }}
                                                 className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                               >
-                                                <div className="w-6 h-6 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
+                                                <div className="w-6 h-6 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
                                                   <nestedItem.icon className="h-3 w-3" />
                                                 </div>
                                                 <div className="flex-1">
@@ -942,7 +942,7 @@ export default function Navigation() {
                                               }}
                                               className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                             >
-                                              <div className="w-6 h-6 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
+                                              <div className="w-6 h-6 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
                                                 <nestedItem.icon className="h-3 w-3" />
                                               </div>
                                               <div className="flex-1">
@@ -975,7 +975,7 @@ export default function Navigation() {
                                     }}
                                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                   >
-                                    <div className="w-8 h-8 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
+                                    <div className="w-8 h-8 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
                                       <subItem.icon className="h-4 w-4" />
                                     </div>
                                     <div className="flex-1">
@@ -999,7 +999,7 @@ export default function Navigation() {
                                   }}
                                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                 >
-                                  <div className="w-8 h-8 rounded-md bg-transparent text-[var(--text-base)] flex items-center justify-center flex-shrink-0 group-hover:text-[var(--accent-brand)] transition-colors">
+                                  <div className="w-8 h-8 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
                                     <subItem.icon className="h-4 w-4" />
                                   </div>
                                   <div className="flex-1">
@@ -1027,7 +1027,7 @@ export default function Navigation() {
                       >
                         <div className={cn(
                           'w-10 h-10 rounded-md bg-transparent flex items-center justify-center flex-shrink-0 transition-colors',
-                          pathname === item.link ? 'text-[var(--accent-brand)]' : 'text-[var(--text-base)] group-hover:text-[var(--accent-brand)]'
+                          pathname === item.link ? 'text-[#FBFBFB]' : 'text-[#FBFBFB] group-hover:text-[#FBFBFB]'
                         )}>
                           <item.icon className="h-5 w-5" />
                         </div>

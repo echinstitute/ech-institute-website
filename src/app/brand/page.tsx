@@ -345,14 +345,14 @@ export default function BrandPage() {
             </div>
           </div>
 
-          <div className="relative flex justify-center items-center animate-fade-in py-10 lg:py-0">
+          <div className="brand-hero-image-wrap relative flex justify-center items-center animate-fade-in py-10 lg:py-0">
             <div className="relative group">
               <Image
                 src="/assets/logo/Cat with Laptop.svg"
                 alt="ECH Institute Cat"
-                width={550}
-                height={550}
-                className="relative z-10 w-full max-w-[500px] h-auto drop-shadow-2xl object-contain"
+                width={900}
+                height={900}
+                className="relative z-10 w-full max-w-[900px] h-auto drop-shadow-2xl object-contain transform md:scale-[1.35] lg:scale-[1.4] origin-right"
                 priority
               />
             </div>
@@ -383,7 +383,7 @@ export default function BrandPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <LogoCard src="/assets/logo/ECH Institute Logo - Black.png" label="Primary Logo (Dark)" />
               <LogoCard src="/assets/logo/ECH Institute Logo - White.png" label="Inverted Logo (Light)" dark />
-              <LogoCard src="/assets/logo/ECH Institute Logo - White.png" label="Landscape Mark" isHorizontal />
+              <LogoCard src="/assets/logo/ECH Ins Logo.png" label="Landscape Mark" isHorizontal />
             </div>
           </section>
 

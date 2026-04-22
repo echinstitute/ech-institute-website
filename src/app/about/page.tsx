@@ -81,74 +81,72 @@ export default function AboutPage() {
 
       {/* ── HERO ──────────────────────────────────────────────── */}
       <section className="page-hero">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="page-hero-inner">
-              <div className="page-hero-tag">
-                <span className="page-hero-dot" />
-                501(c)(3) Nonprofit · Est. 2024
-              </div>
-              <h1 className="page-hero-title">
-                About <em>ECH</em><br />Institute
-              </h1>
-              <p className="page-hero-desc">
-                ECH Institute Inc. is a 501(c)(3) non-profit organization that transitioned to a
-                formalized institutional steward on July 11, 2024 supporting the Ethereum ecosystem
-                through decentralized project management, coordination, and technical education as a
-                neutral public good.
-              </p>
-              <div className="page-hero-actions mt-2">
-                <Link href="/support#donate" className="btn btn-primary">Support Our Mission</Link>
-                <a href="#mission" className="btn btn-outline">Our Mission</a>
-              </div>
-            </div>
+        <div className="page-hero-inner !max-w-7xl">
 
-            {/* Right Radar overflow:visible so tooltips are not clipped */}
-            <div className="relative h-[400px] w-full hidden lg:flex items-center justify-center">
-              {/* Background rings non-interactive */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
-                <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
-                <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
-                <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
-              </div>
-              {/* Centre dot */}
-              <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--accent-brand)] opacity-40" />
-              {/* Spheres */}
-              <div className="absolute inset-0">
-                {([
-                  { icon: Sparkles, title: 'Coordination', desc: 'Managing major initiatives and EIP processes.', pos: 'top-[8%] left-1/2 -translate-x-1/2' },
-                  { icon: Users,    title: 'Community',    desc: 'Ensuring documentation and meeting coordination.', pos: 'top-1/2 right-[8%] -translate-y-1/2' },
-                  { icon: Target,   title: 'Education',    desc: 'Creating technical resources and documentation.', pos: 'bottom-[8%] left-1/2 -translate-x-1/2' },
-                  { icon: Heart,    title: 'Outreach',     desc: 'Engaging with the global community and partners.', pos: 'top-1/2 left-[8%] -translate-y-1/2' },
-                ] as const).map(({ icon: Icon, title, desc, pos }, idx) => (
-                  <div key={title} className={`absolute ${pos} group/sphere z-20`}>
-                    <div className="relative flex flex-col items-center">
-                      {/* Icon circle */}
-                      <div className="relative proplay-icon-container h-16 w-16 rounded-full border-2 border-[var(--border-soft)] shadow-xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer">
-                        <Icon className="h-8 w-8 transition-colors" />
-                        <span className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-60 group-hover/sphere:animate-ping pointer-events-none" />
-                      </div>
-                      {/* Label badge */}
-                      <div className="mt-2 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--background)] whitespace-nowrap">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">{String(idx + 1).padStart(2,'0')} {title}</span>
-                      </div>
-                      {/* Tooltip always rendered, shown on hover via opacity+translate */}
-                      <div
-                        className="absolute top-0 left-[calc(100%+1rem)] w-52 bg-[var(--background)] border border-[var(--accent-brand)] rounded-2xl p-4 shadow-2xl
-                                   pointer-events-none opacity-0 -translate-x-2 transition-all duration-300
-                                   group-hover/sphere:opacity-100 group-hover/sphere:translate-x-0 z-[100]"
-                      >
-                        <div className="absolute top-5 -left-[9px] w-4 h-4 bg-[var(--background)] border-l border-b border-[var(--accent-brand)] rotate-45" />
-                        <p className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)] mb-2">Our Focus</p>
-                        <p className="text-[12px] text-[var(--text-base)] font-medium leading-relaxed">{desc}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {/* Left — text */}
+          <div>
+            <div className="page-hero-tag">
+              <span className="page-hero-dot" />
+              501(c)(3) Nonprofit · Est. 2024
+            </div>
+            <h1 className="page-hero-title">
+              About <em>ECH</em><br />Institute
+            </h1>
+            <p className="page-hero-desc">
+              ECH Institute Inc. is a 501(c)(3) non-profit organization that transitioned to a
+              formalized institutional steward on July 11, 2024 supporting the Ethereum ecosystem
+              through decentralized project management, coordination, and technical education as a
+              neutral public good.
+            </p>
+            <div className="page-hero-actions mt-4">
+              <Link href="/support#donate" className="global-btn global-btn-primary">Support Our Mission</Link>
+              <a href="#mission" className="global-btn global-btn-outline">Our Mission</a>
             </div>
           </div>
+
+          {/* Right — Radar / sphere animation */}
+          <div className="relative h-[400px] w-full hidden lg:flex items-center justify-center">
+            {/* Background rings */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
+              <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
+              <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
+              <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
+            </div>
+            {/* Centre dot */}
+            <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--accent-brand)] opacity-40" />
+            {/* Spheres */}
+            <div className="absolute inset-0">
+              {([
+                { icon: Sparkles, title: 'Coordination', desc: 'Managing major initiatives and EIP processes.', pos: 'top-[8%] left-1/2 -translate-x-1/2' },
+                { icon: Users,    title: 'Community',    desc: 'Ensuring documentation and meeting coordination.', pos: 'top-1/2 right-[8%] -translate-y-1/2' },
+                { icon: Target,   title: 'Education',    desc: 'Creating technical resources and documentation.', pos: 'bottom-[8%] left-1/2 -translate-x-1/2' },
+                { icon: Heart,    title: 'Outreach',     desc: 'Engaging with the global community and partners.', pos: 'top-1/2 left-[8%] -translate-y-1/2' },
+              ] as const).map(({ icon: Icon, title, desc, pos }, idx) => (
+                <div key={title} className={`absolute ${pos} group/sphere z-20`}>
+                  <div className="relative flex flex-col items-center">
+                    <div className="relative proplay-icon-container h-16 w-16 rounded-full border-2 border-[var(--border-soft)] shadow-xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer">
+                      <Icon className="h-8 w-8 transition-colors" />
+                      <span className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-60 group-hover/sphere:animate-ping pointer-events-none" />
+                    </div>
+                    <div className="mt-2 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--background)] whitespace-nowrap">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">{String(idx + 1).padStart(2,'0')} {title}</span>
+                    </div>
+                    <div
+                      className="absolute top-0 left-[calc(100%+1rem)] w-52 bg-[var(--background)] border border-[var(--accent-brand)] rounded-2xl p-4 shadow-2xl
+                                 pointer-events-none opacity-0 -translate-x-2 transition-all duration-300
+                                 group-hover/sphere:opacity-100 group-hover/sphere:translate-x-0 z-[100]"
+                    >
+                      <div className="absolute top-5 -left-[9px] w-4 h-4 bg-[var(--background)] border-l border-b border-[var(--accent-brand)] rotate-45" />
+                      <p className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)] mb-2">Our Focus</p>
+                      <p className="text-[12px] text-[var(--text-base)] font-medium leading-relaxed">{desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 

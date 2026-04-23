@@ -20,22 +20,25 @@ export const StickySideNav: React.FC<StickySideNavProps> = ({
   title = "On This Page"
 }) => {
   return (
-    <aside className="hidden lg:block w-60 xl:w-64 flex-shrink-0 sticky top-28 self-start z-20">
-      <div className="bg-[#1B1B1E] border border-[#2D2D30] rounded-[24px] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
+    <aside className="hidden lg:block w-64 xl:w-72 flex-shrink-0 sticky top-28 self-start z-20">
+      <div className="bg-[#1B1B1E] border border-[#2D2D30] rounded-[24px] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
         {/* Subtle decorative glow */}
         <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#F5A51D] opacity-[0.05] blur-[50px] rounded-full" />
         
-        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-[#FBFBFB] mb-6 px-2 border-b border-[#2D2D30] pb-4">
-          {title}
-        </p>
+        <div className="flex items-center gap-2 mb-5 px-2 border-b border-[#2D2D30] pb-4">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#F5A51D] shrink-0" />
+          <p className="text-[11px] font-black uppercase tracking-[0.3em] text-[#F5A51D]">
+            {title}
+          </p>
+        </div>
         
-        <nav className="flex flex-col gap-2">
+        <nav className="flex flex-col gap-1">
           {sections.map((s) => (
             <button
               key={s.id}
               onClick={() => onSectionClick(s.id)}
               className={cn(
-                "group text-left px-4 py-3 rounded-xl text-[14px] font-bold transition-all duration-200 relative font-[family-name:var(--font-family-nav)]",
+                "group text-left px-3 py-2.5 rounded-xl text-[12.5px] font-bold transition-all duration-200 relative font-[family-name:var(--font-family-nav)] w-full whitespace-nowrap overflow-hidden text-ellipsis",
                 activeSection === s.id
                   ? "text-[#F5A51D] bg-[#F5A51D]/[0.05]"
                   : "text-[#FBFBFB] hover:text-[#FFFFFF] hover:bg-[#FFFFFF]/[0.03]"

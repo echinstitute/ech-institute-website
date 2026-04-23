@@ -357,8 +357,8 @@ export default function SupportPage() {
             {[
               { value: "2024", label: "Incorporated as 501(c)(3)" },
               { value: "100+", label: "PEEPanEIP Episodes" },
+              { value: "124.23K", label: "OP Grant Received" },
               { value: "0%", label: "Private Conflicts of Interest" },
-              { value: "Open", label: "All Governance Calls" },
             ].map((s, i) => (
               <div key={i}>
                 <div className="global-section-title text-brand-yellow">{s.value}</div>
@@ -648,6 +648,48 @@ export default function SupportPage() {
               </div>
               <div className="px-5 py-5">
                 <FundingVisualization />
+              </div>
+            </div>
+
+            {/* OP Grant highlight card */}
+            <div className="global-card mt-4 bg-[#1B1B1E] border-[#262626] relative overflow-hidden">
+              {/* Top accent line — Optimism red-orange */}
+              <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF0420] to-transparent" />
+              <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+                {/* OP Logo pill */}
+                <div className="flex items-center gap-3 shrink-0">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FF0420]/10 border border-[#FF0420]/30">
+                    <span className="text-lg font-black text-[#FF0420]">OP</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-[#FF0420]">Optimism Grant</p>
+                    <p className="text-[11px] text-[#FBFBFB]/50 font-medium">Retroactive Public Goods Funding</p>
+                  </div>
+                </div>
+                {/* Divider */}
+                <div className="hidden sm:block h-12 w-[1px] bg-[#262626]" />
+                {/* Amount */}
+                <div className="flex-1">
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <span className="text-3xl font-black text-[#FBFBFB] tracking-tight">124.23K</span>
+                    <span className="text-base font-black text-[#FF0420]">OP</span>
+                  </div>
+                  <p className="text-sm text-[#FBFBFB]/60 leading-relaxed">
+                    Awarded by the Optimism Collective in recognition of ECH Institute&apos;s contributions to
+                    Ethereum public goods — coordination infrastructure, governance documentation, and
+                    open education programs.
+                  </p>
+                </div>
+                {/* CTA */}
+                <div className="shrink-0">
+                  <Link
+                    href="https://app.optimism.io/retropgf"
+                    target="_blank"
+                    className="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-lg border border-[#FF0420]/40 bg-[#FF0420]/8 text-[#FF0420] hover:bg-[#FF0420]/15 transition-all"
+                  >
+                    View on Optimism <ExternalLink size={11} />
+                  </Link>
+                </div>
               </div>
             </div>
           </section>

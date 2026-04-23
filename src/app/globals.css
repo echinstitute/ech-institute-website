@@ -713,7 +713,7 @@
   main .page-hero-inner {
     position: relative;
     z-index: 1;
-    max-width: 1500px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
@@ -2313,7 +2313,7 @@
 }
 
 .brand-hero-inner {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2367,7 +2367,7 @@
 
 /* Brand page 2-col hero grid */
 .brand-hero-2col {
-  max-width: 1500px;
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;

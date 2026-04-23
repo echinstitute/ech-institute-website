@@ -605,7 +605,7 @@ export default function Navigation() {
               onMouseLeave={handleDropdownLeave}
             >
               <div className={cn(
-                "container max-w-[1400px] mx-auto px-4",
+                "container max-w-7xl mx-auto px-4",
                 'py-4'
               )}>
                 <div className="flex gap-8">

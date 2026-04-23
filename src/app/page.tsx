@@ -53,7 +53,7 @@ export default function Home() {
 
       {/* ── Hero ── */}
       <section className="hero" id="hero">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16 w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 md:gap-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 md:gap-12">
           {/* ── Left: text content ── */}
           <div className="hero-content flex-1 text-center md:text-left pt-16 pb-8 md:py-0 flex flex-col items-center md:items-start">
             <div className="hero-badge animate-fade-up">

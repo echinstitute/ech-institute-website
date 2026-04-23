@@ -483,6 +483,31 @@ const whyItems = [
   },
 ];
 
+// ─── Homestead Hero Ways ──────────────────────────────────────────────────────
+const homesteadWays = [
+  {
+    icon: Network,
+    title: 'ACD Coordination',
+    desc: 'ECH Institute documents every All Core Devs call and publishes notes to ethereum/pm within 24 hours.',
+  },
+  {
+    icon: FileText,
+    title: 'EIP Process',
+    desc: 'Understand how Ethereum Improvement Proposals move from Draft → Last Call → Final → Mainnet.',
+  },
+  {
+    icon: Users,
+    title: 'Community Access',
+    desc: 'Open office hours, EIPIP calls, and WiEP classrooms give everyone a pathway into governance.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Upgrade Tracking',
+    desc: 'Monitor EIP inclusion states (CFI → SFI → INU) across the biannual Ethereum upgrade schedule.',
+  },
+];
+
+
 export default function HomesteadPage() {
   const [activeSection, setActiveSection] = useState('overview');
   const [openGovHow, setOpenGovHow] = useState<Record<number, boolean>>({ 0: true });
@@ -524,24 +549,92 @@ export default function HomesteadPage() {
     <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24 text-[#FBFBFB]">
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section id="overview" className="py-8 px-4 md:py-16 md:px-8 border-b border-[#262626]">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center gap-4 text-center max-w-3xl mx-auto">
-            <h1 className="global-hero-title">Homestead</h1>
-            <p className="global-body-lg text-brand-yellow font-bold text-[1.1rem]">
-              ECH is the steward of major initiatives documented at Homestead.
-            </p>
-            <p className="global-body-lg">
-              Supporting the processes, coordination, and participation that help Ethereum evolve responsibly as open, public infrastructure.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center mt-2">
-              <Link href="https://forkcast.org" target="_blank" className="btn btn-primary">
-                <TrendingUp size={16} /> Forkcast.org
-              </Link>
-              <Link href="https://ps.ethereum.foundation" target="_blank" className="btn btn-outline">
-                <Globe size={16} /> Protocol Support
-              </Link>
+      <section id="overview" className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+
+            {/* Left — copy */}
+            <div className="flex flex-col gap-5">
+              <div className="proplay-icon-container px-3 py-1 self-start">
+                <Home className="h-4 w-4 mx-2" />
+                Ethereum Governance Hub
+              </div>
+              <h1 className="global-hero-title">
+                <em>Homestead.</em>
+              </h1>
+              <p className="global-body-lg text-brand-yellow font-bold text-[1.1rem]">
+                ECH is the steward of major initiatives documented at Homestead.
+              </p>
+              <p className="global-body-lg max-w-xl">
+                Supporting the processes, coordination, and participation that help Ethereum evolve responsibly as open, public infrastructure.
+              </p>
             </div>
+
+            {/* Right — Interactive Radar with 4 Governance Spheres */}
+            <div className="relative h-[400px] w-full flex items-center justify-center group/radar">
+              {/* Radar Background Rings */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
+                <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
+                <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
+                <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
+              </div>
+              <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--accent-brand)] opacity-40 animate-pulse" />
+              <div className="absolute inset-0">
+                {homesteadWays.map(({ icon: Icon, title, desc }, index) => {
+                  const positions = [
+                    'top-[10%] left-1/2 -translate-x-1/2',
+                    'right-[10%] top-1/2 -translate-y-1/2',
+                    'bottom-[10%] left-1/2 -translate-x-1/2',
+                    'left-[10%] top-1/2 -translate-y-1/2',
+                  ];
+                  const tooltipPos = [
+                    'top-full mt-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 -translate-y-4',
+                    'right-full mr-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 translate-x-4',
+                    'bottom-full mb-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 translate-y-4',
+                    'left-full ml-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 -translate-x-4',
+                  ];
+                  const arrowPos = [
+                    'absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-l border-[var(--accent-brand)] rotate-45',
+                    'absolute top-1/2 -right-2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-r border-[var(--accent-brand)] rotate-45 -translate-y-1/2',
+                    'absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-b border-r border-[var(--accent-brand)] rotate-45',
+                    'absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2',
+                  ];
+                  return (
+                    <div key={title} className={`absolute ${positions[index]} group/sphere z-20 hover:z-50 transition-all duration-300`}>
+                      <div className="relative flex flex-col items-center">
+                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer relative z-10">
+                          <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:opacity-0 group-hover/sphere:scale-0 transition-all duration-300" />
+                          <span className="absolute inset-0 flex items-center justify-center text-lg md:text-xl font-black text-white opacity-0 group-hover/sphere:opacity-100 transition-all duration-300">
+                            0{index + 1}
+                          </span>
+                          <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
+                        </div>
+                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-all duration-300">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">0{index + 1} {title}</span>
+                        </div>
+                        <div className={`absolute ${tooltipPos[index]} w-60 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] backdrop-blur-2xl border border-[var(--accent-brand)]/50 p-5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-all duration-500 z-50 scale-90 group-hover/sphere:scale-100`}>
+                          <div className={arrowPos[index]} />
+                          <div className="relative z-10">
+                            <div className="flex items-center justify-between mb-3">
+                              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent-brand)] flex items-center gap-2">
+                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-brand)] animate-pulse" />
+                                Governance 0{index + 1}
+                              </p>
+                              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[var(--accent-brand)]/10 text-[var(--accent-brand)] border border-[var(--accent-brand)]/20">Protocol</span>
+                            </div>
+                            <div className="text-base font-black text-[var(--text-base)] mb-1.5 leading-tight tracking-tight uppercase">{title}</div>
+                            <p className="text-[12px] text-[var(--text-soft)] font-medium leading-relaxed opacity-90">{desc}</p>
+                            <div className="mt-4 h-px w-8 bg-[var(--accent-brand)] opacity-50" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -670,10 +763,10 @@ export default function HomesteadPage() {
           {/* ── Section 2: The EIP Process (Lifecycle) ───────────────────── */}
           <section id="eip-process">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
-                <GitBranch className="h-4 w-4 global-icon-yellow" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F5A51D]/10 border border-[#F5A51D]/30">
+                <GitBranch className="h-4 w-4 text-[#F5A51D]" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Section 2</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#F5A51D]">Section 2</p>
             </div>
             <h2 className="global-section-title mb-2">The EIP Process</h2>
             <p className="global-body-lg mb-5">
@@ -683,8 +776,8 @@ export default function HomesteadPage() {
             {/* EIP Types */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
               {eipTypes.map((t, i) => (
-                <div key={i} className="global-card hover:border-amber-400 transition-colors">
-                  <span data-tone={t.tone} className="tone-badge inline-block px-2.5 py-1 rounded-full text-xs font-bold mb-2">{t.type}</span>
+                <div key={i} className="global-card border-[#262626] hover:border-[#F5A51D] hover:shadow-[0_0_20px_rgba(245,165,29,0.08)] transition-all duration-300">
+                  <span className="inline-block px-2.5 py-1 rounded-full text-xs font-black mb-2 bg-[#F5A51D]/10 text-[#F5A51D] border border-[#F5A51D]/30">{t.type}</span>
                   <p className="global-body text-sm">{t.desc}</p>
                 </div>
               ))}
@@ -693,22 +786,26 @@ export default function HomesteadPage() {
             {/* Lifecycle */}
             <h3 className="global-card-title mb-4">EIP Lifecycle: Stage by Stage</h3>
             <div className="relative flex flex-col gap-3">
-              <div className="absolute left-5 top-10 bottom-10 w-[2px] bg-gradient-to-b from-gray-200 via-amber-200 to-gray-200 rounded-full hidden sm:block" />
+              {/* Yellow gradient connector line */}
+              <div className="absolute left-5 top-10 bottom-10 w-[2px] bg-gradient-to-b from-[#F5A51D]/10 via-[#F5A51D] to-[#F5A51D]/10 rounded-full hidden sm:block" />
               {eipStages.map((s, i) => (
                 <div key={s.stage} className="relative flex gap-4 items-start">
-                  <div data-tone={s.tone} className="tone-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 mt-1">
+                  {/* Yellow icon circle */}
+                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#F5A51D] bg-[#F5A51D]/10 text-[#F5A51D] shadow-[0_0_16px_rgba(245,165,29,0.25)] mt-1">
                     <s.icon size={17} />
                   </div>
-                  <div className="flex-1 global-card mb-0 hover:border-amber-400 transition-colors">
+                  {/* Card with yellow hover */}
+                  <div className="flex-1 global-card mb-0 border-[#262626] hover:border-[#F5A51D] hover:shadow-[0_0_20px_rgba(245,165,29,0.08)] transition-all duration-300">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span data-tone={s.tone} className="tone-link text-xs font-bold uppercase tracking-widest">Stage {i + 1}</span>
+                      {/* Yellow stage label */}
+                      <span className="text-xs font-black uppercase tracking-[0.15em] text-[#F5A51D]">Stage {i + 1}</span>
                       <h4 className="global-card-title mb-0 text-[#FBFBFB]">{s.stage}</h4>
                     </div>
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} data-tone={s.tone} className="tone-inline-chip flex items-center gap-1.5 text-xs font-medium rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} className="tone-link" /> {a}
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#F5A51D]/8 border border-[#F5A51D]/25 rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="text-[#F5A51D] flex-shrink-0" /> {a}
                         </span>
                       ))}
                     </div>

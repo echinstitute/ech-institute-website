@@ -37,13 +37,13 @@ const communityLinks = [
     tone: "violet",
   },
   {
-    title: "EthSearch",
+    title: "Ethresear",
     category: "Community",
-    description: "A comprehensive community search engine focused on indexing Ethereum technical research, EIPs, and historical meeting notes.",
-    cta: "Start Searching",
-    href: "https://ethsearch.org/",
-    icon: Globe,
-    tone: "success",
+    description: "The primary forum for technical Ethereum research, protocol discussions, and technical EIP conversations.",
+    cta: "Explore Research",
+    href: "http://ethresear.ch/",
+    icon: MessageSquare,
+    tone: "violet",
   },
   {
     title: "Ethereum Testing Suite",
@@ -212,7 +212,7 @@ export default function GetInvolvedPage() {
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
-        <div className="max-w-[1500px] mx-auto">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             {/* Left — copy */}
             <div className="flex flex-col gap-5">
@@ -290,27 +290,46 @@ export default function GetInvolvedPage() {
                   return (
                     <div
                       key={title}
-                      className={`absolute ${positions[index]} group/sphere z-20`}
+                      className={`absolute ${positions[index]} group/sphere z-20 hover:z-50 transition-all duration-300`}
                     >
                       {/* Floating Sphere */}
                       <div className="relative flex flex-col items-center">
                         <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer relative z-10">
-                          <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:text-[var(--accent-brand)] transition-colors" />
+                          {/* The Icon - Hides on Hover */}
+                          <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:opacity-0 group-hover/sphere:scale-0 transition-all duration-300" />
                           
+                          {/* The Number - Appears on Hover */}
+                          <span className="absolute inset-0 flex items-center justify-center text-lg md:text-xl font-black text-white opacity-0 group-hover/sphere:opacity-100 transition-all duration-300">
+                            0{index + 1}
+                          </span>
+
                           {/* Radial Scanning Effect */}
                           <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
                         </div>
 
-                        {/* Title - Floating Badge */}
-                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-opacity">
+                        {/* Title - Floating Badge - STAYS visible on hover now */}
+                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-all duration-300">
                           <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">0{index + 1} {title}</span>
                         </div>
 
-                        {/* Description - Revealed on Hover */}
-                        <div className={`absolute ${tooltipPos[index]} w-48 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-[var(--surface-card-theme)] border border-[var(--accent-brand)] p-4 rounded-xl shadow-2xl transition-all duration-300 z-50`}>
+                        {/* Description - Revealed on Hover - Premium Proplay Tooltip */}
+                        <div className={`absolute ${tooltipPos[index]} w-60 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] backdrop-blur-2xl border border-[var(--accent-brand)]/50 p-5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-all duration-500 z-50 scale-90 group-hover/sphere:scale-100`}>
                           <div className={arrowPos[index]} />
-                          <p className="text-[11px] font-black uppercase tracking-widest text-[var(--accent-brand)] mb-1">Impact Layer</p>
-                          <p className="text-[12px] text-[var(--text-base)] font-medium leading-[1.4] relative z-10">{desc}</p>
+                          <div className="relative z-10">
+                            <div className="flex items-center justify-between mb-3">
+                              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent-brand)] flex items-center gap-2">
+                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-brand)] animate-pulse" />
+                                Impact Layer 0{index + 1}
+                              </p>
+                              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[var(--accent-brand)]/10 text-[var(--accent-brand)] border border-[var(--accent-brand)]/20">Protocol</span>
+                            </div>
+                            {/* Title - using div to avoid global h4 overrides and smaller size */}
+                            <div className="text-base font-black text-[var(--text-base)] mb-1.5 leading-tight tracking-tight uppercase">{title}</div>
+                            <p className="text-[12px] text-[var(--text-soft)] font-medium leading-relaxed opacity-90">{desc}</p>
+                            
+                            {/* Proplay accent line */}
+                            <div className="mt-4 h-px w-8 bg-[var(--accent-brand)] opacity-50" />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -358,8 +377,13 @@ export default function GetInvolvedPage() {
                     target="_blank"
                     className="global-card flex flex-col gap-4 no-underline text-inherit bg-[var(--surface-card-theme)] border-[var(--border-soft)] hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
                   >
-                    <div className="proplay-icon-container h-11 w-11 flex-shrink-0">
-                      <Icon className="h-5 w-5" />
+                    <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
+                      {/* Icon hides on hover */}
+                      <Icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                      {/* Number appears on hover */}
+                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        0{i + 1}
+                      </span>
                     </div>
                     <div className="flex-1">
                       <h3 className="global-card-title mb-1">{action.title}</h3>
@@ -427,8 +451,13 @@ export default function GetInvolvedPage() {
                   <div className="flex flex-col flex-1 gap-4 p-6">
                     {/* Icon row */}
                     <div className="flex items-center justify-between">
-                      <span className="tone-icon flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                        <Icon className="h-5 w-5" />
+                      <span className="tone-icon relative overflow-hidden flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:border-[var(--accent-brand)]">
+                        {/* Icon hides on hover */}
+                        <Icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                        {/* Number appears on hover */}
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          0{i + 1}
+                        </span>
                       </span>
                       <span className="tone-badge text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-muted)]">
                         {link.category.replace(" Client", "")}
@@ -466,8 +495,11 @@ export default function GetInvolvedPage() {
           <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)]">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div className="flex items-start gap-5">
-                <span className="proplay-icon-container h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20">
-                  <Heart className="h-6 w-6" />
+                <span className="proplay-icon-container relative overflow-hidden h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20 group-hover:scale-110 transition-all duration-500">
+                  <Heart className="h-6 w-6 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                  <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    GO
+                  </span>
                 </span>
                 <div>
                   <h3 className="global-card-title text-xl md:text-2xl">Ready to shape the <em>future?</em></h3>

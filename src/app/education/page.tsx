@@ -5,10 +5,10 @@ import Link from 'next/link';
 import {
   Play, FileText, BookOpen,
   ArrowRight, Users, Zap, Award, Globe,
-  ChevronRight, ExternalLink, BookMarked, MessageSquare,
+  BookMarked, MessageSquare,
   Calendar, TrendingUp, Shield, Lightbulb, Target, CheckCircle2,
   ChevronDown, Video, GitBranch, AlertCircle,
-  Clock, Layers, Network, Cpu, Building2
+  Clock, Layers, Network, Cpu, Building2, GitPullRequest
 } from 'lucide-react';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,6 @@ const NAV_SECTIONS = [
   { id: 'formats', label: 'Content Formats' },
   { id: 'featured', label: 'Featured Guides' },
   { id: 'eip-lifecycle', label: 'EIP Lifecycle' },
-  { id: 'tracks', label: 'Learning Tracks' },
   { id: 'timeline', label: 'ECH Timeline' },
   { id: 'next-steps', label: 'Next Steps' },
 ];
@@ -147,46 +146,6 @@ const eipStages = [
   },
 ];
 
-// ─── Learning Tracks ─────────────────────────────────────────────────────────
-const tracks = [
-  {
-    id: 'beginner', emoji: '👋', title: 'Beginner',
-    subtitle: 'Start here to understand the fundamentals.',
-    items: [
-      { title: 'What is Ethereum?', description: 'A foundational overview of the Ethereum network, its purpose as programmable money and decentralized computing infrastructure.', link: 'https://ethereum.org/en/what-is-ethereum/', cta: 'ethereum.org' },
-      { title: 'What is Blockchain?', description: 'Understanding the core data structure that makes decentralized networks possible, including blocks, hashes, and immutability.', link: 'https://ethereum.org/en/developers/docs/', cta: 'ETH Docs' },
-      { title: 'What is Governance?', description: 'How decentralized decisions are made in the Ethereum ecosystem who has a voice, and how changes actually get implemented.', link: 'https://ethereum.org/en/governance/', cta: 'ethereum.org' },
-      { title: 'What are EIPs?', description: 'Ethereum Improvement Proposals the formal mechanism for proposing changes to the Ethereum protocol. How they\'re structured and reviewed.', link: 'https://eips.ethereum.org/', cta: 'eips.ethereum.org' },
-      { title: 'What are Hard Forks?', description: 'Understanding how Ethereum upgrades are activated, what coordination is required, and the difference between hard and soft forks.', link: EXTERNAL_LINKS.blog, cta: 'ECH Blog' },
-      { title: 'Watch: PEEPanEIP Introduction', description: 'Start with an introductory episode of the PEEPanEIP series to see how EIP explanations work with real EIP authors.', link: ROUTES.peepaneip, cta: 'PEEPanEIP Page' },
-    ],
-  },
-  {
-    id: 'contributor', emoji: '🛠', title: 'Contributor',
-    subtitle: 'Learn how to actively participate in the ecosystem.',
-    items: [
-      { title: 'How to Write an EIP', description: 'Step-by-step guide to drafting a formal Ethereum Improvement Proposal following EIP-1 standards, including templates and common mistakes to avoid.', link: 'https://eips.ethereum.org/EIPS/eip-1', cta: 'EIP-1 Reference' },
-      { title: 'How to Join Discussions', description: 'Participate in active governance conversations on Ethereum Magicians forums, All Core Devs calls, and EIP-specific GitHub issues.', link: 'https://ethereum-magicians.org/', cta: 'Eth Magicians' },
-      { title: 'Office Hours & Agendas', description: 'Attend open EIPIP office hours to connect with core devs and governance leads. Monthly calls open to all community members.', link: 'https://github.com/ethereum-cat-herders/EIPIP/issues', cta: 'GitHub Agenda' },
-      { title: 'Contributing to ACD Notes', description: 'How to help document All Core Devs calls one of the most impactful contributions anyone can make to Ethereum governance.', link: 'https://github.com/ethereum/pm', cta: 'ethereum/pm repo' },
-      { title: 'Becoming an EIP Editor', description: 'The role, responsibilities, and process for becoming an EIP editor one of the most important stewardship roles in the ecosystem.', link: 'https://eips.ethereum.org/EIPS/eip-5069', cta: 'EIP-5069' },
-      { title: 'Join the WiEP Program', description: 'Women in Ethereum Protocol study groups provide structured learning and mentorship for those wanting to contribute at the protocol level.', link: ROUTES.wiep, cta: 'WiEP Page' },
-    ],
-  },
-  {
-    id: 'enterprise', emoji: '🏢', title: 'Enterprise',
-    subtitle: 'Understand governance from a decision-making perspective.',
-    items: [
-      { title: 'Understanding Network Upgrades', description: 'What Ethereum network upgrades mean for businesses building on the protocol timelines, risks, and how to prepare.', link: EXTERNAL_LINKS.blog, cta: 'ECH Blog' },
-      { title: 'Governance & Protocol Risk', description: 'How protocol governance uncertainty creates risk for enterprise deployments and how to monitor and manage exposure.', link: EXTERNAL_LINKS.blog, cta: 'ECH Blog' },
-      { title: 'Why Process Clarity Matters', description: 'The case for transparent, well-documented protocol change processes and how ECH Institute provides that clarity as a public good.', link: EXTERNAL_LINKS.blog, cta: 'ECH Blog' },
-      { title: 'Reading the Annual Report', description: 'ECH Institute\'s first annual report provides a window into how a neutral nonprofit operates in the Ethereum governance landscape.', link: EXTERNAL_LINKS.annualReport, cta: 'View Report (PDF)' },
-      { title: "Ethereum's Upgrade Schedule", description: 'Understanding the biannual upgrade schedule adopted in 2026 and what Glamsterdam and Hegotá mean for infrastructure planning.', link: '/events', cta: 'Events Page' },
-      { title: 'Engaging Without Influencing', description: 'How enterprises can engage with Ethereum governance responsibly without inadvertently applying undue influence on decentralized protocol decisions.', link: EXTERNAL_LINKS.blog, cta: 'ECH Blog' },
-    ],
-  },
-];
-
 // ─── Timeline ─────────────────────────────────────────────────────────────────
 const timelineCards = [
   {
@@ -247,14 +206,38 @@ const timelineCards = [
   },
 ];
 
+// ─── Education Hero Ways ──────────────────────────────────────────────────────
+const eduWays = [
+  {
+    icon: BookOpen,
+    title: 'EIP Deep Dives',
+    desc: '100+ PEEPanEIP episodes exploring Ethereum Improvement Proposals with their original authors.',
+  },
+  {
+    icon: GitPullRequest,
+    title: 'Protocol Governance',
+    desc: 'Understand how EIPs move from Draft → Last Call → Final through the community review process.',
+  },
+  {
+    icon: Users,
+    title: 'WiEP Classrooms',
+    desc: 'Structured classroom series onboarding women into Ethereum core protocol development.',
+  },
+  {
+    icon: Zap,
+    title: 'Ecosystem Demos',
+    desc: 'Live project showcases featuring public goods, tooling, and infrastructure teams.',
+  },
+];
+
+
+
 export default function EducationPage() {
   const [activeSection, setActiveSection] = useState('overview');
-  const [openTracks, setOpenTracks] = useState<Record<string, boolean>>({ beginner: true });
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [openGuides, setOpenGuides] = useState<Record<number, boolean>>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const toggleTrack = (id: string) => setOpenTracks(prev => ({ ...prev, [id]: !prev[id] }));
   const toggleItem = (key: string) => setOpenItems(prev => ({ ...prev, [key]: !prev[key] }));
   const toggleGuide = (i: number) => setOpenGuides(prev => ({ ...prev, [i]: !prev[i] }));
 
@@ -282,40 +265,119 @@ export default function EducationPage() {
   return (
     <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24 text-[#FBFBFB]">
 
-      {/* ── Hero — "proplay" inner-page style ──────────────── */}
-      <section id="overview" className="page-hero">
-        <div className="page-hero-inner">
-          <div className="flex flex-col">
-            <div className="page-hero-tag">
-            <span className="page-hero-dot" />
-            ECH Institute · Education Programs
-          </div>
-          <h1 className="page-hero-title">
-            <em>Education.</em><br />Governance &amp;<br />Protocol Learning.
-          </h1>
-          <p className="page-hero-desc">
-            A structured learning hub for beginners, contributors, and enterprises — covering
-            Ethereum Improvement Proposals, network upgrades, and governance coordination.
-          </p>
-          <div className="page-hero-actions">
-            <Link href={ROUTES.peepaneip} className="btn btn-primary">
-              <BookOpen size={16} /> Explore Content
-            </Link>
-            <Link href={EXTERNAL_LINKS.blog} target="_blank" className="btn btn-outline">
-              <FileText size={16} /> Read the Blog
-            </Link>
-          </div>
-          </div>
+      {/* ── Hero ─────────────────────────────────────────────────────── */}
+      <section id="overview" className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
 
-          <div className="hidden lg:flex justify-center items-center relative w-full h-[350px]">
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="absolute w-[200px] h-[200px] bg-[#F5A51D]/10 rounded-full blur-[80px]" />
-              <div className="absolute w-[180px] h-[180px] border border-[#F5A51D]/20 rounded-full animate-[ping_4s_linear_infinite]" />
-              <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
+            {/* Left — copy */}
+            <div className="flex flex-col gap-5">
+              <div className="proplay-icon-container px-3 py-1 self-start">
+                <BookOpen className="w-4 mx-2" />
+                Open Education Hub
+              </div>
+              <h1 className="global-hero-title">
+                Education &amp;<br />Protocol Learning.
+              </h1>
+              <p className="global-body-lg max-w-xl">
+                A structured learning hub for beginners, contributors, and enterprises — covering
+                Ethereum Improvement Proposals, network upgrades, and governance coordination.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <Link href={ROUTES.peepaneip} className="btn btn-primary">
+                  <Play className="h-4 w-4" />
+                  Explore Content
+                </Link>
+                <Link href={EXTERNAL_LINKS.blog} target="_blank" className="btn btn-outline">
+                  <FileText className="h-4 w-4" />
+                  Read the Blog
+                </Link>
+              </div>
             </div>
-            <div className="relative z-10 proplay-icon-container flex items-center justify-center h-48 w-48 rounded-full border-4 border-[#151419] bg-[#1B1B1E] shadow-2xl shadow-[#F5A51D]/20">
-              <BookOpen className="h-24 w-24 text-brand-yellow drop-shadow-lg" />
+
+            {/* Right — Interactive Radar with 4 Education Spheres */}
+            <div className="relative h-[400px] w-full flex items-center justify-center group/radar">
+              {/* Radar Background Rings */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
+                <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
+                {/* Crosshairs */}
+                <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
+                <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
+              </div>
+
+              {/* Central Radar Core */}
+              <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--accent-brand)] opacity-40 animate-pulse" />
+
+              {/* The 4 Education Spheres */}
+              <div className="absolute inset-0">
+                {eduWays.map(({ icon: Icon, title, desc }, index) => {
+                  const positions = [
+                    'top-[10%] left-1/2 -translate-x-1/2',      // 01 - Top
+                    'right-[10%] top-1/2 -translate-y-1/2',     // 02 - Right
+                    'bottom-[10%] left-1/2 -translate-x-1/2',   // 03 - Bottom
+                    'left-[10%] top-1/2 -translate-y-1/2',      // 04 - Left
+                  ];
+
+                  const tooltipPos = [
+                    'top-full mt-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 -translate-y-4',
+                    'right-full mr-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 translate-x-4',
+                    'bottom-full mb-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 translate-y-4',
+                    'left-full ml-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 -translate-x-4',
+                  ];
+
+                  const arrowPos = [
+                    'absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-l border-[var(--accent-brand)] rotate-45',
+                    'absolute top-1/2 -right-2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-r border-[var(--accent-brand)] rotate-45 -translate-y-1/2',
+                    'absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-b border-r border-[var(--accent-brand)] rotate-45',
+                    'absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2',
+                  ];
+
+                  return (
+                    <div
+                      key={title}
+                      className={`absolute ${positions[index]} group/sphere z-20 hover:z-50 transition-all duration-300`}
+                    >
+                      <div className="relative flex flex-col items-center">
+                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer relative z-10">
+                          {/* Icon — hides on hover */}
+                          <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:opacity-0 group-hover/sphere:scale-0 transition-all duration-300" />
+                          {/* Number — appears on hover */}
+                          <span className="absolute inset-0 flex items-center justify-center text-lg md:text-xl font-black text-white opacity-0 group-hover/sphere:opacity-100 transition-all duration-300">
+                            0{index + 1}
+                          </span>
+                          {/* Radial scanning ring */}
+                          <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
+                        </div>
+
+                        {/* Title badge — always visible */}
+                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-all duration-300">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">0{index + 1} {title}</span>
+                        </div>
+
+                        {/* Tooltip — revealed on hover */}
+                        <div className={`absolute ${tooltipPos[index]} w-60 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] backdrop-blur-2xl border border-[var(--accent-brand)]/50 p-5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-all duration-500 z-50 scale-90 group-hover/sphere:scale-100`}>
+                          <div className={arrowPos[index]} />
+                          <div className="relative z-10">
+                            <div className="flex items-center justify-between mb-3">
+                              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent-brand)] flex items-center gap-2">
+                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-brand)] animate-pulse" />
+                                Education 0{index + 1}
+                              </p>
+                              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[var(--accent-brand)]/10 text-[var(--accent-brand)] border border-[var(--accent-brand)]/20">Protocol</span>
+                            </div>
+                            <div className="text-base font-black text-[var(--text-base)] mb-1.5 leading-tight tracking-tight uppercase">{title}</div>
+                            <p className="text-[12px] text-[var(--text-soft)] font-medium leading-relaxed opacity-90">{desc}</p>
+                            <div className="mt-4 h-px w-8 bg-[var(--accent-brand)] opacity-50" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -328,24 +390,13 @@ export default function EducationPage() {
               { value: '100+', label: 'PEEPanEIP Episodes' },
               { value: '50+', label: 'Technical Guides' },
               { value: '2024', label: 'Founded as Nonprofit' },
-              { value: '3', label: 'Learning Tracks' },
+              { value: '1100+', label: 'PRs Reviewed During Office Hours' },
             ].map((s, i) => (
               <div key={i}>
                 <div className="global-section-title text-brand-yellow">{s.value}</div>
                 <div className="text-sm text-[#FBFBFB] font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
-          </div>
-
-          <div className="hidden lg:flex justify-center items-center relative w-full h-[350px]">
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="absolute w-[200px] h-[200px] bg-[#F5A51D]/10 rounded-full blur-[80px]" />
-              <div className="absolute w-[180px] h-[180px] border border-[#F5A51D]/20 rounded-full animate-[ping_4s_linear_infinite]" />
-              <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
-            </div>
-            <div className="relative z-10 proplay-icon-container flex items-center justify-center h-48 w-48 rounded-full border-4 border-[#151419] bg-[#1B1B1E] shadow-2xl shadow-[#F5A51D]/20">
-              <BookOpen className="h-24 w-24 text-brand-yellow drop-shadow-lg" />
-            </div>
           </div>
         </div>
       </section>
@@ -459,22 +510,26 @@ export default function EducationPage() {
             <p className="global-body-lg mb-5">Every change to the Ethereum protocol starts as an idea and passes through a rigorous, community-driven review process before being deployed to mainnet.</p>
 
             <div className="relative flex flex-col gap-3">
-              <div className="absolute left-5 top-10 bottom-10 w-[2px] bg-gradient-to-b from-gray-200 via-amber-200 to-gray-200 rounded-full hidden sm:block" />
+              {/* Yellow gradient connector line */}
+              <div className="absolute left-5 top-10 bottom-10 w-[2px] bg-gradient-to-b from-[#F5A51D]/10 via-[#F5A51D] to-[#F5A51D]/10 rounded-full hidden sm:block" />
               {eipStages.map((s, i) => (
-                <div key={s.stage} data-tone={s.tone} className="relative flex gap-4 items-start">
-                  <div className="tone-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 mt-1">
+                <div key={s.stage} className="relative flex gap-4 items-start">
+                  {/* Yellow icon circle */}
+                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#F5A51D] bg-[#F5A51D]/10 text-[#F5A51D] shadow-[0_0_16px_rgba(245,165,29,0.25)] mt-1">
                     <s.icon size={17} />
                   </div>
-                  <div className="flex-1 global-card mb-0 hover:border-amber-400 transition-colors">
+                  {/* Card with yellow hover border */}
+                  <div className="flex-1 global-card mb-0 border-[#262626] hover:border-[#F5A51D] hover:shadow-[0_0_20px_rgba(245,165,29,0.08)] transition-all duration-300">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="tone-link text-xs font-bold uppercase tracking-widest">Stage {i + 1}</span>
+                      {/* Yellow stage badge */}
+                      <span className="text-xs font-black uppercase tracking-[0.15em] text-[#F5A51D]">Stage {i + 1}</span>
                       <h3 className="global-card-title mb-0">{s.stage}</h3>
                     </div>
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#1B1B1E] border border-[#262626] rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} className="tone-link" /> {a}
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#F5A51D]/8 border border-[#F5A51D]/25 rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="text-[#F5A51D] flex-shrink-0" /> {a}
                         </span>
                       ))}
                     </div>
@@ -482,74 +537,12 @@ export default function EducationPage() {
                 </div>
               ))}
             </div>
-            <div className="global-card mt-4 bg-[#1B1B1E] border-[#F5A51D]/50 text-center">
+            {/* ECH Role banner — yellow accent */}
+            <div className="global-card mt-4 bg-[#1B1B1E] border-[#F5A51D]/40 text-center relative overflow-hidden">
+              <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F5A51D] to-transparent" />
               <p className="global-body">
-                <strong>ECH Institute&apos;s Role:</strong> We produce PEEPanEIP deep-dives for each significant EIP, host EIPIP calls that shepherd EIPs through review, and publish upgrade communication for each mainnet deployment.
+                <strong className="text-[#F5A51D]">ECH Institute&apos;s Role:</strong> We produce PEEPanEIP deep-dives for each significant EIP, host EIPIP calls that shepherd EIPs through review, and publish upgrade communication for each mainnet deployment.
               </p>
-            </div>
-          </section>
-
-          {/* ── Learning Tracks ───────────────────────────────────────────── */}
-          <section id="tracks">
-            <span className="global-section-tag">Choose Your Path</span>
-            <h2 className="global-section-title">Learning <em>Tracks</em></h2>
-            <p className="global-body-lg mb-5">Whether you&apos;re just getting started, building your contributions, or governing at scale — we have a path for you.</p>
-
-            <div className="flex flex-col gap-4">
-              {tracks.map((track) => (
-                <div key={track.id} className="global-card p-0 overflow-hidden">
-                  <button
-                    className="w-full flex items-center gap-4 p-5 text-left hover:bg-gray-50 transition-colors"
-                    onClick={() => toggleTrack(track.id)}
-                  >
-                    <span className="text-2xl">{track.emoji}</span>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-lg text-[#FBFBFB]">{track.title}</h3>
-                      <p className="text-sm text-[#FBFBFB]/60">{track.subtitle}</p>
-                    </div>
-                    <ChevronDown
-                      size={18}
-                      className={cn('text-gray-400 shrink-0 transition-transform duration-200', openTracks[track.id] && 'is-open')}
-                    />
-                  </button>
-
-                  {openTracks[track.id] && (
-                    <div className="border-t border-gray-100">
-                      {track.items.map((item, j) => {
-                        const key = `${track.id}-${j}`;
-                        const isOpen = openItems[key];
-                        return (
-                          <div key={j} className="border-b border-gray-50 last:border-0">
-                            <button
-                              className="w-full flex items-center gap-3 px-5 py-3.5 text-left hover:bg-gray-50 transition-colors"
-                              onClick={() => toggleItem(key)}
-                            >
-                              <ChevronRight
-                                size={14}
-                                className={cn('text-amber-400 shrink-0 transition-transform duration-150', isOpen && 'is-open-right')}
-                              />
-                              <span className="flex-1 font-semibold text-sm text-[#FBFBFB]">{item.title}</span>
-                              {isOpen && (
-                                <Link href={item.link}
-                                  target={item.link.startsWith('http') ? '_blank' : '_self'}
-                                  onClick={e => e.stopPropagation()}
-                                  className="text-xs font-bold border border-gray-200 rounded-full px-3 py-1 hover:border-amber-400 transition-colors shrink-0 no-underline text-brand-yellow">
-                                  {item.cta} <ExternalLink size={10} className="inline ml-0.5" />
-                                </Link>
-                              )}
-                            </button>
-                            {isOpen && (
-                              <div className="px-5 pb-4 pt-0 ml-8">
-                                <p className="global-body text-sm">{item.description}</p>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              ))}
             </div>
           </section>
 
@@ -627,4 +620,3 @@ export default function EducationPage() {
     </main>
   );
 }
-

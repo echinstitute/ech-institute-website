@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Shield, Cpu, Network, Key, Zap, Globe } from 'lucide-react';
+import { ArrowLeft, Shield, Cpu, Network, Key, Zap, Globe, Radio } from 'lucide-react';
 import { PodcastOriginSection } from '@/components/features/PodcastOriginSection';
 import { PodcastSeriesYoutubeSection } from '@/components/features/PodcastSeriesYoutubeSection';
 import { PODCAST_SERIES_PLAYLISTS } from '@/lib/podcast-youtube';
@@ -61,29 +61,43 @@ const themes = [
 export default function FusakaFilesPage() {
   return (
     <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24">
-      {/* ── Hero ── */}
-      <div className="border-b border-[#262626]" style={{ background: 'linear-gradient(135deg, #1B1B1E 0%, #151419 60%, #1a1500 100%)' }}>
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 md:px-8">
-          <Link
-            href="/podcast"
-            className="mb-8 inline-flex items-center gap-2 text-[#FBFBFB]/50 transition-colors hover:text-[#F5A51D] text-sm font-bold uppercase tracking-widest"
-          >
-            <ArrowLeft className="h-4 w-4 shrink-0" /> Back to Media Hub
-          </Link>
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-1 h-8 rounded-full bg-[#F5A51D]" />
-            <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">Limited Series</span>
-          </div>
-          <div className="max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-4 text-[#FBFBFB]">
-              The <em className="not-italic text-[#F5A51D]">Fusaka</em> Files
+      {/* ── HERO ──────────────────────────────────────────────── */}
+      <section className="page-hero">
+        <div className="page-hero-inner items-center">
+          {/* Left — text */}
+          <div>
+            <div className="mb-6">
+              <Link href="/podcast"
+                className="inline-flex items-center gap-2 font-bold text-xs uppercase tracking-widest transition-opacity hover:opacity-70 text-[var(--text-soft)]">
+                <ArrowLeft className="h-4 w-4" /> Back to Media Hub
+              </Link>
+            </div>
+            <div className="page-hero-tag">
+              <span className="page-hero-dot" />
+              Limited Series
+            </div>
+            <h1 className="page-hero-title">
+              The <em className="not-italic text-[var(--accent-brand)]">Fusaka</em> Files
             </h1>
-            <p className="text-lg sm:text-xl text-[#FBFBFB]/60 max-w-3xl leading-relaxed">
+            <p className="page-hero-desc mb-8">
               A high-production limited series exploring Ethereum's strategic shift toward predictable, biannual engineering delivery — produced in collaboration with the Enterprise Ethereum Alliance.
             </p>
           </div>
+
+          {/* Right — Iconography */}
+          <div className="hidden lg:flex justify-center items-center w-full max-w-lg mx-auto pl-8">
+             <div className="relative w-64 h-64 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border border-[var(--border-soft)] opacity-20 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]" />
+                <div className="absolute inset-4 rounded-full border border-[var(--border-soft)] opacity-40 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_0.5s]" />
+                <div className="absolute inset-8 rounded-full border border-[var(--border-soft)] opacity-60 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_1s]" />
+                <div className="relative z-10 w-32 h-32 rounded-full bg-[var(--surface-card-theme)] border border-[var(--border-soft)] flex items-center justify-center shadow-[0_0_40px_rgba(245,165,29,0.15)] group transition-all duration-500 hover:border-[var(--accent-brand)] hover:scale-105">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--accent-brand)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <Radio className="w-12 h-12 text-[var(--accent-brand)] relative z-10" />
+                </div>
+             </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* ── Origin Story ── */}
       <PodcastOriginSection

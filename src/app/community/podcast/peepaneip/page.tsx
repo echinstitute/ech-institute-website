@@ -101,11 +101,13 @@ export default function PEEPanEIPPage() {
         <div className="page-hero-inner items-center">
           {/* Left — text */}
           <div>
-            <Link href="/podcast"
-              className="mb-6 inline-flex items-center gap-2 font-bold text-xs uppercase tracking-widest transition-opacity hover:opacity-70 text-[var(--text-soft)]">
-              <ArrowLeft className="h-4 w-4" /> Back to Media Hub
-            </Link>
-            <div className="page-hero-tag mt-2">
+            <div className="mb-6">
+              <Link href="/podcast"
+                className="inline-flex items-center gap-2 font-bold text-xs uppercase tracking-widest transition-opacity hover:opacity-70 text-[var(--text-soft)]">
+                <ArrowLeft className="h-4 w-4" /> Back to Media Hub
+              </Link>
+            </div>
+            <div className="page-hero-tag">
               <span className="page-hero-dot" />
               Educational Video Series · 150+ Episodes
             </div>
@@ -129,7 +131,7 @@ export default function PEEPanEIPPage() {
                 <div className="absolute inset-8 rounded-full border border-[var(--border-soft)] opacity-60 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_1s]" />
                 <div className="relative z-10 w-32 h-32 rounded-full bg-[var(--surface-card-theme)] border border-[var(--border-soft)] flex items-center justify-center shadow-[0_0_40px_rgba(245,165,29,0.15)] group transition-all duration-500 hover:border-[var(--accent-brand)] hover:scale-105">
                   <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--accent-brand)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <BookOpen className="w-12 h-12 text-[var(--accent-brand)]" />
+                  <BookOpen className="w-12 h-12 text-[var(--accent-brand)] relative z-10" />
                 </div>
              </div>
           </div>

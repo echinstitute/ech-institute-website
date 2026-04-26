@@ -34,7 +34,7 @@ const DARK_OVERLAY = { backgroundImage: 'linear-gradient(to top, rgba(21,20,25,0
 function PlaylistCard({ label, href, firstVideoId }: { label: string; href: string; firstVideoId: string }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer"
-      className="group relative flex flex-col rounded-2xl overflow-hidden border border-[#262626] bg-[#1B1B1E] hover:border-[#F5A51D]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.12)] transition-all duration-300">
+      className="group relative flex flex-col rounded-2xl overflow-hidden border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.12)] transition-all duration-300">
       {/* Thumbnail */}
       <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -46,21 +46,15 @@ function PlaylistCard({ label, href, firstVideoId }: { label: string; href: stri
         />
         {/* Inline gradient — NOT affected by any Tailwind class override */}
         <div className="absolute inset-0" style={DARK_OVERLAY} />
-        {/* Play button on hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div style={{ background: '#F5A51D' }} className="rounded-full p-3 shadow-xl">
-            <PlayCircle className="h-6 w-6" style={{ color: '#151419' }} />
-          </div>
-        </div>
         {/* Label inside card over the thumbnail */}
         <div className="absolute bottom-0 left-0 right-0 p-3">
-          <span className="font-bold text-[13px] leading-snug" style={{ color: '#FBFBFB' }}>{label}</span>
+          <span className="font-bold text-[13px] leading-snug text-[var(--text-base)]">{label}</span>
         </div>
       </div>
       {/* Footer row */}
-      <div className="flex items-center justify-between gap-2 px-3.5 py-2.5" style={{ background: '#1B1B1E' }}>
-        <span className="text-xs font-semibold" style={{ color: '#878787' }}>YouTube Playlist</span>
-        <ChevronRight className="h-4 w-4 transition-colors duration-200 group-hover:text-[#F5A51D]" style={{ color: '#878787' }} />
+      <div className="flex items-center justify-between gap-2 px-3.5 py-2.5 bg-[var(--surface-card-muted)]">
+        <span className="text-xs font-semibold text-[var(--text-soft)]">YouTube Playlist</span>
+        <ChevronRight className="h-4 w-4 transition-colors duration-200 group-hover:text-[var(--accent-brand)] text-[var(--text-soft)]" />
       </div>
     </a>
   );
@@ -69,7 +63,7 @@ function PlaylistCard({ label, href, firstVideoId }: { label: string; href: stri
 function UpgradeCard({ label, year, href, firstVideoId }: { label: string; year: string; href: string; firstVideoId: string }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer"
-      className="group relative flex flex-col rounded-2xl overflow-hidden border border-[#262626] bg-[#1B1B1E] hover:border-[#F5A51D]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.12)] transition-all duration-300">
+      className="group relative flex flex-col rounded-2xl overflow-hidden border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.12)] transition-all duration-300">
       <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -80,27 +74,19 @@ function UpgradeCard({ label, year, href, firstVideoId }: { label: string; year:
         />
         <div className="absolute inset-0" style={DARK_OVERLAY} />
         {/* Year badge */}
-        <div className="absolute top-2.5 right-2.5 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full"
-          style={{ background: '#F5A51D', color: '#151419' }}>
+        <div className="absolute top-2.5 right-2.5 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-[var(--accent-brand)] text-[var(--bg-primary)]">
           {year}
-        </div>
-        {/* Hover play */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div style={{ background: '#F5A51D' }} className="rounded-full p-2.5 shadow-xl">
-            <PlayCircle className="h-5 w-5" style={{ color: '#151419' }} />
-          </div>
         </div>
         {/* Bottom label */}
         <div className="absolute bottom-0 left-0 right-0 p-2.5">
-          <span className="font-bold text-[13px]" style={{ color: '#FBFBFB' }}>{label}</span>
+          <span className="font-bold text-[13px] text-[var(--text-base)]">{label}</span>
         </div>
         {/* Accent bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-          style={{ background: '#F5A51D' }} />
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left bg-[var(--accent-brand)]" />
       </div>
-      <div className="flex items-center justify-between gap-2 px-3 py-2" style={{ background: '#1B1B1E' }}>
-        <span className="text-xs font-semibold" style={{ color: '#878787' }}>Watch playlist</span>
-        <ExternalLink className="h-3.5 w-3.5 group-hover:text-[#F5A51D] transition-colors" style={{ color: '#878787' }} />
+      <div className="flex items-center justify-between gap-2 px-3 py-2 bg-[var(--surface-card-muted)]">
+        <span className="text-xs font-semibold text-[var(--text-soft)]">Watch playlist</span>
+        <ExternalLink className="h-3.5 w-3.5 group-hover:text-[var(--accent-brand)] transition-colors text-[var(--text-soft)]" />
       </div>
     </a>
   );
@@ -110,38 +96,45 @@ export default function PEEPanEIPPage() {
   return (
     <main className="min-h-screen pt-16 lg:pt-24" style={{ background: '#151419', color: '#FBFBFB' }}>
 
-      {/* ── Hero ── */}
-      <div style={{ background: '#F5A51D', borderBottom: '1px solid #262626' }}>
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 md:px-8">
-          <Link href="/podcast"
-            className="mb-6 inline-flex items-center gap-2 font-bold text-xs uppercase tracking-widest transition-opacity hover:opacity-70"
-            style={{ color: '#151419' }}>
-            <ArrowLeft className="h-4 w-4" /> Back to Media Hub
-          </Link>
-          <div className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16">
-            <div className="flex-1">
-              <div className="mb-3 inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.25em]"
-                style={{ color: 'rgba(21,20,25,0.55)' }}>
-                <span className="h-1.5 w-1.5 rounded-full animate-pulse" style={{ background: 'rgba(21,20,25,0.55)' }} />
-                Educational Video Series · 150+ Episodes
-              </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] tracking-tighter mb-4"
-                style={{ color: '#151419' }}>
-                PEEPanEIP
-              </h1>
-              <p className="text-base sm:text-lg font-medium max-w-2xl leading-relaxed"
-                style={{ color: 'rgba(21,20,25,0.70)' }}>
-                An educational video series on Ethereum Improvement Proposals and key features of upcoming network upgrades — built for client teams, researchers, and the broader ecosystem.
-              </p>
+      {/* ── HERO ──────────────────────────────────────────────── */}
+      <section className="page-hero">
+        <div className="page-hero-inner items-center">
+          {/* Left — text */}
+          <div>
+            <Link href="/podcast"
+              className="mb-6 inline-flex items-center gap-2 font-bold text-xs uppercase tracking-widest transition-opacity hover:opacity-70 text-[var(--text-soft)]">
+              <ArrowLeft className="h-4 w-4" /> Back to Media Hub
+            </Link>
+            <div className="page-hero-tag mt-2">
+              <span className="page-hero-dot" />
+              Educational Video Series · 150+ Episodes
             </div>
+            <h1 className="page-hero-title">
+              PEEPanEIP
+            </h1>
+            <p className="page-hero-desc mb-8">
+              An educational video series on Ethereum Improvement Proposals and key features of upcoming network upgrades — built for client teams, researchers, and the broader ecosystem.
+            </p>
             <a href={peep.playlistUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-opacity hover:opacity-80 shrink-0"
-              style={{ background: '#151419', color: '#FBFBFB' }}>
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--accent-brand)] px-5 py-3 text-sm font-bold text-[var(--bg-primary)] transition hover:bg-[var(--accent-brand)]/90 shrink-0">
               <PlayCircle className="h-4 w-4" /> Watch Full Playlist
             </a>
           </div>
+
+          {/* Right — Iconography */}
+          <div className="hidden lg:flex justify-center items-center w-full max-w-lg mx-auto pl-8">
+             <div className="relative w-64 h-64 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border border-[var(--border-soft)] opacity-20 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]" />
+                <div className="absolute inset-4 rounded-full border border-[var(--border-soft)] opacity-40 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_0.5s]" />
+                <div className="absolute inset-8 rounded-full border border-[var(--border-soft)] opacity-60 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_1s]" />
+                <div className="relative z-10 w-32 h-32 rounded-full bg-[var(--surface-card-theme)] border border-[var(--border-soft)] flex items-center justify-center shadow-[0_0_40px_rgba(245,165,29,0.15)] group transition-all duration-500 hover:border-[var(--accent-brand)] hover:scale-105">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--accent-brand)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <BookOpen className="w-12 h-12 text-[var(--accent-brand)]" />
+                </div>
+             </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* ── Why PEEPanEIP ── */}
       <PodcastOriginSection
@@ -163,45 +156,25 @@ export default function PEEPanEIPPage() {
         featuredBadge="Latest"
       />
 
-      {/* ── Resources + Embedded Playlist ── */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-12 md:py-16">
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-1 h-8 rounded-full" style={{ background: '#F5A51D' }} />
-          <span className="text-[9px] font-black uppercase tracking-[0.25em]" style={{ color: '#F5A51D' }}>Browse by Topic</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2" style={{ color: '#FBFBFB' }}>
-          Playlist <em className="not-italic" style={{ color: '#F5A51D' }}>Resources</em>
-        </h2>
-        <p className="text-sm mb-8 max-w-xl" style={{ color: 'rgba(251,251,251,0.50)' }}>
-          Browse the full library by topic — each card shows the first video&apos;s thumbnail and links directly to the YouTube playlist.
-        </p>
-
-        <div className="flex flex-col xl:flex-row gap-8">
-          {/* Left — topic cards 2-col grid */}
-          <div className="flex-1 min-w-0">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-8 mb-2 border-b border-dashed border-[#262626]">
-              {resourcePlaylists.map((pl) => (
-                <PlaylistCard key={pl.label} label={pl.label} href={pl.href} firstVideoId={pl.firstVideoId} />
-              ))}
-            </div>
+      {/* ── Resources ── */}
+      <section className="proplay-section-dense">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-1 h-8 rounded-full bg-[var(--accent-brand)]" />
+            <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[var(--accent-brand)]">Browse by Topic</span>
           </div>
+          <h2 className="brand-section-title mb-4">
+            Playlist <em>Resources</em>
+          </h2>
+          <p className="global-body mb-10 max-w-2xl">
+            Browse the full library by topic — each card shows the first video&apos;s thumbnail and links directly to the YouTube playlist.
+          </p>
 
-          {/* Right — embedded playlist */}
-          <div className="xl:w-[480px] shrink-0 flex flex-col gap-4">
-            <h3 className="text-lg font-bold flex items-center gap-2" style={{ color: '#FBFBFB' }}>
-              <PlayCircle className="h-4 w-4" style={{ color: '#F5A51D' }} /> Full Playlist
-            </h3>
-            <div className="rounded-2xl overflow-hidden border" style={{ borderColor: '#262626', background: '#1B1B1E' }}>
-              <div className="h-[2px]" style={{ backgroundImage: 'linear-gradient(to right, transparent, #F5A51D, transparent)' }} />
-              <div style={{ aspectRatio: '16/9' }}>
-                <iframe width="100%" height="100%"
-                  src="https://www.youtube.com/embed/videoseries?si=i7c_6KUkemo4CmL0&list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F"
-                  title="PEEPanEIP Full Playlist"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen className="w-full h-full border-0" />
-              </div>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {resourcePlaylists.map((pl) => (
+              <PlaylistCard key={pl.label} label={pl.label} href={pl.href} firstVideoId={pl.firstVideoId} />
+            ))}
           </div>
         </div>
       </section>

@@ -365,20 +365,23 @@ export default function EventsPage() {
         {
           title: 'Eth Singapore - Fireside chat with Aya Miyaguchi',
           description: 'Participated in a high-impact fireside chat with Aya Miyaguchi, Executive Director of the Ethereum Foundation, discussing ecosystem growth, protocol education, and ECH\'s support of the EF.',
-          image: '/assets/events/ETH Singapore 2024/ech-event-2.webp',
+          image: '/assets/events/ETH Singapore 2024/ech-event-2.jpg',
           videoUrl: ''
         },
         {
           title: 'Eth Singapore - WiEP Workshop',
           description: 'Organized a major WiEP networking event on September 16 at the ArtScience Museum, connecting women in technical and protocol-facing roles to foster mentorship and collaboration.',
-          image: '/assets/events/Devconnect Argentina 2025/IMG_3874.webp',
+          image: '/assets/events/ETH Singapore 2024/photo_34_2026-04-26_08-29-31.jpg',
           videoUrl: ''
         },
       ],
       recapVideo: 'https://youtu.be/v9G684uz6Rk?si=RugRRy81ISBQIDJu',
       photos: [
         { src: '/assets/events/ETH Singapore 2024/ech-event-1.webp', alt: 'ETH Singapore 2024 - Marina Bay Sands Conference' },
-        { src: '/assets/events/ETH Singapore 2024/ech-event-2.webp', alt: 'ETH Singapore 2024 - Keynote Presentation & WiEP Networking' },
+        { src: '/assets/events/ETH Singapore 2024/ech-event-2.jpg', alt: 'ETH Singapore 2024 - Keynote Presentation & WiEP Networking' },
+        { src: '/assets/events/ETH Singapore 2024/photo_34_2026-04-26_08-29-31.jpg', alt: 'ETH Singapore 2024 - Event Activity' },
+        { src: '/assets/events/ETH Singapore 2024/photo_42_2026-04-26_08-29-31.jpg', alt: 'ETH Singapore 2024 - Community Interaction' },
+        { src: '/assets/events/ETH Singapore 2024/photo_43_2026-04-26_08-29-31.jpg', alt: 'ETH Singapore 2024 - Event Moments' },
       ],
     },
   ];

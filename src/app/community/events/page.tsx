@@ -469,7 +469,7 @@ export default function EventsPage() {
                       {event.badge}
                     </span>
                     <div className="event-type-tags">
-                      {event.tags.map((tag, tagIndex) => (
+                      {event.tags.map((tag: string, tagIndex: number) => (
                         <span key={tagIndex} className="type-tag">
                           {tag}
                         </span>
@@ -576,7 +576,7 @@ export default function EventsPage() {
                       </h3>
                       {event.id === 'road-to-devcon-2026' || event.id === 'eth-tokyo-edcon-2025' ? (
                         <div className="activities-grid">
-                          {event.activities.map((activity, activityIndex) => {
+                          {event.activities.map((activity: any, activityIndex: number) => {
                             const IconComponent = activity.icon as LucideIcon;
                             return (
                               <div key={activityIndex} className="activity-item">
@@ -593,7 +593,7 @@ export default function EventsPage() {
                         </div>
                       ) : (
                         <div className="flex flex-col gap-12 mt-8">
-                          {event.activities.map((activity, activityIndex) => {
+                          {event.activities.map((activity: any, activityIndex: number) => {
                             const isEven = activityIndex % 2 === 0;
                             return (
                               <div key={activityIndex} className={`flex flex-col md:flex-row gap-8 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}>
@@ -647,7 +647,7 @@ export default function EventsPage() {
                         Event Photos
                       </h3>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-                        {event.photos.slice(0, 6).map((photo, photoIndex) => (
+                        {event.photos.slice(0, 6).map((photo: any, photoIndex: number) => (
                           <div
                             key={photoIndex}
                             className="relative aspect-video rounded-xl overflow-hidden cursor-pointer group bg-[#1B1B1E] border border-[#262626] hover:border-[#F5A51D] transition-all"

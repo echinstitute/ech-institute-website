@@ -16,6 +16,9 @@ export function getYouTubeVideoId(url: string): string | null {
   const embedMatch = url.match(/youtube\.com\/embed\/([^?&#]+)/);
   if (embedMatch) return embedMatch[1];
 
+  const liveMatch = url.match(/youtube\.com\/live\/([^?&#]+)/);
+  if (liveMatch) return liveMatch[1];
+
   return null;
 }
 

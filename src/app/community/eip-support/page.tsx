@@ -46,6 +46,10 @@ const programs = [
       'Available on YouTube, Spotify, and all podcast platforms',
       'Deep-dive episodes covering both core and ERCs',
     ],
+    action: {
+      label: 'Go to Peep an EIP',
+      href: '/community/podcast/peepaneip'
+    }
   },
 ];
 
@@ -113,8 +117,8 @@ export default function EipSupportPage() {
             </div>
 
             {/* Right — Radar Hero */}
-            <div className="relative h-[400px] w-full flex items-center justify-center group/radar overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="relative h-[400px] w-full flex items-center justify-center group/radar">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden rounded-3xl">
                 <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
                 <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
                 <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
@@ -129,18 +133,19 @@ export default function EipSupportPage() {
                     'bottom-[10%] left-1/2 -translate-x-1/2',
                     'left-[10%] top-1/2 -translate-y-1/2',
                   ];
+                  const isRightSide = index === 1;
                   return (
-                    <div key={title} className={`absolute ${positions[index]} group/sphere z-20`}>
+                    <div key={title} className={`absolute ${positions[index]} group/sphere z-20 hover:z-50`}>
                       <div className="relative flex flex-col items-center">
                         <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer">
-                          <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:text-[var(--accent-brand)] transition-colors" />
+                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white group-hover/sphere:text-[var(--accent-brand)] transition-colors" />
                           <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
                         </div>
                         <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-opacity">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">0{index + 1} {title}</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-white">0{index + 1} {title}</span>
                         </div>
-                        <div className="absolute top-1/2 left-full ml-6 w-48 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-[var(--surface-card-theme)] border border-[var(--accent-brand)] p-4 rounded-xl shadow-2xl transition-all duration-300 -translate-x-4 group-hover/sphere:translate-x-0 z-50">
-                          <div className="absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2" />
+                        <div className={`absolute top-1/2 ${isRightSide ? 'right-full mr-4 sm:mr-6 translate-x-4' : 'left-full ml-4 sm:ml-6 -translate-x-4'} w-48 sm:w-56 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-[var(--surface-card-theme)] border border-[var(--accent-brand)] p-4 rounded-xl shadow-2xl transition-all duration-300 group-hover/sphere:translate-x-0 z-[100] -translate-y-1/2`}>
+                          <div className={`absolute top-1/2 ${isRightSide ? '-right-2 border-r border-t' : '-left-2 border-l border-b'} w-4 h-4 bg-[var(--surface-card-theme)] border-[var(--accent-brand)] rotate-45 -translate-y-1/2`} />
                           <p className="text-[11px] font-black uppercase tracking-widest text-[var(--accent-brand)] mb-1">Program Area</p>
                           <p className="text-[12px] text-[var(--text-base)] font-medium leading-[1.4]">{desc}</p>
                         </div>
@@ -201,6 +206,11 @@ export default function EipSupportPage() {
                       </li>
                     ))}
                   </ul>
+                  {program.action && (
+                    <Link href={program.action.href} className="btn btn-outline mt-auto w-full justify-center">
+                      {program.action.label}
+                    </Link>
+                  )}
                 </div>
               );
             })}
@@ -225,7 +235,7 @@ export default function EipSupportPage() {
             {stages.map((stage, i) => (
               <div key={i} className="flex-1 flex flex-col items-center text-center gap-3 relative z-10 p-4">
                 <div className="proplay-icon-container h-16 w-16 rounded-full border-2 border-[var(--border-soft)] bg-[var(--background)] shadow-sm flex-shrink-0">
-                  <span className="text-lg font-black text-[var(--accent-brand)]">{stage.num}</span>
+                  <span className="text-lg font-black text-white">{stage.num}</span>
                 </div>
                 <h4 className="font-black text-sm uppercase tracking-widest text-[var(--text-base)]">{stage.label}</h4>
                 <p className="global-body text-xs leading-relaxed">{stage.desc}</p>

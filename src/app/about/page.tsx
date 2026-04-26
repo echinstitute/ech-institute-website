@@ -130,7 +130,7 @@ export default function AboutPage() {
                       <span className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-60 group-hover/sphere:animate-ping pointer-events-none" />
                     </div>
                     <div className="mt-2 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--background)] whitespace-nowrap">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">{String(idx + 1).padStart(2,'0')} {title}</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-white">{String(idx + 1).padStart(2,'0')} {title}</span>
                     </div>
                     <div
                       className="absolute top-0 left-[calc(100%+1rem)] w-52 bg-[var(--background)] border border-[var(--accent-brand)] rounded-2xl p-4 shadow-2xl

@@ -99,12 +99,12 @@
   .proplay-icon-container {
     background-color: var(--dynamic-accent, var(--accent-brand));
     @apply flex items-center justify-center rounded-xl transition-all duration-300;
-    color: var(--theme-on-accent) !important;
+    color: #FBFBFB !important;
   }
 
   .proplay-icon-container svg,
   .proplay-dynamic-icon {
-    color: var(--theme-on-accent) !important;
+    color: #FBFBFB !important;
   }
 
   .text-brand-yellow {
@@ -117,7 +117,7 @@
   }
   .global-btn-primary {
     background-color: var(--accent-brand);
-    color: var(--theme-on-accent);
+    color: #FBFBFB;
     border: 2px solid var(--accent-brand);
   }
   .global-btn-primary:hover {
@@ -146,7 +146,7 @@
   }
   .proplay-badge-primary {
     background-color: var(--accent-brand);
-    color: var(--theme-on-accent);
+    color: #FBFBFB;
   }
   .proplay-badge-outline {
     background-color: transparent;
@@ -945,9 +945,9 @@
      Dark-mode premium card grid, matches reference
      ============================================ */
 
-  /* Section wrapper override — force dark background */
+  /* Section wrapper override — use standard background */
   section#programs.proplay-section {
-    background: #0c0c0e !important;
+    background: var(--background);
   }
 
   /* Section header text overrides for dark bg */
@@ -1153,7 +1153,7 @@
 
   /* ── Section background ── */
   section#programs.proplay-section {
-    background: #0c0c0e !important;
+    background: var(--background);
   }
   section#programs .global-section-tag { color: var(--color-yellow) !important; }
   section#programs .global-section-title { color: #f5f5f5 !important; }
@@ -3447,7 +3447,7 @@ section a:hover {
 
 .home-page .hero-image img:hover,
 .home-page .hero-image .hero-mascot-img:hover {
-  transform: scale(1.04) translateY(-6px);
+  /* transform: scale(1.04) translateY(-6px); */
 }
 
 /* ─── Responsive ─── */

@@ -17,7 +17,7 @@ export function PodcastRecentHighlights() {
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch('/api/youtube/latest?limit=4');
+        const res = await fetch('/api/youtube/latest?limit=5&excludeShorts=true');
         const data = await res.json();
         if (cancelled) return;
         if (!res.ok) {
@@ -42,16 +42,22 @@ export function PodcastRecentHighlights() {
   }, []);
 
   return (
-    <section className="bg-white py-5 px-0 sm:py-8 sm:px-6 md:py-10 md:px-8">
-      <div className="mx-auto max-w-7xl px-4 sm:px-0">
-        <h2 className="global-section-title mb-2">Recent Highlights</h2>
-        <p className="global-body-lg mb-4 max-w-2xl text-gray-600 sm:mb-6">
-          Latest uploads from{' '}
+    <section className="bg-[#151419] py-12 md:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 mb-8">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-1 h-8 rounded-full bg-[#F5A51D]" />
+          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">New Releases</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[#FBFBFB]">
+          Recent <em className="not-italic text-[#F5A51D]">Highlights</em>
+        </h2>
+        <p className="text-sm max-w-2xl text-[#FBFBFB]/50">
+          Latest long-form uploads from{' '}
           <a
             href={CHANNEL_VIDEOS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-amber-800 underline-offset-2 hover:underline"
+            className="font-bold text-[#F5A51D] hover:underline"
           >
             @echinstitute on YouTube
           </a>

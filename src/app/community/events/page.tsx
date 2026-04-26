@@ -26,9 +26,11 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  Globe,
+  Play
 } from 'lucide-react';
 export default function EventsPage() {
-  const [activeEventId, setActiveEventId] = useState('devconnect-argentina');
+  const [activeEventId, setActiveEventId] = useState('road-to-devcon-2026');
   const [hoveredVideo, setHoveredVideo] = useState<string | null>(null);
   const [tappedVideo, setTappedVideo] = useState<string | null>(null); // mobile tap-to-play
   const [modalOpen, setModalOpen] = useState(false);
@@ -109,8 +111,8 @@ export default function EventsPage() {
         }
       },
       {
-        rootMargin: '-20% 0px -55% 0px',
-        threshold: [0.15, 0.3, 0.5],
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: 0.1,
       }
     );
 
@@ -126,8 +128,50 @@ export default function EventsPage() {
     };
   }, []);
 
-  // Event details (Mumbai commented out)
-  const eventDetails = [
+  const eventDetails: any[] = [
+    {
+      id: 'road-to-devcon-2026',
+      year: '2026',
+      month: 'TBD',
+      badge: 'Upcoming',
+      badgeType: 'upcoming',
+      tags: ['DEVCON 2026', 'ROAD TO DEVCON', 'ROUNDTABLE', 'GOVERNANCE'],
+      title: 'Road to Devcon 2026',
+      subtitle: '(Roundtable Series)',
+      location: 'Global — Multiple Locations',
+      date: '2026 — Dates TBA',
+      echFootprint: 'Ongoing roundtable series',
+      description:
+        'The Road to Devcon 2026 is ECH Institute\'s flagship pre-Devcon initiative — a series of community roundtables and technical coordination sessions designed to prepare the Ethereum community for Devcon 2026. Building on the momentum of Devconnect Argentina and the EIP Summit, this series will bring together core developers, researchers, and community builders to align on protocol priorities ahead of the world\'s largest Ethereum developer conference.',
+      activities: [
+        {
+          icon: MessageSquare,
+          title: 'Community Roundtables',
+          description:
+            'Structured roundtable discussions on key Ethereum upgrade milestones, governance decisions, and ecosystem priorities — open to developers, researchers, and community contributors worldwide.',
+        },
+        {
+          icon: Mic,
+          title: 'Technical Briefings',
+          description:
+            'Pre-Devcon technical sessions covering the state of the EIP process, upcoming upgrade proposals, and what the community needs to know before Devcon 2026.',
+        },
+        {
+          icon: Users,
+          title: 'WiEP Road to Devcon',
+          description:
+            'Dedicated Women in Ethereum Protocol sessions as part of the Road to Devcon series — building community and mentorship pipelines in advance of the global conference.',
+        },
+        {
+          icon: Globe,
+          title: 'Global Coordination',
+          description:
+            'Coordinating with regional Ethereum communities worldwide to ensure diverse participation and broad ecosystem representation at Devcon 2026.',
+        },
+      ],
+      recapVideo: 'https://www.youtube.com/live/4N4LHKReoV4?si=KYC7fve_K9PhNDTD',
+      photos: [],
+    },
     {
       id: 'devconnect-argentina',
       year: '2025',
@@ -144,37 +188,30 @@ export default function EventsPage() {
         'ECH Institute provided a dedicated technical forum for protocol researchers and helped grow the Ethereum developer ecosystem in Latin America (LATAM). During Devconnect at La Rural, ECH anchored the first standalone summit focused on the EIP lifecycle and complemented it with technical sessions, community presence, and regional inclusion programming.',
       activities: [
         {
-          icon: Trophy,
-          title: 'The EIP Summit',
-          description:
-            'Organized and hosted the first-ever standalone summit dedicated to Ethereum Improvement Proposals (EIPs), with technical programming for protocol authors and researchers.',
+          title: 'EIP summit',
+          description: 'Explore the full technical programming from the first-ever EIP Summit. Watch deep dives on protocol governance, executable specifications, and research-to-reality pipelines led by core developers and researchers.',
+          image: '/assets/events/Devconnect Argentina 2025/IMG_3553.webp',
+          videoUrl: 'https://youtube.com/playlist?list=PL4cwHXAawZxo_4-sDIY0ISXklLYn0ESpC&si=55_AIMn8DkTZudf0',
         },
         {
-          icon: Mic,
-          title: 'Technical sessions',
-          description:
-            'Led sessions including “From Research to Reality” (bridging research and implementation), “Code is Law” (executable specifications and avoiding spec drift), and “Don’t just use Ethereum: help shape it!” (why community feedback on EIPs matters).',
+          title: 'Devconnect Argentina 2025 Event Playlist',
+          description: 'Catch all the talks, panels, and community moments from ECH Institute\'s activations across Devconnect Argentina 2025. Watch the full event playlist.',
+          videoUrl: 'https://youtube.com/playlist?list=PL4cwHXAawZxoPEaPPAMB-fOJgFVmbQeH7&si=oqZGzDv9ToO_1LrZ',
+          playlistVideoId: 'N64FlANVK8U'
         },
         {
-          icon: Network,
-          title: 'ECH Impact booth',
-          description:
-            'Maintained a physical presence at the Ethereum World’s Fair to host conversations on identity, creator economies, and how protocol changes show up for builders and the public.',
+          title: 'Women in Ethereum Protocol (WiEP)',
+          description: 'A major networking event supporting Women in Ethereum Protocol (WiEP), providing an inclusive space for mentoring, connecting, and empowering women entering protocol development in Latin America.',
+          videoUrl: 'https://youtu.be/MiYQ_P7vtEQ?si=ikg2lw6asXeoaRut'
         },
         {
-          icon: Users,
-          title: 'WiEP Latin America',
-          description:
-            'Hosted a Women in Ethereum Protocol (WiEP) networking brunch on November 18 to mentor and connect women in the region entering protocol development.',
-        },
-        {
-          icon: Video,
-          title: 'Content production',
-          description:
-            'Filmed and produced the official recap of Devconnect 2025 for the global Ethereum community.',
+          title: 'Devconnect - Enterprise Education',
+          description: 'Focused enterprise education talks aimed at bridging the gap between corporate use cases and Ethereum\'s public good infrastructure. Discover how institutions can meaningfully engage with protocol development.',
+          videoUrl: 'https://youtube.com/playlist?list=PL4cwHXAawZxpz-erUbKKUnnGoQNdF8s7Z&si=mNqMhvLlsWuA0yzD',
+          playlistVideoId: '9Ajj6Z_rBCo'
         },
       ],
-      recapVideo: 'https://youtu.be/N64FlANVK8U?si=Y9SBZ1I2R5EfeoVH', 
+      recapVideo: 'https://youtu.be/N64FlANVK8U?si=Y9SBZ1I2R5EfeoVH',
       photos: [
         { src: '/assets/events/Devconnect Argentina 2025/IMG_3553.webp', alt: 'Devconnect Argentina 2025 - EIP Summit Opening' },
         { src: '/assets/events/Devconnect Argentina 2025/IMG_3576.webp', alt: 'Devconnect Argentina 2025 - EIP Summit Session' },
@@ -195,6 +232,61 @@ export default function EventsPage() {
       ],
     },
     {
+      id: 'eth-tokyo-edcon-2025',
+      year: '2025',
+      month: 'Sep',
+      badge: 'Key Event',
+      badgeType: 'featured',
+      tags: ['EDCON 2025', 'WIEP', 'OSAKA', 'COMMUNITY BOOTH'],
+      title: 'ECH Institute & WiEP at EDCON 2025',
+      subtitle: '(Osaka, Japan)',
+      location: 'Grand Green Osaka, Osaka, Japan',
+      date: 'Sep 17–19, 2025',
+      echFootprint: 'Main Stage talk, Booth 4 & community activations',
+      description:
+        'ECH Institute and Women in Ethereum Protocol (WiEP) brought their community coordination mission to EDCON 2025 at Grand Green Osaka. Pooja Ranjan delivered a featured talk on the Main Stage covering education and diversity in protocol development, while the ECH & WiEP team hosted Booth 4 on Level 4F — connecting attendees with the Ethereum Cat Herders mission, sharing exclusive event swag, and onboarding newcomers and long-time contributors alike into the Ethereum ecosystem.',
+      activities: [
+        {
+          icon: Mic,
+          title: 'Main Stage Keynote — WiEP Talk',
+          description:
+            'Pooja Ranjan delivered "Education & Diversity in Protocol Development (Women in Ethereum Protocol)" on the EDCON Main Stage on September 17, 11:55 AM – 12:15 PM, highlighting the importance of inclusive participation in Ethereum\'s protocol governance.',
+        },
+        {
+          icon: Building2,
+          title: 'ECH & WiEP Community Booth (Booth 4)',
+          description:
+            'Operated Booth 4 on Level 4F near the registration table throughout EDCON 2025 — providing attendees with direct access to the Ethereum Cat Herders team, information on EIPs, network upgrades, and how to get involved in protocol community work.',
+        },
+        {
+          icon: Users,
+          title: 'Meet the Herders',
+          description:
+            'Hosted open conversations at the booth about ECH\'s role in guiding and educating the Ethereum community on Ethereum Improvement Proposals and network upgrades — and how newcomers can become part of this dynamic community.',
+        },
+        {
+          icon: MessageSquare,
+          title: 'Learn & Network',
+          description:
+            'Created a welcoming space for both first-time Ethereum attendees and long-time contributors to ask questions, share experiences, and explore pathways into the Ethereum ecosystem — from EIPs to governance and beyond.',
+        },
+        {
+          icon: Sparkles,
+          title: 'Exclusive Event Swag',
+          description:
+            'Distributed exclusive ECH Institute & WiEP swag available only at EDCON 2025 — a memorable touchpoint for community members who visited the booth during the event.',
+        },
+        {
+          icon: Globe,
+          title: 'Community Call & Ticket Giveaway',
+          description:
+            'Invited the broader Ethereum community to join ECH\'s first Community Call for a chance to win tickets to EDCON 2025, expanding access and engagement with the global protocol coordination ecosystem.',
+        },
+      ],
+      recapVideo: null,
+      photos: [],
+    },
+    {
       id: 'devcon-bangkok',
       year: '2024',
       month: 'Nov',
@@ -210,34 +302,34 @@ export default function EventsPage() {
         'Devcon 7 brought more than 12,500 people to the Queen Sirikit National Convention Center (QSNCC) in Bangkok. ECH Institute focused on onboarding first-time attendees about 60% were new to Devcon to how Ethereum is governed, not only how it is traded, and on diversity through WiEP and structured community feedback.',
       activities: [
         {
-          icon: Mic,
-          title: 'Onboarding keynote',
-          description:
-            'Delivered “EIPs Simplified: History and Process Explained” to demystify how upgrades happen and help newcomers see a path from spectator to contributor.',
+          title: 'Devcon - Opening talk on EIPs',
+          description: 'Pooja Ranjan delivered "EIPs Simplified: History and Process Explained" to demystify network upgrades and help newcomers see a clear path from spectator to core contributor.',
+          image: '/assets/events/Devcon 7 Bangkok/IMG_3780.webp',
+          videoUrl: ''
         },
         {
-          icon: Scale,
-          title: 'Governance workshops',
-          description:
-            'Facilitated hands-on sessions titled “Shaping Ethereum’s Protocol Governance & Decision Making,” including how to engage with Core EIPs that affect network economics and security.',
+          title: 'Devcon - ECH Booth',
+          description: 'A dedicated four-day community hub where attendees engaged directly with ECH on Ethereum governance, how upgrades are coordinated, and how to get involved.',
+          image: '/assets/events/Devcon 7 Bangkok/IMG_3800.webp',
+          videoUrl: ''
         },
         {
-          icon: Building2,
-          title: 'Impact booth',
-          description:
-            'Operated a four-day dedicated space for attendees to engage with ECH on Ethereum governance and how upgrades are coordinated.',
+          title: 'Devcon - FEM Session Notes',
+          description: 'Facilitated comprehensive note-taking and coordination for the Fellowship of Ethereum Magicians, ensuring critical technical discussions on core EIPs were documented for the global community.',
+          image: '/assets/events/Devcon 7 Bangkok/IMG_3801.webp',
+          videoUrl: ''
         },
         {
-          icon: Users,
-          title: 'WiEP brunch & networking',
-          description:
-            'Co-hosted the WiEP Brunch & Networking event for 400+ community members and delivered the introductory talk “Empowering Women in Ethereum,” creating space to connect senior contributors with newer researchers in a very large conference.',
+          title: 'Devcon - WiEP Brunch',
+          description: 'Co-hosted the WiEP Brunch & Networking event for over 400 community members. Featured the introductory talk "Empowering Women in Ethereum," creating space to connect senior contributors with newer researchers.',
+          image: '/assets/events/Devcon 7 Bangkok/IMG_3868.webp',
+          videoUrl: ''
         },
         {
-          icon: MessageSquare,
-          title: 'Community research',
-          description:
-            'Ran a comprehensive survey to collect testimonials and feedback on making technical documentation and protocol education more accessible shaping improvements to series like PEEPanEIP.',
+          title: 'Devcon - Web3Hub (Community support)',
+          description: 'Extended the ECH presence into the Web3Hub space, offering hands-on community support, answering questions on protocol upgrades, and running surveys to improve educational resources like PEEPanEIP.',
+          image: '/assets/events/Devcon 7 Bangkok/IMG_3882.webp',
+          videoUrl: ''
         },
       ],
       recapVideo: 'https://youtu.be/rksdvA4oHWU?si=70QTp_dfsF57ybjh',
@@ -262,40 +354,28 @@ export default function EventsPage() {
       date: 'Sep 19–22, 2024',
       echFootprint: '5 ECH-led activations',
       description:
-        'ECH Institute served as a community pillar for Southeast Asia’s Ethereum developer ecosystem, aligning regional builders with global roadmap work through governance education and EIP standardization. The main program ran at Marina Bay Sands (September 19–22, 2024); Pragma Singapore technical workshops took place at the Fullerton Hotel.',
+        'ECH Institute served as a community pillar for Southeast Asia\'s Ethereum developer ecosystem, aligning regional builders with global roadmap work through governance education and EIP standardization. The main program ran at Marina Bay Sands (September 19–22, 2024); Pragma Singapore technical workshops took place at the Fullerton Hotel.',
       activities: [
         {
-          icon: Mic,
-          title: 'Keynote',
-          description:
-            'Delivered “ECH Contributing to Ethereum’s Infinite Garden,” outlining ECH’s role as a decentralized coordinator and why coordination (“herding”) matters alongside code for a resilient network.',
+          title: 'Eth Singapore - Main stage talk',
+          description: 'Delivered the keynote "ECH Contributing to Ethereum\'s Infinite Garden," outlining ECH\'s critical role as a decentralized coordinator and why coordination ("herding") is just as vital as code.',
+          image: '/assets/events/ETH Singapore 2024/ech-event-1.webp',
+          videoUrl: ''
         },
         {
-          icon: MessageSquare,
-          title: 'Ecosystem dialogue',
-          description:
-            'Participated in a fireside chat with Aya Miyaguchi, Executive Director of the Ethereum Foundation, on ecosystem growth and how ECH supports the EF through education and coordination.',
+          title: 'Eth Singapore - Fireside chat with Aya Miyaguchi',
+          description: 'Participated in a high-impact fireside chat with Aya Miyaguchi, Executive Director of the Ethereum Foundation, discussing ecosystem growth, protocol education, and ECH\'s support of the EF.',
+          image: '/assets/events/ETH Singapore 2024/ech-event-2.webp',
+          videoUrl: ''
         },
         {
-          icon: Users,
-          title: 'WiEP mentorship',
-          description:
-            'Organized a major WiEP networking event on September 16 at the ArtScience Museum to connect women in technical and protocol-facing roles.',
-        },
-        {
-          icon: FileText,
-          title: 'Standardization (Pragma Singapore)',
-          description:
-            'Hosted workshops focused on the EIP standardization process and protocol-level best practices for advanced developers.',
-        },
-        {
-          icon: Code,
-          title: 'Educational demos',
-          description:
-            'Ran live showcases of Learn2Earn and the PEEPanEIP series to onboard hackers to protocol learning before they build.',
+          title: 'Eth Singapore - WiEP Workshop',
+          description: 'Organized a major WiEP networking event on September 16 at the ArtScience Museum, connecting women in technical and protocol-facing roles to foster mentorship and collaboration.',
+          image: '/assets/events/Devconnect Argentina 2025/IMG_3874.webp',
+          videoUrl: ''
         },
       ],
-      recapVideo: 'https://youtu.be/v9G684uz6Rk?si=RugRRy81ISBQIDJu', 
+      recapVideo: 'https://youtu.be/v9G684uz6Rk?si=RugRRy81ISBQIDJu',
       photos: [
         { src: '/assets/events/ETH Singapore 2024/ech-event-1.webp', alt: 'ETH Singapore 2024 - Marina Bay Sands Conference' },
         { src: '/assets/events/ETH Singapore 2024/ech-event-2.webp', alt: 'ETH Singapore 2024 - Keynote Presentation & WiEP Networking' },
@@ -309,12 +389,16 @@ export default function EventsPage() {
       <section className="events-hero">
         <div className="events-hero-container">
           <div className="events-hero-content">
-            <div className="events-hero-text">
-              <h1 className="events-hero-title">
-                Events & Talks
+            <div className="events-hero-text flex flex-col items-center text-center">
+              <div className="hero-badge animate-fade-up mb-6">
+                <span className="badge-dot"></span>
+                Protocol & Community
+              </div>
+              <h1 className="global-hero-title animate-fade-up delay-1">
+                Events <span className="text-[#F5A51D]">& Talks</span>
               </h1>
-              <p className="events-hero-description">
-                From ETH Singapore 2024 and Devcon 7 Bangkok to Devconnect Argentina 2025 ECH Institute shows up where the protocol meets the community: EIPs, governance education, WiEP, and hands-on activations that turn global events into lasting onboarding.
+              <p className="hero-subtitle animate-fade-up delay-2 mt-6 max-w-3xl">
+                From ETH Singapore 2024 and Devcon 7 Bangkok to Eth Tokyo & EDCON 2025, Devconnect Argentina 2025, and the Road to Devcon 2026 — ECH Institute shows up where the protocol meets the community: EIPs, governance education, WiEP, and hands-on activations that turn global events into lasting onboarding.
               </p>
             </div>
           </div>
@@ -322,19 +406,47 @@ export default function EventsPage() {
       </section>
 
       <div className="events-shell">
-        <aside className="events-side-nav" aria-label="Event sections">
-          <div className="events-side-nav-card">
-            <p className="events-side-nav-label">Event Index</p>
-            <div className="events-side-nav-list">
+        <aside className="events-side-nav !bg-transparent" aria-label="Event sections">
+          <div className="events-side-nav-card !bg-transparent">
+            <div className="flex items-center gap-2 mb-5">
+              <div className="w-1 h-4 bg-[#F5A51D] rounded-full"></div>
+              <p className="events-side-nav-label text-sm font-black tracking-[0.15em] text-[#FBFBFB] uppercase">Event Index</p>
+            </div>
+            <div className="events-side-nav-list flex flex-col gap-3">
               {eventDetails.map((event) => (
                 <button
                   key={event.id}
                   type="button"
                   onClick={() => scrollToEvent(event.id)}
-                  className={`events-side-nav-item ${activeEventId === event.id ? 'is-active' : ''}`}
+                  className={`events-side-nav-item group w-full flex flex-col !items-start !text-left rounded-2xl border bg-[#1B1B1E] p-5 transition-all duration-300 relative overflow-hidden ${
+                    activeEventId === event.id 
+                      ? 'border-[#F5A51D] shadow-[0_0_20px_rgba(245,165,29,0.1)]' 
+                      : 'border-[#262626] hover:border-[#F5A51D]/50 hover:bg-[#262626]/50'
+                  }`}
                 >
-                  <span className="events-side-nav-year">{event.year}</span>
-                  <span className="events-side-nav-title text-center">{event.title} <br /> {event.subtitle}</span>
+                  {activeEventId === event.id && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#F5A51D]" />
+                  )}
+                  <div className="flex justify-between items-center w-full mb-3">
+                    <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${
+                      activeEventId === event.id ? 'text-[#F5A51D]' : 'text-[#FBFBFB]/40 group-hover:text-[#FBFBFB]/80'
+                    }`}>
+                      {event.year}
+                    </span>
+                    {event.badge === 'Upcoming' && (
+                      <span className="text-[9px] font-black uppercase tracking-widest text-[#151419] bg-[#F5A51D] px-2 py-0.5 rounded-sm">
+                        Upcoming
+                      </span>
+                    )}
+                  </div>
+                  <div className={`text-[15px] font-extrabold leading-snug mb-1 transition-colors ${
+                    activeEventId === event.id ? 'text-[#F5A51D]' : 'text-[#FBFBFB]/80 group-hover:text-[#F5A51D]'
+                  }`}>
+                    {event.title}
+                  </div>
+                  <div className="text-xs text-[#FBFBFB]/40 font-medium">
+                    {event.subtitle.replace(/[()]/g, '')}
+                  </div>
                 </button>
               ))}
             </div>
@@ -364,7 +476,9 @@ export default function EventsPage() {
                       ))}
                     </div>
                   </div>
-                  <h2 className="event-main-title">{event.title}</h2>
+                  <h2 className="global-section-title !text-left !text-[#FBFBFB] mb-6">
+                    {event.title.split(' ').slice(0, -1).join(' ')} <span className="text-[#F5A51D]">{event.title.split(' ').slice(-1)}</span>
+                  </h2>
                   <div className="event-meta-row">
                     <span className="meta-item">
                       <MapPin className="meta-icon" />
@@ -445,7 +559,6 @@ export default function EventsPage() {
                               height={540}
                               className="recap-video-thumbnail"
                               loading="lazy"
-                              quality={85}
                             />
                           )}
                         </div>
@@ -453,28 +566,77 @@ export default function EventsPage() {
                     </div>
                   )}
 
+
+
                   {event.activities && event.activities.length > 0 && (
                     <div className="event-activities">
-                      <h3 className="activities-title">
-                        <Sparkles className="activities-title-icon" />
-                        Specific ECH Activities
+                      <h3 className="global-section-title !text-left !text-[#FBFBFB] text-3xl mb-8 flex items-center gap-3">
+                        <Sparkles className="text-[#F5A51D] w-8 h-8" />
+                        Specific <span className="text-[#F5A51D]">ECH Activities</span>
                       </h3>
-                      <div className="activities-grid">
-                        {event.activities.map((activity, activityIndex) => {
-                          const IconComponent = activity.icon as LucideIcon;
-                          return (
-                            <div key={activityIndex} className="activity-item">
-                              <div className="activity-icon">
-                                <IconComponent className="activity-icon-svg" />
+                      {event.id === 'road-to-devcon-2026' || event.id === 'eth-tokyo-edcon-2025' ? (
+                        <div className="activities-grid">
+                          {event.activities.map((activity, activityIndex) => {
+                            const IconComponent = activity.icon as LucideIcon;
+                            return (
+                              <div key={activityIndex} className="activity-item">
+                                <div className="activity-icon">
+                                  <IconComponent className="activity-icon-svg" />
+                                </div>
+                                <div className="activity-content">
+                                  <div className="activity-title">{activity.title}</div>
+                                  <div className="activity-description">{activity.description}</div>
+                                </div>
                               </div>
-                              <div className="activity-content">
-                                <div className="activity-title">{activity.title}</div>
-                                <div className="activity-description">{activity.description}</div>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div className="flex flex-col gap-12 mt-8">
+                          {event.activities.map((activity, activityIndex) => {
+                            const isEven = activityIndex % 2 === 0;
+                            return (
+                              <div key={activityIndex} className={`flex flex-col md:flex-row gap-8 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}>
+                                {activity.videoUrl ? (
+                                  <a href={activity.videoUrl} target="_blank" rel="noopener noreferrer" className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border border-[#262626] bg-[#1B1B1E] aspect-video group shadow-lg cursor-pointer block">
+                                    {(activity.image || activity.videoUrl) && (
+                            <Image
+                              src={activity.image || (activity.playlistVideoId ? `https://img.youtube.com/vi/${activity.playlistVideoId}/maxresdefault.jpg` : getYouTubeThumbnailUrl(activity.videoUrl))}
+                              alt={activity.title} 
+                              fill 
+                              className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                                    )}
+                                    {activity.videoUrl && !activity.videoUrl.includes('playlist') && (
+                                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <div className="w-16 h-16 rounded-full bg-[#F5A51D] flex items-center justify-center text-[#151419] shadow-[0_0_30px_rgba(245,165,29,0.3)]">
+                                          <Play className="w-6 h-6 ml-1" fill="currentColor" />
+                                        </div>
+                                      </div>
+                                    )}
+                                  </a>
+                                ) : (
+                                  <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border border-[#262626] bg-[#1B1B1E] aspect-video group shadow-lg">
+                                    {activity.image && (
+                                      <Image 
+                                        src={activity.image} 
+                                        alt={activity.title} 
+                                        fill 
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                      />
+                                    )}
+                                  </div>
+                                )}
+                                <div className="w-full md:w-1/2 flex flex-col justify-center">
+                                  <div className="w-12 h-1 bg-[#F5A51D] mb-5 rounded-full shadow-[0_0_10px_rgba(245,165,29,0.5)]"></div>
+                                  <h4 className="font-syne font-bold text-xl md:text-2xl text-[#FBFBFB] mb-4 leading-tight">{activity.title}</h4>
+                                  <p className="text-[#FBFBFB]/70 text-base leading-relaxed mb-6">{activity.description}</p>
+                                </div>
                               </div>
-                            </div>
-                          );
-                        })}
-                      </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   )}
 
@@ -484,11 +646,11 @@ export default function EventsPage() {
                         <ImageIcon className="photos-title-icon" />
                         Event Photos
                       </h3>
-                      <div className="photos-grid">
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
                         {event.photos.slice(0, 6).map((photo, photoIndex) => (
                           <div
                             key={photoIndex}
-                            className="photo-item"
+                            className="relative aspect-video rounded-xl overflow-hidden cursor-pointer group bg-[#1B1B1E] border border-[#262626] hover:border-[#F5A51D] transition-all"
                             onClick={() => openImageModal(event.photos, photoIndex)}
                             role="button"
                             tabIndex={0}
@@ -504,9 +666,8 @@ export default function EventsPage() {
                               alt={photo.alt}
                               width={400}
                               height={300}
-                              className="photo-image"
+                              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                               loading="lazy"
-                              quality={85}
                               placeholder="blur"
                               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                               onError={(e) => {
@@ -521,9 +682,7 @@ export default function EventsPage() {
                                 }
                               }}
                             />
-                            <div className="photo-overlay">
-                              <ImageIcon className="photo-overlay-icon" />
-                            </div>
+                            {/* Hover overlay removed per user request */}
                           </div>
                         ))}
                       </div>
@@ -568,7 +727,6 @@ export default function EventsPage() {
                 width={1200}
                 height={800}
                 className="image-modal-image"
-                quality={90}
                 priority={currentImageIndex === 0}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;

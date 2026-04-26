@@ -296,7 +296,7 @@ export default function GetInvolvedPage() {
                       <div className="relative flex flex-col items-center">
                         <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer relative z-10">
                           {/* The Icon - Hides on Hover */}
-                          <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:opacity-0 group-hover/sphere:scale-0 transition-all duration-300" />
+                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white group-hover/sphere:opacity-0 group-hover/sphere:scale-0 transition-all duration-300" />
                           
                           {/* The Number - Appears on Hover */}
                           <span className="absolute inset-0 flex items-center justify-center text-lg md:text-xl font-black text-white opacity-0 group-hover/sphere:opacity-100 transition-all duration-300">
@@ -309,7 +309,7 @@ export default function GetInvolvedPage() {
 
                         {/* Title - Floating Badge - STAYS visible on hover now */}
                         <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-all duration-300">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)]">0{index + 1} {title}</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-white">0{index + 1} {title}</span>
                         </div>
 
                         {/* Description - Revealed on Hover - Premium Proplay Tooltip */}

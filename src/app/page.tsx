@@ -52,7 +52,7 @@ export default function Home() {
     <div className="home-page">
 
       {/* ── Hero ── */}
-      <section className="hero" id="hero">
+      <section className="hero mt-12" id="hero">
         <div className="max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 md:gap-12">
           {/* ── Left: text content ── */}
           <div className="hero-content flex-1 text-center md:text-left pt-16 pb-8 md:py-0 flex flex-col items-center md:items-start">
@@ -90,7 +90,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */} 
+        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
       {/* ── Who We Are ── */}
@@ -169,7 +169,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
+        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
@@ -303,7 +303,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
+        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
@@ -334,7 +334,7 @@ export default function Home() {
             </Link>
             {/* Card 2 */}
             <Link href={ROUTES.eipSupport} className="pgrid-card group">
-              <img src="/assets/images/EIP Summit Workshop.jpg" alt="EIP Support" className="pgrid-img" />
+              <img src="/assets/images/EIP Summit Workshop.jpg" alt="EIP Support" className="pgrid-img object-cover" />
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">GOVERNANCE</span>
@@ -404,7 +404,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
+        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
@@ -479,7 +479,7 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
+        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
@@ -509,12 +509,12 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
+        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
       {/* ── Partners Marquee ── */}
-      <section className="proplay-section-dense bg-[#151419] overflow-hidden">
+      <section className="proplay-section-dense bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
           <div className="inline-flex items-center gap-4 mb-4">
             <div className="h-px w-8 bg-[#262626]"></div>
@@ -530,12 +530,12 @@ export default function Home() {
             {[
               { id: 'ef', src: "/assets/Supported by logo//ethereum-foundation-logo.svg", alt: "Ethereum Foundation", size: "scale-[3.5]", href: "https://ethereum.org" },
               { id: 'gitcoin', src: "/assets/Supported by logo//gitcoin.svg", alt: "Gitcoin", href: "https://gitcoin.co" },
-              { id: 'eipsinsight', src: "/assets/Supported by logo//EIPsInsights.gif", alt: "EIPs Insight",size: "scale-[1.5]", href: "https://eipsinsight.com/" },
+              { id: 'eipsinsight', src: "/assets/Supported by logo//EIPsInsights.gif", alt: "EIPs Insight", size: "scale-[1.5]", href: "https://eipsinsight.com/" },
               { id: 'optimism', src: "/assets/Supported by logo//Optimism-logo.png", alt: "Optimism", href: "https://optimism.io" },
               { id: 'ethpune', src: "/assets/Supported by logo//ETH Pune.png", alt: "ETH Pune", size: "scale-[3]", href: "https://www.ethpune.com/" },
               { id: 'octant', src: "/assets/Supported by logo//octant-logo.svg", alt: "Octant", href: "https://octant.app" },
               // { id: 'ethstaker', src: "/assets/Supported by logo//ethstaker-logo.svg", alt: "EthStaker", href: "https://ethstaker.cc" },
-              { id: 'magicians', src: "/assets/Supported by logo//ethereum magicians logo.png", alt: "Ethereum Magicians",size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
+              { id: 'magicians', src: "/assets/Supported by logo//ethereum magicians logo.png", alt: "Ethereum Magicians", size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
               { id: 'ethcluj', src: "/assets/Supported by logo//EthCluj-logo.png", alt: "EthCluj", href: "https://ethcluj.ro" },
               { id: 'eea', src: "/assets/Supported by logo//enterpriseethereumalliance_logo.png", alt: "Enterprise Ethereum Alliance", href: "https://entethalliance.org" },
               { id: 'edcon', src: "/assets/Supported by logo//EDCON-logo.png", alt: "EDCON", href: "https://edcon.io" }
@@ -554,12 +554,12 @@ export default function Home() {
             {[
               { id: 'ef-clone', src: "/assets/Supported by logo//ethereum-foundation-logo.svg", alt: "Ethereum Foundation", size: "scale-[3.5]", href: "https://ethereum.org" },
               { id: 'gitcoin-clone', src: "/assets/Supported by logo//gitcoin.svg", alt: "Gitcoin", href: "https://gitcoin.co" },
-              { id: 'eipsinsight-clone', src: "/assets/Supported by logo//EIPsInsights.gif", alt: "EIPs Insight",size: "scale-[1.5]", href: "https://eipsinsight.com/" },
+              { id: 'eipsinsight-clone', src: "/assets/Supported by logo//EIPsInsights.gif", alt: "EIPs Insight", size: "scale-[1.5]", href: "https://eipsinsight.com/" },
               { id: 'optimism-clone', src: "/assets/Supported by logo//Optimism-logo.png", alt: "Optimism", href: "https://optimism.io" },
               { id: 'ethpune-clone', src: "/assets/Supported by logo//ETH Pune.png", size: "scale-[3]", alt: "ETH Pune", href: "https://www.ethpune.com/" },
               { id: 'octant-clone', src: "/assets/Supported by logo//octant-logo.svg", alt: "Octant", href: "https://octant.app" },
               // { id: 'ethstaker-clone', src: "/assets/Supported by logo//ethstaker-logo.svg", alt: "EthStaker", href: "https://ethstaker.cc" },
-              { id: 'magicians-clone', src: "/assets/Supported by logo//ethereum magicians logo.png", alt: "Ethereum Magicians",size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
+              { id: 'magicians-clone', src: "/assets/Supported by logo//ethereum magicians logo.png", alt: "Ethereum Magicians", size: "scale-[1.5]", href: "https://ethereum-magicians.org" },
               { id: 'ethcluj-clone', src: "/assets/Supported by logo//EthCluj-logo.png", alt: "EthCluj", href: "https://ethcluj.ro" },
               { id: 'eea-clone', src: "/assets/Supported by logo//enterpriseethereumalliance_logo.png", alt: "Enterprise Ethereum Alliance", href: "https://entethalliance.org" },
               { id: 'edcon-clone', src: "/assets/Supported by logo//EDCON-logo.png", alt: "EDCON", href: "https://edcon.io" }
@@ -580,11 +580,11 @@ export default function Home() {
 
       {/* Divider */}
       <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-                {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
+        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
       </div>
 
 
-      <section className="proplay-section bg-[#151419] relative overflow-hidden" id="contact">
+      <section className="proplay-section bg-background relative overflow-hidden" id="contact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <div className="animate-on-scroll">
@@ -666,8 +666,8 @@ export default function Home() {
                       </button>
                     </div>
                   ) : (
-                    <form 
-                      action="https://formsubmit.co/shubhamkshirsagar4045@gmail.com" 
+                    <form
+                      action="https://formsubmit.co/shubhamkshirsagar4045@gmail.com"
                       method="POST"
                       onSubmit={() => {
                         setIsSubmitting(true);
@@ -696,12 +696,12 @@ export default function Home() {
 
                       <div className="space-y-2">
                         <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Email Address</label>
-                        <input 
-                          type="email" 
-                          name="email" 
-                          className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" 
-                          placeholder="jane@example.com" 
-                          required 
+                        <input
+                          type="email"
+                          name="email"
+                          className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium"
+                          placeholder="jane@example.com"
+                          required
                         />
                       </div>
 
@@ -718,18 +718,18 @@ export default function Home() {
 
                       <div className="space-y-2">
                         <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Your Message</label>
-                        <textarea 
-                          name="Message" 
-                          rows={4} 
-                          className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 resize-none min-h-[140px] rounded-xl w-full px-6 py-4 text-sm font-medium" 
-                          placeholder="Tell us more about how we can work together..." 
+                        <textarea
+                          name="Message"
+                          rows={4}
+                          className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 resize-none min-h-[140px] rounded-xl w-full px-6 py-4 text-sm font-medium"
+                          placeholder="Tell us more about how we can work together..."
                           required
                         ></textarea>
                       </div>
 
-                      <button 
-                        type="submit" 
-                        disabled={isSubmitting} 
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
                         className="w-full py-6 text-sm font-black tracking-[0.3em] bg-[#F5A51D] text-[#FBFBFB] hover:bg-[#1B1B1E] transition-all duration-300 uppercase mt-4 rounded-xl border-0 shadow-lg shadow-yellow-500/10 disabled:opacity-80"
                       >
                         {isSubmitting ? 'Processing...' : 'Send Message'}

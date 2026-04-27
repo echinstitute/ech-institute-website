@@ -552,7 +552,7 @@ export default function EducationPage() {
             <h2 className="global-section-title">ECH Institute: <em>2024 to Today</em></h2>
             <p className="global-body-lg mb-5">From informal Ethereum coordination to a formalized 501(c)(3) nonprofit supporting open governance infrastructure.</p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {timelineCards.map((card, i) => (
                 <div key={i} data-tone={card.tone} className="global-card flex flex-col gap-3 hover:border-amber-400 transition-colors">
                   <div className="flex items-start justify-between gap-2">

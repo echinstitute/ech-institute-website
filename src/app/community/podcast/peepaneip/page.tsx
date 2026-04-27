@@ -173,7 +173,7 @@ export default function PEEPanEIPPage() {
             Browse the full library by topic — each card shows the first video&apos;s thumbnail and links directly to the YouTube playlist.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {resourcePlaylists.map((pl) => (
               <PlaylistCard key={pl.label} label={pl.label} href={pl.href} firstVideoId={pl.firstVideoId} />
             ))}
@@ -193,7 +193,7 @@ export default function PEEPanEIPPage() {
         <p className="text-sm mb-8 max-w-xl" style={{ color: 'rgba(251,251,251,0.50)' }}>
           Deep-dives by Ethereum upgrade — each card shows the first episode thumbnail. Select a fork to watch the full cycle.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {upgradePlaylists.map((pl) => (
             <UpgradeCard key={pl.label} label={pl.label} year={pl.year} href={pl.href} firstVideoId={pl.firstVideoId} />
           ))}

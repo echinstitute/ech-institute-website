@@ -68,6 +68,7 @@ export default function Home() {
             <div className="hero-buttons animate-fade-up delay-3 flex flex-wrap gap-4 justify-center md:justify-start">
               <Link href="#programs" className="btn btn-primary">Our Programs</Link>
               <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
+              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" className="btn btn-outline">View Full Report</a>
             </div>
           </div>
 
@@ -502,6 +503,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-6 items-center">
               <Link href={ROUTES.support} className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">DONATE NOW</Link>
               <Link href={ROUTES.getInvolved} className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">GET INVOLVED &rarr;</Link>
+              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">VIEW FULL REPORT</a>
             </div>
           </div>
         </div>

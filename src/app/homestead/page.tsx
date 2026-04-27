@@ -774,7 +774,7 @@ export default function HomesteadPage() {
             </p>
 
             {/* EIP Types */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
               {eipTypes.map((t, i) => (
                 <div key={i} className="global-card border-[#262626] hover:border-[#F5A51D] hover:shadow-[0_0_20px_rgba(245,165,29,0.08)] transition-all duration-300">
                   <span className="inline-block px-2.5 py-1 rounded-full text-xs font-black mb-2 bg-[#F5A51D]/10 text-[#F5A51D] border border-[#F5A51D]/30">{t.type}</span>
@@ -1007,7 +1007,7 @@ export default function HomesteadPage() {
             </div>
             <h2 className="global-section-title mb-5">Get Involved in Governance</h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               {[
                 { icon: MessageSquare, title: 'Community Discussions', desc: 'Participate in EIP and governance conversations on Ethereum Magicians forums.', link: 'https://ethereum-magicians.org/', cta: 'Ethereum Magicians', external: true },
                 { icon: Calendar, title: 'Attend Office Hours', desc: 'Connect with core devs and EIP editors in open EIPIP coordination calls.', link: 'https://github.com/ethereum-cat-herders/EIPIP/issues', cta: 'View Agenda', external: true },

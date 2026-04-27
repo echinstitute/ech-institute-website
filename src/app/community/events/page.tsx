@@ -190,8 +190,8 @@ export default function EventsPage() {
         {
           title: 'EIP summit',
           description: 'Explore the full technical programming from the first-ever EIP Summit. Watch deep dives on protocol governance, executable specifications, and research-to-reality pipelines led by core developers and researchers.',
-          image: '/assets/events/Devconnect Argentina 2025/IMG_3553.webp',
           videoUrl: 'https://youtube.com/playlist?list=PL4cwHXAawZxo_4-sDIY0ISXklLYn0ESpC&si=55_AIMn8DkTZudf0',
+          playlistVideoId: 'U_8H6h_GfQ0'
         },
         {
           title: 'Devconnect Argentina 2025 Event Playlist',
@@ -202,7 +202,9 @@ export default function EventsPage() {
         {
           title: 'Women in Ethereum Protocol (WiEP)',
           description: 'A major networking event supporting Women in Ethereum Protocol (WiEP), providing an inclusive space for mentoring, connecting, and empowering women entering protocol development in Latin America.',
-          videoUrl: 'https://youtu.be/MiYQ_P7vtEQ?si=ikg2lw6asXeoaRut'
+          image: '/assets/events/Devconnect Argentina 2025/IMG_3683.webp',
+          videoUrl: 'https://youtu.be/MiYQ_P7vtEQ?si=ikg2lw6asXeoaRut',
+          hidePlayIcon: true
         },
         {
           title: 'Devconnect - Enterprise Education',
@@ -610,7 +612,7 @@ export default function EventsPage() {
                               className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                                     )}
-                                    {activity.videoUrl && !activity.videoUrl.includes('playlist') && (
+                                    {activity.videoUrl && !activity.videoUrl.includes('playlist') && !activity.hidePlayIcon && (
                                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <div className="w-16 h-16 rounded-full bg-[#F5A51D] flex items-center justify-center text-[#151419] shadow-[0_0_30px_rgba(245,165,29,0.3)]">
                                           <Play className="w-6 h-6 ml-1" fill="currentColor" />

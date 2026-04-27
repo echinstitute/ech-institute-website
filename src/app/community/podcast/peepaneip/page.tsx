@@ -173,7 +173,7 @@ export default function PEEPanEIPPage() {
             Browse the full library by topic — each card shows the first video&apos;s thumbnail and links directly to the YouTube playlist.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {resourcePlaylists.map((pl) => (
               <PlaylistCard key={pl.label} label={pl.label} href={pl.href} firstVideoId={pl.firstVideoId} />
             ))}

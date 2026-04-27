@@ -202,7 +202,7 @@ export default function PodcastPage() {
         <p className="text-sm mb-10 max-w-2xl text-[#FBFBFB]/50">
           Six distinct series — each mapped to a specific stakeholder need, from core developers to enterprise teams to community builders.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mediaPillars.map(({ title, blurb, badge, href, icon: Icon, external }) => {
             const CardWrapper = external
               ? ({ children }: { children: React.ReactNode }) => (
@@ -249,7 +249,7 @@ export default function PodcastPage() {
         <p className="text-sm mb-10 max-w-2xl text-[#FBFBFB]/50">
           The ECH Institute organizes and documents All Core Devs meetings (ACDE, ACDC) — providing a transparent record of Ethereum&apos;s consensus-building process. Each entry includes:
         </p>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-6">
           {acdCards.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}

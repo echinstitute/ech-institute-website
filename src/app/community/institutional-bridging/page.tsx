@@ -237,7 +237,7 @@ export default function InstitutionalBridgingPage() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {pillars.map((pillar, i) => {
                 const Icon = pillar.icon;
                 return (

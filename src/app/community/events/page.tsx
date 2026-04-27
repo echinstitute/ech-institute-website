@@ -649,7 +649,7 @@ export default function EventsPage() {
                         <ImageIcon className="photos-title-icon" />
                         Event Photos
                       </h3>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                         {event.photos.slice(0, 6).map((photo: any, photoIndex: number) => (
                           <div
                             key={photoIndex}

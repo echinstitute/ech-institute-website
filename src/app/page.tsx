@@ -68,7 +68,7 @@ export default function Home() {
             <div className="hero-buttons animate-fade-up delay-3 flex flex-wrap gap-4 justify-center md:justify-start">
               <Link href="#programs" className="btn btn-primary">Our Programs</Link>
               <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
-              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" className="btn btn-outline">View Full Report</a>
+              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">View Full Report</a>
             </div>
           </div>
 
@@ -418,7 +418,7 @@ export default function Home() {
               <h2 className="global-section-title mb-4">Numbers <br /><em>that matter.</em></h2>
               <p className="global-body-lg text-gray-600">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
             </div>
-            <button className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</button>
+            <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Card 1: Network Upgrades */}
@@ -503,7 +503,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-6 items-center">
               <Link href={ROUTES.support} className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">DONATE NOW</Link>
               <Link href={ROUTES.getInvolved} className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">GET INVOLVED &rarr;</Link>
-              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">VIEW FULL REPORT</a>
+              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">VIEW FULL REPORT</a>
             </div>
           </div>
         </div>

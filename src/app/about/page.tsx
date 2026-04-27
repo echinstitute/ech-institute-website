@@ -182,7 +182,7 @@ export default function AboutPage() {
               </div>
               
               {/* Stats - Compact & Theme-Aligned */}
-              <div className="mt-6 grid grid-cols-3 gap-3">
+              <div className="mt-6 hidden md:grid grid-cols-3 gap-3">
                 {[
                   { label: 'Since', value: '2024' },
                   { label: 'Status', value: '501(c)(3)' },
@@ -369,7 +369,7 @@ export default function AboutPage() {
           <h2 className="global-section-title mb-4">People Behind <em>ECH Institute</em></h2>
           <p className="global-body-lg mb-12 max-w-2xl text-[var(--text-soft)]">ECH Institute is powered by a diverse group of dedicated individuals who contribute their time, expertise, and passion to support the Ethereum ecosystem.</p>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {PEOPLE_CARDS.map((item) => (
               <div 
                 key={item.title} 

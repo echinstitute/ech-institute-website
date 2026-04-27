@@ -260,8 +260,8 @@ export default function CommunityPartnershipsPage() {
       <section className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
         <div className="max-w-7xl mx-auto">
           <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)]">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-              <div className="flex items-start gap-5">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+              <div className="flex items-start gap-5 flex-1">
                 <span className="proplay-icon-container h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20">
                   <Heart className="h-6 w-6" />
                 </span>
@@ -288,7 +288,7 @@ export default function CommunityPartnershipsPage() {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-[var(--border-soft)] grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="mt-8 pt-6 border-t border-[var(--border-soft)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { label: 'Get Involved',     href: ROUTES.getInvolved },
                 { label: 'EIP Support',      href: ROUTES.eipSupport },

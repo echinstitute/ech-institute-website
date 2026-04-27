@@ -82,8 +82,8 @@ export function FundingVisualization() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-6 md:space-y-8 lg:space-y-10 px-1">
-      {/* Funding pillars — 2-col on mobile, 4-col on desktop */}
-      <div className="grid min-w-0 grid-cols-2 gap-3 lg:grid-cols-4">
+      {/* Funding pillars — 1-col on mobile, 2-col on tablet, 4-col on desktop */}
+      <div className="grid min-w-0 grid-cols-1 sm:grid-cols-2 gap-3 lg:grid-cols-4">
         {fundingPillars.map((pillar, index) => {
           const Icon = pillar.icon;
           return (

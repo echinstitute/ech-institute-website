@@ -72,7 +72,7 @@ export default function Home() {
           </div>
 
           {/* ── Right: mascot image ── */}
-          <div className="hero-image flex-1 animate-fade-up delay-4">
+          <div className="hero-image flex-1 animate-fade-up delay-4 hidden md:block">
             <div className="hero-mascot-wrap">
               <div className="hero-mascot"></div>
               <Image

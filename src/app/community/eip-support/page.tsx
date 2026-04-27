@@ -186,7 +186,7 @@ export default function EipSupportPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {programs.map((program, i) => {
               const Icon = program.icon;
               return (
@@ -229,7 +229,7 @@ export default function EipSupportPage() {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-0 relative">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-row gap-4 lg:gap-0 relative">
             {/* Connecting line */}
             <div className="hidden lg:block absolute top-8 left-0 right-0 h-[2px] bg-[var(--border-soft)] z-0" style={{ top: '2.5rem', left: '4rem', right: '4rem' }} />
             {stages.map((stage, i) => (
@@ -287,8 +287,8 @@ export default function EipSupportPage() {
       <section className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
         <div className="max-w-7xl mx-auto">
           <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)]">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-              <div className="flex items-start gap-5">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+              <div className="flex items-start gap-5 flex-1">
                 <span className="proplay-icon-container h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20">
                   <Heart className="h-6 w-6" />
                 </span>
@@ -319,7 +319,7 @@ export default function EipSupportPage() {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-[var(--border-soft)] grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="mt-8 pt-6 border-t border-[var(--border-soft)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { label: 'Office Hours',       href: 'https://github.com/ethereum/pm/issues?q=is%3Aissue+state%3Aopen+office+hour' },
                 { label: 'EIPIP Governance',   href: 'https://github.com/ethereum/pm/issues?q=is%3Aissue+state%3Aopen+eipip' },

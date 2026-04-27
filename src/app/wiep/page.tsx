@@ -74,7 +74,7 @@ export default function WiEPPage() {
   return (
     <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24">
       {/* ── Hero ── */}
-      <div className="border-b border-[#262626]" style={{ background: 'linear-gradient(135deg, #1B1B1E 0%, #151419 60%, #150015 100%)' }}>
+      <div className="border-b border-[#262626]" style={{ background: 'linear-gradient(135deg, #1B1B1E 0%, #151419 60%, #151419 100%)' }}>
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 md:px-8">
           <Link
             href="/podcast"

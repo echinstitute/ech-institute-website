@@ -105,7 +105,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation Section */}
-          <div className="footer-links-section">
+          <div className="footer-links-section mt-4 md:mt-0">
             <h3 className="footer-section-title">Navigation</h3>
             <ul className="footer-links-list">
               {navigationLinks.map((link) => (

@@ -206,14 +206,14 @@ export default function PodcastPage() {
           {mediaPillars.map(({ title, blurb, badge, href, icon: Icon, external }) => {
             const CardWrapper = external
               ? ({ children }: { children: React.ReactNode }) => (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="group flex flex-col rounded-2xl border border-[#262626] bg-[#1B1B1E] p-6 no-underline transition-all duration-300 hover:border-[#F5A51D]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.10)]">{children}</a>
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="group flex flex-col rounded-2xl border border-[#262626] bg-[#1B1B1E] p-4 sm:p-6 no-underline transition-all duration-300 hover:border-[#F5A51D]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.10)]">{children}</a>
                 )
               : ({ children }: { children: React.ReactNode }) => (
-                  <Link href={href} className="group flex flex-col rounded-2xl border border-[#262626] bg-[#1B1B1E] p-6 no-underline transition-all duration-300 hover:border-[#F5A51D]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.10)]">{children}</Link>
+                  <Link href={href} className="group flex flex-col rounded-2xl border border-[#262626] bg-[#1B1B1E] p-4 sm:p-6 no-underline transition-all duration-300 hover:border-[#F5A51D]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.10)]">{children}</Link>
                 );
             return (
               <CardWrapper key={title}>
-                <div className="flex items-start justify-between gap-3 mb-4">
+                <div className="flex items-start justify-between gap-3 mb-4 flex-wrap">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5A51D]/10 border border-[#F5A51D]/20">
                     <Icon className="h-6 w-6 text-[#F5A51D]" />
                   </div>

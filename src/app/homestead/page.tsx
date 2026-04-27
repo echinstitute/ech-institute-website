@@ -571,7 +571,7 @@ export default function HomesteadPage() {
             </div>
 
             {/* Right — Interactive Radar with 4 Governance Spheres */}
-            <div className="relative h-[400px] w-full flex items-center justify-center group/radar">
+            <div className="relative h-[400px] w-full hidden lg:flex items-center justify-center group/radar">
               {/* Radar Background Rings */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />

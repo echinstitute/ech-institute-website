@@ -694,7 +694,7 @@ export default function SupportPage() {
             <div className="global-card mt-4 bg-[#1B1B1E] border-[#262626] relative overflow-hidden">
               {/* Top accent line Brand yellow */}
               <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F5A51D] to-transparent" />
-              <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+              <div className="flex flex-col lg:flex-row lg:items-center gap-5">
                 {/* OP Logo pill */}
                 <div className="flex items-center gap-3 shrink-0">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5A51D]/10 border border-[#F5A51D]/30">
@@ -706,7 +706,7 @@ export default function SupportPage() {
                   </div>
                 </div>
                 {/* Divider */}
-                <div className="hidden sm:block h-12 w-[1px] bg-[#262626]" />
+                <div className="hidden lg:block h-12 w-[1px] bg-[#262626]" />
                 {/* Amount */}
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2 mb-1">
@@ -755,8 +755,8 @@ export default function SupportPage() {
             </div>
 
             <div className="global-card global-border-yellow bg-[#1B1B1E] border-[#262626] mt-5">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
-                <div className="flex items-start gap-4">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                <div className="flex items-start gap-4 flex-1">
                   <span className="proplay-icon-container h-11 w-11 flex-shrink-0">
                     <FileText className="h-5 w-5" />
                   </span>

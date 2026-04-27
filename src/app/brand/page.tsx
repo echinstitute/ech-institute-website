@@ -707,7 +707,7 @@ export default function BrandPage() {
                   </p>
 
                   <div className="flex flex-wrap justify-center lg:justify-start gap-8 mt-10">
-                    <a href="/icon_pack.zip" download className="global-btn global-btn-primary px-12 py-7 transition-all group/btn">
+                    <a href="/ech_institute_logos.zip" download className="global-btn global-btn-primary px-12 py-7 transition-all group/btn">
                       <Download size={28} strokeWidth={3} className="group-hover/btn:animate-bounce mr-4" />
                       <span className="text-xl">Download Institutional Kit</span>
                     </a>

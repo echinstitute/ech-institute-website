@@ -248,7 +248,7 @@ export default function GetInvolvedPage() {
 
             {/* Right — ways to contribute mini-grid */}
             {/* Right — Interactive Role Proximity (Radar Style) */}
-            <div className="relative h-[400px] w-full flex items-center justify-center group/radar">
+            <div className="relative h-[400px] w-full hidden lg:flex items-center justify-center group/radar">
               {/* Radar Background Rings */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
@@ -407,7 +407,7 @@ export default function GetInvolvedPage() {
       <section className="py-10 px-4 md:py-14 md:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Section header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-7">
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--accent-brand)] mb-2">Ecosystem</p>
               <h2 className="global-section-title">The Ethereum <em>Community</em></h2>
@@ -493,8 +493,8 @@ export default function GetInvolvedPage() {
       <section className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
         <div className="max-w-7xl mx-auto">
           <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)]">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-              <div className="flex items-start gap-5">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+              <div className="flex items-start gap-5 flex-1">
                 <span className="proplay-icon-container relative overflow-hidden h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20 group-hover:scale-110 transition-all duration-500">
                   <Heart className="h-6 w-6 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
                   <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">

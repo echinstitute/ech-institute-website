@@ -236,7 +236,7 @@ export default function CommunityPartnershipsPage() {
             </div>
 
             {/* Right — cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {partnerTypes.map((type, i) => {
                 const Icon = type.icon;
                 return (

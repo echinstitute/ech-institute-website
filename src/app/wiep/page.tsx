@@ -233,7 +233,7 @@ export default function WiEPPage() {
         <p className="text-sm mb-8 max-w-2xl text-[#FBFBFB]/50">
           WiEP study groups partner with the Ethereum Protocol Fellowship (EPF) Study Group model — structured, part-time, and designed to lower the barrier to entry for developers aiming at core protocol roles.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {studyGroupCards.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
@@ -263,7 +263,7 @@ export default function WiEPPage() {
         <p className="text-sm mb-8 max-w-xl text-[#FBFBFB]/50">
           WiEP connects people, learning, and core protocol work — linking scaling, resilience, and credible neutrality through structured community.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {themes.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}

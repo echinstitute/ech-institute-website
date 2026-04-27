@@ -742,7 +742,7 @@ export default function SupportPage() {
               Here is exactly what we disclose and how.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {transparencyItems.map((item, i) => (
                 <div key={i} className="global-card flex flex-col gap-3 hover:border-[#F5A51D]/50 transition-colors bg-[#1B1B1E] border-[#262626]">
                   <div className="proplay-icon-container h-10 w-10 flex-shrink-0">

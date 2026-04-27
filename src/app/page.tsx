@@ -667,7 +667,7 @@ export default function Home() {
                     </div>
                   ) : (
                     <form
-                      action="https://formsubmit.co/shubhamkshirsagar4045@gmail.com"
+                      action="https://formsubmit.co/team@ethcatherders.com"
                       method="POST"
                       onSubmit={() => {
                         setIsSubmitting(true);

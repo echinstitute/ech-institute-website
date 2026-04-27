@@ -336,7 +336,7 @@ export default function BrandPage() {
               visual clarity, and technical excellence across the Ethereum ecosystem.
             </p>
             <div className="flex flex-wrap gap-5 animate-fade-up delay-2 ">
-              <a href="/icon_pack.zip" download className="flex items-center gap-3 bg-[#F5A51D] text-[#151419] font-extrabold px-10 py-5 rounded-2xl transition-all transform hover:scale-105 active:scale-95">
+              <a href="/ech_institute_logos.zip" download className="flex items-center gap-3 bg-[#F5A51D] text-[#151419] font-extrabold px-10 py-5 rounded-2xl transition-all transform hover:scale-105 active:scale-95">
                 <Download size={24} /> Download Assets
               </a>
               <Link href="mailto:team@ethcatherders.com" className="flex items-center gap-3 bg-[#1B1B1E] border border-[#262626] text-[#FBFBFB] font-extrabold px-10 py-5 rounded-2xl transition-all transform hover:scale-105 active:scale-95">

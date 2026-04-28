@@ -8,8 +8,9 @@ const nextConfig: NextConfig = {
 
   experimental: {
     webpackBuildWorker: true,
-    turbopack: {},
   },
+
+  turbopack: {},
 
   eslint: {
     ignoreDuringBuilds: true,

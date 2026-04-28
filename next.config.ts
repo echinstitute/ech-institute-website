@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
 
   experimental: {
     webpackBuildWorker: true,
+    turbopack: {},
   },
 
   eslint: {

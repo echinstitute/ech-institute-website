@@ -68,7 +68,7 @@ export default function Home() {
             <div className="hero-buttons animate-fade-up delay-3 flex flex-wrap gap-4 justify-center md:justify-start">
               <Link href="#programs" className="btn btn-primary">Our Programs</Link>
               <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
-              {/* <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">View Full Report</a> */}
+              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">View Full Report</a>
             </div>
           </div>
 

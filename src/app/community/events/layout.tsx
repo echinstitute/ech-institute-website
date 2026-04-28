@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ecosystem Events & Protocol Workshops | ECH Institute",
+  title: "Events & Talks",
   description:
     "ECH Institute at Devcon 7 Bangkok, ETH Singapore 2024, and Devconnect Argentina 2025 — EIP Summits, WiEP networking, governance workshops, and community activations across the Ethereum ecosystem.",
   keywords: [

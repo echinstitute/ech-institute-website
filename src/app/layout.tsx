@@ -131,7 +131,7 @@ export default function RootLayout({
               url: "https://www.echinstitute.org",
               logo: "https://www.echinstitute.org/assets/logo/ECH Institute Logo - White.png",
               description:
-                "ECH Institute is a 501(c)(3) non-profit supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral public good.",
+                "ECH Institute is a 501(c)(3) non-profit supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral public good. Founded July 11, 2024.",
               foundingDate: "2024-07-11",
               email: "team@ethcatherders.com",
               sameAs: [
@@ -142,23 +142,12 @@ export default function RootLayout({
               ],
               nonprofitStatus: "Nonprofit501c3",
               areaServed: "Worldwide",
-            }),
-          }}
-        />
-        {/* Structured Data — WebSite */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "ECH Institute",
-              url: "https://www.echinstitute.org",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://www.echinstitute.org/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
+              knowsAbout: [
+                "Ethereum governance",
+                "EIP coordination",
+                "Blockchain education",
+                "Protocol development",
+              ],
             }),
           }}
         />
@@ -168,9 +157,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <Web3Provider>
-            <header>
-              <Navigation />
-            </header>
+            <Navigation />
             <main className="w-full">
               {children}
             </main>

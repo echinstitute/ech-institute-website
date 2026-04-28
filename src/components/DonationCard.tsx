@@ -184,12 +184,12 @@ function DonationCardContent() {
         {isConnected && (
           <>
             <div className="space-y-2">
-              <label className="text-sm font-medium">Currency</label>
+              <label htmlFor="token-select" className="text-sm font-medium">Currency</label>
               <Select
                 value={selectedToken}
                 onValueChange={(value) => setSelectedToken(value)}
               >
-                <SelectTrigger>
+                <SelectTrigger id="token-select" aria-label="Select donation currency">
                   <SelectValue placeholder="Select token" />
                 </SelectTrigger>
                 <SelectContent>
@@ -208,12 +208,14 @@ function DonationCardContent() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium">Amount</label>
+              <label htmlFor="donation-amount" className="text-sm font-medium">Amount</label>
               <Input
+                id="donation-amount"
                 type="number"
                 placeholder="Enter amount"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+                aria-required="true"
               />
             </div>
 

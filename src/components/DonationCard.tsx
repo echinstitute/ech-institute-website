@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAccount, useBalance, useChainId, usePublicClient, useSendTransaction, useWriteContract } from 'wagmi';
 import { formatUnits, parseAbi, parseEther, parseUnits } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';

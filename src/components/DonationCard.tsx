@@ -53,6 +53,34 @@ const supportedTokens: Record<string, Token> = {
 };
 
 export function DonationCard() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Card className="w-full max-w-md mx-auto">
+        <CardHeader className='text-center'>
+          <CardTitle>Make a Donation</CardTitle>
+          <CardDescription>
+            Donate to ECH Institute at: <br /> <span className="text-[10px]">{DONATION_ADDRESS}</span>.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex justify-center mb-4">
+             <div className="h-10 w-40 bg-gray-200 animate-pulse rounded-md" />
+          </div>
+          <div className="h-32 w-full bg-gray-100 animate-pulse rounded-lg" />
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return <DonationCardContent />;
+}
+
+function DonationCardContent() {
   const { address, isConnected } = useAccount();
   const [selectedToken, setSelectedToken] = useState('ETH');
   const [amount, setAmount] = useState('');
@@ -64,7 +92,7 @@ export function DonationCard() {
   const { data: balance } = useBalance({
     chainId: chainId,
     address: address,
-    token: selectedToken === 'ETH' ? undefined : supportedTokens[selectedToken].address as `0x${string}`,
+    token: selectedToken === 'ETH' ? undefined : (supportedTokens[selectedToken].address as Record<number, string>)[chainId] as `0x${string}`,
   });
 
   const { writeContractAsync: writeERC20 } = useWriteContract();
@@ -98,9 +126,18 @@ export function DonationCard() {
         // For ERC20 tokens
         const decimals = supportedTokens[selectedToken].decimals;
         const parsedAmount = parseUnits(amount, decimals);
+        const tokenAddress = (supportedTokens[selectedToken].address as Record<number, string>)[chainId] as `0x${string}`;
         
+        if (!tokenAddress) {
+          toast({
+            title: 'Error',
+            description: `Token not supported on this chain.`,
+          });
+          return;
+        }
+
         const hash = await writeERC20({
-          address: (supportedTokens[selectedToken].address as `0x${string}`),
+          address: tokenAddress,
           abi: parseAbi([
             "function transfer(address to, uint256 amount) returns (bool)",
           ]),

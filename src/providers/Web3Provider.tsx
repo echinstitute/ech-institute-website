@@ -3,7 +3,8 @@
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultConfig, darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider, http } from 'wagmi';
-import { mainnet, optimism, polygon, base, arbitrum } from 'wagmi/chains';
+// import { mainnet, optimism, polygon, base, arbitrum } from 'wagmi/chains';
+import { mainnet} from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMemo, useState, useEffect } from 'react';
 
@@ -20,13 +21,14 @@ function getWagmiConfig() {
     wagmiConfig = getDefaultConfig({
       appName: 'ECH Institute',
       projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
-      chains: [mainnet, polygon, optimism, arbitrum, base],
+      // chains: [mainnet, polygon, optimism, arbitrum, base],
+      chains: [mainnet],
       transports: {
         [mainnet.id]: http("https://ethereum-rpc.publicnode.com"),
-        [polygon.id]: http("https://polygon-bor-rpc.publicnode.com"),
-        [optimism.id]: http("https://optimism-rpc.publicnode.com"),
-        [arbitrum.id]: http("https://arbitrum-one-rpc.publicnode.com"),
-        [base.id]: http("https://base-rpc.publicnode.com"),
+        // [polygon.id]: http("https://polygon-bor-rpc.publicnode.com"),
+        // [optimism.id]: http("https://optimism-rpc.publicnode.com"),
+        // [arbitrum.id]: http("https://arbitrum-one-rpc.publicnode.com"),
+        // [base.id]: http("https://base-rpc.publicnode.com"),
       },
       ssr: true,
     });

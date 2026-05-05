@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Syne, DM_Sans, Antonio } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
 import { Web3Provider } from "@/providers/Web3Provider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
@@ -16,11 +17,97 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900", "1000"],
+});
+
+const antonio = Antonio({
+  variable: "--font-antonio",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "ECH Institute",
-  description: "ECH Institute is a 501(c)3 nonprofit organization focused on providing education and resources to the Ethereum community.",
+  metadataBase: new URL("https://www.echinstitute.org"),
+  title: {
+    default: "ECH Institute Ethereum Protocol Governance & Coordination",
+    template: "%s | ECH Institute",
+  },
+  description:
+    "ECH Institute is a 501(c)(3) non-profit supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral public good. Founded July 2024.",
+  keywords: [
+    "ECH Institute",
+    "Ethereum governance",
+    "EIP coordination",
+    "Ethereum Improvement Proposals",
+    "protocol governance",
+    "PEEPanEIP",
+    "blockchain education",
+    "Ethereum community",
+    "WiEP",
+    "Women in Ethereum Protocol",
+    "All Core Devs",
+    "decentralized governance",
+    "public good",
+    "nonprofit Ethereum",
+  ],
+  authors: [{ name: "ECH Institute", url: "https://www.echinstitute.org" }],
+  creator: "ECH Institute",
+  publisher: "ECH Institute",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.echinstitute.org",
+    siteName: "ECH Institute",
+    title: "ECH Institute Ethereum Protocol Governance & Coordination",
+    description:
+      "Supporting Ethereum's protocol governance and coordination — helping the ecosystem scale responsibly and sustainably.",
+    images: [
+      {
+        url: "/assets/logo/ECH Institute Logo - White.png",
+        width: 1200,
+        height: 630,
+        alt: "ECH Institute Ethereum Protocol Governance & Coordination",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ECH Institute Ethereum Protocol Governance & Coordination",
+    description:
+      "Supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral 501(c)(3) public good.",
+    images: ["/assets/logo/ECH Institute Logo - White.png"],
+    creator: "@ECHinstitute",
+    site: "@ECHinstitute",
+  },
   icons: {
-    icon: "/assets/ech_full_logo.png",
+    icon: [{ url: "/assets/logo/ECH Institute Logo - White.png", type: "image/png" }],
+    apple: "/assets/logo/ECH Institute Logo - White.png",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+  },
+  alternates: {
+    canonical: "https://www.echinstitute.org",
   },
 };
 
@@ -30,18 +117,54 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Structured Data — Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "ECH Institute",
+              alternateName: "ECH Institute Inc.",
+              url: "https://www.echinstitute.org",
+              logo: "https://www.echinstitute.org/assets/logo/ECH Institute Logo - White.png",
+              description:
+                "ECH Institute is a 501(c)(3) non-profit supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral public good. Founded July 11, 2024.",
+              foundingDate: "2024-07-11",
+              email: "team@ethcatherders.com",
+              sameAs: [
+                "https://x.com/ECHinstitute",
+                "https://github.com/echinstitute",
+                "https://www.youtube.com/@echinstitute",
+                "https://www.linkedin.com/company/ethereum-cat-herders/",
+              ],
+              nonprofitStatus: "Nonprofit501c3",
+              areaServed: "Worldwide",
+              knowsAbout: [
+                "Ethereum governance",
+                "EIP coordination",
+                "Blockchain education",
+                "Protocol development",
+              ],
+            }),
+          }}
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${dmSans.variable} ${antonio.variable} antialiased theme-dark dark`}
       >
-        <Web3Provider>
-          <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-            <Header />
-            {children}
+        <ThemeProvider>
+          <Web3Provider>
+            <Navigation />
+            <main className="w-full">
+              {children}
+            </main>
             <Footer />
-          </div>
-          <Toaster />
-        </Web3Provider>
+            <Toaster />
+          </Web3Provider>
+        </ThemeProvider>
       </body>
     </html>
   );

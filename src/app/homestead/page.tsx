@@ -294,7 +294,9 @@ const eipStages = [
   { stage: 'Review', icon: AlertCircle, tone: 'warning', description: 'EIP editors and the core developer community review the proposal for technical soundness, specification clarity, and backward compatibility. Revisions are made in response to feedback.', actions: ['EIP editor format review', 'Core developer technical review', 'Revisions based on feedback'] },
   { stage: 'Last Call', icon: Clock, tone: 'violet', description: 'A final 14-day public comment window for all stakeholders. The EIP is considered complete unless critical issues are raised that require it to return to Review status.', actions: ['14-day public comment window', 'Broadcast to wider community', 'Final chance to raise blocking issues'] },
   { stage: 'Final', icon: CheckCircle2, tone: 'success', description: 'The EIP is accepted as an official Ethereum standard. From here it may be considered for inclusion in an upcoming network upgrade, or may stand alone as an informational or interface standard.', actions: ['Accepted as official standard', 'Considered for network upgrade inclusion', 'Becomes permanent reference spec'] },
-  { stage: 'Deployed', icon: Cpu, tone: 'warning', description: 'The EIP has been activated on Ethereum mainnet as part of a network upgrade. It is now enforced at the protocol level across all Ethereum clients.', actions: ['Mainnet activation via upgrade', 'Enforced by all client implementations', 'Documentation finalized and archived'] },
+  { stage: 'Stagnant', icon: Clock, tone: 'neutral', description: 'Any EIP in Draft or Review state that is inactive for a period of 6 months or greater is moved to Stagnant. It can be resurrected by authors later.', actions: ['Inactive for 6 months', 'Moved to Stagnant', 'Can be resurrected'] },
+  { stage: 'Withdrawn', icon: AlertCircle, tone: 'warning', description: 'The EIP author has explicitly withdrawn the proposed EIP. This state has finality and can no longer be resurrected using this EIP number.', actions: ['Author withdraws EIP', 'Permanent state', 'Cannot be resurrected'] },
+  { stage: 'Living', icon: Zap, tone: 'info', description: 'A special status for EIPs that are designed to be continually updated and not reach a state of finality (e.g., EIP-1).', actions: ['Continually updated', 'Never final', 'Core process documentation'] },
 ];
 
 // ─── EIP status types (non-standards track) ──────────────────────────────────
@@ -603,16 +605,13 @@ export default function HomesteadPage() {
                   return (
                     <div key={title} className={`absolute ${positions[index]} group/sphere z-20 hover:z-50 transition-all duration-300`}>
                       <div className="relative flex flex-col items-center">
-                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer relative z-10">
-                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white group-hover/sphere:opacity-0 group-hover/sphere:scale-0 transition-all duration-300" />
-                          <span className="absolute inset-0 flex items-center justify-center text-lg md:text-xl font-black text-white opacity-0 group-hover/sphere:opacity-100 transition-all duration-300">
-                            0{index + 1}
-                          </span>
-                          <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
+                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-2xl border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl cursor-default relative z-10">
+                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white" />
                         </div>
-                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-all duration-300">
+                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)]">
                           <span className="text-[10px] font-black uppercase tracking-widest text-white">0{index + 1} {title}</span>
                         </div>
+                        {/* Tooltip — revealed on hover */}
                         <div className={`absolute ${tooltipPos[index]} w-60 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] backdrop-blur-2xl border border-[var(--accent-brand)]/50 p-5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-all duration-500 z-50 scale-90 group-hover/sphere:scale-100`}>
                           <div className={arrowPos[index]} />
                           <div className="relative z-10">
@@ -644,7 +643,7 @@ export default function HomesteadPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { value: '6', label: 'EIP Lifecycle Stages' },
+              { value: '8', label: 'EIP Lifecycle Stages' },
               { value: '3', label: 'EIP Inclusion States' },
               { value: '2x', label: 'Annual Upgrade Cadence' },
               { value: '2024', label: 'ECH Institute Founded' },
@@ -688,11 +687,14 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors group"
                       onClick={() => toggle(setOpenGov, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black shrink-0">
-                        <item.icon className="h-5 w-5 global-icon-yellow" />
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                        <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          0{i + 1}
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
@@ -785,27 +787,28 @@ export default function HomesteadPage() {
 
             {/* Lifecycle */}
             <h3 className="global-card-title mb-4">EIP Lifecycle: Stage by Stage</h3>
-            <div className="relative flex flex-col gap-3">
-              {/* Yellow gradient connector line */}
-              <div className="absolute left-5 top-10 bottom-10 w-[2px] bg-gradient-to-b from-[#F5A51D]/10 via-[#F5A51D] to-[#F5A51D]/10 rounded-full hidden sm:block" />
+            <div className="relative flex flex-col gap-4">
+              {/* Connector line */}
+              <div className="absolute left-[21px] top-10 bottom-10 w-[2px] bg-[var(--border-soft)] rounded-full hidden sm:block" />
               {eipStages.map((s, i) => (
-                <div key={s.stage} className="relative flex gap-4 items-start">
-                  {/* Yellow icon circle */}
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#F5A51D] bg-[#F5A51D]/10 text-[#F5A51D] shadow-[0_0_16px_rgba(245,165,29,0.25)] mt-1">
-                    <s.icon size={17} />
+                <div key={s.stage} className="relative flex gap-4 items-start group">
+                  {/* Proplay Icon */}
+                  <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10 bg-[#151419]">
+                    <s.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      0{i + 1}
+                    </span>
                   </div>
-                  {/* Card with yellow hover */}
-                  <div className="flex-1 global-card mb-0 border-[#262626] hover:border-[#F5A51D] hover:shadow-[0_0_20px_rgba(245,165,29,0.08)] transition-all duration-300">
+                  {/* Card */}
+                  <div className="flex-1 global-card mb-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent-brand)] group-hover:shadow-xl">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      {/* Yellow stage label */}
-                      <span className="text-xs font-black uppercase tracking-[0.15em] text-[#F5A51D]">Stage {i + 1}</span>
                       <h4 className="global-card-title mb-0 text-[#FBFBFB]">{s.stage}</h4>
                     </div>
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#F5A51D]/8 border border-[#F5A51D]/25 rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} className="text-[#F5A51D] flex-shrink-0" /> {a}
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-primary)] bg-[var(--surface-card-muted)] border border-[var(--border-soft)] rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="text-[var(--accent-brand)] flex-shrink-0" /> {a}
                         </span>
                       ))}
                     </div>
@@ -834,11 +837,14 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors group"
                       onClick={() => toggle(setOpenUpgrades, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B1B1E] shrink-0">
-                        <item.icon className="h-5 w-5 global-icon-yellow" />
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                        <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          0{i + 1}
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
@@ -898,11 +904,14 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors group"
                       onClick={() => toggle(setOpenEch, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B1B1E] shrink-0">
-                        <item.icon className="h-5 w-5 global-icon-yellow" />
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                        <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          0{i + 1}
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
@@ -962,11 +971,14 @@ export default function HomesteadPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors"
+                      className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors group"
                       onClick={() => toggle(setOpenWhy, i)}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B1B1E] shrink-0">
-                        <item.icon className="h-5 w-5 global-icon-yellow" />
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                        <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          0{i + 1}
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
@@ -1014,9 +1026,12 @@ export default function HomesteadPage() {
                 { icon: BookOpen, title: 'Learn More', desc: 'Start with the Education page for structured learning tracks by experience level.', link: ROUTES.education, cta: 'Education Hub', external: false },
               ].map((card, i) => (
                 <Link key={i} href={card.link} target={card.external ? '_blank' : '_self'}
-                  className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-amber-400 transition-colors">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B1B1E] shrink-0">
-                    <card.icon className="h-5 w-5 global-icon-yellow" />
+                  className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
+                  <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                    <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      0{i + 1}
+                    </span>
                   </div>
                   <div className="flex-1">
                     <h3 className="global-card-title mb-1">{card.title}</h3>

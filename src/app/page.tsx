@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
 import CardSlider from '@/components/features/CardSlider';
 import FAQSection from '@/components/features/FAQSection';
-import { Settings, ShieldCheck, Clock, Mail, Twitter, Youtube, GraduationCap, Users, CheckCircle2, Quote } from 'lucide-react';
+import { Settings, ShieldCheck, Clock, Mail, Twitter, Youtube, GraduationCap, Users, CheckCircle2, Quote, Network } from 'lucide-react';
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -63,7 +63,7 @@ export default function Home() {
             <h1 className="global-hero-title animate-fade-up delay-1">ECH Institute</h1>
             <p className="hero-tagline animate-fade-up">Education, Community, Homesteading!</p>
             <p className="hero-subtitle animate-fade-up delay-2">
-              ECH Institute is committed to empowering individuals with knowledge, strengthening communities, and supporting ecosystem projects. Our work focuses on creating meaningful change while serving the broader ecosystem as a public good.
+              ECH Institute serves the Ethereum ecosystem by coordinating All Core Devs (ACD) calls, facilitating weekly EIP research meetings, and providing world-class protocol education. As a neutral 501(c)(3) nonprofit, we ensure the protocol remains accessible, coordinated, and resilient.
             </p>
             <div className="hero-buttons animate-fade-up delay-3 flex flex-wrap gap-4 justify-center md:justify-start">
               <Link href="#programs" className="btn btn-primary">Our Programs</Link>
@@ -89,13 +89,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
-      </div>
-
       {/* ── Who We Are ── */}
-      <section className="proplay-section bg-background relative overflow-hidden scroll-mt-24" id="who-we-are">
+      <section className="proplay-section bg-background relative overflow-hidden scroll-mt-24 border-t border-[var(--border-soft)]" id="who-we-are">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
@@ -112,29 +107,29 @@ export default function Home() {
               <div className="space-y-6 pt-4">
                 <div className="flex gap-6 group">
                   <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
-                    <GraduationCap className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Education First</h3>
-                    <p className="global-body text-sm leading-relaxed">We create accessible pathways to learn blockchain and participate in the Web3 ecosystem empowering individuals at every stage.</p>
-                  </div>
-                </div>
-                <div className="flex gap-6 group">
-                  <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
                     <Users className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Community-Centered</h3>
-                    <p className="global-body text-sm leading-relaxed">We build inclusive, supportive communities that enable meaningful participation because learning and contributing in Web3 go hand in hand.</p>
+                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">People</h3>
+                    <p className="global-body text-sm leading-relaxed">Empowering a diverse, global community of core developers, researchers, and contributors through mentorship and inclusivity initiatives.</p>
                   </div>
                 </div>
                 <div className="flex gap-6 group">
                   <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
-                    <ShieldCheck className="h-6 w-6 text-white" />
+                    <Settings className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Open Accountability</h3>
-                    <p className="global-body text-sm leading-relaxed">We operate with transparency and integrity openly sharing our work, progress, and impact with the communities we serve.</p>
+                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Process</h3>
+                    <p className="global-body text-sm leading-relaxed">Streamlining Ethereum&apos;s governance through neutral coordination of All Core Devs calls, EIP reviews, and institutional transparency.</p>
+                  </div>
+                </div>
+                <div className="flex gap-6 group">
+                  <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
+                    <Network className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Protocol</h3>
+                    <p className="global-body text-sm leading-relaxed">Ensuring the technical resilience and long-term scalability of the Ethereum protocol through expert communication and network upgrade readiness.</p>
                   </div>
                 </div>
               </div>
@@ -147,6 +142,7 @@ export default function Home() {
                     src="/assets/images/EIP Summit Group Photo.webp"
                     alt="ECH Institute community at EIP Summit"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -168,16 +164,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
-      </div>
-
 
       {/* ══════════════════════════════════════════════════
           OUR JOURNEY Infographic Timeline
       ══════════════════════════════════════════════════ */}
-      <section className="proplay-section bg-background relative" id="evolution">
+      <section className="proplay-section bg-background relative border-t border-[var(--border-soft)]" id="evolution">
         <div className="evo-container">
 
           {/* Header */}
@@ -302,14 +293,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
-      </div>
-
 
       {/* ── Programs ── */}
-      <section className="proplay-section bg-background" id="programs">
+      <section className="proplay-section bg-background border-t border-[var(--border-soft)]" id="programs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 justify-between items-stretch lg:items-end mb-16">
             <div className="lg:w-1/2 flex flex-col justify-end">
@@ -403,14 +389,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
-      </div>
-
 
       {/* ── Impact ── */}
-      <section className="proplay-section bg-background" id="impact">
+      <section className="proplay-section bg-background border-t border-[var(--border-soft)]" id="impact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 lg:gap-20 justify-between items-start md:items-end mb-16">
             <div className="max-w-2xl">
@@ -425,8 +406,8 @@ export default function Home() {
             <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">12+</span>
-                <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Network Upgrades</h3>
-                <p className="global-body text-sm text-[var(--text-soft)]">Coordinating and broadcasting every Ethereum network upgrade since 2019.</p>
+                <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Protocol Coordination</h3>
+                <p className="global-body text-sm text-[var(--text-soft)]">Organizing every All Core Devs (ACD) call and coordinating EIP readiness for 12+ network upgrades.</p>
               </div>
             </div>
 
@@ -478,45 +459,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
+      {/* ── Testimonials ── */}
+      <div className="border-t border-[var(--border-soft)]">
+        <CardSlider />
       </div>
 
-
-      {/* ── Get Involved ── */}
-      <section className="proplay-section bg-background relative overflow-hidden" id="get-involved-peek">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
-          <div className="hidden lg:flex lg:col-span-5 items-center justify-center relative h-[400px]">
-            <div className="gi-mascot-wrap">
-              <img src="/assets/logo/cat5.png" alt="Cat peeking" className="relative z-10 w-[400px] h-auto object-contain" />
-            </div>
-          </div>
-          <div className="lg:col-span-7 animate-on-scroll">
-            <div className="global-section-tag">GET INVOLVED</div>
-            <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
-              Join us in building <br /><em>a better community.</em>
-            </h2>
-            <p className="grow-0 global-body-lg mb-12 text-gray-700 max-w-xl leading-relaxed">
-              Change doesn&apos;t happen alone. Whether you have time, skills, or resources to give there is a meaningful place for you at ECH Institute.
-            </p>
-            <div className="flex flex-wrap gap-6 items-center">
-              <Link href={ROUTES.support} className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">DONATE NOW</Link>
-              <Link href={ROUTES.getInvolved} className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">GET INVOLVED &rarr;</Link>
-              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">VIEW FULL REPORT</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
-      </div>
-
-
-      {/* ── Partners Marquee ── */}
-      <section className="proplay-section-dense bg-background overflow-hidden">
+  {/* ── Partners Marquee ── */}
+      <section className="proplay-section-dense bg-background overflow-hidden border-t border-[var(--border-soft)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
           <div className="inline-flex items-center gap-4 mb-4">
             <div className="h-px w-8 bg-[#262626]"></div>
@@ -524,7 +473,7 @@ export default function Home() {
             <div className="h-px w-8 bg-[#262626]"></div>
           </div>
           <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-[#FBFBFB] leading-tight">
-            Supported by &amp; <br className="md:hidden" /> <em>Collaborating with.</em>
+            Partnered by &amp; <br className="md:hidden" /> <em>Collaborating with.</em>
           </h2>
         </div>
         <div className="marquee-container">
@@ -580,13 +529,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        {/* <div className="max-w-7xl mx-auto h-px bg-[#F5A51D] opacity-20" /> */}
-      </div>
+      {/* ── Get Involved ── */}
+      <section className="proplay-section bg-background relative overflow-hidden border-t border-[var(--border-soft)]" id="get-involved-peek">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
+          <div className="hidden lg:flex lg:col-span-5 items-center justify-center relative h-[400px]">
+            <div className="gi-mascot-wrap">
+              <img src="/assets/logo/cat5.png" alt="Cat peeking" className="relative z-10 w-[400px] h-auto object-contain" />
+            </div>
+          </div>
+          <div className="lg:col-span-7 animate-on-scroll">
+            <div className="global-section-tag">GET INVOLVED</div>
+            <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
+              Join us in building <br /><em>a better community.</em>
+            </h2>
+            <p className="grow-0 global-body-lg mb-12 text-gray-700 max-w-xl leading-relaxed">
+              Change doesn&apos;t happen alone. Whether you have time, skills, or resources to give there is a meaningful place for you at ECH Institute.
+            </p>
+            <div className="flex flex-wrap gap-6 items-center">
+              <Link href={ROUTES.support} className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">DONATE NOW</Link>
+              <Link href={ROUTES.getInvolved} className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">GET INVOLVED &rarr;</Link>
+              <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">VIEW FULL REPORT</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    
 
 
-      <section className="proplay-section bg-background relative overflow-hidden" id="contact">
+      <section className="proplay-section bg-background relative overflow-hidden border-t border-[var(--border-soft)]" id="contact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <div className="animate-on-scroll">

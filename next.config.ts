@@ -12,10 +12,6 @@ const nextConfig: NextConfig = {
 
   turbopack: {},
 
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
   typescript: {
     ignoreBuildErrors: true,
   },

@@ -37,7 +37,7 @@ const communityLinks = [
     tone: "violet",
   },
   {
-    title: "Ethresear",
+    title: "EthResearch",
     category: "Community",
     description: "The primary forum for technical Ethereum research, protocol discussions, and technical EIP conversations.",
     cta: "Explore Research",

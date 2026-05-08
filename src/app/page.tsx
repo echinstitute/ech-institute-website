@@ -151,8 +151,7 @@ export default function Home() {
                     <Quote className="h-6 w-6 text-accent-foreground text-white" />
                   </div>
                   <p className="text-lg font-syne font-bold text-foreground leading-snug mb-6 pt-4 italic">
-                    &ldquo;We don&apos;t just help communities. We are an active part of the Ethereum fabric.&rdquo;
-                  </p>
+From the community, for the community - shaping Ethereum together.</p>
                   <div className="flex items-center gap-4">
                     <div className="h-[2px] w-8 bg-accent"></div>
                     <span className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground uppercase">ECH INSTITUTE</span>

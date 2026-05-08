@@ -151,9 +151,13 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="footer-disclaimer">
             <span>All content and resources on our website are for educational purposes only.</span>
+            <span className="footer-disclaimer-ai">
+              Some information on this site is assisted by AI. If you find any information that is incorrect or hurtful, please {' '}
+              <a href="mailto:team@ethcatherders.com" className="footer-disclaimer-link">email us</a> and we will address it promptly.
+            </span>
           </div>
           <div className="footer-copyright">
-            <span>&copy; {currentYear} ECH Institute, Inc. ·501(c)(3) Nonprofit </span>
+            <span>&copy; {currentYear} ECH Institute, Inc.</span>
           </div>
         </div>
       </div>

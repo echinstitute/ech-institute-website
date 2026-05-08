@@ -142,10 +142,10 @@ export default function PodcastPage() {
               ECH Institute Media Hub
             </div>
             <h1 className="page-hero-title">
-              Protocol <br /><em>Intelligence</em>
+              ECH <br /><em className="text-[#F5A51D]">Podcast Hub</em>
             </h1>
             <p className="page-hero-desc mb-8">
-              Over 837 videos organized into thematic playlists — deep-dives, strategic transitions, and ecosystem demos. One place for Ethereum protocol education and coordination.
+              The public archive for Ethereum&apos;s protocol evolution. Organizing and publishing All Core Devs (ACD) calls, EIP deep-dives, and technical coordination summaries in one central hub.
             </p>
 
             {/* Listen On */}
@@ -196,41 +196,48 @@ export default function PodcastPage() {
           <div className="w-1 h-8 rounded-full bg-[#F5A51D]" />
           <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">Content Taxonomy</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[#FBFBFB]">
-          The Media <em className="not-italic text-[#F5A51D]">Pillars</em>
-        </h2>
-        <p className="text-sm mb-10 max-w-2xl text-[#FBFBFB]/50">
-          Six distinct series — each mapped to a specific stakeholder need, from core developers to enterprise teams to community builders.
-        </p>
-        <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mediaPillars.map(({ title, blurb, badge, href, icon: Icon, external }) => {
-            const CardWrapper = external
-              ? ({ children }: { children: React.ReactNode }) => (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="group flex flex-col rounded-2xl border border-[#262626] bg-[#1B1B1E] p-4 sm:p-6 no-underline transition-all duration-300 hover:border-[#F5A51D]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.10)]">{children}</a>
-                )
-              : ({ children }: { children: React.ReactNode }) => (
-                  <Link href={href} className="group flex flex-col rounded-2xl border border-[#262626] bg-[#1B1B1E] p-4 sm:p-6 no-underline transition-all duration-300 hover:border-[#F5A51D]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.10)]">{children}</Link>
-                );
-            return (
-              <CardWrapper key={title}>
-                <div className="flex items-start justify-between gap-3 mb-4 flex-wrap">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5A51D]/10 border border-[#F5A51D]/20">
-                    <Icon className="h-6 w-6 text-[#F5A51D]" />
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-[#FBFBFB]">
+            The Media <em className="not-italic text-[#F5A51D]">Pillars</em>
+          </h2>
+          <p className="text-sm text-[#FBFBFB]/40 max-w-sm sm:text-right">
+            Six distinct series, each mapped to a specific stakeholder need.
+          </p>
+        </div>
+
+        {/* Bento-style grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {mediaPillars.map(({ title, blurb, badge, href, icon: Icon, external }, i) => {
+            const baseClass = `group relative flex flex-col rounded-3xl border border-[#262626] bg-[#1B1B1E] overflow-hidden no-underline transition-all duration-500 hover:-translate-y-1.5 hover:border-[#F5A51D]/60 hover:shadow-[0_8px_48px_rgba(245,165,29,0.14)]`;
+            const inner = (
+              <>
+                {/* Top glow on hover */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#F5A51D] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="p-6 sm:p-7 flex flex-col flex-1">
+                  <div className="flex items-start justify-between gap-3 mb-5">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#F5A51D]/20 to-[#F5A51D]/5 border border-[#F5A51D]/25 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(245,165,29,0.3)]">
+                      <Icon className="h-7 w-7 text-[#F5A51D]" />
+                    </div>
+                    <span className="inline-block px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest bg-[#F5A51D]/10 text-[#F5A51D] border border-[#F5A51D]/20 shrink-0 mt-1">
+                      {badge}
+                    </span>
                   </div>
-                  <span className="inline-block px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-widest bg-[#F5A51D]/10 text-[#F5A51D] border border-[#F5A51D]/20 shrink-0 mt-1">
-                    {badge}
-                  </span>
+                  <h3 className="text-lg font-extrabold text-[#FBFBFB] mb-3 leading-snug group-hover:text-[#F5A51D] transition-colors duration-300">{title}</h3>
+                  <p className="text-sm text-[#FBFBFB]/45 leading-relaxed flex-1">{blurb}</p>
+                  <div className="mt-6 pt-5 border-t border-[#262626] flex items-center justify-between">
+                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FBFBFB]/25">
+                      {external ? 'YouTube Playlist' : 'Explore Series'}
+                    </span>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#3a3a3a] text-[#878787] group-hover:text-[#F5A51D] group-hover:border-[#F5A51D]/50 group-hover:bg-[#F5A51D]/10 transition-all duration-300">
+                      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </div>
                 </div>
-                <p className="text-base font-extrabold text-[#FBFBFB] mb-2 group-hover:text-[#F5A51D] transition-colors">{title}</p>
-                <p className="text-sm text-[#FBFBFB]/50 leading-relaxed flex-1">{blurb}</p>
-                <div className="mt-5 pt-4 border-t border-[#262626] flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#FBFBFB]/30 uppercase tracking-widest">
-                    {external ? 'YouTube Playlist' : 'Explore Series'}
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-[#878787] group-hover:text-[#F5A51D] transition-colors group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </CardWrapper>
+              </>
             );
+            return external
+              ? <a key={title} href={href} target="_blank" rel="noopener noreferrer" className={baseClass}>{inner}</a>
+              : <Link key={title} href={href} className={baseClass}>{inner}</Link>;
           })}
         </div>
       </section>
@@ -239,31 +246,70 @@ export default function PodcastPage() {
 
       {/* ── ACD Archive ── */}
       <section id="acd-archive" className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-12 md:py-16 scroll-mt-24">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-1 h-8 rounded-full bg-[#F5A51D]" />
-          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">Technical Coordination</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[#FBFBFB]">
-          All Core Devs <em className="not-italic text-[#F5A51D]">Archive</em>
-        </h2>
-        <p className="text-sm mb-10 max-w-2xl text-[#FBFBFB]/50">
-          The ECH Institute organizes and documents All Core Devs meetings (ACDE, ACDC) — providing a transparent record of Ethereum&apos;s consensus-building process. Each entry includes:
-        </p>
-        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-6">
-          {acdCards.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="rounded-2xl border border-[#262626] bg-[#1B1B1E] p-6 flex flex-col gap-4 transition hover:border-[#F5A51D]/40"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5A51D]/10 border border-[#F5A51D]/20">
-                <Icon className="h-6 w-6 text-[#F5A51D]" />
-              </div>
+        <div className="rounded-3xl border border-[#262626] bg-[#1B1B1E] overflow-hidden">
+
+          {/* Header band */}
+          <div
+            className="relative px-8 py-10 md:px-12 border-b border-[#262626]"
+            style={{ background: 'linear-gradient(135deg, #1B1B1E 0%, #1a1500 60%, #1B1B1E 100%)' }}
+          >
+            <div className="absolute top-0 right-0 w-80 h-80 rounded-full blur-[80px] opacity-[0.06] pointer-events-none" style={{ background: '#F5A51D' }} />
+            <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6">
               <div>
-                <p className="text-base font-bold text-[#FBFBFB] mb-1">{title}</p>
-                <p className="text-sm text-[#FBFBFB]/50 leading-relaxed">{desc}</p>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-1 h-6 rounded-full bg-[#F5A51D]" />
+                  <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">Technical Coordination</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-[#FBFBFB]">
+                  All Core Devs <em className="not-italic text-[#F5A51D]">Archive</em>
+                </h2>
+                <p className="text-sm text-[#FBFBFB]/50 max-w-lg mt-2 leading-relaxed">
+                  The ECH Institute organizes ACDE, ACDC, and breakout sessions — providing a transparent, permanent record of Ethereum&apos;s consensus-building process.
+                </p>
               </div>
+              <a
+                href="https://www.youtube.com/@echinstitute/streams"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-[#F5A51D] px-6 py-3 text-sm font-bold text-[#151419] transition hover:opacity-90 hover:shadow-[0_0_24px_rgba(245,165,29,0.3)] self-start sm:self-auto"
+              >
+                <Video className="h-4 w-4" /> Watch Archive
+              </a>
             </div>
-          ))}
+          </div>
+
+          {/* Feature cards — divide columns */}
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#262626]">
+            {acdCards.map(({ icon: Icon, title, desc }) => (
+              <div
+                key={title}
+                className="group p-8 md:p-10 flex flex-col gap-5 transition-colors duration-300 hover:bg-[#F5A51D]/[0.03]"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#F5A51D]/20 to-[#F5A51D]/5 border border-[#F5A51D]/25 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(245,165,29,0.2)]">
+                  <Icon className="h-7 w-7 text-[#F5A51D]" />
+                </div>
+                <div>
+                  <p className="text-base font-extrabold text-[#FBFBFB] mb-2 group-hover:text-[#F5A51D] transition-colors">{title}</p>
+                  <p className="text-sm text-[#FBFBFB]/45 leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom stat strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-[#262626] border-t border-[#262626]">
+            {[
+              { v: '837+', l: 'Videos archived' },
+              { v: '200+', l: 'ACD calls recorded' },
+              { v: '6+',   l: 'Years of coverage' },
+              { v: '100%', l: 'Public & open' },
+            ].map(({ v, l }) => (
+              <div key={l} className="flex flex-col items-center justify-center py-6 px-4 text-center">
+                <span className="text-2xl sm:text-3xl font-extrabold text-[#F5A51D] font-syne">{v}</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-[#FBFBFB]/30 mt-1">{l}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

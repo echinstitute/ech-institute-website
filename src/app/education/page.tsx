@@ -97,18 +97,18 @@ const featuredGuides = [
     title: 'All Core Devs Meetings',
     tag: 'Governance',
     link: 'https://github.com/ethereum/pm',
-    summary: 'How the biweekly ACD calls work, who participates, and how decisions are documented and acted upon.',
-    detail: 'All Core Devs (ACD) calls are the primary coordination mechanism for Ethereum protocol development. They happen biweekly alternating between Execution Layer (ACDE) and Consensus Layer (ACDC) calls. ECH Institute documents these calls, archives the notes in the ethereum/pm repository, and publishes summaries for the broader community. ACD calls are open to observe but participation is by invitation from client teams.',
-    steps: ['Agenda published 1 week before call', 'Client teams present updates', 'EIP discussions and decisions', 'Action items captured by ECH Institute', 'Notes published to ethereum/pm', 'Summary shared with community'],
+    summary: 'Organizing and publishing the biweekly ACD calls, where core developers coordinate Ethereum\'s future.',
+    detail: 'ECH Institute takes a lead role in organizing All Core Devs (ACD) calls, which alternate biweekly between Execution (ACDE) and Consensus (ACDC) layers. We manage agendas, facilitate the sessions, and publish comprehensive technical summaries for the ecosystem. These calls are the heartbeat of Ethereum\'s protocol evolution, and ECH ensures they remain transparent and well-documented.',
+    steps: ['Organize agenda with client teams', 'Facilitate biweekly technical calls', 'Capture detailed technical decisions', 'Publish all core dev videos publicly', 'Archive notes in ethereum/pm', 'Share executive summaries'],
   },
   {
     icon: Network,
     title: 'Protocol Coordination',
     tag: 'ECH Institute',
     link: EXTERNAL_LINKS.blog,
-    summary: 'Behind the scenes of ECH Institute\'s coordination role from upgrade planning to post-deployment communication.',
-    detail: 'ECH Institute serves as the "operating system" of Ethereum protocol coordination. This means organizing and documenting ACD calls, running EIPIP office hours, managing EIP editor coordination, producing educational content around upgrades, and maintaining community consensus channels. As a neutral 501(c)(3) nonprofit, ECH Institute holds no protocol authority its value is in enabling the coordination that allows Ethereum to evolve responsibly.',
-    steps: ['EIPIP calls for EIP coordination', 'ACD call documentation', 'Upgrade communication planning', 'Educational content production', 'Community consensus gathering', 'Post-deployment reporting'],
+    summary: 'Coordinating weekly EIP meetings and author workshops to drive technical consensus.',
+    detail: 'Beyond ACD calls, ECH Institute organizes weekly EIP-focused meetings (EIPIP) and author workshops. These sessions help EIP authors navigate the technical requirements and social coordination needed for protocol inclusion. As a neutral 501(c)(3), ECH serves as the operational layer that allows researchers and developers to focus on engineering while we manage the coordination overhead.',
+    steps: ['Weekly EIPIP coordination calls', 'EIP author technical workshops', 'Cross-client consensus facilitation', 'Upgrade communication strategy', 'Maintaining community dev channels', 'EIP editor liaison support'],
   },
 ];
 
@@ -140,9 +140,19 @@ const eipStages = [
     actions: ['Included in upgrade discussion', 'Client team implementation', 'Testnet deployment'],
   },
   {
-    stage: 'Deployed', icon: Cpu, tone: 'warning',
-    description: 'The EIP is live on Ethereum mainnet following a successful network upgrade. It is now enforced at the protocol level across all clients.',
-    actions: ['Mainnet activation', 'Post-upgrade monitoring', 'Documentation finalized'],
+    stage: 'Stagnant', icon: Clock, tone: 'neutral',
+    description: 'Any EIP in Draft or Review state that is inactive for a period of 6 months or greater is moved to Stagnant. It can be resurrected by authors later.',
+    actions: ['Inactive for 6 months', 'Moved to Stagnant', 'Can be resurrected'],
+  },
+  {
+    stage: 'Withdrawn', icon: AlertCircle, tone: 'warning',
+    description: 'The EIP author has explicitly withdrawn the proposed EIP. This state has finality and can no longer be resurrected using this EIP number.',
+    actions: ['Author withdraws EIP', 'Permanent state', 'Cannot be resurrected'],
+  },
+  {
+    stage: 'Living', icon: Zap, tone: 'info',
+    description: 'A special status for EIPs that are designed to be continually updated and not reach a state of finality (e.g., EIP-1).',
+    actions: ['Continually updated', 'Never final', 'Core process documentation'],
   },
 ];
 
@@ -177,18 +187,11 @@ const timelineCards = [
     highlight: 'Now a primary technical archive for Ethereum Improvement Proposals.',
   },
   {
-    year: '2025', quarter: 'Q1', icon: Users, tone: 'success',
+    year: '2025', quarter: 'Q2', icon: Users, tone: 'success',
     badge: 'New Program', badgeTone: 'success',
-    title: 'WiEP Classroom Series Launched',
-    description: 'The Women in Ethereum Protocol (WiEP) structured classroom series launched to onboard women into protocol development.',
-    highlight: 'Dedicated mentorship and study groups for core protocol contribution.',
-  },
-  {
-    year: '2025', quarter: 'Q2', icon: Building2, tone: 'info',
-    badge: 'Governance', badgeTone: 'info',
-    title: 'Board Maturity & Hudson Jameson',
-    description: 'Veteran contributors joined the Board of Directors. Formalizing the "operating system" for Ethereum communication.',
-    highlight: 'Ensuring predictable engineering delivery through neutral coordination.',
+    title: 'WiEP Study Group Cohort',
+    description: 'Launching the inaugural Women in Ethereum Protocol (WiEP) study group cohort, a strategic initiative to onboard diverse talent into protocol engineering.',
+    highlight: 'Providing structured mentorship and technical pathways for core protocol contribution.',
   },
   {
     year: '2025', quarter: 'Q3', icon: GitBranch, tone: 'warning',
@@ -196,6 +199,20 @@ const timelineCards = [
     title: 'Pectra Upgrade Communication',
     description: 'Lead coordination for the Pectra network upgrade, managing consensus layer and execution layer communication.',
     highlight: 'Facilitating devnets, testnets, and community-wide readiness calls.',
+  },
+    {
+    year: '2025', quarter: 'Q4', icon: GitPullRequest, tone: 'neutral',
+    badge: 'Future Upgrade', badgeTone: 'neutral',
+    title: 'Fusaka Upgrade Coordination',
+    description: 'Pioneering early-stage coordination for the Fusaka upgrade, driving systemic improvements in data availability and protocol efficiency.',
+    highlight: 'Laying the technical and social groundwork for Ethereum\'s next major scaling milestones.',
+  },
+  {
+    year: '2026', quarter: 'Q1', icon: Building2, tone: 'info',
+    badge: 'Governance', badgeTone: 'info',
+    title: 'Board Maturity & Hudson Jameson',
+    description: 'Veteran contributors joined the Board of Directors. Formalizing the "operating system" for Ethereum communication.',
+    highlight: 'Ensuring predictable engineering delivery through neutral coordination.',
   },
   {
     year: '2026', quarter: 'Active', icon: Target, tone: 'success',
@@ -339,19 +356,12 @@ export default function EducationPage() {
                       className={`absolute ${positions[index]} group/sphere z-20 hover:z-50 transition-all duration-300`}
                     >
                       <div className="relative flex flex-col items-center">
-                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer relative z-10">
-                          {/* Icon — hides on hover */}
-                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white group-hover/sphere:opacity-0 group-hover/sphere:scale-0 transition-all duration-300" />
-                          {/* Number — appears on hover */}
-                          <span className="absolute inset-0 flex items-center justify-center text-lg md:text-xl font-black text-white opacity-0 group-hover/sphere:opacity-100 transition-all duration-300">
-                            0{index + 1}
-                          </span>
-                          {/* Radial scanning ring */}
-                          <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
+                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-2xl border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl cursor-default relative z-10">
+                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white" />
                         </div>
 
-                        {/* Title badge — always visible */}
-                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-all duration-300">
+                        {/* Title badge */}
+                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)]">
                           <span className="text-[10px] font-black uppercase tracking-widest text-white">0{index + 1} {title}</span>
                         </div>
 
@@ -371,6 +381,7 @@ export default function EducationPage() {
                             <div className="mt-4 h-px w-8 bg-[var(--accent-brand)] opacity-50" />
                           </div>
                         </div>
+
                       </div>
                     </div>
                   );
@@ -422,11 +433,14 @@ export default function EducationPage() {
                   key={i}
                   href={f.link}
                   target={f.isInternal ? '_self' : '_blank'}
-                  className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-amber-400 transition-all hover:shadow-md group"
+                  className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
-                      <f.icon className="h-5 w-5" />
+                    <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
+                      <f.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        0{i + 1}
+                      </span>
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
@@ -465,11 +479,14 @@ export default function EducationPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors group"
                       onClick={() => toggleGuide(i)}
                     >
-                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
-                        <g.icon className="h-5 w-5" />
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
+                        <g.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          0{i + 1}
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
@@ -509,27 +526,28 @@ export default function EducationPage() {
             <h2 className="global-section-title"><em>EIP Lifecycle</em>: From Idea to Mainnet</h2>
             <p className="global-body-lg mb-5">Every change to the Ethereum protocol starts as an idea and passes through a rigorous, community-driven review process before being deployed to mainnet.</p>
 
-            <div className="relative flex flex-col gap-3">
-              {/* Yellow gradient connector line */}
-              <div className="absolute left-5 top-10 bottom-10 w-[2px] bg-gradient-to-b from-[#F5A51D]/10 via-[#F5A51D] to-[#F5A51D]/10 rounded-full hidden sm:block" />
+            <div className="relative flex flex-col gap-4">
+              {/* Connector line */}
+              <div className="absolute left-[21px] top-10 bottom-10 w-[2px] bg-[var(--border-soft)] rounded-full hidden sm:block" />
               {eipStages.map((s, i) => (
-                <div key={s.stage} className="relative flex gap-4 items-start">
-                  {/* Yellow icon circle */}
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#F5A51D] bg-[#F5A51D]/10 text-[#F5A51D] shadow-[0_0_16px_rgba(245,165,29,0.25)] mt-1">
-                    <s.icon size={17} />
+                <div key={s.stage} className="relative flex gap-4 items-start group">
+                  {/* Proplay Icon */}
+                  <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10 bg-[#151419]">
+                    <s.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      0{i + 1}
+                    </span>
                   </div>
-                  {/* Card with yellow hover border */}
-                  <div className="flex-1 global-card mb-0 border-[#262626] hover:border-[#F5A51D] hover:shadow-[0_0_20px_rgba(245,165,29,0.08)] transition-all duration-300">
+                  {/* Card */}
+                  <div className="flex-1 global-card mb-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent-brand)] group-hover:shadow-xl">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      {/* Yellow stage badge */}
-                      <span className="text-xs font-black uppercase tracking-[0.15em] text-[#F5A51D]">Stage {i + 1}</span>
                       <h3 className="global-card-title mb-0">{s.stage}</h3>
                     </div>
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#F5A51D]/8 border border-[#F5A51D]/25 rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} className="text-[#F5A51D] flex-shrink-0" /> {a}
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-primary)] bg-[var(--surface-card-muted)] border border-[var(--border-soft)] rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="text-[var(--accent-brand)] flex-shrink-0" /> {a}
                         </span>
                       ))}
                     </div>
@@ -554,10 +572,13 @@ export default function EducationPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {timelineCards.map((card, i) => (
-                <div key={i} data-tone={card.tone} className="global-card flex flex-col gap-3 hover:border-amber-400 transition-colors">
+                <div key={i} data-tone={card.tone} className="global-card flex flex-col gap-3 hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
                   <div className="flex items-start justify-between gap-2">
-                    <div className="tone-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
-                      <card.icon size={18} />
+                    <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10">
+                      <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        0{i + 1}
+                      </span>
                     </div>
                     <span data-tone={card.badgeTone} className="tone-badge text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border shrink-0">
                       {card.badge}
@@ -590,9 +611,12 @@ export default function EducationPage() {
                 { icon: Calendar, title: 'Attend Office Hours', desc: 'Connect with core devs and EIP editors in open EIPIP coordination calls.', link: 'https://github.com/ethereum-cat-herders/EIPIP/issues', cta: 'View Agenda' },
                 { icon: Globe, title: 'Governance in Practice', desc: 'Join EIPIP meetings to observe and engage with live Ethereum governance decisions.', link: 'https://github.com/ethereum-cat-herders/EIPIP', cta: 'EIPIP Meetings' },
               ].map((card, i) => (
-                <Link key={i} href={card.link} target="_blank" className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-amber-400 transition-colors">
-                  <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
-                    <card.icon className="h-5 w-5" />
+                <Link key={i} href={card.link} target="_blank" className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
+                  <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
+                    <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      0{i + 1}
+                    </span>
                   </div>
                   <div className="flex-1">
                     <h3 className="global-card-title mb-1">{card.title}</h3>

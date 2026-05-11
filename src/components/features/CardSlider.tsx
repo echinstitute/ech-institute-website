@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 
@@ -142,23 +142,19 @@ export default function CardSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
   const total = cards.length;
 
   useEffect(() => { setIsMounted(true); }, []);
 
   const goTo = (i: number) => setCurrentIndex((i + total) % total);
-  const next = () => goTo(currentIndex + 1);
-  const prev = () => goTo(currentIndex - 1);
+  const next = () => setCurrentIndex(prev => (prev + 1) % total);
+  const prev = () => setCurrentIndex(prev => (prev - 1 + total) % total);
 
   useEffect(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    if (!isHovered && isMounted) {
-      timerRef.current = setInterval(next, 4500);
-    }
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHovered, currentIndex, isMounted]);
+    if (!isMounted || isHovered) return;
+    const interval = setInterval(next, 4500);
+    return () => clearInterval(interval);
+  }, [isMounted, isHovered, total]);
 
   // currentIndex = the CENTER card on desktop
   const indices = [
@@ -261,6 +257,22 @@ export default function CardSlider() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="global-section-tag justify-start mb-4">COMMUNITY VOICES</div>
           <h2 className="global-section-title mb-16">What people <em>say.</em></h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[0, 1, 2].map((i) => (
+              <div 
+                key={i} 
+                className={`${i !== 1 ? 'hidden md:flex' : 'flex'} animate-pulse`}
+                style={{
+                  minHeight: 260,
+                  borderRadius: 20,
+                  border: '2px solid var(--border-soft)',
+                  background: 'var(--surface-card-theme)',
+                  opacity: 0.4
+                }}
+              />
+            ))}
+          </div>
         </div>
       </section>
     );

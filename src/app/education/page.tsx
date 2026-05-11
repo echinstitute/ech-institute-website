@@ -272,8 +272,8 @@ export default function EducationPage() {
 
             {/* Left — copy */}
             <div className="flex flex-col gap-5">
-              <div className="proplay-icon-container px-3 py-1 self-start !text-[#FBFBFB]">
-                <BookOpen className="w-4 mx-2 !text-[#FBFBFB]" />
+              <div className="proplay-icon-container px-3 py-1 self-start">
+                <BookOpen className="w-4 mx-2" />
                 Open Education Hub
               </div>
               <h1 className="global-hero-title">
@@ -357,17 +357,17 @@ export default function EducationPage() {
                         <span className="font-bold text-base text-[var(--text-base)]">{f.title}</span>
                         <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-base)] bg-[var(--surface-card-muted)] px-2 py-0.5 rounded-full hidden sm:inline">{f.tag}</span>
                       </div>
-                      <p className="text-xs text-amber-700 font-semibold">{f.subtitle}</p>
+                      <p className="text-xs text-[var(--accent-brand)] font-bold">{f.subtitle}</p>
                     </div>
-                    <ArrowRight size={16} className="text-gray-300 group-hover:text-amber-500 transition-colors shrink-0" />
+                    <ArrowRight size={16} className="text-[var(--text-soft)] group-hover:text-[var(--accent-brand)] transition-colors shrink-0" />
                   </div>
 
                   <div className="pl-14">
                     <p className="global-body text-sm mb-3">{f.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {f.highlights.map((h, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-base)] bg-[var(--surface-card-muted)] border border-border rounded-full px-3 py-1">
-                          <CheckCircle2 size={11} className="text-brand-yellow" /> {h}
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-base)] bg-[var(--surface-card-muted)] border border-[var(--border-soft)] rounded-full px-3 py-1">
+                          <CheckCircle2 size={11} className="text-[var(--accent-brand)]" /> {h}
                         </span>
                       ))}
                     </div>
@@ -389,7 +389,7 @@ export default function EducationPage() {
                 return (
                   <div key={i} className="global-card p-0 overflow-hidden">
                     <button
-                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50 transition-colors group"
+                      className="w-full flex items-center gap-4 p-4 text-left hover:bg-[var(--surface-card-muted)] transition-colors group"
                       onClick={() => toggleGuide(i)}
                     >
                       <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
@@ -401,23 +401,23 @@ export default function EducationPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
                           <span className="font-bold text-base text-[var(--text-base)]">{g.title}</span>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full hidden sm:inline">{g.tag}</span>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent-brand)] bg-[var(--surface-card-muted)] border border-[var(--border-soft)] px-2 py-0.5 rounded-full hidden sm:inline">{g.tag}</span>
                         </div>
                         <p className="global-body text-sm">{g.summary}</p>
                       </div>
                       <ChevronDown
                         size={16}
-                        className={cn('text-gray-400 shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                        className={cn('text-[var(--text-soft)] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
                       />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-gray-100 px-4 pb-4 pt-4">
+                      <div className="border-t border-[var(--border-soft)] px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{g.detail}</p>
                         <div className="flex flex-col gap-2.5">
                           {g.steps.map((step, j) => (
                             <div key={j} className="flex items-start gap-3">
-                              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-50 text-amber-700 border border-amber-100 text-[10px] font-bold shrink-0 mt-0.5">{j + 1}</div>
+                              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[var(--surface-card-muted)] text-[var(--accent-brand)] border border-[var(--border-soft)] text-[10px] font-bold shrink-0 mt-0.5">{j + 1}</div>
                               <span className="text-sm text-[var(--text-base)]/80 leading-snug">{step}</span>
                             </div>
                           ))}
@@ -442,7 +442,7 @@ export default function EducationPage() {
               {eipStages.map((s, i) => (
                 <div key={s.stage} className="relative flex gap-4 items-start group">
                   {/* Proplay Icon */}
-                  <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10 bg-black">
+                  <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10">
                     <s.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
                     <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                       0{i + 1}
@@ -486,7 +486,7 @@ export default function EducationPage() {
                   <div className="flex items-start justify-between gap-2">
                     <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10">
                       <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
                         0{i + 1}
                       </span>
                     </div>
@@ -496,14 +496,14 @@ export default function EducationPage() {
                   </div>
                   <div className="flex-1 flex flex-col">
                     <div className="flex items-center gap-1.5 mb-1.5">
-                      <span className="text-xs font-bold text-brand-yellow">{card.year}</span>
-                      <span className="h-1 w-1 rounded-full bg-darkGray" />
+                      <span className="text-xs font-bold text-[var(--accent-brand)]">{card.year}</span>
+                      <span className="h-1 w-1 rounded-full bg-[var(--text-soft)]" />
                       <span className="text-xs font-bold text-[var(--text-base)]/50">{card.quarter}</span>
                     </div>
                     <h3 className="global-card-title text-base mb-1.5">{card.title}</h3>
                     <p className="global-body text-xs leading-relaxed mb-3">{card.description}</p>
-                    <div className="mt-auto pt-3 border-t border-border flex items-start gap-2">
-                      <Zap size={12} className="text-brand-yellow shrink-0 mt-0.5" />
+                    <div className="mt-auto pt-3 border-t border-[var(--border-soft)] flex items-start gap-2">
+                      <Zap size={12} className="text-[var(--accent-brand)] shrink-0 mt-0.5" />
                       <p className="text-[11px] font-medium text-[var(--text-soft)] leading-normal italic">{card.highlight}</p>
                     </div>
                   </div>
@@ -532,7 +532,7 @@ export default function EducationPage() {
                     <h3 className="global-card-title mb-1">{card.title}</h3>
                     <p className="global-body text-sm">{card.desc}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-gray-100 text-brand-yellow">
+                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-[var(--border-soft)] text-[var(--accent-brand)]">
                     {card.cta} <ArrowRight size={13} />
                   </div>
                 </Link>

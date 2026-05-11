@@ -112,12 +112,16 @@
 .proplay-icon-container {
   background-color: var(--dynamic-accent, var(--accent-brand));
   @apply flex items-center justify-center rounded-xl transition-all duration-300;
-  color: var(--color-white) !important;
+  color: var(--proplay-black) !important;
 }
 
 .proplay-icon-container svg,
 .proplay-dynamic-icon {
-  color: var(--color-white) !important;
+  color: inherit !important;
+}
+
+body.theme-dark .proplay-icon-container {
+  color: var(--proplay-white) !important;
 }
 
 .text-brand-yellow {
@@ -10116,7 +10120,7 @@ body.theme-light {
   --text-soft: var(--text-soft-light);
   --border-soft: var(--border-soft-light);
   --border-strong: var(--border-strong-light);
-  --shadow-card-theme: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+  --shadow-card-theme: 0 10px 30px -5px rgba(21, 20, 25, 0.12);
 }
 
 body.theme-dark {

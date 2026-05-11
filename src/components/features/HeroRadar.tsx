@@ -47,11 +47,11 @@ export function HeroRadar({ spheres, accentColor = 'var(--accent-brand)', classN
             <div key={title} className={`absolute ${positions[index % positions.length]} group/sphere z-20 hover:z-50`}>
               <div className="relative flex flex-col items-center">
                 <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-default">
-                  <Icon className="h-8 w-8 md:h-10 md:w-10 text-white group-hover/sphere:text-[var(--accent-brand)] transition-colors" />
+                  <Icon className="h-8 w-8 md:h-10 md:w-10 group-hover/sphere:text-[var(--accent-brand)] transition-colors" />
                   <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
                 </div>
                 <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-opacity">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white">0{index + 1} {title}</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-base)]">0{index + 1} {title}</span>
                 </div>
                 {/* Tooltip */}
                 <div className={`absolute top-1/2 ${isRightSide ? 'right-full mr-4 sm:mr-6 translate-x-4' : 'left-full ml-4 sm:ml-6 -translate-x-4'} w-48 sm:w-56 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-[var(--surface-card-theme)] border border-[var(--accent-brand)] p-4 rounded-xl shadow-2xl transition-all duration-300 group-hover/sphere:translate-x-0 z-[100] -translate-y-1/2`}>

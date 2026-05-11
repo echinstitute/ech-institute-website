@@ -1,7 +1,6 @@
 'use client';
 
 import { Sun, Moon } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { useTheme } from '@/providers/ThemeProvider';
 
 export function ThemeToggle() {
@@ -9,8 +8,8 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="theme-toggle theme-toggle--loading" aria-hidden="true">
-        <span className="theme-toggle__thumb" />
+      <div className="theme-toggle-shell" aria-hidden="true">
+        <span className="theme-toggle-thumb" />
       </div>
     );
   }
@@ -19,18 +18,27 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className={cn('theme-toggle', isDark && 'theme-toggle--dark')}
+      className={`theme-toggle-shell${isDark ? ' is-dark' : ''}`}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
       aria-pressed={isDark}
+      title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
-      <span className="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true">
-        <Sun className="h-4 w-4" />
+      {/* Sun icon — left side */}
+      <span className="theme-toggle-icon theme-toggle-icon--sun" aria-hidden="true">
+        <Sun strokeWidth={2.5} />
       </span>
-      <span className="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true">
-        <Moon className="h-4 w-4" />
+
+      {/* Sliding thumb */}
+      <span className="theme-toggle-thumb" aria-hidden="true">
+        {isDark
+          ? <Moon strokeWidth={2.5} />
+          : <Sun strokeWidth={2.5} />
+        }
       </span>
-      <span className="theme-toggle__thumb" aria-hidden="true">
-        {isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+
+      {/* Moon icon — right side */}
+      <span className="theme-toggle-icon theme-toggle-icon--moon" aria-hidden="true">
+        <Moon strokeWidth={2.5} />
       </span>
     </button>
   );

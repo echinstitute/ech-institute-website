@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 
@@ -142,23 +142,19 @@ export default function CardSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
   const total = cards.length;
 
   useEffect(() => { setIsMounted(true); }, []);
 
   const goTo = (i: number) => setCurrentIndex((i + total) % total);
-  const next = () => goTo(currentIndex + 1);
-  const prev = () => goTo(currentIndex - 1);
+  const next = () => setCurrentIndex(prev => (prev + 1) % total);
+  const prev = () => setCurrentIndex(prev => (prev - 1 + total) % total);
 
   useEffect(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    if (!isHovered && isMounted) {
-      timerRef.current = setInterval(next, 4500);
-    }
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHovered, currentIndex, isMounted]);
+    if (!isMounted || isHovered) return;
+    const interval = setInterval(next, 4500);
+    return () => clearInterval(interval);
+  }, [isMounted, isHovered, total]);
 
   // currentIndex = the CENTER card on desktop
   const indices = [
@@ -170,8 +166,8 @@ export default function CardSlider() {
   const navBtnStyle: React.CSSProperties = {
     display: 'flex', alignItems: 'center', justifyContent: 'center',
     width: 44, height: 44, borderRadius: 12,
-    border: '2px solid #3a3a3a',
-    background: '#262626',
+    border: '2px solid var(--border-strong)',
+    background: 'var(--surface-card-theme)',
     cursor: 'pointer', transition: 'all 0.25s ease',
     flexShrink: 0, padding: 0,
   };
@@ -181,13 +177,14 @@ export default function CardSlider() {
       href={card.twitter}
       target="_blank"
       rel="noopener noreferrer"
+      className="global-card"
       style={{
         display: 'flex',
         flexDirection: 'column',
         gap: 16,
         padding: '28px 28px 24px',
         borderRadius: 20,
-        border: featured ? '2px solid #F5A51D' : '2px solid var(--border-soft)',
+        border: featured ? '2px solid var(--accent-brand)' : '2px solid var(--border-soft)',
         background: 'var(--surface-card-theme)',
         textDecoration: 'none',
         color: 'inherit',
@@ -197,12 +194,12 @@ export default function CardSlider() {
         flex: 1,
       }}
       onMouseEnter={e => {
-        (e.currentTarget as HTMLAnchorElement).style.borderColor = '#F5A51D';
+        (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--accent-brand)';
         (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-4px)';
         (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 20px 48px -8px rgba(245,165,29,0.2)';
       }}
       onMouseLeave={e => {
-        (e.currentTarget as HTMLAnchorElement).style.borderColor = featured ? '#F5A51D' : 'var(--border-soft)';
+        (e.currentTarget as HTMLAnchorElement).style.borderColor = featured ? 'var(--accent-brand)' : 'var(--border-soft)';
         (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
         (e.currentTarget as HTMLAnchorElement).style.boxShadow = featured ? '0 8px 32px -4px rgba(245,165,29,0.15)' : 'none';
       }}
@@ -210,7 +207,7 @@ export default function CardSlider() {
       {/* Quote */}
       <p style={{
         fontSize: '0.9375rem', lineHeight: 1.7,
-        color: 'var(--text-secondary)', margin: 0, flex: 1,
+        color: 'var(--text-soft)', margin: 0, flex: 1,
         fontFamily: 'var(--font-family-base)',
       }}>
         &ldquo;{card.message}&rdquo;
@@ -236,7 +233,7 @@ export default function CardSlider() {
             (e.target as HTMLImageElement).src = '/assets/logo/ECH Institute Logo - White.png';
             (e.target as HTMLImageElement).style.objectFit = 'contain';
             (e.target as HTMLImageElement).style.padding = '6px';
-            (e.target as HTMLImageElement).style.background = '#262626';
+            (e.target as HTMLImageElement).style.background = 'var(--surface-card-muted)';
           }}
         />
         <div>
@@ -246,7 +243,7 @@ export default function CardSlider() {
             color: 'var(--text-primary)', lineHeight: 1.2,
           }}>{card.name}</div>
           <div style={{
-            fontSize: '0.8125rem', color: '#F5A51D',
+            fontSize: '0.8125rem', color: 'var(--accent-brand)',
             fontWeight: 500, marginTop: 2,
           }}>{card.handle}</div>
         </div>
@@ -261,6 +258,22 @@ export default function CardSlider() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="global-section-tag justify-start mb-4">COMMUNITY VOICES</div>
           <h2 className="global-section-title mb-16">What people <em>say.</em></h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[0, 1, 2].map((i) => (
+              <div 
+                key={i} 
+                className={`${i !== 1 ? 'hidden md:flex' : 'flex'} animate-pulse`}
+                style={{
+                  minHeight: 260,
+                  borderRadius: 20,
+                  border: '2px solid var(--border-soft)',
+                  background: 'var(--surface-card-theme)',
+                  opacity: 0.4
+                }}
+              />
+            ))}
+          </div>
         </div>
       </section>
     );
@@ -286,10 +299,10 @@ export default function CardSlider() {
               onClick={prev}
               aria-label="Previous testimonial"
               style={navBtnStyle}
-              onMouseEnter={e => { const b = e.currentTarget; b.style.background='#F5A51D'; b.style.borderColor='#F5A51D'; }}
-              onMouseLeave={e => { const b = e.currentTarget; b.style.background='#262626'; b.style.borderColor='#3a3a3a'; }}
+              onMouseEnter={e => { const b = e.currentTarget; b.style.background='#F5A51D'; b.style.borderColor='#F5A51D'; (b.querySelector('svg') as any).style.color='#151419'; }}
+              onMouseLeave={e => { const b = e.currentTarget; b.style.background='var(--surface-card-theme)'; b.style.borderColor='var(--border-strong)'; (b.querySelector('svg') as any).style.color='var(--text-primary)'; }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBFBFB" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-primary)' }}>
                 <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
@@ -304,10 +317,10 @@ export default function CardSlider() {
               onClick={next}
               aria-label="Next testimonial"
               style={navBtnStyle}
-              onMouseEnter={e => { const b = e.currentTarget; b.style.background='#F5A51D'; b.style.borderColor='#F5A51D'; }}
-              onMouseLeave={e => { const b = e.currentTarget; b.style.background='#262626'; b.style.borderColor='#3a3a3a'; }}
+              onMouseEnter={e => { const b = e.currentTarget; b.style.background='#F5A51D'; b.style.borderColor='#F5A51D'; (b.querySelector('svg') as any).style.color='#151419'; }}
+              onMouseLeave={e => { const b = e.currentTarget; b.style.background='var(--surface-card-theme)'; b.style.borderColor='var(--border-strong)'; (b.querySelector('svg') as any).style.color='var(--text-primary)'; }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBFBFB" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-primary)' }}>
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </button>
@@ -335,7 +348,7 @@ export default function CardSlider() {
                 height: 8,
                 width: i === currentIndex ? 28 : 8,
                 borderRadius: i === currentIndex ? 4 : '50%',
-                background: i === currentIndex ? '#F5A51D' : 'var(--border-soft)',
+                background: i === currentIndex ? 'var(--accent-brand)' : 'var(--border-soft)',
                 border: 'none',
                 padding: 0,
                 cursor: 'pointer',

@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import {
-  Home, Globe, BookOpen, Network, Shield, Target, CheckCircle2,
+  Home, Globe, BookOpen, Network as NetworkIcon, Shield, Target, CheckCircle2,
   ChevronRight, ExternalLink, MessageSquare, Calendar,
   ChevronDown, GitBranch, AlertCircle, Clock, Cpu, FileText,
   Lightbulb, Users, Zap, ArrowRight, Layers,
@@ -46,7 +46,7 @@ const governanceHowItems = [
     tone: 'violet',
   },
   {
-    icon: Network,
+    icon: NetworkIcon,
     title: 'Upgrade Planning & Inclusion',
     detail: 'EIPs that pass technical review can be nominated for inclusion in a network upgrade. This process follows the formal inclusion stages defined by EIP-7723 (see below). Client teams must agree on which EIPs to include and implement them before a devnet is deployed for testing. A series of devnets, public testnets, and monitoring periods precede mainnet activation. ECH Institute coordinates upgrade communication — from initial CFI nomination through post-mainnet confirmation — ensuring the entire community stays informed.',
     tone: 'success',
@@ -256,7 +256,7 @@ const governanceItems = [
     ],
   },
   {
-    icon: Network,
+    icon: NetworkIcon,
     title: 'What is the EIP Process?',
     summary: 'The formal system through which protocol changes are proposed and standardized.',
     detail: 'An Ethereum Improvement Proposal (EIP) is a formal document that describes a change to the Ethereum protocol. Each EIP follows a standard structure defined by EIP-1 including a preamble, abstract, motivation, specification, rationale, backward compatibility notes, and test cases. EIPs serve as both the proposal document and the permanent specification for accepted changes.',
@@ -340,7 +340,7 @@ const upgradeItems = [
     ],
   },
   {
-    icon: Network,
+    icon: NetworkIcon,
     title: 'Recent Upgrades',
     summary: 'An overview of the latest Ethereum network upgrades and what they delivered.',
     detail: 'Ethereum has undergone numerous network upgrades since its genesis in 2015. Each upgrade bundles together improvements to the execution and consensus layers. Starting in 2026, Ethereum is transitioning to a biannual upgrade schedule to provide more predictable engineering timelines for client teams and the ecosystem.',
@@ -488,7 +488,7 @@ const whyItems = [
 // ─── Homestead Hero Ways ──────────────────────────────────────────────────────
 const homesteadWays = [
   {
-    icon: Network,
+    icon: NetworkIcon,
     title: 'ACD Coordination',
     desc: 'ECH Institute documents every All Core Devs call and publishes notes to ethereum/pm within 24 hours.',
   },
@@ -509,6 +509,15 @@ const homesteadWays = [
   },
 ];
 
+
+import { HeroRadar } from '@/components/features/HeroRadar';
+
+const HOMESTEAD_SPHERES = [
+  { icon: NetworkIcon,    title: 'ACD Coordination', desc: 'ECH Institute documents every All Core Devs call and publishes notes within 24 hours.' },
+  { icon: FileText,   title: 'EIP Process',      desc: 'Understand how Ethereum Improvement Proposals move from Draft to Mainnet.' },
+  { icon: Users,      title: 'Community Access', desc: 'Open office hours and WiEP classrooms give everyone a pathway into governance.' },
+  { icon: TrendingUp, title: 'Upgrade Tracking', desc: 'Monitor EIP inclusion states (CFI → SFI → INU) across network upgrades.' },
+];
 
 export default function HomesteadPage() {
   const [activeSection, setActiveSection] = useState('overview');
@@ -548,7 +557,7 @@ export default function HomesteadPage() {
   ) => setter(prev => ({ ...prev, [i]: !prev[i] }));
 
   return (
-    <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24 text-[#FBFBFB]">
+    <main className="min-h-screen bg-[var(--background)] pt-16 lg:pt-24 text-[var(--text-base)]">
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section id="overview" className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
@@ -564,7 +573,7 @@ export default function HomesteadPage() {
               <h1 className="global-hero-title">
                 <em>Homestead.</em>
               </h1>
-              <p className="global-body-lg text-brand-yellow font-bold text-[1.1rem]">
+              <p className="global-body-lg text-[var(--accent-brand)] font-bold text-[1.1rem]">
                 ECH is the steward of major initiatives documented at Homestead.
               </p>
               <p className="global-body-lg max-w-xl">
@@ -572,74 +581,16 @@ export default function HomesteadPage() {
               </p>
             </div>
 
-            {/* Right — Interactive Radar with 4 Governance Spheres */}
-            <div className="relative h-[400px] w-full hidden lg:flex items-center justify-center group/radar">
-              {/* Radar Background Rings */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
-                <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
-                <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
-                <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
-              </div>
-              <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--accent-brand)] opacity-40 animate-pulse" />
-              <div className="absolute inset-0">
-                {homesteadWays.map(({ icon: Icon, title, desc }, index) => {
-                  const positions = [
-                    'top-[10%] left-1/2 -translate-x-1/2',
-                    'right-[10%] top-1/2 -translate-y-1/2',
-                    'bottom-[10%] left-1/2 -translate-x-1/2',
-                    'left-[10%] top-1/2 -translate-y-1/2',
-                  ];
-                  const tooltipPos = [
-                    'top-full mt-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 -translate-y-4',
-                    'right-full mr-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 translate-x-4',
-                    'bottom-full mb-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 translate-y-4',
-                    'left-full ml-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 -translate-x-4',
-                  ];
-                  const arrowPos = [
-                    'absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-l border-[var(--accent-brand)] rotate-45',
-                    'absolute top-1/2 -right-2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-r border-[var(--accent-brand)] rotate-45 -translate-y-1/2',
-                    'absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-b border-r border-[var(--accent-brand)] rotate-45',
-                    'absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2',
-                  ];
-                  return (
-                    <div key={title} className={`absolute ${positions[index]} group/sphere z-20 hover:z-50 transition-all duration-300`}>
-                      <div className="relative flex flex-col items-center">
-                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-2xl border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl cursor-default relative z-10">
-                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white" />
-                        </div>
-                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)]">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-white">0{index + 1} {title}</span>
-                        </div>
-                        {/* Tooltip — revealed on hover */}
-                        <div className={`absolute ${tooltipPos[index]} w-60 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] backdrop-blur-2xl border border-[var(--accent-brand)]/50 p-5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-all duration-500 z-50 scale-90 group-hover/sphere:scale-100`}>
-                          <div className={arrowPos[index]} />
-                          <div className="relative z-10">
-                            <div className="flex items-center justify-between mb-3">
-                              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent-brand)] flex items-center gap-2">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-brand)] animate-pulse" />
-                                Governance 0{index + 1}
-                              </p>
-                              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[var(--accent-brand)]/10 text-[var(--accent-brand)] border border-[var(--accent-brand)]/20">Protocol</span>
-                            </div>
-                            <div className="text-base font-black text-[var(--text-base)] mb-1.5 leading-tight tracking-tight uppercase">{title}</div>
-                            <p className="text-[12px] text-[var(--text-soft)] font-medium leading-relaxed opacity-90">{desc}</p>
-                            <div className="mt-4 h-px w-8 bg-[var(--accent-brand)] opacity-50" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            {/* Right — Interactive Radar */}
+            <HeroRadar spheres={HOMESTEAD_SPHERES} />
 
           </div>
         </div>
       </section>
 
+
       {/* ── Stats ────────────────────────────────────────────────────────── */}
-      <section className="border-b border-[#262626] py-6 px-4 md:px-8">
+      <section className="border-b border-border py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -649,8 +600,8 @@ export default function HomesteadPage() {
               { value: '2024', label: 'ECH Institute Founded' },
             ].map((s, i) => (
               <div key={i}>
-                <div className="global-section-title text-brand-yellow">{s.value}</div>
-                <div className="text-sm text-black font-medium mt-0.5">{s.label}</div>
+                <div className="global-section-title text-[var(--accent-brand)]">{s.value}</div>
+                <div className="text-sm text-[var(--text-base)] font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -671,10 +622,10 @@ export default function HomesteadPage() {
           {/* ── Section 1: What is Ethereum Governance ───────────────────── */}
           <section id="what-is-governance">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-black">
-                <Globe className="h-4 w-4 global-icon-yellow" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
+                <Globe className="h-4 w-4 text-[var(--accent-brand)]" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-black">Section 1</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 1</p>
             </div>
             <h2 className="global-section-title mb-2">What is Ethereum Governance?</h2>
             <p className="global-body-lg mb-5">
@@ -690,30 +641,30 @@ export default function HomesteadPage() {
                       className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors group"
                       onClick={() => toggle(setOpenGov, i)}
                     >
-                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
                         <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
                           0{i + 1}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
+                        <div className="font-bold text-base text-[var(--text-base)]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
                       <ChevronDown
                         size={16}
-                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                        className={cn('text-[var(--text-soft)] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
                       />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-[#262626] px-4 pb-4 pt-4">
+                      <div className="border-t border-border px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
-                              <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-[#FBFBFB]">{pt}</span>
+                              <CheckCircle2 size={14} className="text-[var(--accent-brand)] shrink-0 mt-0.5" />
+                              <span className="text-sm text-[var(--text-base)]">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -721,7 +672,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline text-brand-yellow">
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-[var(--border-soft)] rounded-full px-3 py-1.5 hover:border-[var(--accent-brand)] transition-colors no-underline text-[var(--accent-brand)] bg-[var(--surface-card-muted)]">
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
                             ))}
@@ -745,16 +696,16 @@ export default function HomesteadPage() {
                 <Link href="https://forkcast.org" target="_blank"
                   className="global-card flex flex-col gap-2 no-underline text-inherit hover:border-amber-400 transition-colors group">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm text-[#FBFBFB]">Forkcast.org</span>
-                    <ExternalLink size={13} className="text-[#FBFBFB] group-hover:text-amber-400 transition-colors" />
+                    <span className="font-bold text-sm text-[var(--text-base)]">Forkcast.org</span>
+                    <ExternalLink size={13} className="text-[var(--text-soft)] group-hover:text-[var(--accent-brand)] transition-colors" />
                   </div>
                   <p className="global-body text-xs">Visual tracker for EIP inclusion stages across Ethereum upgrades. Maintained by the community.</p>
                 </Link>
                 <Link href="https://ps.ethereum.foundation" target="_blank"
                   className="global-card flex flex-col gap-2 no-underline text-inherit hover:border-amber-400 transition-colors group">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm text-[#FBFBFB]">Protocol Support Dashboard</span>
-                    <ExternalLink size={13} className="text-[#FBFBFB] group-hover:text-amber-400 transition-colors" />
+                    <span className="font-bold text-sm text-[var(--text-base)]">Protocol Support Dashboard</span>
+                    <ExternalLink size={13} className="text-[var(--text-soft)] group-hover:text-[var(--accent-brand)] transition-colors" />
                   </div>
                   <p className="global-body text-xs">Ethereum Foundation&apos;s Protocol Support page covering EIPs, client coordination, and upgrade tracking.</p>
                 </Link>
@@ -765,10 +716,10 @@ export default function HomesteadPage() {
           {/* ── Section 2: The EIP Process (Lifecycle) ───────────────────── */}
           <section id="eip-process">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F5A51D]/10 border border-[#F5A51D]/30">
-                <GitBranch className="h-4 w-4 text-[#F5A51D]" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
+                <GitBranch className="h-4 w-4 text-[var(--accent-brand)]" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#F5A51D]">Section 2</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 2</p>
             </div>
             <h2 className="global-section-title mb-2">The EIP Process</h2>
             <p className="global-body-lg mb-5">
@@ -778,8 +729,8 @@ export default function HomesteadPage() {
             {/* EIP Types */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
               {eipTypes.map((t, i) => (
-                <div key={i} className="global-card border-[#262626] hover:border-[#F5A51D] hover:shadow-[0_0_20px_rgba(245,165,29,0.08)] transition-all duration-300">
-                  <span className="inline-block px-2.5 py-1 rounded-full text-xs font-black mb-2 bg-[#F5A51D]/10 text-[#F5A51D] border border-[#F5A51D]/30">{t.type}</span>
+                <div key={i} className="global-card border-[var(--border-soft)] hover:border-[var(--accent-brand)] hover:shadow-[0_0_20px_rgba(245,165,29,0.08)] transition-all duration-300">
+                  <span className="inline-block px-2.5 py-1 rounded-full text-xs font-black mb-2 bg-[var(--surface-card-muted)] text-[var(--accent-brand)] border border-[var(--border-soft)]">{t.type}</span>
                   <p className="global-body text-sm">{t.desc}</p>
                 </div>
               ))}
@@ -793,21 +744,21 @@ export default function HomesteadPage() {
               {eipStages.map((s, i) => (
                 <div key={s.stage} className="relative flex gap-4 items-start group">
                   {/* Proplay Icon */}
-                  <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10 bg-[#151419]">
+                  <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10">
                     <s.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
                       0{i + 1}
                     </span>
                   </div>
                   {/* Card */}
                   <div className="flex-1 global-card mb-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent-brand)] group-hover:shadow-xl">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <h4 className="global-card-title mb-0 text-[#FBFBFB]">{s.stage}</h4>
+                      <h4 className="global-card-title mb-0 text-[var(--text-base)]">{s.stage}</h4>
                     </div>
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-primary)] bg-[var(--surface-card-muted)] border border-[var(--border-soft)] rounded-full px-3 py-1">
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-soft)] bg-[var(--surface-card-muted)] border border-[var(--border-soft)] rounded-full px-3 py-1">
                           <CheckCircle2 size={11} className="text-[var(--accent-brand)] flex-shrink-0" /> {a}
                         </span>
                       ))}
@@ -821,10 +772,10 @@ export default function HomesteadPage() {
           {/* ── Section 3: Network Upgrades ──────────────────────────────── */}
           <section id="network-upgrades">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
-                <Layers className="h-4 w-4 global-icon-yellow" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
+                <Layers className="h-4 w-4 text-[var(--accent-brand)]" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Section 3</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 3</p>
             </div>
             <h2 className="global-section-title mb-2">Network Upgrades</h2>
             <p className="global-body-lg mb-5">
@@ -840,30 +791,30 @@ export default function HomesteadPage() {
                       className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors group"
                       onClick={() => toggle(setOpenUpgrades, i)}
                     >
-                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
                         <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
                           0{i + 1}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
+                        <div className="font-bold text-base text-[var(--text-base)]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
                       <ChevronDown
                         size={16}
-                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                        className={cn('text-[var(--text-soft)] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
                       />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-[#262626] px-4 pb-4 pt-4">
+                      <div className="border-t border-border px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
-                              <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-black">{pt}</span>
+                              <CheckCircle2 size={14} className="text-[var(--accent-brand)] shrink-0 mt-0.5" />
+                              <span className="text-sm text-[var(--text-base)]">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -871,7 +822,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline text-brand-yellow">
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-[var(--border-soft)] rounded-full px-3 py-1.5 hover:border-[var(--accent-brand)] transition-colors no-underline text-[var(--accent-brand)] bg-[var(--surface-card-muted)]">
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
                             ))}
@@ -888,10 +839,10 @@ export default function HomesteadPage() {
           {/* ── Section 4: Role of ECH Institute ────────────────────────── */}
           <section id="ech-role">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
-                <Award className="h-4 w-4 global-icon-yellow" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
+                <Award className="h-4 w-4 text-[var(--accent-brand)]" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Section 4</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 4</p>
             </div>
             <h2 className="global-section-title mb-2">Role of ECH Institute</h2>
             <p className="global-body-lg mb-5">
@@ -907,30 +858,30 @@ export default function HomesteadPage() {
                       className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors group"
                       onClick={() => toggle(setOpenEch, i)}
                     >
-                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
                         <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
                           0{i + 1}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
+                        <div className="font-bold text-base text-[var(--text-base)]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
                       <ChevronDown
                         size={16}
-                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                        className={cn('text-[var(--text-soft)] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
                       />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-[#262626] px-4 pb-4 pt-4">
+                      <div className="border-t border-border px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2 mb-4">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
-                              <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-black">{pt}</span>
+                              <CheckCircle2 size={14} className="text-[var(--accent-brand)] shrink-0 mt-0.5" />
+                              <span className="text-sm text-[var(--text-base)]">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -938,7 +889,7 @@ export default function HomesteadPage() {
                           <div className="flex flex-wrap gap-2 mt-2">
                             {item.links.map((lnk, k) => (
                               <Link key={k} href={lnk.href} target={lnk.external ? '_blank' : '_self'}
-                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-black rounded-full px-3 py-1.5 hover:border-amber-400 transition-colors no-underline text-brand-yellow">
+                                className="inline-flex items-center gap-1.5 text-xs font-bold border border-[var(--border-soft)] rounded-full px-3 py-1.5 hover:border-[var(--accent-brand)] transition-colors no-underline text-[var(--accent-brand)] bg-[var(--surface-card-muted)]">
                                 {lnk.label} {lnk.external ? <ExternalLink size={10} /> : <ArrowRight size={10} />}
                               </Link>
                             ))}
@@ -955,10 +906,10 @@ export default function HomesteadPage() {
           {/* ── Section 5: Why It Matters ────────────────────────────────── */}
           <section id="why-it-matters">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
-                <Target className="h-4 w-4 global-icon-yellow" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
+                <Target className="h-4 w-4 text-[var(--accent-brand)]" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Section 5</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 5</p>
             </div>
             <h2 className="global-section-title mb-2">Why This Matters</h2>
             <p className="global-body-lg mb-5">
@@ -974,30 +925,30 @@ export default function HomesteadPage() {
                       className="theme-hover-surface w-full flex items-center gap-4 p-4 text-left transition-colors group"
                       onClick={() => toggle(setOpenWhy, i)}
                     >
-                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                      <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
                         <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
                           0{i + 1}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-base text-[#FBFBFB]">{item.title}</div>
+                        <div className="font-bold text-base text-[var(--text-base)]">{item.title}</div>
                         <p className="global-body text-sm mt-0.5">{item.summary}</p>
                       </div>
                       <ChevronDown
                         size={16}
-                        className={cn('text-[#FBFBFB] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
+                        className={cn('text-[var(--text-soft)] shrink-0 transition-transform duration-200', isOpen && 'is-open')}
                       />
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-[#262626] px-4 pb-4 pt-4">
+                      <div className="border-t border-border px-4 pb-4 pt-4">
                         <p className="global-body text-sm mb-4 leading-relaxed">{item.detail}</p>
                         <div className="flex flex-col gap-2">
                           {item.points.map((pt, j) => (
                             <div key={j} className="flex items-start gap-2.5">
-                              <CheckCircle2 size={14} className="global-icon-yellow shrink-0 mt-0.5" />
-                              <span className="text-sm text-[#FBFBFB]">{pt}</span>
+                              <CheckCircle2 size={14} className="text-[var(--accent-brand)] shrink-0 mt-0.5" />
+                              <span className="text-sm text-[var(--text-base)]">{pt}</span>
                             </div>
                           ))}
                         </div>
@@ -1012,10 +963,10 @@ export default function HomesteadPage() {
           {/* ── Section 6: Get Involved ──────────────────────────────────── */}
           <section id="get-involved">
             <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B1B1E]">
-                <Users className="h-4 w-4 global-icon-yellow" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
+                <Users className="h-4 w-4 text-[var(--accent-brand)]" />
               </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]">Take the Next Step</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Take the Next Step</p>
             </div>
             <h2 className="global-section-title mb-5">Get Involved in Governance</h2>
 
@@ -1027,9 +978,9 @@ export default function HomesteadPage() {
               ].map((card, i) => (
                 <Link key={i} href={card.link} target={card.external ? '_blank' : '_self'}
                   className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
-                  <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 bg-[#151419]">
+                  <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
                     <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
                       0{i + 1}
                     </span>
                   </div>
@@ -1037,7 +988,7 @@ export default function HomesteadPage() {
                     <h3 className="global-card-title mb-1">{card.title}</h3>
                     <p className="global-body text-sm">{card.desc}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-[#262626] text-brand-yellow">
+                  <div className="flex items-center gap-1 text-sm font-bold pt-2 border-t border-[var(--border-soft)] text-[var(--accent-brand)]">
                     {card.cta} <ArrowRight size={13} />
                   </div>
                 </Link>
@@ -1050,10 +1001,10 @@ export default function HomesteadPage() {
                 ECH Institute is your starting point for understanding and contributing to Ethereum governance. Join the community, attend office hours, or simply start reading.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="btn btn-primary-white">
+                <Link href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
                   Join our Discord
                 </Link>
-                <Link href={ROUTES.getInvolved} className="btn btn-outline text-[#FBFBFB] border-[#262626]">
+                <Link href={ROUTES.getInvolved} className="btn btn-outline border-[var(--border-soft)]">
                   Get Involved
                 </Link>
               </div>

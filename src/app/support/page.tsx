@@ -7,7 +7,7 @@ import {
   ArrowRight, CheckCircle2, ExternalLink, ChevronDown,
   TrendingUp, FileText, GitBranch, Award, Target,
   DollarSign, Gift, Building2, Star, Lock, Eye,
-  BarChart3, Calendar, MessageSquare, Network,
+  BarChart3, Calendar, MessageSquare, Network as NetworkIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { EXTERNAL_LINKS } from "@/config/routes";
@@ -106,7 +106,7 @@ const enablesItems = [
     tone: "info",
   },
   {
-    icon: Network,
+    icon: NetworkIcon,
     title: "Upgrade Coordination & Documentation",
     description:
       "Ethereum network upgrades (Dencun, Pectra, Fusaka, Glamsterdam) require months of cross-team coordination. ECH Institute manages All Core Devs call documentation, upgrade communication planning, consensus layer and execution layer coordination, and post-deployment monitoring. Without neutral third-party coordination, upgrade timelines would be longer and more error-prone.",
@@ -239,7 +239,7 @@ function ConnectButtonClient() {
   useEffect(() => setMounted(true), []);
   if (!mounted) {
     return (
-      <div className="h-10 min-w-[140px] rounded-lg bg-[#262626] animate-pulse" aria-hidden />
+      <div className="h-10 min-w-[140px] rounded-lg bg-darkGray animate-pulse" aria-hidden />
     );
   }
   return <ConnectButton showBalance={false} accountStatus={"avatar"} />;
@@ -255,7 +255,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex h-8 px-3 items-center justify-center gap-1.5 rounded-md border border-[#F5A51D]/30 bg-[#F5A51D]/10 text-[#F5A51D] transition-all hover:bg-[#F5A51D]/20 active:scale-95"
+      className="inline-flex h-8 px-3 items-center justify-center gap-1.5 rounded-md border border-accent/30 bg-accent/10 text-accent transition-all hover:bg-accent/20 active:scale-95"
       title="Copy address"
     >
       {copied ? (
@@ -310,7 +310,7 @@ export default function SupportPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24 text-[#FBFBFB]">
+    <main className="min-h-screen bg-black pt-16 lg:pt-24 text-white">
 
       {/* ── Hero "proplay" inner-page style ──────────────── */}
       <section className="page-hero">
@@ -330,10 +330,10 @@ export default function SupportPage() {
               transparent, and accessible.
             </p>
             <div className="page-hero-actions mt-4">
-              <button onClick={() => scrollToSection("donate")} className="btn btn-primary !text-white">
+              <button onClick={() => scrollToSection("donate")} className="btn btn-primary !text-white gap-2.5">
                 <Heart className="h-4 w-4" /> Make a Donation
               </button>
-              <button onClick={() => scrollToSection("why-support")} className="btn btn-outline !text-[#FBFBFB] !border-[#FBFBFB]/40">
+              <button onClick={() => scrollToSection("why-support")} className="btn btn-outline !text-white !border-white/40">
                 Learn Why It Matters
               </button>
             </div>
@@ -344,14 +344,14 @@ export default function SupportPage() {
             <img
               src="/assets/logo/cat5.png"
               alt="ECH Institute mascot"
-              className="h-full w-auto object-contain object-bottom drop-shadow-2xl"
+              className="h-full w-auto object-contain object-bottom"
             />
           </div>
         </div>
       </section>
 
       {/* ── Impact Stats ──────────────────────────────────────────────────── */}
-      <section className="border-b border-[#262626] bg-[#1B1B1E] py-6 md:py-8 px-4 md:px-8">
+      <section className="border-b border-border py-6 md:py-8 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -362,7 +362,7 @@ export default function SupportPage() {
             ].map((s, i) => (
               <div key={i}>
                 <div className="global-section-title text-brand-yellow">{s.value}</div>
-                <div className="text-sm text-[#FBFBFB] font-medium mt-0.5">{s.label}</div>
+                <div className="text-sm text-white font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -387,28 +387,24 @@ export default function SupportPage() {
               organization, your contribution may be tax-deductible under U.S. law.
             </p>
 
-            <div className="global-card p-0 overflow-hidden bg-[#1B1B1E] border-[#262626]">
+            <div className="global-card p-0 overflow-hidden bg-[var(--surface-card-theme)] border-[var(--border-soft)] shadow-2xl">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                 {/* Left mission text */}
-                <div className="lg:col-span-7 p-5 md:p-6">
-                  <h3 className="global-card-title mb-3 text-[#FBFBFB]">Support Our Mission</h3>
-                  <div className="space-y-3">
-                    <p className="global-body text-[#FBFBFB]/80">
+                <div className="lg:col-span-7 p-6 md:p-8 lg:p-10">
+                  <h3 className="global-card-title mb-4 text-[var(--text-base)]">Support Our Mission</h3>
+                  <div className="space-y-4">
+                    <p className="global-body text-[var(--text-soft)]">
                       Thank you for supporting ECH Institute. Your contribution directly funds EIP process
                       coordination, upgrade communication, educational content production, and inclusion
                       programs that make Ethereum governance accessible to everyone.
                     </p>
-                    <p className="global-body text-[#FBFBFB]/80">
+                    <p className="global-body text-[var(--text-soft)]">
                       ECH Institute is committed to ensuring that the Ethereum ecosystem remains
                       decentralized, well-coordinated, and accessible for all participants not just
                       insiders.
                     </p>
-                    <p className="global-body text-[#FBFBFB]/80">
-                      Your contribution fuels accessible resources, critical meeting coordination,
-                      governance documentation, and inclusivity programs across the Ethereum ecosystem.
-                    </p>
                   </div>
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  <div className="mt-8 flex flex-wrap gap-2.5">
                     {[
                       "EIP coordination",
                       "Upgrade communication",
@@ -419,9 +415,9 @@ export default function SupportPage() {
                     ].map((tag) => (
                       <span
                         key={tag}
-                        className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#262626] border border-[#3a3a3a] rounded-full px-3 py-1"
+                        className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[var(--text-base)] bg-[var(--background)] border border-[var(--border-soft)] rounded-full px-4 py-2 hover:border-[var(--accent-brand)] transition-colors"
                       >
-                        <CheckCircle2 size={11} className="text-[#F5A51D] shrink-0" />
+                        <CheckCircle2 size={12} className="!text-[#FBFBFB] shrink-0 p-0.5 rounded-full bg-[var(--accent-brand)]" />
                         {tag}
                       </span>
                     ))}
@@ -429,36 +425,41 @@ export default function SupportPage() {
                 </div>
 
                 {/* Right wallet card */}
-                <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-[#262626]">
-                  <div className="h-full flex flex-col p-5 md:p-6">
-                    <div className="mb-3 flex items-start gap-2.5">
-                      <div className="proplay-icon-container h-10 w-10 shrink-0">
-                        <Wallet className="h-5 w-5" aria-hidden />
+                <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-[var(--border-soft)] bg-[var(--background)]/30">
+                  <div className="h-full flex flex-col p-6 md:p-8">
+                    <div className="mb-6 flex items-center gap-4">
+                      <div className="proplay-icon-container h-12 w-12 shrink-0 shadow-lg">
+                        <Wallet className="h-6 w-6 !text-[#FBFBFB]" aria-hidden />
                       </div>
                       <div className="min-w-0">
-                        <p className="global-card-title mb-0.5 text-[#FBFBFB]">Treasury Address</p>
-                        <p className="text-xs text-[#FBFBFB]/60">Ethereum Mainnet</p>
+                        <p className="global-card-title mb-0.5 text-[var(--text-base)]">Treasury Address</p>
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent-brand)]">Ethereum Mainnet</p>
                       </div>
                     </div>
 
-                    {/* Address box extra right padding so copy button never overlaps text */}
-                    <div className="relative mb-4">
-                      <p className="global-body break-all font-mono text-xs sm:text-sm leading-snug text-[#FBFBFB] bg-[#151419] rounded-lg p-3 pr-12 sm:p-4 sm:pr-14 border border-[#262626]" style={{ wordBreak: 'break-all' }}>
+                    <div className="relative mb-6 group">
+                      <div className="absolute -inset-1 bg-gradient-to-r from-[var(--accent-brand)] to-orange-600 rounded-xl blur opacity-10 group-hover:opacity-20 transition duration-1000 group-hover:duration-200" />
+                      <p className="relative global-body break-all font-mono text-[13px] leading-relaxed text-[var(--text-base)] bg-[var(--surface-card-theme)] rounded-xl p-4 pr-14 border border-[var(--border-soft)] shadow-inner" style={{ wordBreak: 'break-all' }}>
                         {DONATION_ADDRESS}
                       </p>
-                      <div className="absolute top-2 right-2">
+                      <div className="absolute top-1/2 -translate-y-1/2 right-3">
                         <CopyButton text={DONATION_ADDRESS} />
                       </div>
                     </div>
 
-                    <div className="mb-4 flex justify-center">
-                      <ConnectButtonClient />
+                    <div className="mb-6 flex flex-col items-center gap-4 w-full">
+                      <div className="w-full flex justify-center">
+                        <ConnectButtonClient />
+                      </div>
+                      <p className="text-[10px] text-[var(--text-soft)] font-medium text-center italic">Connect your wallet to donate directly</p>
                     </div>
 
-                    <div className="mt-auto flex flex-wrap items-center justify-center gap-2 border-t border-[#262626] pt-3">
-                      <span className="global-body text-xs text-[#FBFBFB]/60">Supported network</span>
-                      <EthereumLogo className="h-5 w-5 shrink-0 fill-[#FBFBFB]" />
-                      <span className="global-body text-xs font-semibold text-[#FBFBFB]">Ethereum</span>
+                    <div className="mt-auto flex flex-wrap items-center justify-center gap-3 border-t border-[var(--border-soft)] pt-6">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-soft)]">Network</span>
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--surface-card-theme)] border border-[var(--border-soft)]">
+                        <EthereumLogo className="h-4 w-4 shrink-0 fill-[var(--accent-brand)]" />
+                        <span className="text-xs font-black text-[var(--text-base)]">Ethereum</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -468,7 +469,7 @@ export default function SupportPage() {
 
           <section id="why-support">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-1 h-8 bg-[#F5A51D]" />
+              <div className="w-1 h-8 bg-accent" />
               <span className="global-section-tag mb-0">The Case for Support</span>
             </div>
             <h2 className="global-section-title mb-3">Why Support <em>ECH Institute</em></h2>
@@ -486,48 +487,48 @@ export default function SupportPage() {
                     className={cn(
                       "rounded-xl overflow-hidden border transition-all duration-300",
                       isOpen
-                        ? "border-[#F5A51D] bg-[#1B1B1E] shadow-[0_0_20px_rgba(245,165,29,0.08)]"
-                        : "border-[#262626] bg-[#1B1B1E] hover:border-[#F5A51D]/60"
+                        ? "border-accent  shadow-[0_0_20px_rgba(245,165,29,0.08)]"
+                        : "border-border  hover:border-accent/60"
                     )}
                   >
                     {/* Yellow left accent bar when open */}
-                    <div className={cn("flex", isOpen && "border-l-2 border-[#F5A51D]")}>
+                    <div className={cn("flex", isOpen && "border-l-2 border-accent")}>
                       <button
                         className="w-full flex items-center gap-4 p-4 md:p-5 text-left transition-colors"
                         onClick={() => togglePillar(i)}
                       >
                         <div className="proplay-icon-container h-11 w-11 shrink-0">
-                          <pillar.icon className="h-5 w-5" />
+                          <pillar.icon className="h-5 w-5 !text-[#FBFBFB]" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="font-bold text-[15px] text-[#FBFBFB]">{pillar.title}</span>
-                            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#F5A51D]/15 text-[#F5A51D] border border-[#F5A51D]/30 hidden sm:inline">
+                            <span className="font-bold text-[15px] text-white">{pillar.title}</span>
+                            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-accent/15 text-accent border border-accent/30 hidden sm:inline">
                               {pillar.tag}
                             </span>
                           </div>
-                          <p className="global-body text-sm text-[#FBFBFB]/70">{pillar.summary}</p>
+                          <p className="global-body text-sm text-white/70">{pillar.summary}</p>
                         </div>
                         <ChevronDown
                           size={16}
                           className={cn(
                             "shrink-0 transition-transform duration-300",
-                            isOpen ? "rotate-180 text-[#F5A51D]" : "text-[#FBFBFB]/30"
+                            isOpen ? "rotate-180 text-accent" : "!text-[#FBFBFB]/30"
                           )}
                         />
                       </button>
                     </div>
 
                     {isOpen && (
-                      <div className="border-t border-[#F5A51D]/20 px-5 pb-5 pt-4">
-                        <p className="global-body text-sm mb-4 leading-relaxed text-[#FBFBFB]/85">{pillar.detail}</p>
+                      <div className="border-t border-accent/20 px-5 pb-5 pt-4">
+                        <p className="global-body text-sm mb-4 leading-relaxed text-white/85">{pillar.detail}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                           {pillar.highlights.map((h, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <div className="proplay-icon-container h-5 w-5 !rounded-full shrink-0 mt-0.5">
-                                <CheckCircle2 size={10} />
+                                <CheckCircle2 size={10} className="!text-[#FBFBFB]" />
                               </div>
-                              <span className="text-sm text-[#FBFBFB]/75 leading-snug">{h}</span>
+                              <span className="text-sm text-white/75 leading-snug">{h}</span>
                             </div>
                           ))}
                         </div>
@@ -539,15 +540,15 @@ export default function SupportPage() {
             </div>
 
             {/* Quote banner */}
-            <div className="mt-6 rounded-xl border border-[#F5A51D]/40 bg-[#F5A51D]/5 p-6 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-1 h-full bg-[#F5A51D] rounded-l-xl" />
+            <div className="mt-6 rounded-xl border border-accent/40 bg-accent/5 p-6 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-1 h-full bg-accent rounded-l-xl" />
               <div className="pl-2">
-                <div className="text-4xl sm:text-5xl font-black leading-none text-[#F5A51D] opacity-50">&ldquo;</div>
-                <blockquote className="text-base sm:text-lg font-bold text-[#FBFBFB] leading-snug -mt-3">
-                  Ethereum&apos;s governance infrastructure is just as important as its technical infrastructure —
+                <div className="text-4xl sm:text-5xl font-black leading-none text-accent opacity-50">&ldquo;</div>
+                <blockquote className="text-base sm:text-lg font-bold text-white leading-snug -mt-3">
+                  Ethereum&apos;s governance infrastructure is just as important as its technical infrastructure
                   and it needs the same level of sustained, independent support.
                 </blockquote>
-                <p className="text-[10px] font-black uppercase tracking-widest text-[#F5A51D] mt-4">ECH Institute Mission</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-accent mt-4">ECH Institute Mission</p>
               </div>
             </div>
           </section>
@@ -555,7 +556,7 @@ export default function SupportPage() {
           {/* ── What Your Support Enables ────────────────────────────────── */}
           <section id="what-enables">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-1 h-8 bg-[#F5A51D]" />
+              <div className="w-1 h-8 bg-accent" />
               <span className="global-section-tag mb-0">Your Impact</span>
             </div>
             <h2 className="global-section-title mb-3">What Your Support <em>Enables</em></h2>
@@ -568,19 +569,19 @@ export default function SupportPage() {
               {enablesItems.map((item, i) => (
                 <div
                   key={i}
-                  className="group flex gap-0 rounded-xl border border-[#262626] bg-[#1B1B1E] hover:border-[#F5A51D]/70 hover:shadow-[0_0_20px_rgba(245,165,29,0.07)] transition-all duration-300 overflow-hidden"
+                  className="group flex gap-0 rounded-xl border border-border hover:border-accent/70 hover:shadow-[0_0_20px_rgba(245,165,29,0.07)] transition-all duration-300 overflow-hidden"
                 >
                   {/* Yellow left bar on hover */}
-                  <div className="w-1 shrink-0 bg-[#262626] group-hover:bg-[#F5A51D] transition-colors duration-300" />
+                  <div className="w-1 shrink-0 bg-darkGray group-hover:bg-accent transition-colors duration-300" />
                   <div className="flex gap-4 p-4 md:p-5 flex-1 min-w-0">
                     <div className="proplay-icon-container h-11 w-11 shrink-0 mt-0.5">
-                      <item.icon className="h-5 w-5" />
+                      <item.icon className="h-5 w-5 !text-[#FBFBFB]" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-bold text-[15px] text-[#FBFBFB] mb-1">{item.title}</div>
-                      <p className="global-body text-sm mb-3 text-[#FBFBFB]/70 leading-relaxed">{item.description}</p>
-                      <div className="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full bg-[#F5A51D]/10 text-[#F5A51D] border border-[#F5A51D]/30">
-                        <Target size={11} />
+                      <div className="font-bold text-[15px] text-white mb-1">{item.title}</div>
+                      <p className="global-body text-sm mb-3 text-white/70 leading-relaxed">{item.description}</p>
+                      <div className="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full bg-accent/10 text-accent border border-accent/30">
+                        <Target size={11} className="!text-[#FBFBFB]" />
                         {item.impact}
                       </div>
                     </div>
@@ -593,7 +594,7 @@ export default function SupportPage() {
           {/* ── Ways to Support ──────────────────────────────────────────── */}
           <section id="ways-to-support">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-1 h-8 bg-[#F5A51D]" />
+              <div className="w-1 h-8 bg-accent" />
               <span className="global-section-tag mb-0">Support Options</span>
             </div>
             <h2 className="global-section-title mb-3">Ways to <em>Support</em></h2>
@@ -611,56 +612,56 @@ export default function SupportPage() {
                     className={cn(
                       "rounded-xl overflow-hidden border transition-all duration-300",
                       isOpen
-                        ? "border-[#F5A51D] bg-[#1B1B1E] shadow-[0_0_20px_rgba(245,165,29,0.08)]"
-                        : "border-[#262626] bg-[#1B1B1E] hover:border-[#F5A51D]/60"
+                        ? "border-accent shadow-[0_0_20px_rgba(245,165,29,0.08)]"
+                        : "border-border hover:border-accent/60"
                     )}
                   >
-                    <div className={cn("flex", isOpen && "border-l-2 border-[#F5A51D]")}>
+                    <div className={cn("flex", isOpen && "border-l-2 border-accent")}>
                       <button
                         className="w-full flex items-center gap-4 p-4 md:p-5 text-left transition-colors hover:bg-[#222222]"
                         onClick={() => toggleWay(i)}
                       >
                         <div className="proplay-icon-container h-11 w-11 shrink-0">
-                          <way.icon className="h-5 w-5" />
+                          <way.icon className="h-5 w-5 !text-[#FBFBFB]" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="font-bold text-[15px] text-[#FBFBFB]">{way.title}</span>
-                            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#F5A51D]/15 text-[#F5A51D] border border-[#F5A51D]/30 hidden sm:inline">
+                            <span className="font-bold text-[15px] text-white">{way.title}</span>
+                            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-accent/15 text-accent border border-accent/30 hidden sm:inline">
                               {way.subtitle}
                             </span>
                           </div>
-                          <p className="global-body text-sm text-[#FBFBFB]/60 line-clamp-1">{way.description.slice(0, 90)}…</p>
+                          <p className="global-body text-sm text-white/60 line-clamp-1">{way.description.slice(0, 90)}…</p>
                         </div>
                         <ChevronDown
                           size={16}
                           className={cn(
                             "shrink-0 transition-transform duration-300",
-                            isOpen ? "rotate-180 text-[#F5A51D]" : "text-[#FBFBFB]/30"
+                            isOpen ? "rotate-180 text-accent" : "!text-[#FBFBFB]/30"
                           )}
                         />
                       </button>
                     </div>
 
                     {isOpen && (
-                      <div className="border-t border-[#F5A51D]/20 px-5 pb-5 pt-4">
-                        <p className="global-body text-sm mb-5 leading-relaxed text-[#FBFBFB]/85">{way.description}</p>
+                      <div className="border-t border-accent/20 px-5 pb-5 pt-4">
+                        <p className="global-body text-sm mb-5 leading-relaxed text-white/85">{way.description}</p>
                         <div className="flex flex-col gap-3 mb-5">
                           {way.process.map((step, j) => (
                             <div key={j} className="flex items-start gap-3">
                               <div className="proplay-icon-container h-6 w-6 !rounded-full text-[11px] font-black shrink-0 mt-0.5">
                                 {j + 1}
                               </div>
-                              <span className="text-sm text-[#FBFBFB]/75 leading-snug pt-0.5">{step}</span>
+                              <span className="text-sm text-white/75 leading-snug pt-0.5">{step}</span>
                             </div>
                           ))}
                         </div>
                         <Link
                           href={way.isEmail ? `mailto:${EXTERNAL_LINKS.email.replace("mailto:", "")}` : way.href}
                           target={way.isEmail ? "_self" : "_self"}
-                          className="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg bg-[#F5A51D] text-white hover:bg-[#F5A51D]/90 transition-all"
+                          className="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg bg-accent text-white hover:bg-accent/90 transition-all"
                         >
-                          {way.cta} <ArrowRight size={14} />
+                          {way.cta} <ArrowRight size={14} className="!text-[#FBFBFB]" />
                         </Link>
                       </div>
                     )}
@@ -681,39 +682,43 @@ export default function SupportPage() {
               programs, and staking-based rewards so we stay independent, transparent, and aligned with
               our nonprofit mission.
             </p>
-            <div className="global-card p-0 overflow-hidden bg-[#1B1B1E] border-[#262626]">
-              <div className="border-b border-[#262626] bg-[#151419]/60 px-5 py-4">
-                <p className="text-xs font-bold uppercase tracking-widest text-[#FBFBFB]/40">Revenue Breakdown</p>
+            <div className="global-card p-0 overflow-hidden bg-[var(--surface-card-theme)] border-[var(--border-soft)] shadow-xl">
+              <div className="border-b border-[var(--border-soft)] bg-[var(--background)]/40 px-6 py-4 flex items-center justify-between">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--text-soft)]">Revenue Breakdown</p>
+                <div className="flex gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-brand)] animate-pulse" />
+                  <span className="text-[9px] font-black uppercase text-[var(--accent-brand)]">Live Allocation</span>
+                </div>
               </div>
-              <div className="px-5 py-5">
+              <div className="px-6 py-8">
                 <FundingVisualization />
               </div>
             </div>
 
             {/* OP Grant highlight card */}
-            <div className="global-card mt-4 bg-[#1B1B1E] border-[#262626] relative overflow-hidden">
+            <div className="global-card mt-4 border-border relative overflow-hidden">
               {/* Top accent line Brand yellow */}
               <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F5A51D] to-transparent" />
               <div className="flex flex-col lg:flex-row lg:items-center gap-5">
                 {/* OP Logo pill */}
                 <div className="flex items-center gap-3 shrink-0">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5A51D]/10 border border-[#F5A51D]/30">
-                    <span className="text-lg font-black text-[#F5A51D]">OP</span>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 border border-accent/30">
+                    <span className="text-lg font-black text-accent">OP</span>
                   </div>
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-[#F5A51D]">Optimism Grant</p>
-                    <p className="text-[11px] text-[#FBFBFB]/50 font-medium">Retroactive Public Goods Funding</p>
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-accent">Optimism Grant</p>
+                    <p className="text-[11px] text-white/50 font-medium">Retroactive Public Goods Funding</p>
                   </div>
                 </div>
                 {/* Divider */}
-                <div className="hidden lg:block h-12 w-[1px] bg-[#262626]" />
+                <div className="hidden lg:block h-12 w-[1px] bg-darkGray" />
                 {/* Amount */}
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2 mb-1">
-                    <span className="text-3xl font-black text-[#FBFBFB] tracking-tight">124.23K</span>
-                    <span className="text-base font-black text-[#F5A51D]">OP</span>
+                    <span className="text-3xl font-black text-white tracking-tight">124.23K</span>
+                    <span className="text-base font-black text-accent">OP</span>
                   </div>
-                  <p className="text-sm text-[#FBFBFB]/60 leading-relaxed">
+                  <p className="text-sm text-white/60 leading-relaxed">
                     Awarded by the Optimism Collective in recognition of ECH Institute&apos;s contributions to
                     Ethereum public goods coordination infrastructure, governance documentation, and
                     open education programs.
@@ -724,7 +729,7 @@ export default function SupportPage() {
                   <Link
                     href="https://app.optimism.io/retropgf"
                     target="_blank"
-                    className="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-lg border border-[#F5A51D]/40 bg-[#F5A51D]/8 text-[#F5A51D] hover:bg-[#F5A51D]/15 transition-all"
+                    className="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-lg border border-accent/40 bg-accent/8 text-accent hover:bg-accent/15 transition-all"
                   >
                     View on Optimism <ExternalLink size={11} />
                   </Link>
@@ -744,45 +749,54 @@ export default function SupportPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {transparencyItems.map((item, i) => (
-                <div key={i} className="global-card flex flex-col gap-3 hover:border-[#F5A51D]/50 transition-colors bg-[#1B1B1E] border-[#262626]">
+                <div key={i} className="global-card flex flex-col gap-3 hover:border-accent/50 transition-colors border-border">
                   <div className="proplay-icon-container h-10 w-10 flex-shrink-0">
-                    <item.icon className="h-5 w-5" />
+                    <item.icon className="h-5 w-5 !text-[#FBFBFB]" />
                   </div>
-                  <h3 className="global-card-title text-[#FBFBFB]">{item.title}</h3>
-                  <p className="global-body text-sm text-[#FBFBFB]/80">{item.description}</p>
+                  <h3 className="global-card-title text-white">{item.title}</h3>
+                  <p className="global-body text-sm text-white/80">{item.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className="global-card global-border-yellow bg-[#1B1B1E] border-[#262626] mt-5">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
-                <div className="flex items-start gap-4 flex-1">
-                  <span className="proplay-icon-container h-11 w-11 flex-shrink-0">
-                    <FileText className="h-5 w-5" />
+            <div className="global-card global-border-yellow border-border mt-5 p-6 md:p-8">
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <span className="proplay-icon-container h-12 w-12 flex-shrink-0 shadow-lg">
+                    <FileText className="h-6 w-6 !text-[#FBFBFB]" />
                   </span>
-                  <div>
-                    <h3 className="global-card-title text-[#FBFBFB]">Read the Annual Report</h3>
-                    <p className="global-body text-sm mt-1 max-w-md text-[#FBFBFB]/70">
+                  <div className="flex-1">
+                    <h3 className="global-card-title text-white text-2xl !mb-2">Read the Annual Report</h3>
+                    <p className="global-body text-sm md:text-base mt-1 max-w-3xl text-white/70 leading-relaxed">
                       ECH Institute&apos;s annual report provides a full accounting of activities, funding,
                       and program outcomes. Published annually and freely available.
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3 shrink-0">
+                
+                <div className="flex flex-wrap items-center gap-4 border-t border-white/5 pt-6">
                   <Link
-                    href={EXTERNAL_LINKS.annualReport}
+                    href={EXTERNAL_LINKS.annualReport2026}
                     target="_blank"
-                    className="btn btn-primary"
+                    className="btn btn-primary px-8 py-3 h-auto min-h-[50px] flex items-center justify-center gap-2 group"
+                  >
+                    <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    Latest Annual Report
+                  </Link>
+                  <Link
+                    href={EXTERNAL_LINKS.annualReport2024}
+                    target="_blank"
+                    className="btn btn-outline border-white/20 text-white px-8 py-3 h-auto min-h-[50px] flex items-center justify-center gap-2 hover:bg-white/10"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    View Annual Report
+                    Previous Report
                   </Link>
                   <Link
                     href={EXTERNAL_LINKS.github}
                     target="_blank"
-                    className="btn btn-outline border-[#262626] text-[#FBFBFB]"
+                    className="btn btn-outline border-white/20 text-white px-8 py-3 h-auto min-h-[50px] flex items-center justify-center gap-2 hover:bg-white/10"
                   >
-                    <MessageSquare className="h-4 w-4" />
+                    <MessageSquare className="h-4 w-4 !text-[#FBFBFB]" />
                     GitHub Records
                   </Link>
                 </div>
@@ -791,34 +805,34 @@ export default function SupportPage() {
           </section>
 
           {/* ── Questions ─────────────────────────────────────────────────── */}
-          <section id="questions" className="global-card bg-[#1B1B1E] border-[#262626] p-5 md:p-6">
+          <section id="questions" className="global-card border-border p-5 md:p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="proplay-icon-container h-10 w-10 shrink-0">
-                <MessageSquare className="h-5 w-5" />
+                <MessageSquare className="h-5 w-5 !text-[#FBFBFB]" />
               </div>
-              <h2 className="global-card-title text-[#FBFBFB] mb-0">Questions</h2>
+              <h2 className="global-card-title text-white mb-0">Questions</h2>
             </div>
             <div className="space-y-2.5">
-              <p className="global-body text-[#FBFBFB]/80">
+              <p className="global-body text-white/80">
                 ECH Institute Inc. is a non-partisan 501(c)(3) tax-exempt charitable organization and
                 operates in accordance with federal, state, and local nonprofit law in the United States.
               </p>
-              <p className="global-body text-[#FBFBFB]/80">
+              <p className="global-body text-white/80">
                 Contributions are voluntary and non-refundable; tax treatment depends on your situation
                 and U.S. law. Fiat and cryptocurrency gifts are used only for charitable purposes. For a
                 receipt, share donor details when you give or soon after. IRC Section 170 may apply.
               </p>
-              <p className="global-body text-[#FBFBFB]/80">
+              <p className="global-body text-white/80">
                 ? : {" "}
                 <a
                   href={EXTERNAL_LINKS.email}
-                  className="font-semibold text-[#F5A51D] underline-offset-2 hover:underline"
+                  className="font-semibold text-accent underline-offset-2 hover:underline"
                 >
                   team@ethcatherders.com
                 </a>
                 .
               </p>
-              <p className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-[#F5A51D] border border-[#F5A51D]/30 bg-[#F5A51D]/10 rounded-lg px-3 py-2">
+              <p className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-accent border border-accent/30 bg-accent/10 rounded-lg px-3 py-2">
                 <Heart size={14} className="shrink-0" />
                 Thank you for supporting ECH Institute and Ethereum&apos;s public-good coordination.
               </p>

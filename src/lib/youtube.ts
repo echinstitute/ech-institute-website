@@ -25,7 +25,8 @@ export function getYouTubeVideoId(url: string): string | null {
 export function getYouTubeThumbnailUrl(url: string): string {
   const videoId = getYouTubeVideoId(url);
   if (!videoId) return '';
-  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  // hqdefault.jpg is more reliable than maxresdefault.jpg as not all videos have maxres
+  return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 }
 
 /** Embed used for muted autoplay preview on hover (same pattern as events page). */

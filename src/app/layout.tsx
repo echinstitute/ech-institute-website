@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Syne, DM_Sans, Antonio } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
@@ -117,11 +118,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Structured Data — Organization */}
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth" className="dark">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${dmSans.variable} ${antonio.variable} antialiased theme-dark dark`}
+        suppressHydrationWarning
+      >
         <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('ech-theme');var e=document.documentElement;var b=document.body;var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(dark){e.classList.add('dark');b.classList.add('theme-dark','dark');b.classList.remove('theme-light');e.dataset.theme='dark';}else{e.classList.remove('dark');b.classList.add('theme-light');b.classList.remove('theme-dark','dark');e.dataset.theme='light';}}catch(e){}})();`,
+          }}
+        />
+        {/* Structured Data — Organization */}
+        <Script
+          id="ld-organization"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -142,19 +153,28 @@ export default function RootLayout({
               ],
               nonprofitStatus: "Nonprofit501c3",
               areaServed: "Worldwide",
-              knowsAbout: [
-                "Ethereum governance",
-                "EIP coordination",
-                "Blockchain education",
-                "Protocol development",
-              ],
             }),
           }}
         />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${dmSans.variable} ${antonio.variable} antialiased theme-dark dark`}
-      >
+        {/* Structured Data — WebSite */}
+        <Script
+          id="ld-website"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "ECH Institute",
+              url: "https://www.echinstitute.org",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://www.echinstitute.org/search?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
         <ThemeProvider>
           <Web3Provider>
             <Navigation />

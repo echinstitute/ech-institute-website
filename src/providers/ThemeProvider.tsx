@@ -27,9 +27,13 @@ function applyTheme(theme: Theme) {
   const body = document.body;
   const root = document.documentElement;
 
+  // Sync both body and root for maximum compatibility
   body.classList.remove('theme-light', 'theme-dark', 'dark');
   body.classList.add(theme === 'dark' ? 'theme-dark' : 'theme-light');
   body.classList.toggle('dark', theme === 'dark');
+  
+  root.classList.toggle('dark', theme === 'dark');
+  
   body.dataset.theme = theme;
   root.dataset.theme = theme;
 }
@@ -40,7 +44,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem(STORAGE_KEY);
-    const initialTheme: Theme = storedTheme === 'light' ? 'light' : 'dark';
+    
+    let initialTheme: Theme = 'dark';
+    if (storedTheme) {
+      initialTheme = storedTheme as Theme;
+    } else {
+      // Fallback to browser preference
+      initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
 
     setThemeState(initialTheme);
     applyTheme(initialTheme);

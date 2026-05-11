@@ -1,19 +1,3 @@
-/**
- * ECH Institute Centralized Route Configuration
- * ================================================
- * Single source of truth for ALL application routes and path aliases.
- * Similar to Angular's RouterModule — import from here everywhere.
- *
- * Usage:
- *   import { ROUTES, ALIASES } from '@/config/routes';
- *   <Link href={ROUTES.about}>About</Link>
- *
- * To add a new page:
- *   1. Add it to APP_ROUTES (canonical path)
- *   2. If you want a short-path alias, add to PATH_ALIASES
- *   3. next.config.ts reads PATH_ALIASES automatically — no other changes needed
- */
-
 // ─────────────────────────────────────────────
 // CANONICAL ROUTES  (the real URL for each page)
 // ─────────────────────────────────────────────
@@ -45,9 +29,7 @@ export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES];
 // ─────────────────────────────────────────────
 // SHORT-PATH ALIASES  (convenience URLs → canonical)
 // ─────────────────────────────────────────────
-// These are injected into next.config.ts as rewrites().
-// Add an entry here to make /short-path serve /canonical-path content
-// without a redirect (URL stays as the short version in the browser).
+
 export const PATH_ALIASES: Array<{ source: string; destination: string }> = [
   // Core physical rewrites: Clean URL -> Physical App Router Folder
   { source: '/podcast',              destination: '/community/podcast' },
@@ -87,7 +69,8 @@ export const PATH_ALIASES: Array<{ source: string; destination: string }> = [
 // ─────────────────────────────────────────────
 export const EXTERNAL_LINKS = {
   blog:          'https://blog.echinstitute.org',
-  annualReport:  '/reports/First_Annual_Report_ECH_Institute_Inc.pdf',
+  annualReport2024: '/reports/First_Annual_Report_ECH_Institute_Inc.pdf',
+  annualReport2026: '/reports/ANNUAL%20REPORT%202026.pdf',
   discord:       'https://dsc.gg/ech',
 
   // Social

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
@@ -8,6 +8,7 @@ import {
   Users, CheckCircle2, Building2, Target, Heart, Sparkles,
   Video, Shield, Globe, Eye, Compass
 } from 'lucide-react';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const BOARD_MEMBERS = [
   {
@@ -38,7 +39,118 @@ const BOARD_MEMBERS = [
     image: '/assets/profiles Images/Meenakshi Singh.jpg',
     bio: 'Board member contributing to ECH Institute strategy and community initiatives.',
   },
+  {
+    id: '5',
+    name: 'Akash Kshirsagar',
+    position: 'Multi-media Producer',
+    image: '/assets/profiles Images/Akash Kshirsagar.png',
+    bio: 'Akash takes care of everything technology from recording and editing videos to livestreaming and creating animated shorts.',
+  },
 ];
+
+function TeamSlider({ members }: { members: any[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [visibleItems, setVisibleItems] = useState(4);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Responsive logic
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) setVisibleItems(1);
+      else if (window.innerWidth < 1024) setVisibleItems(2);
+      else if (window.innerWidth < 1280) setVisibleItems(3);
+      else setVisibleItems(4);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev >= members.length - visibleItems ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    if (!isPaused && members.length > visibleItems) {
+      timeoutRef.current = setInterval(nextSlide, 3500);
+    }
+    return () => {
+      if (timeoutRef.current) clearInterval(timeoutRef.current);
+    };
+  }, [isPaused, members.length, visibleItems]);
+
+  return (
+    <div 
+      className="relative py-10"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="overflow-hidden">
+        {/* Slider Track */}
+        <div 
+          className="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
+          style={{ transform: `translateX(-${currentIndex * (100 / visibleItems)}%)` }}
+        >
+          {members.map((member) => (
+            <div 
+              key={member.id} 
+              className="flex-shrink-0 px-3"
+              style={{ width: `${100 / visibleItems}%` }}
+            >
+              <div className="h-full bg-[var(--surface-card-theme)] rounded-3xl border border-[var(--border-soft)] overflow-hidden hover:border-[var(--accent-brand)] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col">
+                {/* Image Container */}
+                <div className="relative aspect-square overflow-hidden bg-neutral-900">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover object-top group-hover:scale-110 transition-transform duration-1000"
+                  />
+                  {/* Overlay - Only in dark mode */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity hidden dark:block" />
+                  
+                  {/* Position Tag */}
+                  <div className="absolute bottom-4 left-4 right-4 z-10">
+                    <span className="inline-block text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md bg-[var(--accent-brand)] text-[var(--theme-on-accent)] shadow-xl">
+                      {member.position}
+                    </span>
+                  </div>
+                </div>
+                
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow bg-gradient-to-b from-transparent to-[var(--surface-card-muted)]/30">
+                  <h3 className="text-xl font-extrabold font-syne text-[var(--text-base)] mb-3 group-hover:text-[var(--accent-brand)] transition-colors leading-tight">
+                    {member.name}
+                  </h3>
+                  <p className="text-xs text-[var(--text-soft)] leading-relaxed font-medium line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
+                    {member.bio}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Controls - Centered Dots */}
+      <div className="flex justify-center items-center mt-12 px-4">
+        <div className="flex gap-2">
+          {Array.from({ length: Math.max(0, members.length - visibleItems + 1) }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-1.5 transition-all duration-500 rounded-full ${
+                currentIndex === idx ? 'w-8 bg-[var(--accent-brand)]' : 'w-2 bg-[var(--border-soft)]'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const PEOPLE_CARDS = [
   { icon: Sparkles, title: 'Core Contributors', desc: 'Manage major initiatives and the EIP process.' },
@@ -59,7 +171,18 @@ const OPERATIONS = [
   { title: 'Decentralized Project Management', desc: 'Providing the coordination layer for diverse Ethereum ecosystem initiatives the "operating system" for organizational tasks.' },
 ];
 
+import { HeroRadar } from '@/components/features/HeroRadar';
+
+const HERO_SPHERES = [
+  { icon: Sparkles, title: 'Coordination', desc: 'Managing major initiatives and EIP processes with decentralized precision.' },
+  { icon: Users,    title: 'Community',    desc: 'Ensuring documentation and meeting coordination across global stakeholders.' },
+  { icon: Target,   title: 'Education',    desc: 'Creating technical resources and documentation as a neutral public good.' },
+  { icon: Heart,    title: 'Outreach',     desc: 'Engaging with the global community and partners to grow the ecosystem.' },
+];
+
 export default function AboutPage() {
+  const { isDark, mounted } = useTheme();
+  
   useEffect(() => {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e: Event) {
@@ -77,78 +200,41 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[var(--background)] pt-16 lg:pt-24">
+    <main className="min-h-screen bg-[var(--background)] pt-16 lg:pt-24 text-[var(--text-base)]">
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section className="page-hero">
-        <div className="page-hero-inner !max-w-7xl">
+      <section className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
 
-          {/* Left — text */}
-          <div>
-            <div className="page-hero-tag">
-              <span className="page-hero-dot" />
-              501(c)(3) Nonprofit · Est. 2024
+            {/* Left — copy */}
+            <div className="flex flex-col gap-5">
+              <div className="proplay-icon-container px-3 py-1 self-start gap-2 !text-[#FBFBFB]">
+                <Globe className="w-4 !text-[#FBFBFB] " />
+                501(c)(3) Nonprofit · Est. 2024
+              </div>
+              <h1 className="global-hero-title">
+                About <em>ECH</em><br />Institute
+              </h1>
+              <p className="global-body-lg max-w-xl">
+                ECH Institute Inc. is a 501(c)(3) non-profit organization that transitioned to a
+                formalized institutional steward on July 11, 2024 supporting the Ethereum ecosystem
+                through decentralized project management, coordination, and technical education as a
+                neutral public good.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <Link href="/support#donate" className="btn btn-primary">Support Our Mission</Link>
+                <a href="#mission" className="btn btn-outline">Our Mission</a>
+              </div>
             </div>
-            <h1 className="page-hero-title">
-              About <em>ECH</em><br />Institute
-            </h1>
-            <p className="page-hero-desc">
-              ECH Institute Inc. is a 501(c)(3) non-profit organization that transitioned to a
-              formalized institutional steward on July 11, 2024 supporting the Ethereum ecosystem
-              through decentralized project management, coordination, and technical education as a
-              neutral public good.
-            </p>
-            <div className="page-hero-actions mt-4">
-              <Link href="/support#donate" className="global-btn global-btn-primary">Support Our Mission</Link>
-              <a href="#mission" className="global-btn global-btn-outline">Our Mission</a>
-            </div>
+
+            {/* Right — Interactive Radar */}
+            <HeroRadar spheres={HERO_SPHERES} />
+
           </div>
-
-          {/* Right — Radar / sphere animation */}
-          <div className="relative h-[400px] w-full hidden lg:flex items-center justify-center">
-            {/* Background rings */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
-              <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
-              <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
-              <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
-            </div>
-            {/* Centre dot */}
-            <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--accent-brand)] opacity-40" />
-            {/* Spheres */}
-            <div className="absolute inset-0">
-              {([
-                { icon: Sparkles, title: 'Coordination', desc: 'Managing major initiatives and EIP processes.', pos: 'top-[8%] left-1/2 -translate-x-1/2' },
-                { icon: Users,    title: 'Community',    desc: 'Ensuring documentation and meeting coordination.', pos: 'top-1/2 right-[8%] -translate-y-1/2' },
-                { icon: Target,   title: 'Education',    desc: 'Creating technical resources and documentation.', pos: 'bottom-[8%] left-1/2 -translate-x-1/2' },
-                { icon: Heart,    title: 'Outreach',     desc: 'Engaging with the global community and partners.', pos: 'top-1/2 left-[8%] -translate-y-1/2' },
-              ] as const).map(({ icon: Icon, title, desc, pos }, idx) => (
-                <div key={title} className={`absolute ${pos} group/sphere z-20`}>
-                  <div className="relative flex flex-col items-center">
-                    <div className="relative proplay-icon-container h-16 w-16 rounded-full border-2 border-[var(--border-soft)] shadow-xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer">
-                      <Icon className="h-8 w-8 transition-colors" />
-                      <span className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-60 group-hover/sphere:animate-ping pointer-events-none" />
-                    </div>
-                    <div className="mt-2 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--background)] whitespace-nowrap">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-white">{String(idx + 1).padStart(2,'0')} {title}</span>
-                    </div>
-                    <div
-                      className="absolute top-0 left-[calc(100%+1rem)] w-52 bg-[var(--background)] border border-[var(--accent-brand)] rounded-2xl p-4 shadow-2xl
-                                 pointer-events-none opacity-0 -translate-x-2 transition-all duration-300
-                                 group-hover/sphere:opacity-100 group-hover/sphere:translate-x-0 z-[100]"
-                    >
-                      <div className="absolute top-5 -left-[9px] w-4 h-4 bg-[var(--background)] border-l border-b border-[var(--accent-brand)] rotate-45" />
-                      <p className="text-[10px] font-black uppercase tracking-widest text-[var(--accent-brand)] mb-2">Our Focus</p>
-                      <p className="text-[12px] text-[var(--text-base)] font-medium leading-relaxed">{desc}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
         </div>
       </section>
+
 
       {/* ── WHO WE ARE ────────────────────────────────────────── */}
       <section id="who-we-are" className="py-8 md:py-12 px-4 sm:px-6 lg:px-8 bg-[var(--background)] border-t border-[var(--border-soft)]">
@@ -159,7 +245,10 @@ export default function AboutPage() {
               <div className="relative group max-w-[220px] lg:max-w-full">
                 <div className="absolute -inset-4 bg-[var(--accent-brand)] opacity-[0.02] rounded-full blur-3xl group-hover:opacity-[0.05] transition-opacity duration-500" />
                 <Image
-                  src="/assets/logo/ECH Institute Logo - White.png"
+                  src={mounted && !isDark 
+                    ? "/assets/logo/ECH Institute Logo - Black.png" 
+                    : "/assets/logo/ECH Institute Logo - White.png"
+                  }
                   alt="ECH Institute Logo"
                   width={280}
                   height={280}
@@ -203,47 +292,12 @@ export default function AboutPage() {
       <section id="board" className="proplay-section bg-[var(--background)] border-t border-[var(--border-soft)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="global-section-tag justify-center">Leadership</div>
-            <h2 className="global-section-title">ECH Institute <em>Board</em></h2>
+            <div className="global-section-tag justify-center">Leadership & Team</div>
+            <h2 className="global-section-title">The People Behind <em>ECH Institute</em></h2>
             <p className="global-body-lg mt-4 max-w-2xl mx-auto">Meet the dedicated individuals steering ECH Institute&apos;s mission of open, transparent Ethereum governance.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {BOARD_MEMBERS.map((member) => (
-              <div
-                key={member.id}
-                className="bg-[var(--surface-card-theme)] rounded-2xl border border-[var(--border-soft)] overflow-hidden hover:border-[var(--accent-brand)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full"
-              >
-                {/* Image Container */}
-                <div className="relative w-full aspect-square overflow-hidden bg-neutral-900">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover object-top group-hover:scale-110 transition-transform duration-700 z-0"
-                    priority={member.id === '1'}
-                  />
-                  {/* Subtle Shadow Overlay - Bypasses global bg-gradient overrides */}
-                  <div 
-                    className="absolute inset-0 z-10 pointer-events-none" 
-                    style={{ 
-                      background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)' 
-                    }} 
-                  />
-                  <div className="absolute bottom-4 left-4 z-20">
-                    <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md bg-[var(--accent-brand)] text-[var(--theme-on-accent)] shadow-lg">
-                      {member.position}
-                    </span>
-                  </div>
-                </div>
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="font-extrabold text-lg font-syne text-[var(--text-base)] mb-2 group-hover:text-[var(--accent-brand)] transition-colors">{member.name}</h3>
-                  <p className="text-sm text-[var(--text-soft)] leading-relaxed">{member.bio}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          
+          <TeamSlider members={BOARD_MEMBERS} />
         </div>
       </section>
 
@@ -260,7 +314,7 @@ export default function AboutPage() {
             <div className="relative bg-[var(--surface-card-theme)] rounded-3xl border border-[var(--border-soft)] p-10 lg:p-12 overflow-hidden hover:border-[var(--accent-brand)] hover:shadow-xl transition-all duration-300 group">
               <div className="absolute top-0 left-0 w-full h-1 bg-[var(--accent-brand)] rounded-t-3xl" />
               <div className="proplay-icon-container h-14 w-14 rounded-2xl mb-8">
-                <Compass className="h-7 w-7" />
+                <Compass className="h-7 w-7 !text-[#FBFBFB]" />
               </div>
               <div className="global-section-tag mb-3">Our Mission</div>
               <h3 className="text-2xl sm:text-3xl font-extrabold font-syne text-[var(--text-base)] leading-tight mb-6">
@@ -272,7 +326,7 @@ export default function AboutPage() {
               <div className="mt-8 pt-6 border-t border-[var(--border-soft)] flex flex-col gap-3">
                 {['Neutral & independent', 'Transparent by design', 'Community-first approach'].map((p) => (
                   <div key={p} className="flex items-center gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-[var(--accent-brand)] shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 !text-[#FBFBFB] shrink-0" />
                     <span className="text-sm font-semibold text-[var(--text-base)]">{p}</span>
                   </div>
                 ))}
@@ -283,7 +337,7 @@ export default function AboutPage() {
             <div className="relative bg-[var(--surface-card-theme)] rounded-3xl border border-[var(--border-soft)] p-10 lg:p-12 overflow-hidden hover:border-[var(--accent-brand)] hover:shadow-xl transition-all duration-300 group">
               <div className="absolute top-0 left-0 w-full h-1 bg-[var(--accent-brand)] rounded-t-3xl" />
               <div className="proplay-icon-container h-14 w-14 rounded-2xl mb-8">
-                <Eye className="h-7 w-7" />
+                <Eye className="h-7 w-7 !text-[#FBFBFB]" />
               </div>
               <div className="global-section-tag mb-3">Our Vision</div>
               <h3 className="text-2xl sm:text-3xl font-extrabold font-syne text-[var(--text-base)] leading-tight mb-6">
@@ -295,7 +349,7 @@ export default function AboutPage() {
               <div className="mt-8 pt-6 border-t border-[var(--border-soft)] flex flex-col gap-3">
                 {['Inclusive participation', 'Global accessibility', 'Long-term sustainability'].map((p) => (
                   <div key={p} className="flex items-center gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-[var(--accent-brand)] shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 !text-[#FBFBFB] shrink-0" />
                     <span className="text-sm font-semibold text-[var(--text-base)]">{p}</span>
                   </div>
                 ))}
@@ -320,7 +374,7 @@ export default function AboutPage() {
                 key={item.title} 
                 className="flex flex-col sm:flex-row items-start gap-6 p-8 rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden"
               >
-                <div className="proplay-icon-container h-14 w-14 rounded-2xl shrink-0 flex items-center justify-center text-xl font-black shadow-lg group-hover:scale-110 transition-transform duration-500">
+                <div className="proplay-icon-container h-14 w-14 rounded-2xl shrink-0 flex items-center justify-center text-xl font-black shadow-lg group-hover:scale-110 transition-transform duration-500 !text-[#FBFBFB]">
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <div>
@@ -351,7 +405,7 @@ export default function AboutPage() {
               ].map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="flex flex-col gap-4 p-6 rounded-2xl border border-[var(--border-soft)] bg-[var(--background)]">
                   <div className="proplay-icon-container h-12 w-12 rounded-xl">
-                    <Icon className="h-6 w-6" />
+                    <Icon className="h-6 w-6 !text-[#FBFBFB]" />
                   </div>
                   <h3 className="font-bold text-lg font-syne text-[var(--text-base)]">{title}</h3>
                   <p className="text-sm text-[var(--text-soft)] leading-relaxed">{desc}</p>
@@ -377,7 +431,7 @@ export default function AboutPage() {
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-[var(--accent-brand)] opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="proplay-icon-container h-14 w-14 rounded-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  <item.icon className="h-7 w-7" />
+                  <item.icon className="h-7 w-7 !text-[#FBFBFB]" />
                 </div>
                 <h3 className="font-extrabold text-lg font-syne text-[var(--accent-brand)] mb-3 leading-tight uppercase tracking-tight">{item.title}</h3>
                 <p className="text-sm text-[var(--text-soft)] leading-relaxed font-medium">{item.desc}</p>

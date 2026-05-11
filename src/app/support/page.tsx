@@ -759,33 +759,42 @@ export default function SupportPage() {
               ))}
             </div>
 
-            <div className="global-card global-border-yellow border-border mt-5">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
-                <div className="flex items-start gap-4 flex-1">
-                  <span className="proplay-icon-container h-11 w-11 flex-shrink-0">
-                    <FileText className="h-5 w-5 !text-[#FBFBFB]" />
+            <div className="global-card global-border-yellow border-border mt-5 p-6 md:p-8">
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <span className="proplay-icon-container h-12 w-12 flex-shrink-0 shadow-lg">
+                    <FileText className="h-6 w-6 !text-[#FBFBFB]" />
                   </span>
-                  <div>
-                    <h3 className="global-card-title text-white">Read the Annual Report</h3>
-                    <p className="global-body text-sm mt-1 max-w-md text-white/70">
+                  <div className="flex-1">
+                    <h3 className="global-card-title text-white text-2xl !mb-2">Read the Annual Report</h3>
+                    <p className="global-body text-sm md:text-base mt-1 max-w-3xl text-white/70 leading-relaxed">
                       ECH Institute&apos;s annual report provides a full accounting of activities, funding,
                       and program outcomes. Published annually and freely available.
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3 shrink-0">
+                
+                <div className="flex flex-wrap items-center gap-4 border-t border-white/5 pt-6">
                   <Link
-                    href={EXTERNAL_LINKS.annualReport}
+                    href={EXTERNAL_LINKS.annualReport2026}
                     target="_blank"
-                    className="btn btn-primary"
+                    className="btn btn-primary px-8 py-3 h-auto min-h-[50px] flex items-center justify-center gap-2 group"
+                  >
+                    <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    Latest Annual Report
+                  </Link>
+                  <Link
+                    href={EXTERNAL_LINKS.annualReport2024}
+                    target="_blank"
+                    className="btn btn-outline border-white/20 text-white px-8 py-3 h-auto min-h-[50px] flex items-center justify-center gap-2 hover:bg-white/10"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    View Annual Report
+                    Previous Report
                   </Link>
                   <Link
                     href={EXTERNAL_LINKS.github}
                     target="_blank"
-                    className="btn btn-outline border-border text-white"
+                    className="btn btn-outline border-white/20 text-white px-8 py-3 h-auto min-h-[50px] flex items-center justify-center gap-2 hover:bg-white/10"
                   >
                     <MessageSquare className="h-4 w-4 !text-[#FBFBFB]" />
                     GitHub Records

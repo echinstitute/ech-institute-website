@@ -114,10 +114,24 @@ const menuItems: MenuConfig = {
         link: EXTERNAL_LINKS.blog,
       },
       {
-        title: 'FIRST ANNUAL REPORT',
-        description: 'ECH Institute first annual report',
+        title: 'ANNUAL REPORTS',
+        description: 'ECH Institute annual & quarterly reports',
         icon: FileText,
-        link: EXTERNAL_LINKS.annualReport,
+        link: '#',
+        subItems: [
+          {
+            title: 'ANNUAL REPORT',
+            description: 'ECH Institute Q1-Q2 report',
+            icon: FileText,
+            link: EXTERNAL_LINKS.annualReport2026,
+          },
+          {
+            title: 'ANNUAL REPORT',
+            description: 'ECH Institute first annual report',
+            icon: FileText,
+            link: EXTERNAL_LINKS.annualReport2024,
+          },
+        ],
       },
       {
         title: 'GET INVOLVED',
@@ -612,7 +626,7 @@ export default function Navigation() {
             {/* Mega Menu */}
             <div
               ref={dropdownRef}
-              className="nav-panel-offset hidden lg:block fixed inset-x-0 bg-[var(--surface-card-theme)] z-50 shadow-lg rounded-b-lg"
+              className="nav-panel-offset hidden lg:block fixed inset-x-0 bg-[var(--surface-card-theme)] z-50 shadow-2xl rounded-b-xl border-t border-[var(--border-soft)]"
               onMouseEnter={handleDropdownEnter}
               onMouseLeave={handleDropdownLeave}
             >
@@ -641,7 +655,7 @@ export default function Navigation() {
                                   'w-full flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border cursor-pointer focus:outline-none focus-visible:outline-none',
                                   isHovered || clickedSection === `${hoveredMenu}-${index}`
                                     ? 'bg-[var(--surface-card-theme)] border-[var(--accent-brand)] shadow-md'
-                                    : 'bg-[var(--surface-card-theme)] border-[var(--border-soft)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md'
+                                    : 'bg-[var(--surface-card-theme)] border-transparent shadow-sm hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md'
                                 )}
                               >
                                 <div className={cn(
@@ -681,7 +695,7 @@ export default function Navigation() {
                                       onMouseEnter={() => {
                                         setHoveredSection(null);
                                       }}
-                                      className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                      className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-transparent shadow-sm bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                     >
                                       <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors">
                                         <subItem.icon className="h-5 w-5" />
@@ -705,7 +719,7 @@ export default function Navigation() {
                                       // Clear hovered section when hovering non-nested items
                                       setHoveredSection(null);
                                     }}
-                                    className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                    className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-transparent shadow-sm bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
                                     <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors">
                                       <subItem.icon className="h-5 w-5" />
@@ -773,7 +787,7 @@ export default function Navigation() {
                                     href={linkUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                    className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-transparent shadow-sm bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
                                     <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors mt-0.5">
                                       <nestedItem.icon className="h-5 w-5" />

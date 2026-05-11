@@ -69,7 +69,8 @@ export const PATH_ALIASES: Array<{ source: string; destination: string }> = [
 // ─────────────────────────────────────────────
 export const EXTERNAL_LINKS = {
   blog:          'https://blog.echinstitute.org',
-  annualReport:  '/reports/First_Annual_Report_ECH_Institute_Inc.pdf',
+  annualReport2024: '/reports/First_Annual_Report_ECH_Institute_Inc.pdf',
+  annualReport2026: '/reports/ANNUAL%20REPORT%202026.pdf',
   discord:       'https://dsc.gg/ech',
 
   // Social

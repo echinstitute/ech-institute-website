@@ -79,7 +79,12 @@
   @apply p-8 border rounded-2xl transition-all duration-300;
   background-color: var(--surface-card-theme);
   border-color: var(--border-soft);
-  box-shadow: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+body.theme-light .global-card {
+  border: none;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08), 0 4px 12px -3px rgba(0, 0, 0, 0.03);
 }
 
 .global-card:hover {
@@ -109,6 +114,11 @@
   background-color: var(--dynamic-bg, var(--surface-card-theme));
   border-color: var(--dynamic-accent, var(--border-soft));
   @apply border-2 transition-all duration-300;
+}
+
+body.theme-light .proplay-dynamic-card {
+  border-width: 0;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
 }
 
 .proplay-icon-container {
@@ -12429,10 +12439,11 @@ body.theme-light .media-hub-video-card {
   border-color: #262626 !important;
 } */
 
-/* Light mode: cards that use --surface-card-theme get a border */
+/* Light mode: cards that use --surface-card-theme get a shadow instead of border */
 body.theme-light [class*="bg-[var(--surface-card-theme)]"],
 body.theme-light [style*="var(--surface-card-theme)"] {
-  border: 1px solid #262626;
+  border: none !important;
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 20px -5px rgba(0, 0, 0, 0.04) !important;
 }
 
 /* ==========================================

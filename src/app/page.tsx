@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
 import CardSlider from '@/components/features/CardSlider';
 import FAQSection from '@/components/features/FAQSection';
-import { Settings, ShieldCheck, Clock, Mail, Twitter, Youtube, GraduationCap, Users, CheckCircle2, Quote, Network } from 'lucide-react';
+import { Settings, ShieldCheck, Clock, Mail, Twitter, Youtube, GraduationCap, Users, CheckCircle2, Quote, Network as NetworkIcon } from 'lucide-react';
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -68,7 +68,6 @@ export default function Home() {
             <div className="hero-buttons animate-fade-up delay-3 flex flex-wrap gap-4 justify-center md:justify-start">
               <Link href="#programs" className="btn btn-primary">Our Programs</Link>
               <Link href={ROUTES.getInvolved} className="btn btn-outline">Get Involved</Link>
-              {/* <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">View Full Report</a> */}
             </div>
           </div>
 
@@ -107,28 +106,28 @@ export default function Home() {
               <div className="space-y-6 pt-4">
                 <div className="flex gap-6 group">
                   <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
-                    <Users className="h-6 w-6 text-white" />
+                    <Users className="h-6 w-6 text-[var(--color-white)]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">People</h3>
+                    <h3 className="text-lg font-syne font-bold text-[var(--text-base)] mb-1">People</h3>
                     <p className="global-body text-sm leading-relaxed">Empowering a diverse, global community of core developers, researchers, and contributors through mentorship and inclusivity initiatives.</p>
                   </div>
                 </div>
                 <div className="flex gap-6 group">
                   <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
-                    <Settings className="h-6 w-6 text-white" />
+                    <Settings className="h-6 w-6 text-[var(--color-white)]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Process</h3>
+                    <h3 className="text-lg font-syne font-bold text-[var(--text-base)] mb-1">Process</h3>
                     <p className="global-body text-sm leading-relaxed">Streamlining Ethereum&apos;s governance through neutral coordination of All Core Devs calls, EIP reviews, and institutional transparency.</p>
                   </div>
                 </div>
                 <div className="flex gap-6 group">
                   <div className="proplay-icon-container h-12 w-12 flex-shrink-0">
-                    <Network className="h-6 w-6 text-white" />
+                    <NetworkIcon className="h-6 w-6 text-[var(--color-white)]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-syne font-bold text-gray-900 mb-1">Protocol</h3>
+                    <h3 className="text-lg font-syne font-bold text-[var(--text-base)] mb-1">Protocol</h3>
                     <p className="global-body text-sm leading-relaxed">Ensuring the technical resilience and long-term scalability of the Ethereum protocol through expert communication and network upgrade readiness.</p>
                   </div>
                 </div>
@@ -148,7 +147,7 @@ export default function Home() {
                 </div>
                 <div className="p-8 lg:p-10 border-t border-border bg-card relative">
                   <div className="absolute -top-6 left-10 w-12 h-12 bg-accent rounded-2xl flex items-center justify-center shadow-lg">
-                    <Quote className="h-6 w-6 text-accent-foreground text-white" />
+                    <Quote className="h-6 w-6 text-[var(--theme-on-accent)]" />
                   </div>
                   <p className="text-lg font-syne font-bold text-foreground leading-snug mb-6 pt-4 italic">
                     &ldquo;We don&apos;t just help communities. We are an active part of the Ethereum fabric.&rdquo;
@@ -303,14 +302,14 @@ export default function Home() {
               <h2 className="global-section-title mb-0 leading-[1.1] pb-1">Programs built <br /><em>for real impact.</em></h2>
             </div>
             <div className="lg:w-1/2 flex flex-col justify-end">
-              <p className="global-body-lg text-left lg:text-right text-gray-600 mb-0 lg:pb-1">Each ECH program supports Ethereum governance through clear processes, coordination, and participation focused on long-term, sustainable outcomes rather than short-term fixes.</p>
+              <p className="global-body-lg text-left lg:text-right text-[var(--text-soft)] mb-0 lg:pb-1">Each ECH program supports Ethereum governance through clear processes, coordination, and participation focused on long-term, sustainable outcomes rather than short-term fixes.</p>
             </div>
           </div>
           {/* Bento mosaic grid */}
           <div className="pgrid-bento">
             {/* Card 1 — tall (row span 2) */}
             <Link href={ROUTES.education} className="pgrid-card pgrid-card--tall group">
-              <img src="/assets/images/How We Work with EF.webp" alt="Education" className="pgrid-img" />
+              <Image src="/assets/images/How We Work with EF.webp" alt="Education" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="pgrid-img object-cover" />
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">FLAGSHIP PROGRAM</span>
@@ -321,7 +320,7 @@ export default function Home() {
             </Link>
             {/* Card 2 */}
             <Link href={ROUTES.eipSupport} className="pgrid-card group">
-              <img src="/assets/images/EIP Summit Workshop.jpg" alt="EIP Support" className="pgrid-img object-cover" />
+              <Image src="/assets/images/EIP Summit Workshop.jpg" alt="EIP Support" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="pgrid-img object-cover" />
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">GOVERNANCE</span>
@@ -332,7 +331,7 @@ export default function Home() {
             </Link>
             {/* Card 3 */}
             <Link href={ROUTES.podcast} className="pgrid-card group">
-              <img src="/assets/images/Podcast Content.webp" alt="Podcast" className="pgrid-img" />
+              <Image src="/assets/images/Podcast Content.webp" alt="Podcast" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="pgrid-img object-cover" />
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">CONTENT</span>
@@ -343,7 +342,7 @@ export default function Home() {
             </Link>
             {/* Card 4 */}
             <Link href={ROUTES.communityPartnerships} className="pgrid-card group">
-              <img src="/assets/images/Who We Are.webp" alt="Community Partnerships" className="pgrid-img" />
+              <Image src="/assets/images/Who We Are.webp" alt="Community Partnerships" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="pgrid-img object-cover" />
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">COMMUNITY</span>
@@ -354,7 +353,7 @@ export default function Home() {
             </Link>
             {/* Card 5 */}
             <Link href={ROUTES.wiep} className="pgrid-card group">
-              <img src="/assets/images/Women in Protocol.webp" alt="Women in Protocol" className="pgrid-img" />
+              <Image src="/assets/images/Women in Protocol.webp" alt="Women in Protocol" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="pgrid-img object-cover" />
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">INCLUSION</span>
@@ -365,7 +364,7 @@ export default function Home() {
             </Link>
             {/* Card 6 */}
             <Link href={ROUTES.institutionalBridging} className="pgrid-card group">
-              <img src="/assets/images/Enterprise & Institutional View.webp" alt="Institutional Bridging" className="pgrid-img" />
+              <Image src="/assets/images/Enterprise & Institutional View.webp" alt="Institutional Bridging" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="pgrid-img object-cover" />
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">INSTITUTIONAL</span>
@@ -376,7 +375,7 @@ export default function Home() {
             </Link>
             {/* Card 7 — wide (col span 2) */}
             <Link href={ROUTES.events} className="pgrid-card pgrid-card--wide group">
-              <img src="/assets/images/Events Workshops.webp" alt="Events" className="pgrid-img" />
+              <Image src="/assets/images/Events Workshops.webp" alt="Events" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="pgrid-img object-cover" />
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">ECOSYSTEM FESTIVALS</span>
@@ -397,9 +396,9 @@ export default function Home() {
             <div className="max-w-2xl">
               <div className="global-section-tag justify-start">OUR IMPACT</div>
               <h2 className="global-section-title mb-4">Numbers <br /><em>that matter.</em></h2>
-              <p className="global-body-lg text-gray-600">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
+              <p className="global-body-lg text-[var(--text-soft)]">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
             </div>
-            <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</a>
+            <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Card 1: Network Upgrades */}
@@ -468,11 +467,11 @@ export default function Home() {
       <section className="proplay-section-dense bg-background overflow-hidden border-t border-[var(--border-soft)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
           <div className="inline-flex items-center gap-4 mb-4">
-            <div className="h-px w-8 bg-[#262626]"></div>
-            <span className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase">OUR NETWORK</span>
-            <div className="h-px w-8 bg-[#262626]"></div>
+            <div className="h-px w-8 bg-darkGray"></div>
+            <span className="text-[10px] font-black tracking-[0.3em] text-lightGray uppercase">OUR NETWORK</span>
+            <div className="h-px w-8 bg-darkGray"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-[#FBFBFB] leading-tight">
+          <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-[var(--text-base)] leading-tight">
             Partnered by &amp; <br className="md:hidden" /> <em>Collaborating with.</em>
           </h2>
         </div>
@@ -539,14 +538,14 @@ export default function Home() {
           </div>
           <div className="lg:col-span-7 animate-on-scroll">
             <div className="global-section-tag">GET INVOLVED</div>
-            <h2 className="global-section-title mb-8 text-gray-900 leading-[1.05] tracking-tight">
+            <h2 className="global-section-title mb-8 text-[var(--text-base)] leading-[1.05] tracking-tight">
               Join us in building <br /><em>a better community.</em>
             </h2>
-            <p className="grow-0 global-body-lg mb-12 text-gray-700 max-w-xl leading-relaxed">
+            <p className="grow-0 global-body-lg mb-12 text-[var(--text-soft)] max-w-xl leading-relaxed">
               Change doesn&apos;t happen alone. Whether you have time, skills, or resources to give there is a meaningful place for you at ECH Institute.
             </p>
             <div className="flex flex-wrap gap-6 items-center">
-              <Link href={ROUTES.support} className="global-btn global-btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">DONATE NOW</Link>
+              <Link href={ROUTES.support} className="btn btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">DONATE NOW</Link>
               <Link href={ROUTES.getInvolved} className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">GET INVOLVED &rarr;</Link>
               <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn-gi-outline px-10 py-5 text-sm uppercase transition-all duration-300">VIEW FULL REPORT</a>
             </div>
@@ -561,55 +560,55 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <div className="animate-on-scroll">
-              <div className="global-section-tag !text-[#F5A51D] border-[#F5A51D]/20">CONTACT ECH</div>
-              <h2 className="global-section-title mb-8 text-[#FBFBFB] leading-[1.05] tracking-tight">
-                Let&apos;s build <br /><em className="text-[#F5A51D]">the future.</em>
+              <div className="global-section-tag !text-accent border-accent/20">CONTACT ECH</div>
+              <h2 className="global-section-title mb-8 text-[var(--text-base)] leading-[1.05] tracking-tight">
+                Let&apos;s build <br /><em className="text-accent">the future.</em>
               </h2>
               <div className="flex flex-col gap-4 max-w-md">
-                <a href={EXTERNAL_LINKS.email} className="group relative p-6 rounded-2xl border border-[#262626] bg-[#1B1B1E] transition-all duration-300 hover:border-[#F5A51D]/40 hover:bg-[#262626] overflow-hidden">
+                <a href={EXTERNAL_LINKS.email} className="group relative p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
                   <div className="flex items-center gap-6 relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-[#262626] border border-[#FBFBFB]/10 flex items-center justify-center text-[#FBFBFB] transition-transform duration-300 group-hover:scale-110">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-base)] transition-transform duration-300 group-hover:scale-110">
                       <Mail size={22} />
                     </div>
                     <div>
-                      <span className="text-[10px] font-black tracking-[0.2em] text-[#878787] uppercase block mb-1">Direct Inquiry</span>
-                      <span className="text-base font-syne font-bold text-[#FBFBFB] group-hover:text-[#F5A51D] transition-colors">team@ethcatherders.com</span>
+                      <span className="text-[10px] font-black tracking-[0.2em] text-lightGray uppercase block mb-1">Direct Inquiry</span>
+                      <span className="text-base font-syne font-bold text-[var(--text-base)] group-hover:text-accent transition-colors">team@ethcatherders.com</span>
                     </div>
                   </div>
                 </a>
 
-                <a href={EXTERNAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-[#262626] bg-[#1B1B1E] transition-all duration-300 hover:border-[#F5A51D]/40 hover:bg-[#262626] overflow-hidden">
+                <a href={EXTERNAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
                   <div className="flex items-center gap-6 relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-[#262626] border border-[#FBFBFB]/10 flex items-center justify-center text-[#FBFBFB] transition-transform duration-300 group-hover:scale-110">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-base)] transition-transform duration-300 group-hover:scale-110">
                       <Twitter size={22} />
                     </div>
                     <div>
-                      <span className="text-[10px] font-black tracking-[0.2em] text-[#878787] uppercase block mb-1">X / Twitter</span>
-                      <span className="text-base font-syne font-bold text-[#FBFBFB] group-hover:text-[#F5A51D] transition-colors">@ECHinstitute</span>
+                      <span className="text-[10px] font-black tracking-[0.2em] text-lightGray uppercase block mb-1">X / Twitter</span>
+                      <span className="text-base font-syne font-bold text-[var(--text-base)] group-hover:text-accent transition-colors">@ECHinstitute</span>
                     </div>
                   </div>
                 </a>
 
-                <a href={EXTERNAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-[#262626] bg-[#1B1B1E] transition-all duration-300 hover:border-[#F5A51D]/40 hover:bg-[#262626] overflow-hidden">
+                <a href={EXTERNAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
                   <div className="flex items-center gap-6 relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-[#262626] border border-[#FBFBFB]/10 flex items-center justify-center text-[#FBFBFB] transition-transform duration-300 group-hover:scale-110">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-base)] transition-transform duration-300 group-hover:scale-110">
                       <Youtube size={22} />
                     </div>
                     <div>
-                      <span className="text-[10px] font-black tracking-[0.2em] text-[#878787] uppercase block mb-1">YouTube</span>
-                      <span className="text-base font-syne font-bold text-[#FBFBFB] group-hover:text-[#F5A51D] transition-colors">@ECHinstitute</span>
+                      <span className="text-[10px] font-black tracking-[0.2em] text-lightGray uppercase block mb-1">YouTube</span>
+                      <span className="text-base font-syne font-bold text-[var(--text-base)] group-hover:text-accent transition-colors">@ECHinstitute</span>
                     </div>
                   </div>
                 </a>
 
-                <a href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-[#262626] bg-[#1B1B1E] transition-all duration-300 hover:border-[#F5A51D]/40 hover:bg-[#262626] overflow-hidden">
+                <a href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
                   <div className="flex items-center gap-6 relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-[#262626] border border-[#FBFBFB]/10 flex items-center justify-center text-[#FBFBFB] transition-transform duration-300 group-hover:scale-110">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-base)] transition-transform duration-300 group-hover:scale-110">
                       <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"></path></svg>
                     </div>
                     <div>
-                      <span className="text-[10px] font-black tracking-[0.2em] text-[#878787] uppercase block mb-1">Discord Community</span>
-                      <span className="text-base font-syne font-bold text-[#FBFBFB] group-hover:text-[#F5A51D] transition-colors">@Discord</span>
+                      <span className="text-[10px] font-black tracking-[0.2em] text-lightGray uppercase block mb-1">Discord Community</span>
+                      <span className="text-base font-syne font-bold text-[var(--text-base)] group-hover:text-accent transition-colors">@Discord</span>
                     </div>
                   </div>
                 </a>
@@ -617,24 +616,24 @@ export default function Home() {
             </div>
 
             <div className="animate-on-scroll delay-2 relative">
-              <div className="relative p-1 lg:p-1 bg-[#262626] rounded-[32px] border border-[#262626] shadow-2xl overflow-hidden">
-                <div className="bg-[#1B1B1E] p-6 lg:p-10 rounded-[28px] shadow-inner border border-[#262626] relative overflow-hidden">
+              <div className="relative p-1 lg:p-1 bg-darkGray rounded-[32px] border border-border shadow-2xl overflow-hidden">
+                <div className="bg-[var(--surface-card-theme)] p-6 lg:p-10 rounded-[28px] shadow-inner border border-border relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#F5A51D]/20 to-transparent"></div>
                   {isSubmitted ? (
                     <div className="py-12 text-center animate-fade-in flex flex-col items-center">
-                      <div className="mb-8 p-4 bg-[#151419] rounded-2xl border border-[#262626]">
+                      <div className="mb-8 p-4 bg-black rounded-2xl border border-border">
                         <img src="/assets/logo/ECH Institute Logo - White.png" alt="ECH Institute" className="h-12 w-auto object-contain brightness-0 invert" />
                       </div>
-                      <div className="w-20 h-20 bg-[#F5A51D] text-[#151419] rounded-full flex items-center justify-center mb-8 shadow-lg shadow-yellow-500/20">
+                      <div className="w-20 h-20 bg-accent text-black rounded-full flex items-center justify-center mb-8 shadow-lg shadow-yellow-500/20">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                       </div>
-                      <h3 className="text-3xl font-syne font-bold text-[#FBFBFB] mb-4 uppercase tracking-tight">Inquiry Received.</h3>
-                      <p className="global-body text-[#878787] mb-10 max-w-sm mx-auto leading-relaxed">
-                        A formal acknowledgement has been dispatched to <span className="text-[#F5A51D] font-bold underline decoration-[#F5A51D]/30">{submittedEmail}</span>. Our team will review your submission and respond within two business days.
+                      <h3 className="text-3xl font-syne font-bold text-[var(--text-base)] mb-4 uppercase tracking-tight">Inquiry Received.</h3>
+                      <p className="global-body text-lightGray mb-10 max-w-sm mx-auto leading-relaxed">
+                        A formal acknowledgement has been dispatched to <span className="text-accent font-bold underline decoration-[#F5A51D]/30">{submittedEmail}</span>. Our team will review your submission and respond within two business days.
                       </p>
-                      <button onClick={() => { setIsSubmitted(false); }} className="text-[10px] font-black tracking-[0.4em] text-[#FBFBFB] uppercase border-b-2 border-[#F5A51D] pb-2 hover:text-[#F5A51D] transition-all">
+                      <button onClick={() => { setIsSubmitted(false); }} className="text-[10px] font-black tracking-[0.4em] text-[var(--text-base)] uppercase border-b-2 border-accent pb-2 hover:text-accent transition-all">
                         SEND ANOTHER MESSAGE
                       </button>
                     </div>
@@ -658,21 +657,21 @@ export default function Home() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">First Name</label>
-                          <input type="text" name="First Name" className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="Jane" required />
+                          <label className="text-[10px] font-black tracking-[0.3em] text-lightGray uppercase ml-1 block">First Name</label>
+                          <input type="text" name="First Name" className="contact-pro-input !bg-[var(--surface-card-muted)] !border-[var(--border-soft)] !text-[var(--text-base)] placeholder-[#878787]/30 focus:!border-accent focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="Jane" required />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Last Name</label>
-                          <input type="text" name="Last Name" className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="Doe" required />
+                          <label className="text-[10px] font-black tracking-[0.3em] text-lightGray uppercase ml-1 block">Last Name</label>
+                          <input type="text" name="Last Name" className="contact-pro-input !bg-[var(--surface-card-muted)] !border-[var(--border-soft)] !text-[var(--text-base)] placeholder-[#878787]/30 focus:!border-accent focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="Doe" required />
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Email Address</label>
+                        <label className="text-[10px] font-black tracking-[0.3em] text-lightGray uppercase ml-1 block">Email Address</label>
                         <input
                           type="email"
                           name="email"
-                          className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium"
+                          className="contact-pro-input !bg-[var(--surface-card-muted)] !border-[var(--border-soft)] !text-[var(--text-base)] placeholder-[#878787]/30 focus:!border-accent focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium"
                           placeholder="jane@example.com"
                           required
                         />
@@ -680,21 +679,21 @@ export default function Home() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Telegram (Compulsory)</label>
-                          <input type="text" name="Telegram" className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="@username" required />
+                          <label className="text-[10px] font-black tracking-[0.3em] text-lightGray uppercase ml-1 block">Telegram (Compulsory)</label>
+                          <input type="text" name="Telegram" className="contact-pro-input !bg-[var(--surface-card-muted)] !border-[var(--border-soft)] !text-[var(--text-base)] placeholder-[#878787]/30 focus:!border-accent focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="@username" required />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Discord (Optional)</label>
-                          <input type="text" name="Discord" className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="username#0000" />
+                          <label className="text-[10px] font-black tracking-[0.3em] text-lightGray uppercase ml-1 block">Discord (Optional)</label>
+                          <input type="text" name="Discord" className="contact-pro-input !bg-[var(--surface-card-muted)] !border-[var(--border-soft)] !text-[var(--text-base)] placeholder-[#878787]/30 focus:!border-accent focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 rounded-xl w-full px-6 py-4 text-sm font-medium" placeholder="username#0000" />
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black tracking-[0.3em] text-[#878787] uppercase ml-1 block">Your Message</label>
+                        <label className="text-[10px] font-black tracking-[0.3em] text-lightGray uppercase ml-1 block">Your Message</label>
                         <textarea
                           name="Message"
                           rows={4}
-                          className="contact-pro-input !bg-[#151419]/50 !border-[#262626] !text-[#FBFBFB] placeholder-[#878787]/30 focus:!border-[#F5A51D] focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 resize-none min-h-[140px] rounded-xl w-full px-6 py-4 text-sm font-medium"
+                          className="contact-pro-input !bg-[var(--surface-card-muted)] !border-[var(--border-soft)] !text-[var(--text-base)] placeholder-[#878787]/30 focus:!border-accent focus:!ring-1 focus:!ring-[#F5A51D]/20 transition-all duration-300 resize-none min-h-[140px] rounded-xl w-full px-6 py-4 text-sm font-medium"
                           placeholder="Tell us more about how we can work together..."
                           required
                         ></textarea>
@@ -703,7 +702,7 @@ export default function Home() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full py-6 text-sm font-black tracking-[0.3em] bg-[#F5A51D] text-[#FBFBFB] hover:bg-[#1B1B1E] transition-all duration-300 uppercase mt-4 rounded-xl border-0 shadow-lg shadow-yellow-500/10 disabled:opacity-80"
+                        className="w-full py-6 text-sm font-black tracking-[0.3em] bg-accent text-white hover:bg-[#1B1B1E] transition-all duration-300 uppercase mt-4 rounded-xl border-0 shadow-lg shadow-yellow-500/10 disabled:opacity-80"
                       >
                         {isSubmitting ? 'Processing...' : 'Send Message'}
                       </button>

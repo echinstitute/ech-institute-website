@@ -118,30 +118,30 @@ function ColorSwatch({
   return (
     <div className="brand-swatch-card group">
       <div
-        className={cn("brand-swatch-preview h-40 cursor-pointer overflow-hidden border border-[#262626] relative z-10 shadow-inner", swatchClass)}
-        style={{ backgroundColor: hex || '#333' }}
+        className={cn("brand-swatch-preview h-40 cursor-pointer overflow-hidden border border-border relative z-10 shadow-inner", swatchClass)}
+        style={{ backgroundColor: hex || 'var(--color-black)' }}
         onClick={handleCopy}
         role="button"
         title="Click to copy HEX"
       >
         {/* High-contrast HEX label backdrop */}
         <div className="absolute bottom-3 right-3 z-20 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-white/10">
-          <span className="text-[11px] font-mono text-[#FBFBFB] font-bold tracking-tighter uppercase">{hex}</span>
+          <span className="text-[11px] font-mono text-white font-bold tracking-tighter uppercase">{hex}</span>
         </div>
 
         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
           <button className="p-3 bg-black/50 backdrop-blur-xl rounded-2xl scale-90 group-hover:scale-100 transition-all border border-white/20">
-            {copied ? <Check size={18} className="text-[#F5A51D]" /> : <Copy size={18} className="text-white" />}
+            {copied ? <Check size={18} className="text-accent" /> : <Copy size={18} className="text-white" />}
           </button>
         </div>
       </div>
       <div className="px-4 py-6 flex flex-col gap-1">
-        <h4 className="text-[#FBFBFB] font-bold text-xl tracking-tight">{name}</h4>
+        <h4 className="font-bold text-xl tracking-tight" style={{ color: 'var(--brand-text)' }}>{name}</h4>
         <div className="flex items-center gap-2">
-          <span className="brand-swatch-role text-[10px] tracking-widest">{role}</span>
-          {copied && <span className="text-[10px] text-[#F5A51D] font-bold uppercase">Copied!</span>}
+          <span className="brand-swatch-role text-[10px] tracking-widest" style={{ color: 'var(--brand-label-color)' }}>{role}</span>
+          {copied && <span className="text-[10px] text-accent font-bold uppercase">Copied!</span>}
         </div>
-        <p className="brand-swatch-detail text-sm mt-4 text-[#FBFBFB] leading-relaxed">{detail}</p>
+        <p className="brand-swatch-detail text-sm mt-4 leading-relaxed" style={{ color: 'var(--brand-text)' }}>{detail}</p>
       </div>
     </div>
   );
@@ -150,27 +150,58 @@ function ColorSwatch({
 // ─── Logo Variant Card ────────────────────────────────────────────────────────
 function LogoCard({ src, label, dark = false, isHorizontal = false }: { src: string; label: string; dark?: boolean; isHorizontal?: boolean }) {
   return (
-    <div className="brand-asset-card flex flex-col">
+    <div className={cn(
+      "brand-asset-card flex flex-col",
+      dark ? "brand-logo-card--dark" : "brand-logo-card--light"
+    )}>
       <div className={cn(
-        "flex-1 flex items-center justify-center p-12 min-h-[260px] relative overflow-hidden bg-[#1B1B1E]"
+        "flex-1 flex items-center justify-center p-12 min-h-[260px] relative overflow-hidden",
+        dark ? "bg-[#1B1B1E]" : "bg-[var(--brand-card-bg)]"
       )}>
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#FBFBFB 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+        <div className={cn(
+          "absolute inset-0 opacity-[0.03] pointer-events-none",
+          dark ? "bg-white/5" : "bg-black/5"
+        )} style={{ backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
         <Image
           src={src}
           alt={label}
           width={isHorizontal ? 360 : 140}
           height={140}
-          className="object-contain relative z-10"
+          className="object-contain relative z-10 w-full max-w-[140px] md:max-w-none"
+          style={{ height: 'auto' }}
         />
       </div>
-      <div className="p-8 border-t border-[#262626] flex items-center justify-between bg-[#1B1B1E]">
+      <div className={cn(
+        "p-8 border-t border-border flex items-center justify-between",
+        dark ? "bg-[#1B1B1E]" : "bg-[var(--brand-card-bg)]"
+      )}>
         <div>
-          <span className="brand-asset-label text-[10px] block mb-1">Asset Variation</span>
-          <p className="text-[#FBFBFB] font-bold text-lg">{label}</p>
+          <span 
+            className="brand-asset-label text-[10px] block mb-1"
+            style={{ color: dark ? 'rgba(255, 255, 255, 0.6)' : 'var(--brand-label-color)' }}
+          >
+            Asset Variation
+          </span>
+          <p 
+            className="font-bold text-lg"
+            style={{ color: dark ? '#FFFFFF' : 'var(--brand-text)' }}
+          >
+            {label}
+          </p>
         </div>
-        <a href={src} download className="p-4 bg-[#262626] rounded-2xl text-[#FBFBFB] hover:bg-[#F5A51D] hover:text-[#151419] transition-all">
-          <Download size={22} />
+        <a 
+          href={src} 
+          download 
+          className={cn(
+            "p-4 rounded-2xl transition-all border border-transparent",
+            dark 
+              ? "bg-[#262626] hover:bg-accent hover:text-black" 
+              : "bg-[var(--brand-bg)] border-border hover:bg-accent hover:text-black"
+          )}
+          style={{ color: dark ? '#FFFFFF' : 'var(--brand-text)' }}
+        >
+          <Download size={22} style={{ color: 'inherit' }} />
         </a>
       </div>
     </div>
@@ -192,34 +223,37 @@ function TypeSample({
   category: 'heading' | 'body';
 }) {
   return (
-    <div className="brand-type-board group">
+    <div className="brand-type-board group p-6 md:p-12 lg:p-16 relative overflow-hidden">
       {/* Background Blueprint Grid */}
       <div className="brand-type-blueprint" />
 
       {/* Background Glyph Backdrop */}
-      <div className={cn("brand-glyph-backdrop", familyClass === 'brand-type-family--heading' ? 'font-syne' : 'font-sans')}>
+      <div className={cn(
+        "brand-glyph-backdrop opacity-[0.02] md:opacity-[0.03]",
+        familyClass === 'brand-type-family--heading' ? 'font-syne' : 'font-sans'
+      )}>
         Aa
       </div>
 
-      <div className="flex flex-col md:flex-row gap-12 items-start relative z-10">
+      <div className="flex flex-col md:flex-row gap-10 md:gap-16 lg:gap-24 items-start relative z-10">
         {/* Left Specification Column */}
-        <div className="w-full md:w-72 flex-shrink-0 flex flex-col h-full justify-between">
+        <div className="w-full md:w-64 lg:w-80 flex-shrink-0 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-[1px] bg-[var(--accent-brand)]" />
-              <span className="brand-type-label !mb-0">{label} Family</span>
+              <div className="w-6 h-[1.5px] bg-[var(--accent-brand)]" />
+              <span className="brand-type-label !mb-0 text-[10px] tracking-[0.2em]">{label} Family</span>
             </div>
 
-            <h3 className={cn('text-4xl font-extrabold text-[#FBFBFB] tracking-tight mb-2', familyClass)}>
+            <h3 className={cn('text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-2', familyClass)} style={{ color: 'var(--brand-specimen-text)' }}>
               {fontName || familyClass.replace('brand-type-family--', '')}
             </h3>
 
-            <p className="text-sm text-[#878787] mt-6 leading-relaxed max-w-[240px]">
+            <p className="text-xs md:text-sm mt-4 md:mt-6 leading-relaxed max-w-xs" style={{ color: 'var(--brand-label-color)' }}>
               Institutional standard for {category === 'heading' ? 'high-impact statements and brand headings' : 'reading experiences, interface logic, and metadata'}.
             </p>
           </div>
 
-          <div className="brand-type-spec-list">
+          <div className="brand-type-spec-list mt-8 md:mt-12">
             <div className="brand-type-spec-item">
               <span className="brand-type-spec-label">Range</span>
               <span className="brand-type-spec-value">{weights[weights.length - 1].weight} — {weights[0].weight}</span>
@@ -232,33 +266,34 @@ function TypeSample({
         </div>
 
         {/* Right Preview Column */}
-        <div className="flex-1 w-full flex flex-col gap-12 py-4">
+        <div className="flex-1 w-full flex flex-col gap-10 md:gap-14 py-2">
           {weights.map(({ weight, name }, idx) => (
-            <div key={name} className="flex flex-col gap-5 group/weight relative">
+            <div key={name} className="flex flex-col gap-4 group/weight relative">
               {/* Metric Line (Baseline) */}
               <div className="brand-metric-baseline bottom-0 scale-x-0 group-hover/weight:scale-x-100 transition-transform origin-left duration-700" />
 
               <div className="flex items-center justify-between">
                 <span className={cn(
-                  "brand-type-weight-name text-[9px] uppercase tracking-[0.4em] transition-colors",
-                  idx === 0 ? "text-[var(--accent-brand)]" : "text-[#878787] group-hover/weight:text-[#FBFBFB]"
+                  "brand-type-weight-name text-[8px] md:text-[9px] uppercase tracking-[0.4em] transition-colors",
+                  idx === 0 ? "text-[var(--accent-brand)]" : "text-lightGray group-hover/weight:text-white"
                 )}>
                   {name}
                 </span>
-                <span className="text-[10px] font-mono text-[#262626] group-hover/weight:text-[#878787] transition-colors">
+                <span className="text-[9px] md:text-[10px] font-mono text-darkGray group-hover/weight:text-lightGray transition-colors">
                   WGT: {weight}
                 </span>
               </div>
 
               <p
                 className={cn(
-                  "text-4xl md:text-6xl tracking-tighter text-[#FBFBFB] leading-[0.85] transition-all duration-300",
+                  "text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[0.9] transition-all duration-300",
                   category === 'heading' ? 'font-syne' : 'font-sans',
                   "group-hover/weight:pl-2"
                 )}
                 style={{
                   fontWeight: weight,
-                  opacity: weight === 800 ? 1 : weight === 700 ? 0.9 : 0.8
+                  opacity: weight === 800 ? 1 : weight === 700 ? 0.9 : 0.8,
+                  color: 'var(--brand-specimen-text)'
                 }}
               >
                 Ethereum Community
@@ -325,21 +360,21 @@ export default function BrandPage() {
         <div className="brand-hero-2col">
           <div className="flex flex-col items-start text-left">
             <div className="page-hero-tag animate-fade-in flex items-center gap-4">
-              <span className="w-12 h-px bg-[#F5A51D]" /> Brand Guidelines
+              <span className="w-12 h-px bg-accent" /> Brand Guidelines
             </div>
-            <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-[#FBFBFB] mb-8 animate-fade-up leading-[0.9]">
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-white mb-8 animate-fade-up leading-[0.9]">
               Built for <br />
-              <span className="text-[#F5A51D] italic font-syne font-medium">Coordination.</span>
+              <span className="text-accent italic font-syne font-medium">Coordination.</span>
             </h1>
-            <p className="text-xl text-[#FBFBFB] font-medium leading-relaxed mb-4 max-w-xl animate-fade-up delay-1">
+            <p className="text-xl text-white font-medium leading-relaxed mb-4 max-w-xl animate-fade-up delay-1">
               The ECH Institute brand system engineered for institutional trust,
               visual clarity, and technical excellence across the Ethereum ecosystem.
             </p>
             <div className="flex flex-wrap gap-5 animate-fade-up delay-2 ">
-              <a href="/ech_institute_logos.zip" download className="flex items-center gap-3 bg-[#F5A51D] text-[#151419] font-extrabold px-10 py-5 rounded-2xl transition-all transform hover:scale-105 active:scale-95">
+              <a href="/ech_institute_logos.zip" download className="flex items-center gap-3 bg-accent text-black font-extrabold px-10 py-5 rounded-2xl transition-all transform hover:scale-105 active:scale-95">
                 <Download size={24} /> Download Assets
               </a>
-              <Link href="mailto:team@ethcatherders.com" className="flex items-center gap-3 bg-[#1B1B1E] border border-[#262626] text-[#FBFBFB] font-extrabold px-10 py-5 rounded-2xl transition-all transform hover:scale-105 active:scale-95">
+              <Link href="mailto:team@ethcatherders.com" className="flex items-center gap-3 border border-border text-white font-extrabold px-10 py-5 rounded-2xl transition-all transform hover:scale-105 active:scale-95">
                 <ExternalLink size={24} /> Contact Us
               </Link>
             </div>
@@ -352,7 +387,7 @@ export default function BrandPage() {
                 alt="ECH Institute Cat"
                 width={900}
                 height={900}
-                className="relative z-10 w-full max-w-[900px] h-auto drop-shadow-2xl object-contain transform md:scale-[1.35] lg:scale-[1.4] origin-right"
+                className="relative z-10 w-full max-w-[900px] h-auto object-contain transform md:scale-[1.35] lg:scale-[1.4] origin-right"
                 priority
               />
             </div>
@@ -375,7 +410,7 @@ export default function BrandPage() {
 
           <section id="logo" className="scroll-mt-28">
             <SectionHeader label="01 — Identity" title={<>Logo <em>Marks</em></>} />
-            <p className="global-body-lg mb-10 max-w-2xl text-[#FBFBFB]">
+            <p className="global-body-lg mb-10 max-w-2xl" style={{ color: 'var(--brand-text)' }}>
               Our identity is built around the ECH mark. Use these approved variations
               to ensure institutional consistency across all media.
             </p>
@@ -391,7 +426,7 @@ export default function BrandPage() {
 
           <section id="color" className="scroll-mt-28">
             <SectionHeader label="02 — Color Palette" title={<>Institutional <em>Spectrum</em></>} />
-            <p className="global-body-lg mb-12 max-w-3xl text-[#FBFBFB]">
+            <p className="global-body-lg mb-12 max-w-3xl" style={{ color: 'var(--brand-text)' }}>
               Consistent use of color is vital to the ECH brand. Our palette is built on a
               foundation of depth, institutional trust, and high-contrast accessibility.
             </p>
@@ -402,15 +437,15 @@ export default function BrandPage() {
               ))}
             </div>
 
-            <div className="bg-[#1B1B1E] border border-[#262626] rounded-3xl p-10 mt-12">
+            <div className="border border-border rounded-3xl p-10 mt-12" style={{ background: 'var(--brand-card-bg)' }}>
               <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-10">
                 <div>
-                  <h3 className="brand-subsection-title text-[#F5A51D]">Usage Balance</h3>
-                  <p className="text-[#FBFBFB] text-sm max-w-md">Our color system is built on spacious neutrals with disciplined use of accents.</p>
+                  <h3 className="brand-subsection-title text-accent">Usage Balance</h3>
+                  <p className="text-sm max-w-md" style={{ color: 'var(--brand-text)' }}>Our color system is built on spacious neutrals with disciplined use of accents.</p>
                 </div>
                 <div className="flex gap-1">
-                  <span className="text-2xl font-black text-[#FBFBFB]">100</span>
-                  <span className="text-[10px] font-bold text-[#FBFBFB] uppercase pb-1">Total %</span>
+                  <span className="text-2xl font-black" style={{ color: 'var(--brand-text)' }}>100</span>
+                  <span className="text-[10px] font-bold uppercase pb-1" style={{ color: 'var(--brand-label-color)' }}>Total %</span>
                 </div>
               </div>
 
@@ -420,18 +455,18 @@ export default function BrandPage() {
                 <div className="brand-proportion-segment--accent" style={{ flex: 10 }} />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 border-t border-[#262626] pt-10">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 border-t border-border pt-10">
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-black text-[#FBFBFB] uppercase tracking-widest">Base Canvas — 60%</span>
-                  <p className="text-[#FBFBFB] text-sm font-medium">Primarily Light Neutral (#FBFBFB) for clear, readable documentation.</p>
+                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--brand-label-color)' }}>Base Canvas — 60%</span>
+                  <p className="text-sm font-medium" style={{ color: 'var(--brand-text)' }}>Primarily Light Neutral (#FBFBFB) for clear, readable documentation.</p>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-black text-[#FBFBFB] uppercase tracking-widest">Structural — 30%</span>
-                  <p className="text-[#FBFBFB] text-sm font-medium">Dark Ink and Deep Surface for institutional gravity and navigation.</p>
+                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--brand-label-color)' }}>Structural — 30%</span>
+                  <p className="text-sm font-medium" style={{ color: 'var(--brand-text)' }}>Dark Ink and Deep Surface for institutional gravity and navigation.</p>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-black text-[#FBFBFB] uppercase tracking-widest">Emphasis — 10%</span>
-                  <p className="text-[#F5A51D] text-sm font-bold uppercase italic">Reserve Accent Yellow for key actions and focus points.</p>
+                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--brand-label-color)' }}>Emphasis — 10%</span>
+                  <p className="text-accent text-sm font-bold uppercase italic">Reserve Accent Yellow for key actions and focus points.</p>
                 </div>
               </div>
             </div>
@@ -439,27 +474,27 @@ export default function BrandPage() {
             <div className="flex flex-col gap-8 mt-20">
               <div className="flex flex-col gap-4">
                 <h3 className="brand-subsection-title">Institutional Theme Strategy</h3>
-                <p className="text-[#FBFBFB] text-sm max-w-2xl">We maintain a single institutional pallet that adapts role responsibility between Light and Dark canvases.</p>
+                <p className="text-white text-sm max-w-2xl">We maintain a single institutional pallet that adapts role responsibility between Light and Dark canvases.</p>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {THEME_APPLICATIONS.map(({ title, description, chips }) => (
-                  <div key={title} className="theme-strategy-board flex flex-col gap-8 transition-all hover:border-[#F5A51D]/30">
-                    <div className="flex items-center justify-between border-b border-[#262626] pb-6">
+                  <div key={title} className="theme-strategy-board flex flex-col gap-8 transition-all hover:border-accent/30">
+                    <div className="flex items-center justify-between border-b border-border pb-6">
                       <div className="flex items-center gap-3">
-                        <div className={cn("w-4 h-4 rounded-full shadow-[0_0_15px_rgba(245,165,29,0.3)]", title === 'Light Theme' ? "bg-[#FBFBFB]" : "bg-[#151419] border border-[#262626]")} />
-                        <h4 className="text-[#FBFBFB] font-bold uppercase tracking-[0.2em] text-xs">{title} Role</h4>
+                        <div className={cn("w-4 h-4 rounded-full shadow-[0_0_15px_rgba(245,165,29,0.3)]", title === 'Light Theme' ? "bg-white border border-gray-200" : "bg-black border border-border")} />
+                        <h4 className="font-bold uppercase tracking-[0.2em] text-xs" style={{ color: 'var(--brand-text)' }}>{title} Role</h4>
                       </div>
-                      <span className="text-[10px] font-mono text-[#FBFBFB]">STRATEGY // 0{title === 'Light Theme' ? '1' : '2'}</span>
+                      <span className="text-[10px] font-mono" style={{ color: 'var(--brand-label-color)' }}>STRATEGY // 0{title === 'Light Theme' ? '1' : '2'}</span>
                     </div>
 
-                    <p className="text-[#FBFBFB] text-sm leading-relaxed font-medium min-h-[60px]">{description}</p>
+                    <p className="text-sm leading-relaxed font-medium min-h-[60px]" style={{ color: 'var(--brand-text)' }}>{description}</p>
 
                     <div className="grid grid-cols-1 gap-2">
                       {chips.map(({ label }) => (
-                        <div key={label} className="bg-[#151419] border border-[#262626] px-5 py-4 rounded-xl flex items-center justify-between group/chip hover:border-[#F5A51D]/50 transition-colors">
-                          <span className="text-[10px] text-[#FBFBFB] font-black uppercase tracking-widest group-hover/chip:text-[#FBFBFB] transition-colors">{label.split(' ')[0]}</span>
-                          <span className="text-xs font-mono text-[#F5A51D] font-bold">{label.split(' ')[1]}</span>
+                        <div key={label} className="border border-border px-5 py-4 rounded-xl flex items-center justify-between group/chip hover:border-accent/50 transition-colors" style={{ background: 'var(--brand-bg)' }}>
+                          <span className="text-[10px] font-black uppercase tracking-widest transition-colors" style={{ color: 'var(--brand-text)' }}>{label.split(' ')[0]}</span>
+                          <span className="text-xs font-mono text-accent font-bold">{label.split(' ')[1]}</span>
                         </div>
                       ))}
                     </div>
@@ -505,40 +540,45 @@ export default function BrandPage() {
               />
             </div>
 
-            <div className="mt-16 bg-[#151419] border border-[#262626] rounded-3xl overflow-hidden shadow-2xl relative">
-              {/* Construction Lines Decorative Overlay */}
-              <div className="absolute top-0 bottom-0 left-[16.66%] w-[1px] bg-[#262626] pointer-events-none" />
-              <div className="absolute top-0 bottom-0 left-[41.66%] w-[1px] bg-[#262626] pointer-events-none" />
+            <div className="mt-16 bg-black border border-border rounded-3xl overflow-hidden shadow-2xl relative">
+              {/* Construction Lines Decorative Overlay - Visible only on Desktop */}
+              <div className="hidden md:block absolute top-0 bottom-0 left-[16.66%] w-[1px] bg-white/5 pointer-events-none" />
+              <div className="hidden md:block absolute top-0 bottom-0 left-[41.66%] w-[1px] bg-white/5 pointer-events-none" />
 
-              <div className="grid grid-cols-12 gap-0 border-b border-[#262626] bg-black/40 relative z-10">
-                <div className="col-span-2 p-6 text-[10px] font-mono text-[#878787] uppercase tracking-widest border-r border-[#262626]">Tag</div>
-                <div className="col-span-3 p-6 text-[10px] font-mono text-[#878787] uppercase tracking-widest border-r border-[#262626]">Metric Details</div>
-                <div className="col-span-7 p-6 text-[10px] font-mono text-[#878787] uppercase tracking-widest">Visual Specification</div>
+              <div className="hidden md:grid grid-cols-12 gap-0 border-b border-border bg-black/40 relative z-10">
+                <div className="col-span-2 p-6 text-[10px] font-mono text-lightGray uppercase tracking-widest border-r border-border">Tag</div>
+                <div className="col-span-3 p-6 text-[10px] font-mono text-lightGray uppercase tracking-widest border-r border-border">Metric Details</div>
+                <div className="col-span-7 p-6 text-[10px] font-mono text-lightGray uppercase tracking-widest">Visual Specification</div>
               </div>
 
               {[
-                { label: 'Display Large', size: '72/64px', tracking: '-0.04em', sample: 'Main Identity', className: 'text-[3.5rem] font-syne font-extrabold' },
-                { label: 'H1 / Header', size: '48/44px', tracking: '-0.02em', sample: 'Educational Programs', className: 'text-[2.2rem] font-syne font-bold' },
-                { label: 'H2 / Regular', size: '36/32px', tracking: '-0.01em', sample: 'Institutional Overview', className: 'text-[1.8rem] font-syne font-bold' },
-                { label: 'Body Copy', size: '18/28px', tracking: '0.01em', sample: "Ethereum community homesteading since 2019.", className: 'text-[1.125rem] font-sans font-normal' },
-                { label: 'Metadata', size: '12/16px', tracking: '0.05em', sample: "VERSION 4.2 // BUILD ID: ECH-2026", className: 'text-[0.75rem] font-mono font-bold uppercase tracking-widest' },
+                { label: 'Display Large', size: '72/64px', tracking: '-0.04em', sample: 'Main Identity', className: 'text-5xl md:text-[3.5rem] font-syne font-extrabold' },
+                { label: 'H1 / Header', size: '48/44px', tracking: '-0.02em', sample: 'Educational Programs', className: 'text-3xl md:text-[2.2rem] font-syne font-bold' },
+                { label: 'H2 / Regular', size: '36/32px', tracking: '-0.01em', sample: 'Institutional Overview', className: 'text-2xl md:text-[1.8rem] font-syne font-bold' },
+                { label: 'Body Copy', size: '18/28px', tracking: '0.01em', sample: "Ethereum community homesteading since 2019.", className: 'text-base md:text-[1.125rem] font-sans font-normal' },
+                { label: 'Metadata', size: '12/16px', tracking: '0.05em', sample: "VERSION 4.2 // BUILD ID: ECH-2026", className: 'text-[0.7rem] md:text-[0.75rem] font-mono font-bold uppercase tracking-widest' },
               ].map(({ label, size, tracking, sample, className }) => (
-                <div key={label} className="grid grid-cols-12 gap-0 border-b border-[#262626] last:border-0 group hover:bg-[#1B1B1E] transition-colors relative z-10">
-                  <div className="col-span-2 p-8 border-r border-[#262626] flex items-center">
-                    <span className="text-sm font-mono text-[var(--accent-brand)] font-bold">{label.split(' ')[0]}</span>
+                <div key={label} className="grid grid-cols-1 md:grid-cols-12 gap-0 border-b border-border last:border-0 group hover:bg-[var(--brand-card-bg)]/50 transition-colors relative z-10">
+                  {/* Tag Column */}
+                  <div className="col-span-1 md:col-span-2 p-4 md:p-8 border-b md:border-b-0 md:border-r border-border flex items-center bg-black/5 md:bg-transparent">
+                    <span className="text-[10px] md:text-sm font-mono text-[var(--accent-brand)] font-bold">{label}</span>
                   </div>
-                  <div className="col-span-3 p-8 border-r border-[#262626] flex flex-col justify-center gap-1">
-                    <div className="flex justify-between items-center text-[11px]">
-                      <span className="text-[#878787]">SIZE/LH</span>
-                      <span className="text-[#FBFBFB] font-mono font-bold">{size}</span>
+                  
+                  {/* Metrics Column */}
+                  <div className="col-span-1 md:col-span-3 p-4 md:p-8 border-b md:border-b-0 md:border-r border-border flex flex-row md:flex-col justify-between md:justify-center gap-4 md:gap-1">
+                    <div className="flex flex-1 justify-between items-center text-[10px] md:text-[11px] border-r md:border-r-0 border-border/50 pr-4 md:pr-0">
+                      <span className="uppercase text-[9px]" style={{ color: 'var(--brand-label-color)' }}>SIZE/LH</span>
+                      <span className="font-mono font-bold" style={{ color: 'var(--brand-specimen-text)' }}>{size}</span>
                     </div>
-                    <div className="flex justify-between items-center text-[11px]">
-                      <span className="text-[#878787]">TRACKING</span>
-                      <span className="text-[#FBFBFB] font-mono font-bold">{tracking}</span>
+                    <div className="flex flex-1 justify-between items-center text-[10px] md:text-[11px] pl-4 md:pl-0">
+                      <span className="uppercase text-[9px]" style={{ color: 'var(--brand-label-color)' }}>TRACKING</span>
+                      <span className="font-mono font-bold" style={{ color: 'var(--brand-specimen-text)' }}>{tracking}</span>
                     </div>
                   </div>
-                  <div className="col-span-7 p-8 flex items-center overflow-hidden">
-                    <p className={cn('whitespace-nowrap transition-transform group-hover:translate-x-1 duration-500 text-[#FBFBFB]', className)}>
+
+                  {/* Sample Column */}
+                  <div className="col-span-1 md:col-span-7 p-6 md:p-8 flex items-center overflow-hidden">
+                    <p className={cn('whitespace-nowrap transition-transform group-hover:translate-x-1 duration-500', className)} style={{ color: 'var(--brand-specimen-text)' }}>
                       {sample}
                     </p>
                   </div>
@@ -572,7 +612,8 @@ export default function BrandPage() {
                       alt={label}
                       width={120}
                       height={120}
-                      className="brand-asset-image object-contain w-full h-auto"
+                      className="brand-asset-image object-contain w-full"
+                      style={{ height: 'auto' }}
                     />
                   </div>
                   <div className="flex items-center justify-between w-full px-4 py-3">
@@ -601,7 +642,14 @@ export default function BrandPage() {
               ].map(({ src, label }) => (
                 <div key={label} className="brand-asset-card">
                   <div className="brand-asset-preview">
-                    <Image src={src} alt={label} width={100} height={100} className="brand-asset-image-sm object-contain" />
+                    <Image 
+                      src={src} 
+                      alt={label} 
+                      width={100} 
+                      height={100} 
+                      className="brand-asset-image-sm object-contain w-full" 
+                      style={{ height: 'auto' }}
+                    />
                   </div>
                   <div className="flex items-center justify-between w-full px-4 py-3">
                     <p className="brand-asset-label brand-asset-label-reset">{label}</p>
@@ -634,14 +682,14 @@ export default function BrandPage() {
                 <span className="text-[10px] font-black text-[var(--text-secondary)] uppercase tracking-[0.3em] border-b border-[var(--border-soft)] pb-6 mb-8">Button Mechanics</span>
                 <div className="flex flex-col gap-12">
                   <div className="flex flex-col gap-4">
-                    <button className="global-btn global-btn-primary w-full md:w-auto shadow-xl shadow-[var(--accent-brand)]/10">
+                    <button className="btn btn-primary w-full md:w-auto shadow-xl shadow-[var(--accent-brand)]/10">
                       Primary Institutional CTA
                     </button>
                     <span className="text-[9px] font-mono text-[var(--text-secondary)] uppercase">Weight: 900 // Rounding: 16px // Accent: var(--accent-brand)</span>
                   </div>
 
                   <div className="flex flex-col gap-4">
-                    <button className="global-btn global-btn-outline w-full md:w-auto">
+                    <button className="btn btn-outline w-full md:w-auto">
                       Secondary Support
                     </button>
                     <span className="text-[9px] font-mono text-[var(--text-secondary)] uppercase">Stroke: 2px // Role: Passive / Navigation</span>
@@ -677,17 +725,17 @@ export default function BrandPage() {
 
       <div className="brand-divider" />
 
-      <section className="brand-section bg-[#151419] py-24 lg:py-48 border-t border-[#262626] relative overflow-hidden">
+      <section className="brand-section resource-expansion-section bg-black py-24 lg:py-24 border-border relative overflow-hidden">
         {/* Massive geometric background mark removed as requested */}
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-          <div className="bg-[#1B1B1E] border-2 border-[#262626] rounded-[60px] p-12 md:p-32 overflow-hidden group transition-all hover:border-[#F5A51D]/20">
+          <div className="resource-expansion-inner bg-[#1B1B1E] border-2 border-border rounded-[60px] p-12 md:p-32 overflow-hidden group transition-all hover:border-accent/20">
             {/* Inner glow effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#F5A51D]/[0.02] to-transparent pointer-events-none" />
 
             <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
               <div className="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 relative">
-                <div className="relative w-full h-full bg-[#F5A51D] rounded-[40px] p-8 flex items-center justify-center rotate-3 group-hover:rotate-0 transition-transform duration-700">
+                <div className="relative w-full h-full bg-accent rounded-[40px] p-8 flex items-center justify-center rotate-3 group-hover:rotate-0 transition-transform duration-700">
                   <Image src="/assets/logo/cat5.png" alt="ECH Cat" width={280} height={280} className="object-contain" />
                 </div>
               </div>
@@ -695,23 +743,23 @@ export default function BrandPage() {
               <div className="flex-1 text-center lg:text-left relative z-10">
                 <div className="flex flex-col gap-8">
                   <div className="hidden md:flex items-center gap-4 animate-fade-in">
-                    <span className="w-12 h-px bg-[#F5A51D]" />
-                    <span className="text-[12px] font-black text-[#F5A51D] uppercase tracking-[0.4em]">Resource Expansion</span>
+                    <span className="w-12 h-px bg-accent" />
+                    <span className="text-[12px] font-black text-accent uppercase tracking-[0.4em]">Resource Expansion</span>
                   </div>
-                  <h2 className="text-5xl md:text-8xl font-black tracking-tight text-[#FBFBFB] leading-[0.9]">
+                  <h2 className="text-5xl md:text-8xl font-black tracking-tight text-white leading-[0.9]">
                     Ready to <br />
-                    <span className="text-[#F5A51D] italic font-syne">Coordinate?</span>
+                    <span className="text-accent italic font-syne">Coordinate?</span>
                   </h2>
-                  <p className="text-[#FBFBFB] text-xl md:text-2xl font-medium max-w-2xl leading-relaxed mt-4">
+                  <p className="text-white text-xl md:text-2xl font-medium max-w-2xl leading-relaxed mt-4">
                     Access our high-fidelity asset library and join hundreds of Ethereum contributors building with the ECH brand system.
                   </p>
 
                   <div className="flex flex-wrap justify-center lg:justify-start gap-8 mt-10">
-                    <a href="/ech_institute_logos.zip" download className="global-btn global-btn-primary px-12 py-7 transition-all group/btn">
+                    <a href="/ech_institute_logos.zip" download className="btn btn-primary px-12 py-7 transition-all group/btn">
                       <Download size={28} strokeWidth={3} className="group-hover/btn:animate-bounce mr-4" />
                       <span className="text-xl">Download Institutional Kit</span>
                     </a>
-                    <a href="mailto:team@ethcatherders.com" className="global-btn global-btn-outline px-12 py-7">
+                    <a href="mailto:team@ethcatherders.com" className="btn btn-outline px-12 py-7">
                       <ExternalLink size={28} strokeWidth={3} className="mr-4" />
                       <span className="text-xl">Technical Support</span>
                     </a>

@@ -4,10 +4,11 @@ import Link from 'next/link';
 import {
   ArrowLeft, ExternalLink, PlayCircle, ChevronRight,
   Zap, Layers, GitBranch, Cpu, Globe, BookOpen,
-  Tag, Users, Shield, Code, Activity, Boxes,
+  Tag, Users, Shield, Code, Activity, Boxes, Network as NetworkIcon,
 } from 'lucide-react';
 import { PodcastOriginSection } from '@/components/features/PodcastOriginSection';
 import { PodcastSeriesYoutubeSection } from '@/components/features/PodcastSeriesYoutubeSection';
+import { HeroRadar } from '@/components/features/HeroRadar';
 import { PODCAST_SERIES_PLAYLISTS } from '@/lib/podcast-youtube';
 
 const peep = PODCAST_SERIES_PLAYLISTS.peepaneip;
@@ -81,36 +82,26 @@ function PlaylistCard({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex flex-col rounded-2xl overflow-hidden border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.12)] transition-all duration-300"
+      className="flex flex-col rounded-3xl overflow-hidden border border-[var(--border-soft)] bg-[var(--surface-card-theme)]"
     >
-      {/* Thumbnail — full visible */}
-      <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
+      <div className="relative w-full overflow-hidden bg-[var(--background)]" style={{ aspectRatio: '16/9' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`https://img.youtube.com/vi/${firstVideoId}/hqdefault.jpg`}
           alt={label}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover"
           crossOrigin="anonymous"
-        />
-        {/* Subtle bottom fade */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-8"
-          style={{ backgroundImage: 'linear-gradient(to top, rgba(21,20,25,0.55) 0%, transparent 100%)' }}
         />
       </div>
 
-      {/* Footer row — icon + label left, browse right */}
-      <div className="flex items-center justify-between gap-2 px-4 py-3 bg-[var(--surface-card-muted)]/80 border-t border-[var(--border-soft)]">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <div className="p-1.5 rounded-lg bg-[var(--accent-brand)]/10 border border-[var(--accent-brand)]/20 text-[var(--accent-brand)] group-hover:bg-[var(--accent-brand)] group-hover:text-[#151419] transition-all duration-300 flex-shrink-0">
-            <Icon className="w-3.5 h-3.5" />
+      <div className="flex items-center justify-between gap-3 px-5 py-4 bg-[var(--surface-card-muted)]/50 border-t border-[var(--border-soft)]">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="p-2 rounded-xl bg-accent/10 border border-accent/20 text-accent flex-shrink-0">
+            <Icon className="w-4 h-4" />
           </div>
-          <span className="font-bold text-[13px] leading-tight text-[var(--text-base)] truncate">{label}</span>
+          <span className="font-bold text-sm tracking-tight text-[var(--text-base)] truncate">{label}</span>
         </div>
-        <div className="flex items-center gap-1 text-[var(--accent-brand)] opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
-          <span className="text-[10px] font-bold">BROWSE</span>
-          <ChevronRight className="h-3 w-3" />
-        </div>
+        <ExternalLink className="h-3.5 w-3.5 text-[var(--text-soft)]" />
       </div>
     </a>
   );
@@ -124,32 +115,32 @@ function UpgradeCard({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex flex-col rounded-2xl overflow-hidden border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)]/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.12)] transition-all duration-300"
+      className="group relative flex flex-col rounded-3xl overflow-hidden border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:border-accent/50 hover:shadow-[0_0_40px_rgba(var(--accent-brand-rgb),0.1)] transition-all duration-500"
     >
-      <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
+      <div className="relative w-full overflow-hidden bg-[var(--background)]" style={{ aspectRatio: '16/9' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`https://img.youtube.com/vi/${firstVideoId}/hqdefault.jpg`}
           alt={label}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover"
           crossOrigin="anonymous"
         />
-        {/* Inline gradient — no const dependency */}
-        <div className="absolute inset-0" style={overlayStyle} />
+        
         {/* Year badge */}
-        <div className="absolute top-2.5 right-2.5 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-[var(--accent-brand)] text-[#151419]">
+        <div className="absolute top-4 right-4 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-accent text-black shadow-lg">
           {year}
         </div>
-        {/* Bottom label */}
-        <div className="absolute bottom-0 left-0 right-0 p-2.5">
-          <span className="font-bold text-[13px] text-[var(--text-base)]">{label}</span>
-        </div>
-        {/* Accent bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left bg-[var(--accent-brand)]" />
+
+        {/* Hover bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left bg-accent" />
       </div>
-      <div className="flex items-center justify-between gap-2 px-3 py-2 bg-[var(--surface-card-muted)]">
-        <span className="text-xs font-semibold text-[var(--text-soft)]">Watch playlist</span>
-        <ExternalLink className="h-3.5 w-3.5 group-hover:text-[var(--accent-brand)] transition-colors text-[var(--text-soft)]" />
+
+      <div className="flex items-center justify-between gap-2 px-6 py-4 bg-[var(--surface-card-muted)]/50 backdrop-blur-sm border-t border-[var(--border-soft)]">
+        <div className="flex flex-col">
+          <span className="text-lg font-black font-syne tracking-tight text-[var(--text-base)] group-hover:text-accent transition-colors leading-tight">{label}</span>
+          <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[var(--text-soft)]">EXPLORE SERIES</span>
+        </div>
+        <ExternalLink className="h-4 w-4 text-[var(--text-soft)] group-hover:text-accent transition-all duration-500 group-hover:translate-x-1" />
       </div>
     </a>
   );
@@ -157,64 +148,68 @@ function UpgradeCard({
 
 // ── Page ─────────────────────────────────────────────────────────────────
 
+const PEEP_SPHERES = [
+  { icon: Boxes,    title: 'Core EIPs',     desc: 'Deep-dives into consensus rules and protocol behavior changes.' },
+  { icon: GitBranch, title: 'Upgrade Path',   desc: 'Tracing the technical journey toward upcoming network upgrades.' },
+  { icon: Zap,      title: 'Abstraction',    desc: 'Exploring Account Abstraction and user experience standards.' },
+  { icon: NetworkIcon,  title: 'PeerDAS',        desc: 'Scaling data availability to support Ethereum\'s rollup-centric future.' },
+];
+
 export default function PEEPanEIPPage() {
   return (
-    <main className="min-h-screen pt-16 lg:pt-24" style={{ background: '#151419', color: '#FBFBFB' }}>
+    <main className="min-h-screen bg-[var(--background)] pt-16 lg:pt-24 text-[var(--text-base)]">
 
       {/* ── HERO ─────────────────────────────────────────── */}
-      <section className="page-hero">
-        <div className="page-hero-inner items-center">
-          {/* Left — text */}
-          <div>
-            <div className="mb-6">
-              <Link
-                href="/podcast"
-                className="inline-flex items-center gap-2 font-bold text-xs uppercase tracking-widest transition-opacity hover:opacity-70 text-[var(--text-soft)]"
-              >
-                <ArrowLeft className="h-4 w-4" /> Back to Media Hub
-              </Link>
-            </div>
-            <div className="page-hero-tag">
-              <span className="page-hero-dot" />
-              Educational Video Series · 150+ Episodes
-            </div>
-            <h1 className="page-hero-title">PEEPanEIP</h1>
-            <p className="page-hero-desc mb-8">
-              An educational video series on Ethereum Improvement Proposals and key features of upcoming
-              network upgrades — built for client teams, researchers, and the broader ecosystem.
-            </p>
-            <a
-              href={peep.playlistUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--accent-brand)] px-5 py-3 text-sm font-bold text-[#151419] transition hover:bg-[var(--accent-brand)]/90 shrink-0"
-            >
-              <PlayCircle className="h-4 w-4" /> Watch Full Playlist
-            </a>
-          </div>
+      <section className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
 
-          {/* Right — animated rings */}
-          <div className="hidden lg:flex justify-center items-center w-full max-w-lg mx-auto pl-8">
-            <div className="relative w-64 h-64 flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full border border-[var(--border-soft)] opacity-20 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]" />
-              <div className="absolute inset-4 rounded-full border border-[var(--border-soft)] opacity-40 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_0.5s]" />
-              <div className="absolute inset-8 rounded-full border border-[var(--border-soft)] opacity-60 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_1s]" />
-              <div className="relative z-10 w-32 h-32 rounded-full bg-[var(--surface-card-theme)] border border-[var(--border-soft)] flex items-center justify-center shadow-[0_0_40px_rgba(245,165,29,0.15)] group transition-all duration-500 hover:border-[var(--accent-brand)] hover:scale-105">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--accent-brand)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <BookOpen className="w-12 h-12 text-[var(--accent-brand)] relative z-10" />
+            {/* Left — text */}
+            <div className="flex flex-col gap-5">
+              <div className="mb-1">
+                <Link
+                  href="/podcast"
+                  className="inline-flex items-center gap-2 font-bold text-xs uppercase tracking-widest transition-opacity hover:opacity-70 text-[var(--text-soft)]"
+                >
+                  <ArrowLeft className="h-4 w-4" /> Back to Media Hub
+                </Link>
+              </div>
+              <div className="proplay-icon-container px-3 py-1 self-start gap-2">
+                <BookOpen className="w-4" />
+                Educational Video Series · 150+ Episodes
+              </div>
+              <h1 className="global-hero-title">PEEPanEIP</h1>
+              <p className="global-body-lg max-w-xl">
+                An educational video series on Ethereum Improvement Proposals and key features of upcoming
+                network upgrades — built for client teams, researchers, and the broader ecosystem.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <a
+                  href={peep.playlistUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary gap-3"
+                >
+                  <PlayCircle className="h-4 w-4" /> Watch Full Playlist
+                </a>
               </div>
             </div>
+
+            {/* Right — Interactive Radar */}
+            <HeroRadar spheres={PEEP_SPHERES} />
+
           </div>
         </div>
       </section>
+
 
       {/* ── Why PEEPanEIP ── */}
       <PodcastOriginSection
         title="Why PEEPanEIP started"
         intro="Built for client teams and contributors who need signal before the next All Core Devs call — not a slide deck, but plain-language protocol context from the authors themselves."
-        purpose={<>The series was created to give client teams a <strong className="font-semibold text-[#FBFBFB]">dedicated overview of new EIPs</strong> ahead of All Core Dev (ACD) meetings so proposals aren&apos;t first heard only on the call. By engaging directly with EIP authors — including Vitalik Buterin on EIP-7706 (multidimensional gas) — PEEPanEIP ensures the broader community understands the &ldquo;why&rdquo; behind foundational protocol changes.</>}
-        goal={<>Raise visibility for <strong className="font-semibold text-[#FBFBFB]">&quot;Last Call&quot; and &quot;Draft&quot;</strong> work by translating it into ELI5-style explanations — making it easier to align on upgrades and build consensus across the ecosystem. From EIP-1559 and The Merge to EIP-7702 (account abstraction), PEEPanEIP has been present at every major inflection point in Ethereum&apos;s history.</>}
-        closing={<>Every episode pairs a concrete EIP or ERC with <span className="not-italic font-medium text-[#FBFBFB]">guest experts</span> — core devs, researchers, and implementers — so you can trace how ideas travel from draft to mainnet. The series is distinguished by its direct engagement with EIP authors, providing the first public discussion of many foundational protocol changes.</>}
+        purpose={<>The series was created to give client teams a <strong className="font-semibold text-[var(--text-base)]">dedicated overview of new EIPs</strong> ahead of All Core Dev (ACD) meetings so proposals aren&apos;t first heard only on the call. By engaging directly with EIP authors — including Vitalik Buterin on EIP-7706 (multidimensional gas) — PEEPanEIP ensures the broader community understands the &ldquo;why&rdquo; behind foundational protocol changes.</>}
+        goal={<>Raise visibility for <strong className="font-semibold text-[var(--text-base)]">&quot;Last Call&quot; and &quot;Draft&quot;</strong> work by translating it into ELI5-style explanations — making it easier to align on upgrades and build consensus across the ecosystem. From EIP-1559 and The Merge to EIP-7702 (account abstraction), PEEPanEIP has been present at every major inflection point in Ethereum&apos;s history.</>}
+        closing={<>Every episode pairs a concrete EIP or ERC with <span className="not-italic font-medium text-[var(--text-base)]">guest experts</span> — core devs, researchers, and implementers — so you can trace how ideas travel from draft to mainnet. The series is distinguished by its direct engagement with EIP authors, providing the first public discussion of many foundational protocol changes.</>}
       />
 
       {/* ── Latest Videos ── */}
@@ -222,8 +217,8 @@ export default function PEEPanEIPPage() {
         playlistId={peep.playlistId}
         browseUrl={peep.playlistUrl}
         title="Latest PEEPanEIP videos"
-        description={<>Newest entries from the official <a href={peep.playlistUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-[#F5A51D] hover:underline">PEEPanEIP YouTube playlist</a> (feed order: most recent first).</>}
-        limit={4}
+        description={<>Newest entries from the official <a href={peep.playlistUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-accent hover:underline">PEEPanEIP YouTube playlist</a> (feed order: most recent first).</>}
+        limit={5}
         sideRailLabel="More from the playlist"
         featuredBadge="Latest"
       />
@@ -257,52 +252,60 @@ export default function PEEPanEIPPage() {
       </section>
 
       {/* ── Network Upgrade Playlists ── */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pb-16">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-1 h-8 rounded-full" style={{ background: '#F5A51D' }} />
-          <span className="text-[9px] font-black uppercase tracking-[0.25em]" style={{ color: '#F5A51D' }}>By Network Upgrade</span>
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pb-20">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-1 h-6 bg-accent" />
+          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">By Network Upgrade</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2" style={{ color: '#FBFBFB' }}>
-          Upgrade <em className="not-italic" style={{ color: '#F5A51D' }}>Series</em>
-        </h2>
-        <p className="text-sm mb-8 max-w-xl" style={{ color: 'rgba(251,251,251,0.50)' }}>
-          Deep-dives by Ethereum upgrade — each card shows the first episode thumbnail. Select a fork to watch the full cycle.
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+        
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+          <div className="max-w-3xl">
+            <h2 className="text-4xl sm:text-6xl font-black tracking-tighter leading-[1.1] text-[var(--text-base)] font-syne mb-4">
+              Upgrade <em className="not-italic text-accent">Series</em>
+            </h2>
+            <p className="text-base text-[var(--text-soft)] font-medium max-w-xl">
+              Deep-dives by Ethereum upgrade — each card shows the first episode thumbnail. Select a fork to watch the full cycle.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {upgradePlaylists.map((pl) => (
             <UpgradeCard key={pl.label} label={pl.label} year={pl.year} href={pl.href} firstVideoId={pl.firstVideoId} />
           ))}
         </div>
       </section>
 
-      {/* ── Themes ── */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pb-20">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-1 h-8 rounded-full" style={{ background: '#F5A51D' }} />
-          <span className="text-[9px] font-black uppercase tracking-[0.25em]" style={{ color: '#F5A51D' }}>Focus Areas</span>
+      {/* ── Focus Areas (Matching Image) ── */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pb-24">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-1 h-6 bg-accent" />
+          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">FOCUS AREAS</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2" style={{ color: '#FBFBFB' }}>
-          Themes we <em className="not-italic" style={{ color: '#F5A51D' }}>explore</em>
-        </h2>
-        <p className="text-sm mb-8 max-w-xl" style={{ color: 'rgba(251,251,251,0.50)' }}>
-          Every episode maps to one of four core protocol dimensions — from low-level EVM mechanics to market design.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <div className="flex flex-col mb-12">
+          <h2 className="text-5xl sm:text-7xl font-black lowercase text-accent font-syne tracking-tighter">
+            explore
+          </h2>
+          <p className="text-sm mt-4 text-[rgba(251,251,251,0.5)] font-medium max-w-xl">
+            Every episode maps to one of four core protocol dimensions — from low-level EVM mechanics to market design.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {themes.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="flex gap-4 rounded-2xl border p-5 transition-all duration-300 hover:border-[#F5A51D]/50 hover:shadow-[0_0_24px_rgba(245,165,29,0.06)]"
-              style={{ borderColor: '#262626', background: '#1B1B1E' }}
+              className="flex flex-col gap-6 rounded-[32px] border border-[var(--border-soft)] p-8 md:p-10 transition-all duration-500 hover:border-accent/40 group hover:bg-[var(--surface-card-muted)] bg-[var(--surface-card-theme)] shadow-sm hover:shadow-xl"
             >
               <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border mt-0.5"
-                style={{ background: 'rgba(245,165,29,0.10)', borderColor: 'rgba(245,165,29,0.30)' }}
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-accent/20 bg-accent/5 transition-all duration-500 group-hover:scale-110 group-hover:border-accent/40 group-hover:bg-accent/10"
               >
-                <Icon className="h-5 w-5" style={{ color: '#F5A51D' }} />
+                <Icon className="h-6 w-6 text-accent" />
               </div>
-              <div>
-                <h3 className="font-bold text-[15px] mb-1.5" style={{ color: '#FBFBFB' }}>{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(251,251,251,0.55)' }}>{body}</p>
+              <div className="flex flex-col gap-3">
+                <h3 className="text-3xl md:text-4xl font-black text-[var(--text-base)] font-syne tracking-tighter group-hover:text-accent transition-colors">{title}</h3>
+                <p className="text-sm md:text-base leading-relaxed text-[var(--text-soft)] font-medium">{body}</p>
               </div>
             </div>
           ))}

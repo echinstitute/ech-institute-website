@@ -15,10 +15,10 @@ const config = {
     },
     extend: {
       colors: {
-        black: "#151419",
-        white: "#FBFBFB",
-        darkGray: "#262626",
-        lightGray: "#878787",
+        black: "var(--color-black)",
+        white: "var(--color-white)",
+        darkGray: "var(--border)",
+        lightGray: "var(--text-muted)",
         border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",

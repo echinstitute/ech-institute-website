@@ -8,7 +8,7 @@ import {
   BookMarked, MessageSquare,
   Calendar, TrendingUp, Shield, Lightbulb, Target, CheckCircle2,
   ChevronDown, Video, GitBranch, AlertCircle,
-  Clock, Layers, Network, Cpu, Building2, GitPullRequest
+  Clock, Layers, Network as NetworkIcon, Cpu, Building2, GitPullRequest, GraduationCap
 } from 'lucide-react';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
 import { cn } from '@/lib/utils';
@@ -102,7 +102,7 @@ const featuredGuides = [
     steps: ['Organize agenda with client teams', 'Facilitate biweekly technical calls', 'Capture detailed technical decisions', 'Publish all core dev videos publicly', 'Archive notes in ethereum/pm', 'Share executive summaries'],
   },
   {
-    icon: Network,
+    icon: NetworkIcon,
     title: 'Protocol Coordination',
     tag: 'ECH Institute',
     link: EXTERNAL_LINKS.blog,
@@ -159,7 +159,7 @@ const eipStages = [
 // ─── Timeline ─────────────────────────────────────────────────────────────────
 const timelineCards = [
   {
-    year: '2024', quarter: 'Q1', icon: Network, tone: 'neutral',
+    year: '2024', quarter: 'Q1', icon: NetworkIcon, tone: 'neutral',
     badge: 'Inception', badgeTone: 'neutral',
     title: 'Early Coordination Begins',
     description: 'Initial community coordination efforts for the Dencun upgrade and proto-danksharding (EIP-4844) communication.',
@@ -223,31 +223,14 @@ const timelineCards = [
   },
 ];
 
-// ─── Education Hero Ways ──────────────────────────────────────────────────────
-const eduWays = [
-  {
-    icon: BookOpen,
-    title: 'EIP Deep Dives',
-    desc: '100+ PEEPanEIP episodes exploring Ethereum Improvement Proposals with their original authors.',
-  },
-  {
-    icon: GitPullRequest,
-    title: 'Protocol Governance',
-    desc: 'Understand how EIPs move from Draft → Last Call → Final through the community review process.',
-  },
-  {
-    icon: Users,
-    title: 'WiEP Classrooms',
-    desc: 'Structured classroom series onboarding women into Ethereum core protocol development.',
-  },
-  {
-    icon: Zap,
-    title: 'Ecosystem Demos',
-    desc: 'Live project showcases featuring public goods, tooling, and infrastructure teams.',
-  },
+import { HeroRadar } from '@/components/features/HeroRadar';
+
+const EDUCATION_SPHERES = [
+  { icon: BookOpen, title: 'Structured Hub', desc: 'A learning resource for beginners, contributors, and enterprises.' },
+  { icon: Play, title: 'Visual Learning', desc: 'Deep-dive video walkthroughs with EIP authors and researchers.' },
+  { icon: FileText, title: 'Technical Guides', desc: 'Step-by-step documentation on Ethereum network upgrades.' },
+  { icon: GraduationCap, title: 'Onboarding', desc: 'Community-led study groups for onboarding new protocol contributors.' },
 ];
-
-
 
 export default function EducationPage() {
   const [activeSection, setActiveSection] = useState('overview');
@@ -280,7 +263,7 @@ export default function EducationPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24 text-[#FBFBFB]">
+    <main className="min-h-screen bg-[var(--background)] pt-16 lg:pt-24 text-[var(--text-base)]">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section id="overview" className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
@@ -289,8 +272,8 @@ export default function EducationPage() {
 
             {/* Left — copy */}
             <div className="flex flex-col gap-5">
-              <div className="proplay-icon-container px-3 py-1 self-start">
-                <BookOpen className="w-4 mx-2" />
+              <div className="proplay-icon-container px-3 py-1 self-start !text-[#FBFBFB]">
+                <BookOpen className="w-4 mx-2 !text-[#FBFBFB]" />
                 Open Education Hub
               </div>
               <h1 className="global-hero-title">
@@ -301,100 +284,27 @@ export default function EducationPage() {
                 Ethereum Improvement Proposals, network upgrades, and governance coordination.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
-                <Link href={ROUTES.peepaneip} className="btn btn-primary">
+                <Link href={ROUTES.peepaneip} className="btn btn-primary gap-3">
                   <Play className="h-4 w-4" />
                   Explore Content
                 </Link>
-                <Link href={EXTERNAL_LINKS.blog} target="_blank" className="btn btn-outline">
+                <Link href={EXTERNAL_LINKS.blog} target="_blank" className="btn btn-outline gap-3">
                   <FileText className="h-4 w-4" />
                   Read the Blog
                 </Link>
               </div>
             </div>
 
-            {/* Right — Interactive Radar with 4 Education Spheres */}
-            <div className="relative h-[400px] w-full hidden lg:flex items-center justify-center group/radar">
-              {/* Radar Background Rings */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
-                <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
-                {/* Crosshairs */}
-                <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
-                <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
-              </div>
-
-              {/* Central Radar Core */}
-              <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--accent-brand)] opacity-40 animate-pulse" />
-
-              {/* The 4 Education Spheres */}
-              <div className="absolute inset-0">
-                {eduWays.map(({ icon: Icon, title, desc }, index) => {
-                  const positions = [
-                    'top-[10%] left-1/2 -translate-x-1/2',      // 01 - Top
-                    'right-[10%] top-1/2 -translate-y-1/2',     // 02 - Right
-                    'bottom-[10%] left-1/2 -translate-x-1/2',   // 03 - Bottom
-                    'left-[10%] top-1/2 -translate-y-1/2',      // 04 - Left
-                  ];
-
-                  const tooltipPos = [
-                    'top-full mt-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 -translate-y-4',
-                    'right-full mr-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 translate-x-4',
-                    'bottom-full mb-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 translate-y-4',
-                    'left-full ml-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 -translate-x-4',
-                  ];
-
-                  const arrowPos = [
-                    'absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-l border-[var(--accent-brand)] rotate-45',
-                    'absolute top-1/2 -right-2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-r border-[var(--accent-brand)] rotate-45 -translate-y-1/2',
-                    'absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-b border-r border-[var(--accent-brand)] rotate-45',
-                    'absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2',
-                  ];
-
-                  return (
-                    <div
-                      key={title}
-                      className={`absolute ${positions[index]} group/sphere z-20 hover:z-50 transition-all duration-300`}
-                    >
-                      <div className="relative flex flex-col items-center">
-                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-2xl border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl cursor-default relative z-10">
-                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white" />
-                        </div>
-
-                        {/* Title badge */}
-                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)]">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-white">0{index + 1} {title}</span>
-                        </div>
-
-                        {/* Tooltip — revealed on hover */}
-                        <div className={`absolute ${tooltipPos[index]} w-60 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] backdrop-blur-2xl border border-[var(--accent-brand)]/50 p-5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-all duration-500 z-50 scale-90 group-hover/sphere:scale-100`}>
-                          <div className={arrowPos[index]} />
-                          <div className="relative z-10">
-                            <div className="flex items-center justify-between mb-3">
-                              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent-brand)] flex items-center gap-2">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-brand)] animate-pulse" />
-                                Education 0{index + 1}
-                              </p>
-                              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[var(--accent-brand)]/10 text-[var(--accent-brand)] border border-[var(--accent-brand)]/20">Protocol</span>
-                            </div>
-                            <div className="text-base font-black text-[var(--text-base)] mb-1.5 leading-tight tracking-tight uppercase">{title}</div>
-                            <p className="text-[12px] text-[var(--text-soft)] font-medium leading-relaxed opacity-90">{desc}</p>
-                            <div className="mt-4 h-px w-8 bg-[var(--accent-brand)] opacity-50" />
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            {/* Right — Interactive Radar */}
+            <HeroRadar spheres={EDUCATION_SPHERES} />
 
           </div>
         </div>
       </section>
 
+
       {/* ── Stats ────────────────────────────────────────────────────────── */}
-      <section className="border-b border-[#262626] bg-[#1B1B1E] py-6 px-4 md:px-8">
+      <section className="border-b border-[var(--border-soft)] bg-[var(--surface-card-theme)] py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -404,8 +314,8 @@ export default function EducationPage() {
               { value: '1100+', label: 'PRs Reviewed During Office Hours' },
             ].map((s, i) => (
               <div key={i}>
-                <div className="global-section-title text-brand-yellow">{s.value}</div>
-                <div className="text-sm text-[#FBFBFB] font-medium mt-0.5">{s.label}</div>
+                <div className="global-section-title text-[var(--accent-brand)]">{s.value}</div>
+                <div className="text-sm text-[var(--text-soft)] font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -438,14 +348,14 @@ export default function EducationPage() {
                   <div className="flex items-center gap-4">
                     <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
                       <f.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                         0{i + 1}
                       </span>
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-base text-[#FBFBFB]">{f.title}</span>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#FBFBFB] bg-[#1B1B1E] px-2 py-0.5 rounded-full hidden sm:inline">{f.tag}</span>
+                        <span className="font-bold text-base text-[var(--text-base)]">{f.title}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-base)] bg-[var(--surface-card-muted)] px-2 py-0.5 rounded-full hidden sm:inline">{f.tag}</span>
                       </div>
                       <p className="text-xs text-amber-700 font-semibold">{f.subtitle}</p>
                     </div>
@@ -456,7 +366,7 @@ export default function EducationPage() {
                     <p className="global-body text-sm mb-3">{f.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {f.highlights.map((h, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[#FBFBFB] bg-[#1B1B1E] border border-[#262626] rounded-full px-3 py-1">
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-base)] bg-[var(--surface-card-muted)] border border-border rounded-full px-3 py-1">
                           <CheckCircle2 size={11} className="text-brand-yellow" /> {h}
                         </span>
                       ))}
@@ -484,13 +394,13 @@ export default function EducationPage() {
                     >
                       <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
                         <g.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                           0{i + 1}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
-                          <span className="font-bold text-base text-[#FBFBFB]">{g.title}</span>
+                          <span className="font-bold text-base text-[var(--text-base)]">{g.title}</span>
                           <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full hidden sm:inline">{g.tag}</span>
                         </div>
                         <p className="global-body text-sm">{g.summary}</p>
@@ -508,7 +418,7 @@ export default function EducationPage() {
                           {g.steps.map((step, j) => (
                             <div key={j} className="flex items-start gap-3">
                               <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-50 text-amber-700 border border-amber-100 text-[10px] font-bold shrink-0 mt-0.5">{j + 1}</div>
-                              <span className="text-sm text-[#FBFBFB]/80 leading-snug">{step}</span>
+                              <span className="text-sm text-[var(--text-base)]/80 leading-snug">{step}</span>
                             </div>
                           ))}
                         </div>
@@ -532,9 +442,9 @@ export default function EducationPage() {
               {eipStages.map((s, i) => (
                 <div key={s.stage} className="relative flex gap-4 items-start group">
                   {/* Proplay Icon */}
-                  <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10 bg-[#151419]">
+                  <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10 bg-black">
                     <s.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                       0{i + 1}
                     </span>
                   </div>
@@ -546,7 +456,7 @@ export default function EducationPage() {
                     <p className="global-body text-sm mb-3">{s.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.actions.map((a, j) => (
-                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-primary)] bg-[var(--surface-card-muted)] border border-[var(--border-soft)] rounded-full px-3 py-1">
+                        <span key={j} className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-soft)] bg-[var(--surface-card-muted)] border border-[var(--border-soft)] rounded-full px-3 py-1">
                           <CheckCircle2 size={11} className="text-[var(--accent-brand)] flex-shrink-0" /> {a}
                         </span>
                       ))}
@@ -556,10 +466,10 @@ export default function EducationPage() {
               ))}
             </div>
             {/* ECH Role banner — yellow accent */}
-            <div className="global-card mt-4 bg-[#1B1B1E] border-[#F5A51D]/40 text-center relative overflow-hidden">
+            <div className="global-card mt-4 bg-[var(--surface-card-muted)] border-accent/40 text-center relative overflow-hidden">
               <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F5A51D] to-transparent" />
               <p className="global-body">
-                <strong className="text-[#F5A51D]">ECH Institute&apos;s Role:</strong> We produce PEEPanEIP deep-dives for each significant EIP, host EIPIP calls that shepherd EIPs through review, and publish upgrade communication for each mainnet deployment.
+                <strong className="text-accent">ECH Institute&apos;s Role:</strong> We produce PEEPanEIP deep-dives for each significant EIP, host EIPIP calls that shepherd EIPs through review, and publish upgrade communication for each mainnet deployment.
               </p>
             </div>
           </section>
@@ -576,7 +486,7 @@ export default function EducationPage() {
                   <div className="flex items-start justify-between gap-2">
                     <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10">
                       <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                         0{i + 1}
                       </span>
                     </div>
@@ -587,14 +497,14 @@ export default function EducationPage() {
                   <div className="flex-1 flex flex-col">
                     <div className="flex items-center gap-1.5 mb-1.5">
                       <span className="text-xs font-bold text-brand-yellow">{card.year}</span>
-                      <span className="h-1 w-1 rounded-full bg-[#262626]" />
-                      <span className="text-xs font-bold text-[#FBFBFB]/50">{card.quarter}</span>
+                      <span className="h-1 w-1 rounded-full bg-darkGray" />
+                      <span className="text-xs font-bold text-[var(--text-base)]/50">{card.quarter}</span>
                     </div>
                     <h3 className="global-card-title text-base mb-1.5">{card.title}</h3>
                     <p className="global-body text-xs leading-relaxed mb-3">{card.description}</p>
-                    <div className="mt-auto pt-3 border-t border-[#262626] flex items-start gap-2">
+                    <div className="mt-auto pt-3 border-t border-border flex items-start gap-2">
                       <Zap size={12} className="text-brand-yellow shrink-0 mt-0.5" />
-                      <p className="text-[11px] font-medium text-[#FBFBFB]/70 leading-normal italic">{card.highlight}</p>
+                      <p className="text-[11px] font-medium text-[var(--text-soft)] leading-normal italic">{card.highlight}</p>
                     </div>
                   </div>
                 </div>
@@ -614,7 +524,7 @@ export default function EducationPage() {
                 <Link key={i} href={card.link} target="_blank" className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
                   <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
                     <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                       0{i + 1}
                     </span>
                   </div>
@@ -629,7 +539,7 @@ export default function EducationPage() {
               ))}
             </div>
 
-            <div className="global-card text-center bg-[#1B1B1E] border-[#F5A51D]/50">
+            <div className="global-card text-center bg-[var(--surface-card-muted)] border-accent/50">
               <p className="global-body-lg mb-2"><strong>Participation &amp; Ecosystem Contribution</strong></p>
               <p className="global-body-lg mb-6">You can contribute through documentation, content creation, community outreach, and taking part in governance discussions. ECH Institute is your starting point.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

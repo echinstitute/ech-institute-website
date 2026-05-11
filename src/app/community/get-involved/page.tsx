@@ -7,6 +7,7 @@ import {
   Calendar, GitBranch, CheckCircle2
 } from "lucide-react";
 import Link from "next/link";
+import { HeroRadar } from "@/components/features/HeroRadar";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -216,7 +217,7 @@ export default function GetInvolvedPage() {
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             {/* Left — copy */}
             <div className="flex flex-col gap-5">
-              <div className="proplay-icon-container px-3 py-1 self-start">
+              <div className="proplay-icon-container px-3 py-1 self-start gap-2">
                 <Zap className="h-3 w-3" />
                 Open to Everyone
               </div>
@@ -248,95 +249,7 @@ export default function GetInvolvedPage() {
 
             {/* Right — ways to contribute mini-grid */}
             {/* Right — Interactive Role Proximity (Radar Style) */}
-            <div className="relative h-[400px] w-full hidden lg:flex items-center justify-center group/radar">
-              {/* Radar Background Rings */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="absolute w-[180px] h-[180px] border border-[var(--border-soft)] rounded-full opacity-20 animate-[ping_4s_linear_infinite]" />
-                <div className="absolute w-[300px] h-[300px] border border-[var(--border-soft)] rounded-full opacity-10 animate-[ping_6s_linear_infinite]" />
-                {/* Crosshairs */}
-                <div className="absolute w-full h-[1px] bg-[var(--border-soft)] opacity-10" />
-                <div className="absolute h-full w-[1px] bg-[var(--border-soft)] opacity-10" />
-              </div>
-
-              {/* Central Radar Core (No Glow) */}
-              <div className="absolute z-10 h-3 w-3 rounded-full bg-[var(--border-soft)] opacity-20" />
-
-              {/* The 4 Role Spheres */}
-              <div className="absolute inset-0">
-                {ways.map(({ icon: Icon, title, desc }, index) => {
-                  // Position roles in a diamond / circular pattern
-                  const positions = [
-                    "top-[10%] left-1/2 -translate-x-1/2", // 01 - Top
-                    "right-[10%] top-1/2 -translate-y-1/2", // 02 - Right
-                    "bottom-[10%] left-1/2 -translate-x-1/2", // 03 - Bottom
-                    "left-[10%] top-1/2 -translate-y-1/2", // 04 - Left
-                  ];
-
-                  // Tooltips point INWARD towards the center of the radar to avoid clipping
-                  const tooltipPos = [
-                    "top-full mt-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 -translate-y-4", // Top sphere points down
-                    "right-full mr-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 translate-x-4", // Right sphere points left
-                    "bottom-full mb-4 left-1/2 -translate-x-1/2 group-hover/sphere:translate-y-0 translate-y-4", // Bottom sphere points up
-                    "left-full ml-4 top-1/2 -translate-y-1/2 group-hover/sphere:translate-x-0 -translate-x-4", // Left sphere points right
-                  ];
-
-                  const arrowPos = [
-                    "absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-l border-[var(--accent-brand)] rotate-45", // Top sphere arrow points up
-                    "absolute top-1/2 -right-2 w-4 h-4 bg-[var(--surface-card-theme)] border-t border-r border-[var(--accent-brand)] rotate-45 -translate-y-1/2", // Right sphere arrow points right
-                    "absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--surface-card-theme)] border-b border-r border-[var(--accent-brand)] rotate-45", // Bottom sphere arrow points down
-                    "absolute top-1/2 -left-2 w-4 h-4 bg-[var(--surface-card-theme)] border-l border-b border-[var(--accent-brand)] rotate-45 -translate-y-1/2", // Left sphere arrow points left
-                  ];
-
-                  return (
-                    <div
-                      key={title}
-                      className={`absolute ${positions[index]} group/sphere z-20 hover:z-50 transition-all duration-300`}
-                    >
-                      {/* Floating Sphere */}
-                      <div className="relative flex flex-col items-center">
-                        <div className="proplay-icon-container h-16 w-16 md:h-20 md:w-20 rounded-full border-2 border-[var(--border-soft)] bg-[var(--surface-card-theme)] shadow-2xl group-hover/sphere:border-[var(--accent-brand)] group-hover/sphere:scale-110 transition-all duration-500 cursor-pointer relative z-10">
-                          {/* The Icon - Hides on Hover */}
-                          <Icon className="h-8 w-8 md:h-10 md:w-10 text-white group-hover/sphere:opacity-0 group-hover/sphere:scale-0 transition-all duration-300" />
-                          
-                          {/* The Number - Appears on Hover */}
-                          <span className="absolute inset-0 flex items-center justify-center text-lg md:text-xl font-black text-white opacity-0 group-hover/sphere:opacity-100 transition-all duration-300">
-                            0{index + 1}
-                          </span>
-
-                          {/* Radial Scanning Effect */}
-                          <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
-                        </div>
-
-                        {/* Title - Floating Badge - STAYS visible on hover now */}
-                        <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-all duration-300">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-white">0{index + 1} {title}</span>
-                        </div>
-
-                        {/* Description - Revealed on Hover - Premium Proplay Tooltip */}
-                        <div className={`absolute ${tooltipPos[index]} w-60 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] backdrop-blur-2xl border border-[var(--accent-brand)]/50 p-5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-all duration-500 z-50 scale-90 group-hover/sphere:scale-100`}>
-                          <div className={arrowPos[index]} />
-                          <div className="relative z-10">
-                            <div className="flex items-center justify-between mb-3">
-                              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent-brand)] flex items-center gap-2">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-brand)] animate-pulse" />
-                                Impact Layer 0{index + 1}
-                              </p>
-                              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[var(--accent-brand)]/10 text-[var(--accent-brand)] border border-[var(--accent-brand)]/20">Protocol</span>
-                            </div>
-                            {/* Title - using div to avoid global h4 overrides and smaller size */}
-                            <div className="text-base font-black text-[var(--text-base)] mb-1.5 leading-tight tracking-tight uppercase">{title}</div>
-                            <p className="text-[12px] text-[var(--text-soft)] font-medium leading-relaxed opacity-90">{desc}</p>
-                            
-                            {/* Proplay accent line */}
-                            <div className="mt-4 h-px w-8 bg-[var(--accent-brand)] opacity-50" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <HeroRadar spheres={ways} />
           </div>
         </div>
       </section>
@@ -381,7 +294,7 @@ export default function GetInvolvedPage() {
                       {/* Icon hides on hover */}
                       <Icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
                       {/* Number appears on hover */}
-                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                         0{i + 1}
                       </span>
                     </div>
@@ -455,7 +368,7 @@ export default function GetInvolvedPage() {
                         {/* Icon hides on hover */}
                         <Icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
                         {/* Number appears on hover */}
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                           0{i + 1}
                         </span>
                       </span>
@@ -497,7 +410,7 @@ export default function GetInvolvedPage() {
               <div className="flex items-start gap-5 flex-1">
                 <span className="proplay-icon-container relative overflow-hidden h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20 group-hover:scale-110 transition-all duration-500">
                   <Heart className="h-6 w-6 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                  <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                     GO
                   </span>
                 </span>

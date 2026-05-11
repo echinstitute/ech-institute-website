@@ -27,7 +27,7 @@ const FAQ_TOPICS = [
               href={EXTERNAL_LINKS.discord} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-[#F5A51D] font-bold hover:underline"
+              className="text-accent font-bold hover:underline"
             >
               @discord
             </Link>{' '}
@@ -191,10 +191,10 @@ export default function FAQSection() {
           <p className="text-xs font-bold uppercase tracking-widest mb-2 text-brand-yellow">
             Knowledge Base
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black leading-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-base)] leading-tight mb-3">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[var(--text-soft)] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Everything you need to know about ECH Institute, Ethereum governance, EIPs, and network upgrades.
           </p>
         </div>
@@ -236,7 +236,7 @@ export default function FAQSection() {
             <p className="text-xs font-bold uppercase tracking-widest text-brand-yellow">
               {topic.label}
             </p>
-            <p className="text-xs text-gray-400">{topic.questions.length} questions</p>
+            <p className="text-xs text-[var(--text-soft)]">{topic.questions.length} questions</p>
           </div>
         </div>
 
@@ -271,7 +271,7 @@ export default function FAQSection() {
                   >
                     {qi + 1}
                   </div>
-                  <span className="flex-1 font-bold text-black text-sm sm:text-base leading-snug">
+                  <span className="flex-1 font-bold text-[var(--text-base)] text-sm sm:text-base leading-snug">
                     {item.q}
                   </span>
                   <div
@@ -288,7 +288,7 @@ export default function FAQSection() {
                 {/* Answer */}
                 {isOpen && (
                   <div className="px-4 sm:px-5 pb-5 pt-1 border-t border-[var(--tone-border)]">
-                    <div className="tone-card mt-3 p-4 rounded-xl text-sm leading-relaxed text-gray-600">
+                    <div className="tone-card mt-3 p-4 rounded-xl text-sm leading-relaxed text-[var(--text-soft)]">
                       {item.a}
                     </div>
                   </div>
@@ -306,8 +306,8 @@ export default function FAQSection() {
             <topic.icon size={22} />
           </div>
           <div className="flex-1 text-center sm:text-left">
-            <p className="font-extrabold text-black text-lg mb-1">Still have questions?</p>
-            <p className="text-gray-500 text-sm">
+            <p className="font-extrabold text-[var(--text-base)] text-lg mb-1">Still have questions?</p>
+            <p className="text-[var(--text-soft)] text-sm">
               Join our Discord for live support or explore the Homestead page for in-depth governance documentation.
             </p>
           </div>

@@ -128,64 +128,67 @@ const stats = [
   { label: 'Years of coverage', value: '6+' },
 ];
 
+import { HeroRadar } from '@/components/features/HeroRadar';
+
+const PODCAST_SPHERES = [
+  { icon: Play,         title: 'Multimedia',     desc: 'Organizing and publishing All Core Devs (ACD) calls and technical meetings.' },
+  { icon: Mic,          title: 'Coordination',   desc: 'The social and organizational operating system for Ethereum protocol work.' },
+  { icon: FileText,     title: 'Technical recaps', desc: 'Translating complex protocol decisions into accessible technical summaries.' },
+  { icon: GraduationCap, title: 'Public Archive',  desc: 'Maintaining a permanent, open-access record of Ethereum\'s evolution.' },
+];
+
 export default function PodcastPage() {
   return (
-    <main className="min-h-screen bg-[#151419] pt-16 lg:pt-24">
+    <main className="min-h-screen bg-[var(--background)] pt-16 lg:pt-24 text-[var(--text-base)]">
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section className="page-hero">
-        <div className="page-hero-inner items-center">
-          {/* Left — text */}
-          <div>
-            <div className="page-hero-tag">
-              <span className="page-hero-dot" />
-              ECH Institute Media Hub
-            </div>
-            <h1 className="page-hero-title">
-              ECH <br /><em className="text-[#F5A51D]">Podcast Hub</em>
-            </h1>
-            <p className="page-hero-desc mb-8">
-              The public archive for Ethereum&apos;s protocol evolution. Organizing and publishing All Core Devs (ACD) calls, EIP deep-dives, and technical coordination summaries in one central hub.
-            </p>
+      <section className="py-8 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
 
-            {/* Listen On */}
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-soft)] mb-3">Also available on</p>
-              <div className="flex flex-wrap gap-3">
-                {PODCAST_LINKS.map(({ name, href }) => {
-                  const Icon = PODCAST_ICONS[name];
-                  return (
-                    <a
-                      key={name}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-soft)] bg-[var(--surface-card-theme)] px-4 py-2.5 text-sm font-bold text-[var(--text-base)] transition hover:border-[var(--accent-brand)] group"
-                    >
-                      {Icon && <Icon className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" />}
-                      {name}
-                    </a>
-                  );
-                })}
+            {/* Left — text */}
+            <div className="flex flex-col gap-5">
+              <div className="proplay-icon-container px-3 py-1 self-start gap-2">
+                <Radio className="w-4" />
+                ECH Institute Media Hub
+              </div>
+              <h1 className="global-hero-title">
+                ECH <br /><em className="text-[var(--accent-brand)]">Podcast Hub</em>
+              </h1>
+              <p className="global-body-lg max-w-xl">
+                The public archive for Ethereum&apos;s protocol evolution. Organizing and publishing All Core Devs (ACD) calls, EIP deep-dives, and technical coordination summaries in one central hub.
+              </p>
+
+              {/* Listen On */}
+              <div className="pt-2">
+                <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-soft)] mb-3">Also available on</p>
+                <div className="flex flex-wrap gap-3">
+                  {PODCAST_LINKS.map(({ name, href }) => {
+                    const Icon = PODCAST_ICONS[name];
+                    return (
+                      <a
+                        key={name}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-soft)] bg-[var(--surface-card-theme)] px-4 py-2 text-sm font-bold text-[var(--text-base)] transition hover:border-[var(--accent-brand)] group"
+                      >
+                        {Icon && <Icon className="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" />}
+                        {name}
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right — Stats Mosaic Grid */}
-          <div className="hidden lg:grid grid-cols-2 gap-4 w-full max-w-lg mx-auto pl-8">
-            {stats.map(({ label, value }, i) => (
-              <div 
-                key={label} 
-                className={`rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-card-theme)] p-8 hover:border-[var(--accent-brand)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(245,165,29,0.15)] flex flex-col justify-center items-center text-center relative overflow-hidden group ${i % 2 !== 0 ? 'translate-y-8' : ''}`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-brand)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
-                <p className="relative text-4xl xl:text-5xl font-extrabold text-[var(--text-base)] font-syne mb-3 group-hover:text-[var(--accent-brand)] transition-colors duration-500">{value}</p>
-                <p className="relative text-[11px] font-black uppercase tracking-widest text-[var(--text-soft)] group-hover:text-[var(--text-base)] transition-colors duration-500">{label}</p>
-              </div>
-            ))}
+            {/* Right — Interactive Radar */}
+            <HeroRadar spheres={PODCAST_SPHERES} />
+
           </div>
         </div>
       </section>
+
       {/* ── Recent Highlights ── */}
       <PodcastRecentHighlights />
 
@@ -193,14 +196,14 @@ export default function PodcastPage() {
       {/* ── Media Pillars ── */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-12 md:py-16">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-1 h-8 rounded-full bg-[#F5A51D]" />
-          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">Content Taxonomy</span>
+          <div className="w-1 h-8 rounded-full bg-accent" />
+          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-accent">Content Taxonomy</span>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-[#FBFBFB]">
-            The Media <em className="not-italic text-[#F5A51D]">Pillars</em>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-[var(--text-base)]">
+            The Media <em className="not-italic text-accent">Pillars</em>
           </h2>
-          <p className="text-sm text-[#FBFBFB]/40 max-w-sm sm:text-right">
+          <p className="text-sm text-[var(--text-base)]/40 max-w-sm sm:text-right">
             Six distinct series, each mapped to a specific stakeholder need.
           </p>
         </div>
@@ -208,27 +211,27 @@ export default function PodcastPage() {
         {/* Bento-style grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {mediaPillars.map(({ title, blurb, badge, href, icon: Icon, external }, i) => {
-            const baseClass = `group relative flex flex-col rounded-3xl border border-[#262626] bg-[#1B1B1E] overflow-hidden no-underline transition-all duration-500 hover:-translate-y-1.5 hover:border-[#F5A51D]/60 hover:shadow-[0_8px_48px_rgba(245,165,29,0.14)]`;
+            const baseClass = `group relative flex flex-col rounded-3xl border border-border overflow-hidden no-underline transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/60 hover:shadow-[0_8px_48px_rgba(245,165,29,0.14)]`;
             const inner = (
               <>
                 {/* Top glow on hover */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#F5A51D] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="p-6 sm:p-7 flex flex-col flex-1">
                   <div className="flex items-start justify-between gap-3 mb-5">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#F5A51D]/20 to-[#F5A51D]/5 border border-[#F5A51D]/25 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(245,165,29,0.3)]">
-                      <Icon className="h-7 w-7 text-[#F5A51D]" />
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#F5A51D]/20 to-[#F5A51D]/5 border border-accent/25 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(245,165,29,0.3)]">
+                      <Icon className="h-7 w-7 text-accent" />
                     </div>
-                    <span className="inline-block px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest bg-[#F5A51D]/10 text-[#F5A51D] border border-[#F5A51D]/20 shrink-0 mt-1">
+                    <span className="inline-block px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest bg-accent/10 text-accent border border-accent/20 shrink-0 mt-1">
                       {badge}
                     </span>
                   </div>
-                  <h3 className="text-lg font-extrabold text-[#FBFBFB] mb-3 leading-snug group-hover:text-[#F5A51D] transition-colors duration-300">{title}</h3>
-                  <p className="text-sm text-[#FBFBFB]/45 leading-relaxed flex-1">{blurb}</p>
-                  <div className="mt-6 pt-5 border-t border-[#262626] flex items-center justify-between">
-                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FBFBFB]/25">
+                  <h3 className="text-lg font-extrabold text-[var(--text-base)] mb-3 leading-snug group-hover:text-accent transition-colors duration-300">{title}</h3>
+                  <p className="text-sm text-[var(--text-base)]/45 leading-relaxed flex-1">{blurb}</p>
+                  <div className="mt-6 pt-5 border-t border-border flex items-center justify-between">
+                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-[var(--text-base)]/25">
                       {external ? 'YouTube Playlist' : 'Explore Series'}
                     </span>
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#3a3a3a] text-[#878787] group-hover:text-[#F5A51D] group-hover:border-[#F5A51D]/50 group-hover:bg-[#F5A51D]/10 transition-all duration-300">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#3a3a3a] text-[var(--text-soft)] group-hover:text-accent group-hover:border-accent/50 group-hover:bg-accent/10 transition-all duration-300">
                       <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>
@@ -246,24 +249,26 @@ export default function PodcastPage() {
 
       {/* ── ACD Archive ── */}
       <section id="acd-archive" className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-12 md:py-16 scroll-mt-24">
-        <div className="rounded-3xl border border-[#262626] bg-[#1B1B1E] overflow-hidden">
+        <div className="rounded-[40px] border border-[var(--border-soft)] bg-[var(--surface-card-theme)] overflow-hidden shadow-2xl">
 
           {/* Header band */}
           <div
-            className="relative px-8 py-10 md:px-12 border-b border-[#262626]"
-            style={{ background: 'linear-gradient(135deg, #1B1B1E 0%, #1a1500 60%, #1B1B1E 100%)' }}
+            className="relative px-8 py-12 md:px-16 border-b border-[var(--border-soft)] bg-[var(--background)]/30"
           >
-            <div className="absolute top-0 right-0 w-80 h-80 rounded-full blur-[80px] opacity-[0.06] pointer-events-none" style={{ background: '#F5A51D' }} />
-            <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-1 h-6 rounded-full bg-[#F5A51D]" />
-                  <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">Technical Coordination</span>
+            {/* Ambient glows */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-[0.05] pointer-events-none" style={{ background: 'var(--accent-brand)' }} />
+            <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full blur-[100px] opacity-[0.03] pointer-events-none" style={{ background: 'var(--accent-brand)' }} />
+            
+            <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+              <div className="flex-1 max-w-3xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-1.5 h-6 rounded-full bg-[var(--accent-brand)]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--accent-brand)]">Technical Coordination</span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-[#FBFBFB]">
-                  All Core Devs <em className="not-italic text-[#F5A51D]">Archive</em>
+                <h2 className="text-4xl sm:text-5xl font-black tracking-tighter leading-[1.05] text-[var(--text-base)] font-syne">
+                  All Core Devs <span className="text-[var(--accent-brand)] italic">Archive</span>
                 </h2>
-                <p className="text-sm text-[#FBFBFB]/50 max-w-lg mt-2 leading-relaxed">
+                <p className="text-base md:text-lg text-[var(--text-soft)] mt-5 leading-relaxed font-medium">
                   The ECH Institute organizes ACDE, ACDC, and breakout sessions — providing a transparent, permanent record of Ethereum&apos;s consensus-building process.
                 </p>
               </div>
@@ -271,33 +276,33 @@ export default function PodcastPage() {
                 href="https://www.youtube.com/@echinstitute/streams"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-[#F5A51D] px-6 py-3 text-sm font-bold text-[#151419] transition hover:opacity-90 hover:shadow-[0_0_24px_rgba(245,165,29,0.3)] self-start sm:self-auto"
+                className="shrink-0 inline-flex items-center gap-3 rounded-2xl bg-[var(--accent-brand)] px-8 py-4 text-sm font-black uppercase tracking-widest text-black transition-all hover:scale-[1.05] hover:shadow-[0_0_32px_rgba(var(--accent-brand-rgb),0.3)] shadow-lg shadow-[var(--accent-brand)]/10 self-start lg:self-auto"
               >
-                <Video className="h-4 w-4" /> Watch Archive
+                <Video className="h-5 w-5" /> Watch Archive
               </a>
             </div>
           </div>
 
           {/* Feature cards — divide columns */}
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#262626]">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--border-soft)]">
             {acdCards.map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="group p-8 md:p-10 flex flex-col gap-5 transition-colors duration-300 hover:bg-[#F5A51D]/[0.03]"
+                className="group p-10 md:p-12 flex flex-col gap-6 transition-all duration-500 hover:bg-[var(--accent-brand)]/[0.02]"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#F5A51D]/20 to-[#F5A51D]/5 border border-[#F5A51D]/25 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(245,165,29,0.2)]">
-                  <Icon className="h-7 w-7 text-[#F5A51D]" />
+                <div className="flex h-16 w-16 items-center justify-center rounded-[20px] bg-[var(--background)] border border-[var(--border-soft)] shadow-inner transition-all duration-500 group-hover:scale-110 group-hover:border-[var(--accent-brand)] group-hover:shadow-[0_0_20px_rgba(var(--accent-brand-rgb),0.2)]">
+                  <Icon className="h-8 w-8 text-[var(--accent-brand)] transition-transform duration-500 group-hover:rotate-12" />
                 </div>
                 <div>
-                  <p className="text-base font-extrabold text-[#FBFBFB] mb-2 group-hover:text-[#F5A51D] transition-colors">{title}</p>
-                  <p className="text-sm text-[#FBFBFB]/45 leading-relaxed">{desc}</p>
+                  <p className="text-lg md:text-xl font-black text-[var(--text-base)] mb-3 tracking-tight group-hover:text-[var(--accent-brand)] transition-colors font-syne">{title}</p>
+                  <p className="text-sm md:text-base text-[var(--text-soft)] leading-relaxed font-medium">{desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Bottom stat strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-[#262626] border-t border-[#262626]">
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-[#262626] border-t border-border">
             {[
               { v: '837+', l: 'Videos archived' },
               { v: '200+', l: 'ACD calls recorded' },
@@ -305,8 +310,8 @@ export default function PodcastPage() {
               { v: '100%', l: 'Public & open' },
             ].map(({ v, l }) => (
               <div key={l} className="flex flex-col items-center justify-center py-6 px-4 text-center">
-                <span className="text-2xl sm:text-3xl font-extrabold text-[#F5A51D] font-syne">{v}</span>
-                <span className="text-[9px] font-black uppercase tracking-widest text-[#FBFBFB]/30 mt-1">{l}</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-accent font-syne">{v}</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-[var(--text-base)]/30 mt-1">{l}</span>
               </div>
             ))}
           </div>
@@ -316,33 +321,37 @@ export default function PodcastPage() {
       {/* ── Mission Banner ── */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pb-20">
         <div
-          className="rounded-2xl border border-[#262626] p-8 md:p-12 relative overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, #1B1B1E 0%, #1a1500 100%)' }}
+          className="rounded-3xl border border-[var(--border-soft)] p-8 md:p-12 relative overflow-hidden bg-[var(--surface-card-theme)] shadow-2xl"
         >
           {/* Accent glow */}
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-5 blur-3xl" style={{ background: '#F5A51D' }} />
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-[0.08] blur-3xl pointer-events-none" style={{ background: 'var(--accent-brand)' }} />
+          <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full opacity-[0.05] blur-3xl pointer-events-none" style={{ background: 'var(--accent-brand)' }} />
+          
           <div className="relative">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-1 h-6 rounded-full bg-[#F5A51D]" />
-              <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">Our Mission</span>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1.5 h-6 rounded-full bg-[var(--accent-brand)]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--accent-brand)]">Our Mission</span>
             </div>
-            <p className="text-2xl sm:text-3xl font-extrabold text-[#FBFBFB] leading-tight mb-4 max-w-2xl">
+            
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-base)] leading-[1.1] mb-6 max-w-3xl tracking-tighter font-syne">
               Homesteading Ethereum through{' '}
-              <em className="not-italic text-[#F5A51D]">technical transparency</em> and educational accessibility.
-            </p>
-            <p className="text-sm text-[#FBFBFB]/50 max-w-2xl leading-relaxed mb-6">
+              <span className="text-[var(--accent-brand)] italic">technical transparency</span> and educational accessibility.
+            </h2>
+            
+            <p className="text-base md:text-lg text-[var(--text-soft)] max-w-2xl leading-relaxed mb-10 font-medium">
               The ECH Institute — a US-based 501(c)(3) non-profit — serves as the institutional home for community-led protocol support. Originally emerging as the Ethereum Cat Herders in 2019, we provide the connective tissue that allows the decentralized Ethereum protocol to thrive as a global public good.
             </p>
-            <div className="flex flex-wrap gap-3">
+            
+            <div className="flex flex-wrap gap-4">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#F5A51D] px-5 py-2.5 text-sm font-bold text-[#151419] transition hover:bg-[#F5A51D]/90"
+                className="inline-flex items-center gap-3 rounded-xl bg-[var(--accent-brand)] px-7 py-3.5 text-sm font-black uppercase tracking-widest text-black transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[var(--accent-brand)]/20"
               >
                 About ECH Institute <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/support"
-                className="inline-flex items-center gap-2 rounded-xl border border-[#262626] bg-transparent px-5 py-2.5 text-sm font-bold text-[#FBFBFB] transition hover:border-[#F5A51D]/50"
+                className="inline-flex items-center gap-3 rounded-xl border border-[var(--border-soft)] bg-[var(--background)]/40 px-7 py-3.5 text-sm font-black uppercase tracking-widest text-[var(--text-base)] transition-all hover:border-[var(--accent-brand)] hover:bg-[var(--background)]/60"
               >
                 Support our work
               </Link>

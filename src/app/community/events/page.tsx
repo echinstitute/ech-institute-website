@@ -20,7 +20,6 @@ import {
   Image as ImageIcon,
   Target,
   FileText,
-  Network,
   Scale,
   ArrowUpRight,
   X,
@@ -191,7 +190,7 @@ export default function EventsPage() {
           title: 'EIP summit',
           description: 'Explore the full technical programming from the first-ever EIP Summit. Watch deep dives on protocol governance, executable specifications, and research-to-reality pipelines led by core developers and researchers.',
           videoUrl: 'https://youtube.com/playlist?list=PL4cwHXAawZxo_4-sDIY0ISXklLYn0ESpC&si=55_AIMn8DkTZudf0',
-          playlistVideoId: 'U_8H6h_GfQ0'
+          playlistVideoId: '_szGTp49L5E'
         },
         {
           title: 'Devconnect Argentina 2025 Event Playlist',
@@ -400,7 +399,7 @@ export default function EventsPage() {
                 Protocol & Community
               </div>
               <h1 className="global-hero-title animate-fade-up delay-1">
-                Events <span className="text-[#F5A51D]">& Talks</span>
+                Events <span className="text-accent">& Talks</span>
               </h1>
               <p className="hero-subtitle animate-fade-up delay-2 mt-6 max-w-3xl">
                 From ETH Singapore 2024 and Devcon 7 Bangkok to Eth Tokyo & EDCON 2025, Devconnect Argentina 2025, and the Road to Devcon 2026 — ECH Institute shows up where the protocol meets the community: EIPs, governance education, WiEP, and hands-on activations that turn global events into lasting onboarding.
@@ -414,8 +413,8 @@ export default function EventsPage() {
         <aside className="events-side-nav !bg-transparent" aria-label="Event sections">
           <div className="events-side-nav-card !bg-transparent">
             <div className="flex items-center gap-2 mb-5">
-              <div className="w-1 h-4 bg-[#F5A51D] rounded-full"></div>
-              <p className="events-side-nav-label text-sm font-black tracking-[0.15em] text-[#FBFBFB] uppercase">Event Index</p>
+              <div className="w-1 h-4 bg-accent rounded-full"></div>
+              <p className="events-side-nav-label text-sm font-black tracking-[0.15em] text-soft uppercase">Event Index</p>
             </div>
             <div className="events-side-nav-list flex flex-col gap-3">
               {eventDetails.map((event) => (
@@ -423,33 +422,33 @@ export default function EventsPage() {
                   key={event.id}
                   type="button"
                   onClick={() => scrollToEvent(event.id)}
-                  className={`events-side-nav-item group w-full flex flex-col !items-start !text-left rounded-2xl border bg-[#1B1B1E] p-5 transition-all duration-300 relative overflow-hidden ${
+                  className={`events-side-nav-item group w-full flex flex-col !items-start !text-left rounded-2xl border bg-surface-card-theme p-5 transition-all duration-300 relative overflow-hidden ${
                     activeEventId === event.id 
-                      ? 'border-[#F5A51D] shadow-[0_0_20px_rgba(245,165,29,0.1)]' 
-                      : 'border-[#262626] hover:border-[#F5A51D]/50 hover:bg-[#262626]/50'
+                      ? 'border-accent shadow-card-theme' 
+                      : 'border-soft hover:border-accent/50 hover:bg-surface-card-muted'
                   }`}
                 >
                   {activeEventId === event.id && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#F5A51D]" />
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-accent" />
                   )}
                   <div className="flex justify-between items-center w-full mb-3">
                     <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${
-                      activeEventId === event.id ? 'text-[#F5A51D]' : 'text-[#FBFBFB]/40 group-hover:text-[#FBFBFB]/80'
+                      activeEventId === event.id ? 'text-accent' : 'text-soft/60 group-hover:text-soft'
                     }`}>
                       {event.year}
                     </span>
                     {event.badge === 'Upcoming' && (
-                      <span className="text-[9px] font-black uppercase tracking-widest text-[#151419] bg-[#F5A51D] px-2 py-0.5 rounded-sm">
+                      <span className="text-[9px] font-black uppercase tracking-widest text-black bg-accent px-2 py-0.5 rounded-sm">
                         Upcoming
                       </span>
                     )}
                   </div>
                   <div className={`text-[15px] font-extrabold leading-snug mb-1 transition-colors ${
-                    activeEventId === event.id ? 'text-[#F5A51D]' : 'text-[#FBFBFB]/80 group-hover:text-[#F5A51D]'
+                    activeEventId === event.id ? 'text-accent' : 'text-base group-hover:text-accent'
                   }`}>
                     {event.title}
                   </div>
-                  <div className="text-xs text-[#FBFBFB]/40 font-medium">
+                  <div className="text-xs text-soft/60 font-medium">
                     {event.subtitle.replace(/[()]/g, '')}
                   </div>
                 </button>
@@ -481,8 +480,8 @@ export default function EventsPage() {
                       ))}
                     </div>
                   </div>
-                  <h2 className="global-section-title !text-left !text-[#FBFBFB] mb-6">
-                    {event.title.split(' ').slice(0, -1).join(' ')} <span className="text-[#F5A51D]">{event.title.split(' ').slice(-1)}</span>
+                  <h2 className="global-section-title !text-left !text-base mb-6">
+                    {event.title.split(' ').slice(0, -1).join(' ')} <span className="text-accent">{event.title.split(' ').slice(-1)}</span>
                   </h2>
                   <div className="event-meta-row">
                     <span className="meta-item">
@@ -575,9 +574,9 @@ export default function EventsPage() {
 
                   {event.activities && event.activities.length > 0 && (
                     <div className="event-activities">
-                      <h3 className="global-section-title !text-left !text-[#FBFBFB] text-3xl mb-8 flex items-center gap-3">
-                        <Sparkles className="text-[#F5A51D] w-8 h-8" />
-                        Specific <span className="text-[#F5A51D]">ECH Activities</span>
+                      <h3 className="global-section-title !text-left !text-base text-3xl mb-8 flex items-center gap-3">
+                        <Sparkles className="text-accent w-8 h-8" />
+                        Specific <span className="text-accent">ECH Activities</span>
                       </h3>
                       {event.id === 'road-to-devcon-2026' || event.id === 'eth-tokyo-edcon-2025' ? (
                         <div className="activities-grid">
@@ -603,39 +602,41 @@ export default function EventsPage() {
                             return (
                               <div key={activityIndex} className={`flex flex-col md:flex-row gap-8 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}>
                                 {activity.videoUrl ? (
-                                  <a href={activity.videoUrl} target="_blank" rel="noopener noreferrer" className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border border-[#262626] bg-[#1B1B1E] aspect-video group shadow-lg cursor-pointer block">
+                                  <a href={activity.videoUrl} target="_blank" rel="noopener noreferrer" className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border border-soft bg-surface-card-theme aspect-video group shadow-lg cursor-pointer block">
                                     {(activity.image || activity.videoUrl) && (
                             <Image
-                              src={activity.image || (activity.playlistVideoId ? `https://img.youtube.com/vi/${activity.playlistVideoId}/maxresdefault.jpg` : getYouTubeThumbnailUrl(activity.videoUrl))}
+                              src={activity.image || getYouTubeThumbnailUrl(activity.playlistVideoId || activity.videoUrl)}
                               alt={activity.title} 
                               fill 
+                              sizes="(max-width: 768px) 100vw, 50vw"
                               className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                                     )}
                                     {activity.videoUrl && !activity.videoUrl.includes('playlist') && !activity.hidePlayIcon && (
                                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <div className="w-16 h-16 rounded-full bg-[#F5A51D] flex items-center justify-center text-[#151419] shadow-[0_0_30px_rgba(245,165,29,0.3)]">
+                                        <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-black shadow-[0_0_30px_rgba(245,165,29,0.3)]">
                                           <Play className="w-6 h-6 ml-1" fill="currentColor" />
                                         </div>
                                       </div>
                                     )}
                                   </a>
                                 ) : (
-                                  <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border border-[#262626] bg-[#1B1B1E] aspect-video group shadow-lg">
+                                  <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border border-soft bg-surface-card-theme aspect-video group shadow-lg">
                                     {activity.image && (
                                       <Image 
                                         src={activity.image} 
                                         alt={activity.title} 
                                         fill 
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                       />
                                     )}
                                   </div>
                                 )}
                                 <div className="w-full md:w-1/2 flex flex-col justify-center">
-                                  <div className="w-12 h-1 bg-[#F5A51D] mb-5 rounded-full shadow-[0_0_10px_rgba(245,165,29,0.5)]"></div>
-                                  <h4 className="font-syne font-bold text-xl md:text-2xl text-[#FBFBFB] mb-4 leading-tight">{activity.title}</h4>
-                                  <p className="text-[#FBFBFB]/70 text-base leading-relaxed mb-6">{activity.description}</p>
+                                  <div className="w-12 h-1 bg-accent mb-5 rounded-full shadow-[0_0_10px_rgba(245,165,29,0.5)]"></div>
+                                  <h4 className="font-syne font-bold text-xl md:text-2xl text-base mb-4 leading-tight">{activity.title}</h4>
+                                  <p className="text-soft text-base leading-relaxed mb-6">{activity.description}</p>
                                 </div>
                               </div>
                             );
@@ -655,7 +656,7 @@ export default function EventsPage() {
                         {event.photos.slice(0, 6).map((photo: any, photoIndex: number) => (
                           <div
                             key={photoIndex}
-                            className="relative aspect-video rounded-xl overflow-hidden cursor-pointer group bg-[#1B1B1E] border border-[#262626] hover:border-[#F5A51D] transition-all"
+                            className="relative aspect-video rounded-xl overflow-hidden cursor-pointer group bg-surface-card-theme border border-soft hover:border-accent transition-all"
                             onClick={() => openImageModal(event.photos, photoIndex)}
                             role="button"
                             tabIndex={0}

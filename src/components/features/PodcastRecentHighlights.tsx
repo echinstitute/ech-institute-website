@@ -50,7 +50,7 @@ function AudioThumb({ index }: { index: number }) {
 function FeaturedAudioCard({ episode }: { episode: Episode }) {
   const dateLabel = fmtDate(episode.published);
   return (
-    <article className="group/card flex flex-col overflow-hidden rounded-2xl border border-[#262626] bg-[#1B1B1E] transition duration-300 hover:border-[#1DB954]/50 hover:shadow-[0_0_32px_rgba(29,185,84,0.10)] lg:col-span-7">
+    <article className="group/card flex flex-col overflow-hidden rounded-2xl border border-border bg-[#1B1B1E] transition duration-300 hover:border-[#1DB954]/50 hover:shadow-[0_0_32px_rgba(29,185,84,0.10)] lg:col-span-7">
       {/* Spotify show embed — always works, shows artwork + episode list */}
       <div className="w-full" style={{ height: 352 }}>
         <iframe
@@ -65,22 +65,22 @@ function FeaturedAudioCard({ episode }: { episode: Episode }) {
         />
       </div>
       {/* Info footer */}
-      <div className="flex flex-col border-t border-[#262626] p-5 bg-[#1B1B1E]">
+      <div className="flex flex-col border-t border-border p-5 bg-[#1B1B1E]">
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="min-w-0">
             {dateLabel && (
               <span className="text-[9px] font-black uppercase tracking-widest text-[#1DB954] block mb-1">{dateLabel}</span>
             )}
-            <p className="text-lg font-bold leading-snug text-[#FBFBFB] group-hover/card:text-[#1DB954] transition-colors line-clamp-2 sm:text-xl">
+            <p className="text-lg font-bold leading-snug text-white group-hover/card:text-[#1DB954] transition-colors line-clamp-2 sm:text-xl">
               {episode.title}
             </p>
           </div>
           {episode.duration && (
-            <span className="text-[10px] font-bold text-[#FBFBFB]/40 shrink-0 mt-1">{episode.duration}</span>
+            <span className="text-[10px] font-bold text-white/40 shrink-0 mt-1">{episode.duration}</span>
           )}
         </div>
         {episode.description && (
-          <p className="text-sm text-[#FBFBFB]/50 leading-relaxed line-clamp-2 mb-4">{episode.description}</p>
+          <p className="text-sm text-white/50 leading-relaxed line-clamp-2 mb-4">{episode.description}</p>
         )}
         <a
           href={SPOTIFY_SHOW_URL}
@@ -104,10 +104,10 @@ function EpisodeSideCard({ episode, index }: { episode: Episode; index: number }
   const showRealThumb = episode.artworkUrl && !imgError;
 
   return (
-    <article className="group/row flex gap-3 overflow-hidden rounded-xl border border-[#262626] bg-[#1B1B1E] p-3 shadow-md transition duration-300 hover:border-[#1DB954]/50 hover:shadow-[0_0_24px_rgba(29,185,84,0.08)] sm:gap-4 sm:p-3.5">
+    <article className="group/row flex gap-3 overflow-hidden rounded-xl border border-border bg-[#1B1B1E] p-3 shadow-md transition duration-300 hover:border-[#1DB954]/50 hover:shadow-[0_0_24px_rgba(29,185,84,0.08)] sm:gap-4 sm:p-3.5">
       {/* Thumbnail */}
       <div
-        className="relative w-[42%] max-w-[200px] shrink-0 sm:w-40 border border-[#262626] rounded-lg overflow-hidden"
+        className="relative w-[42%] max-w-[200px] shrink-0 sm:w-40 border border-border rounded-lg overflow-hidden"
         style={{ aspectRatio: '16/9' }}
       >
         {showRealThumb ? (
@@ -128,11 +128,11 @@ function EpisodeSideCard({ episode, index }: { episode: Episode; index: number }
       {/* Text */}
       <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 py-0.5">
         {dateLabel && (
-          <time dateTime={episode.published} className="text-[9px] font-black uppercase tracking-widest text-[#F5A51D]">
+          <time dateTime={episode.published} className="text-[9px] font-black uppercase tracking-widest text-accent">
             {dateLabel}
           </time>
         )}
-        <p className="line-clamp-3 text-xs font-bold leading-snug text-[#FBFBFB] sm:text-sm group-hover/row:text-[#1DB954] transition-colors">
+        <p className="line-clamp-3 text-xs font-bold leading-snug text-white sm:text-sm group-hover/row:text-[#1DB954] transition-colors">
           <a href={SPOTIFY_SHOW_URL} target="_blank" rel="noopener noreferrer">{episode.title}</a>
         </p>
         <div className="flex items-center gap-2 mt-0.5">
@@ -146,7 +146,7 @@ function EpisodeSideCard({ episode, index }: { episode: Episode; index: number }
             ► Listen
           </a>
           {episode.duration && (
-            <span className="text-[9px] text-[#FBFBFB]/40">{episode.duration}</span>
+            <span className="text-[9px] text-white/40">{episode.duration}</span>
           )}
         </div>
       </div>
@@ -160,22 +160,22 @@ function EpisodeSideCard({ episode, index }: { episode: Episode; index: number }
 function AudioSkeleton() {
   return (
     <div className="grid gap-5 lg:items-start lg:grid-cols-12 lg:gap-6">
-      <div className="animate-pulse flex flex-col overflow-hidden rounded-2xl border border-[#262626] bg-[#1B1B1E] lg:col-span-7">
-        <div className="bg-[#262626]" style={{ height: 352 }} />
+      <div className="animate-pulse flex flex-col overflow-hidden rounded-2xl border border-border bg-[#1B1B1E] lg:col-span-7">
+        <div className="bg-darkGray" style={{ height: 352 }} />
         <div className="space-y-3 p-6">
-          <div className="h-3 w-24 rounded bg-[#262626]" />
-          <div className="h-5 w-full rounded bg-[#262626]" />
-          <div className="h-5 w-4/5 rounded bg-[#262626]" />
+          <div className="h-3 w-24 rounded bg-darkGray" />
+          <div className="h-5 w-full rounded bg-darkGray" />
+          <div className="h-5 w-4/5 rounded bg-darkGray" />
         </div>
       </div>
       <div className="flex flex-col gap-4 lg:col-span-5">
         {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="flex animate-pulse gap-4 overflow-hidden rounded-xl border border-[#262626] bg-[#1B1B1E] p-3">
-            <div className="w-36 shrink-0 rounded-lg bg-[#262626] sm:w-40" style={{ aspectRatio: '16/9' }} />
+          <div key={i} className="flex animate-pulse gap-4 overflow-hidden rounded-xl border border-border bg-[#1B1B1E] p-3">
+            <div className="w-36 shrink-0 rounded-lg bg-darkGray sm:w-40" style={{ aspectRatio: '16/9' }} />
             <div className="flex flex-1 flex-col justify-center space-y-2 py-1">
-              <div className="h-2.5 w-16 rounded bg-[#262626]" />
-              <div className="h-4 w-full rounded bg-[#262626]" />
-              <div className="h-4 w-3/4 rounded bg-[#262626]" />
+              <div className="h-2.5 w-16 rounded bg-darkGray" />
+              <div className="h-4 w-full rounded bg-darkGray" />
+              <div className="h-4 w-3/4 rounded bg-darkGray" />
             </div>
           </div>
         ))}
@@ -189,7 +189,7 @@ function AudioShowcase({ episodes, loading, fetchError }: { episodes: Episode[];
   if (loading) return <AudioSkeleton />;
   if (fetchError || episodes.length === 0) {
     return (
-      <div className="rounded-2xl border border-[#262626] bg-[#1B1B1E] p-8 text-center text-[#FBFBFB]/60">
+      <div className="rounded-2xl border border-border bg-[#1B1B1E] p-8 text-center text-white/60">
         <p className="mb-4">{fetchError ?? 'No episodes found.'}</p>
         <a href={SPOTIFY_SHOW_URL} target="_blank" rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold transition hover:opacity-90"
@@ -271,22 +271,22 @@ export function PodcastRecentHighlights() {
         }
       `}</style>
 
-      <section className="bg-[#151419] py-12 md:py-16">
+      <section className="bg-black py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
 
           {/* Header + toggle */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-1 h-8 rounded-full bg-[#F5A51D]" />
-                <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#F5A51D]">New Releases</span>
+                <div className="w-1 h-8 rounded-full bg-accent" />
+                <span className="text-[9px] font-black uppercase tracking-[0.25em] text-accent">New Releases</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-[#FBFBFB]">
-                Recent <em className="not-italic text-[#F5A51D]">Highlights</em>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+                Recent <em className="not-italic text-accent">Highlights</em>
               </h2>
-              <p className="text-sm mt-2 max-w-2xl text-[#FBFBFB]/50">
+              <p className="text-sm mt-2 max-w-2xl text-white/50">
                 {activeTab === 'video'
-                  ? <>Latest uploads from <a href={CHANNEL_VIDEOS_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-[#F5A51D] hover:underline">@echinstitute on YouTube</a>.</>
+                  ? <>Latest uploads from <a href={CHANNEL_VIDEOS_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-accent hover:underline">@echinstitute on YouTube</a>.</>
                   : <>Latest episodes on the ECH Institute <a href={SPOTIFY_SHOW_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-[#1DB954] hover:underline">Spotify podcast</a>.</>
                 }
               </p>

@@ -21,7 +21,8 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
-// import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { useTheme } from '@/providers/ThemeProvider';
 
 // ==========================================
 // CUSTOMIZABLE MENU ITEMS
@@ -155,6 +156,7 @@ const NAVBAR_HEIGHT = 88;
 
 export default function Navigation() {
   const pathname = usePathname();
+  const { isDark, mounted } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logoFallback, setLogoFallback] = useState(false);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
@@ -389,7 +391,10 @@ export default function Navigation() {
               <span className="sr-only">ECH Institute</span>
               {!logoFallback ? (
                 <Image
-                  src="/assets/logo/ECH Institute Logo - White.png"
+                  src={mounted && !isDark
+                    ? "/assets/logo/ECH Institute Logo - Black.png"
+                    : "/assets/logo/ECH Institute Logo - White.png"
+                  }
                   alt="ECH Institute"
                   width={300}
                   height={80}
@@ -478,7 +483,11 @@ export default function Navigation() {
                         <span 
                           className={cn(
                             'font-bold uppercase visited:text-[var(--text-soft)] active:text-[var(--text-soft)] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
+                          mounted && !isDark ? (
+                            hoveredNavItem === key ? 'text-black visited:text-black active:text-black' : 'text-gray-600 hover:!text-black'
+                          ) : (
                             hoveredNavItem === key ? 'text-[var(--text-base)] visited:text-[var(--text-base)] active:text-[var(--text-base)]' : 'text-[var(--text-soft)] hover:!text-[var(--text-base)]'
+                          )
                           )}
                         >
                           {item.title}
@@ -526,14 +535,14 @@ export default function Navigation() {
                       aria-current={isActive ? 'page' : undefined}
                       className={cn(
                         'nav-link-item font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
-                        isActive && 'bg-[var(--surface-card-muted)] text-[var(--text-base)]',
-                        !isActive && 'text-[var(--text-soft)] hover:bg-[var(--surface-card-muted)] hover:text-[var(--text-base)]'
+                        isActive ? (mounted && !isDark ? 'bg-[#E0E0E0] text-black' : 'bg-[var(--surface-card-muted)] text-[var(--text-base)]') : '',
+                        !isActive ? (mounted && !isDark ? 'text-gray-600 hover:bg-[#F0F0F0] hover:text-black' : 'text-[var(--text-soft)] hover:bg-[var(--surface-card-muted)] hover:text-[var(--text-base)]') : ''
                       )}
                     >
                       <span 
                         className={cn(
                           'font-bold uppercase text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-colors',
-                          shouldBeBlack ? 'text-[var(--text-base)]' : 'text-[var(--text-soft)]'
+                          shouldBeBlack ? (mounted && !isDark ? 'text-black' : 'text-[var(--text-base)]') : (mounted && !isDark ? 'text-gray-600' : 'text-[var(--text-soft)]')
                         )}
                       >
                         {item.title}
@@ -546,9 +555,9 @@ export default function Navigation() {
 
             {/* RIGHT SIDE: Theme Toggle & Mobile Menu Button */}
             <div className="flex items-center gap-4 ml-auto">
-              {/* <div>
+              <div className="hidden lg:flex items-center">
                 <ThemeToggle />
-              </div> */}
+              </div>
               {/* Mobile Menu Toggle Button - Only shows when navbar items are hidden (below lg breakpoint) */}
               <button
                 onClick={(e) => {
@@ -604,7 +613,7 @@ export default function Navigation() {
             {/* Mega Menu */}
             <div
               ref={dropdownRef}
-              className="nav-panel-offset hidden lg:block fixed inset-x-0 bg-[var(--surface-card-theme)] z-50 border-t border-[var(--border-soft)] shadow-lg rounded-b-lg"
+              className="nav-panel-offset hidden lg:block fixed inset-x-0 bg-[var(--surface-card-theme)] z-50 shadow-lg rounded-b-lg"
               onMouseEnter={handleDropdownEnter}
               onMouseLeave={handleDropdownLeave}
             >
@@ -639,8 +648,8 @@ export default function Navigation() {
                                 <div className={cn(
                                   'flex-shrink-0 w-10 h-10 rounded-md flex items-center justify-center transition-colors bg-transparent',
                                   isHovered || clickedSection === `${hoveredMenu}-${index}`
-                                    ? 'text-[#FBFBFB]'
-                                    : 'text-[#FBFBFB]'
+                                    ? 'text-white'
+                                    : 'text-white'
                                 )}>
                                   <subItem.icon className="h-5 w-5" />
                                 </div>
@@ -655,7 +664,7 @@ export default function Navigation() {
                                 </div>
                                 <ChevronRight className={cn(
                                   'h-5 w-5 flex-shrink-0 transition-colors',
-                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[#FBFBFB]' : 'text-[#FBFBFB]'
+                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-white' : 'text-white'
                                 )}/>
                               </div>
                             ) : (
@@ -675,7 +684,7 @@ export default function Navigation() {
                                       }}
                                       className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                     >
-                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center group-hover:text-[#FBFBFB] transition-colors">
+                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors">
                                         <subItem.icon className="h-5 w-5" />
                                       </div>
                                       <div className="flex-1 text-left">
@@ -699,7 +708,7 @@ export default function Navigation() {
                                     }}
                                     className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center group-hover:text-[#FBFBFB] transition-colors">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors">
                                       <subItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 text-left">
@@ -767,7 +776,7 @@ export default function Navigation() {
                                     rel="noopener noreferrer"
                                     className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center group-hover:text-[#FBFBFB] transition-colors mt-0.5">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors mt-0.5">
                                       <nestedItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 min-w-0">
@@ -789,7 +798,7 @@ export default function Navigation() {
                                   onClick={(e) => handleLinkClick(e, nestedItem.link)}
                                   className="flex items-start gap-3 p-4 rounded-lg transition-all duration-200 group border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
                                 >
-                                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center group-hover:text-[#FBFBFB] transition-colors mt-0.5">
+                                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors mt-0.5">
                                     <nestedItem.icon className="h-5 w-5" />
                                   </div>
                                   <div className="flex-1 min-w-0">
@@ -848,7 +857,7 @@ export default function Navigation() {
                           }}
                           className="w-full flex items-center gap-3 py-3 px-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0"
                         >
-                          <div className="w-10 h-10 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
+                          <div className="w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center flex-shrink-0 group-hover:text-white transition-colors">
                             <item.icon className="h-5 w-5" />
                           </div>
                           <div className="flex-1 text-left">
@@ -861,7 +870,7 @@ export default function Navigation() {
                           </div>
                           <ChevronRight 
                             className={cn(
-                              "h-5 w-5 text-[#FBFBFB] transition-transform duration-200 flex-shrink-0",
+                              "h-5 w-5 text-white transition-transform duration-200 flex-shrink-0",
                               openMobileMenu === key ? "rotate-90" : ""
                             )}
                           />
@@ -885,7 +894,7 @@ export default function Navigation() {
                                       }}
                                       className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 text-left"
                                     >
-                                      <div className="w-8 h-8 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
+                                      <div className="w-8 h-8 rounded-md bg-transparent text-white flex items-center justify-center flex-shrink-0 group-hover:text-white transition-colors">
                                         <subItem.icon className="h-4 w-4" />
                                       </div>
                                       <div className="flex-1">
@@ -898,7 +907,7 @@ export default function Navigation() {
                                       </div>
                                       <ChevronRight 
                                         className={cn(
-                                          "h-4 w-4 text-[#FBFBFB] transition-transform duration-200 flex-shrink-0",
+                                          "h-4 w-4 text-white transition-transform duration-200 flex-shrink-0",
                                           openMobileSubMenu === subMenuKey ? "rotate-90" : ""
                                         )}
                                       />
@@ -922,7 +931,7 @@ export default function Navigation() {
                                                 }}
                                                 className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                               >
-                                                <div className="w-6 h-6 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
+                                                <div className="w-6 h-6 rounded-md bg-transparent text-white flex items-center justify-center flex-shrink-0 group-hover:text-white transition-colors">
                                                   <nestedItem.icon className="h-3 w-3" />
                                                 </div>
                                                 <div className="flex-1">
@@ -946,7 +955,7 @@ export default function Navigation() {
                                               }}
                                               className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                             >
-                                              <div className="w-6 h-6 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
+                                              <div className="w-6 h-6 rounded-md bg-transparent text-white flex items-center justify-center flex-shrink-0 group-hover:text-white transition-colors">
                                                 <nestedItem.icon className="h-3 w-3" />
                                               </div>
                                               <div className="flex-1">
@@ -979,7 +988,7 @@ export default function Navigation() {
                                     }}
                                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                   >
-                                    <div className="w-8 h-8 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
+                                    <div className="w-8 h-8 rounded-md bg-transparent text-white flex items-center justify-center flex-shrink-0 group-hover:text-white transition-colors">
                                       <subItem.icon className="h-4 w-4" />
                                     </div>
                                     <div className="flex-1">
@@ -1003,7 +1012,7 @@ export default function Navigation() {
                                   }}
                                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--surface-card-muted)] transition-colors group focus:outline-none focus-visible:outline-none focus:ring-0 no-underline"
                                 >
-                                  <div className="w-8 h-8 rounded-md bg-transparent text-[#FBFBFB] flex items-center justify-center flex-shrink-0 group-hover:text-[#FBFBFB] transition-colors">
+                                  <div className="w-8 h-8 rounded-md bg-transparent text-white flex items-center justify-center flex-shrink-0 group-hover:text-white transition-colors">
                                     <subItem.icon className="h-4 w-4" />
                                   </div>
                                   <div className="flex-1">
@@ -1031,7 +1040,7 @@ export default function Navigation() {
                       >
                         <div className={cn(
                           'w-10 h-10 rounded-md bg-transparent flex items-center justify-center flex-shrink-0 transition-colors',
-                          pathname === item.link ? 'text-[#FBFBFB]' : 'text-[#FBFBFB] group-hover:text-[#FBFBFB]'
+                          pathname === item.link ? 'text-white' : 'text-white group-hover:text-white'
                         )}>
                           <item.icon className="h-5 w-5" />
                         </div>

@@ -169,7 +169,7 @@ body.theme-dark .proplay-icon-container {
 
 /* Proplay Spacing Standards - Premium & Spacious */
 .proplay-section {
-  @apply py-16 md:py-24 px-4 md:px-8 lg:px-12;
+  @apply py-12 md:py-24 px-4 md:px-8 lg:px-12;
 }
 
 .proplay-section-dense {
@@ -10241,7 +10241,7 @@ body.theme-dark .title,
 body.theme-light main .global-section-title,
 body.theme-dark main .global-section-title {
   font-family: var(--font-family-page-heading) !important;
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
   line-height: 1.08;
   color: var(--text-base) !important;
 }

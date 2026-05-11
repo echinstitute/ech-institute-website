@@ -398,11 +398,11 @@ export default function Home() {
               <h2 className="global-section-title mb-4">Numbers <br /><em>that matter.</em></h2>
               <p className="global-body-lg text-[var(--text-soft)]">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
             </div>
-            <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</a>
+            <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full md:w-auto px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Card 1: Network Upgrades */}
-            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll">
+            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">12+</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Protocol Coordination</h3>
@@ -411,7 +411,7 @@ export default function Home() {
             </div>
 
             {/* Card 2: Educational Podcasts */}
-            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-1">
+            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-1">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">200+</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Educational Podcasts</h3>
@@ -420,7 +420,7 @@ export default function Home() {
             </div>
 
             {/* Card 3: WIEP Cohorts */}
-            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-2">
+            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-2">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">4</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">WIEP Cohorts</h3>
@@ -429,7 +429,7 @@ export default function Home() {
             </div>
 
             {/* Card 4: PRs Reviewed */}
-            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-3">
+            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-3">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">1100+</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">PRs Reviewed</h3>
@@ -438,7 +438,7 @@ export default function Home() {
             </div>
 
             {/* Card 5: Community Members */}
-            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-4">
+            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-4">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">20,000+</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Community Members</h3>
@@ -447,7 +447,7 @@ export default function Home() {
             </div>
 
             {/* Card 6: EIP Editing Hours */}
-            <div className="bg-[var(--surface-card-theme)] p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-5">
+            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-5">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">100+</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">EIP Editing Hours</h3>
@@ -558,14 +558,14 @@ export default function Home() {
 
       <section className="proplay-section bg-background relative overflow-hidden border-t border-[var(--border-soft)]" id="contact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-start">
             <div className="animate-on-scroll">
               <div className="global-section-tag !text-accent border-accent/20">CONTACT ECH</div>
               <h2 className="global-section-title mb-8 text-[var(--text-base)] leading-[1.05] tracking-tight">
                 Let&apos;s build <br /><em className="text-accent">the future.</em>
               </h2>
               <div className="flex flex-col gap-4 max-w-md">
-                <a href={EXTERNAL_LINKS.email} className="group relative p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
+                <a href={EXTERNAL_LINKS.email} className="group relative p-5 md:p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
                   <div className="flex items-center gap-6 relative z-10">
                     <div className="w-12 h-12 rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-base)] transition-transform duration-300 group-hover:scale-110">
                       <Mail size={22} />
@@ -577,7 +577,7 @@ export default function Home() {
                   </div>
                 </a>
 
-                <a href={EXTERNAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
+                <a href={EXTERNAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="group relative p-5 md:p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
                   <div className="flex items-center gap-6 relative z-10">
                     <div className="w-12 h-12 rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-base)] transition-transform duration-300 group-hover:scale-110">
                       <Twitter size={22} />
@@ -589,7 +589,7 @@ export default function Home() {
                   </div>
                 </a>
 
-                <a href={EXTERNAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
+                <a href={EXTERNAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="group relative p-5 md:p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
                   <div className="flex items-center gap-6 relative z-10">
                     <div className="w-12 h-12 rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-base)] transition-transform duration-300 group-hover:scale-110">
                       <Youtube size={22} />
@@ -601,7 +601,7 @@ export default function Home() {
                   </div>
                 </a>
 
-                <a href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="group relative p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
+                <a href={EXTERNAL_LINKS.discord} target="_blank" rel="noopener noreferrer" className="group relative p-5 md:p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">
                   <div className="flex items-center gap-6 relative z-10">
                     <div className="w-12 h-12 rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-base)] transition-transform duration-300 group-hover:scale-110">
                       <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"></path></svg>

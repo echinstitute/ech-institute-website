@@ -10118,6 +10118,8 @@ body.theme-light {
   --text-base: var(--text-base-light);
   --text-primary: var(--text-base-light);
   --text-soft: var(--text-soft-light);
+  --text-secondary: var(--text-soft-light);
+  --card-foreground: var(--text-base-light);
   --border-soft: var(--border-soft-light);
   --border-strong: var(--border-strong-light);
   --shadow-card-theme: 0 10px 30px -5px rgba(21, 20, 25, 0.12);
@@ -10133,6 +10135,8 @@ body.theme-dark {
   --text-base: var(--text-base-dark);
   --text-primary: var(--text-base-dark);
   --text-soft: var(--text-soft-dark);
+  --text-secondary: var(--text-soft-dark);
+  --card-foreground: var(--text-base-dark);
   --border-soft: var(--border-soft-dark);
   --border-strong: var(--border-strong-dark);
   --shadow-card-theme: 0 24px 56px -40px rgba(0, 0, 0, 0.5);

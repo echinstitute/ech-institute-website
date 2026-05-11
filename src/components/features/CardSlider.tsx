@@ -177,6 +177,7 @@ export default function CardSlider() {
       href={card.twitter}
       target="_blank"
       rel="noopener noreferrer"
+      className="global-card"
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -206,7 +207,7 @@ export default function CardSlider() {
       {/* Quote */}
       <p style={{
         fontSize: '0.9375rem', lineHeight: 1.7,
-        color: 'var(--text-secondary)', margin: 0, flex: 1,
+        color: 'var(--text-soft)', margin: 0, flex: 1,
         fontFamily: 'var(--font-family-base)',
       }}>
         &ldquo;{card.message}&rdquo;

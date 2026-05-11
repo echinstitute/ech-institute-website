@@ -391,11 +391,11 @@ export default function Home() {
 
       {/* ── Impact ── */}
       <section className="proplay-section bg-background border-t border-[var(--border-soft)]" id="impact">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 lg:gap-20 justify-between items-start md:items-end mb-16">
             <div className="max-w-2xl">
               <div className="global-section-tag justify-start">OUR IMPACT</div>
-              <h2 className="global-section-title mb-4">Numbers <br /><em>that matter.</em></h2>
+              <h2 className="global-section-title mb-4">Numbers <br className="hidden sm:block" /><em>that matter.</em></h2>
               <p className="global-body-lg text-[var(--text-soft)]">Every year we publish a full impact report. Here&apos;s what we&apos;ve accomplished measured not in activities, but in actual ecosystem impact.</p>
             </div>
             <a href="/reports/First_Annual_Report_ECH_Institute_Inc.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full md:w-auto px-10 py-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">VIEW FULL REPORT</a>
@@ -557,12 +557,12 @@ export default function Home() {
 
 
       <section className="proplay-section bg-background relative overflow-hidden border-t border-[var(--border-soft)]" id="contact">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-start">
             <div className="animate-on-scroll">
               <div className="global-section-tag !text-accent border-accent/20">CONTACT ECH</div>
               <h2 className="global-section-title mb-8 text-[var(--text-base)] leading-[1.05] tracking-tight">
-                Let&apos;s build <br /><em className="text-accent">the future.</em>
+                Let&apos;s build <br className="hidden sm:block" /><em className="text-accent">the future.</em>
               </h2>
               <div className="flex flex-col gap-4 max-w-md">
                 <a href={EXTERNAL_LINKS.email} className="group relative p-5 md:p-6 rounded-2xl border border-border bg-[var(--surface-card-theme)] transition-all duration-300 hover:border-accent/40 hover:bg-darkGray overflow-hidden">

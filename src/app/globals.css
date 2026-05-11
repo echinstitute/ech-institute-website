@@ -37,14 +37,16 @@
 
 /* Normalized Typography Scale */
 .global-hero-title {
-  @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tighter;
+  @apply font-extrabold leading-[1.1] tracking-tighter;
+  font-size: clamp(2.25rem, 8vw, 4rem);
   font-family: var(--font-family-page-heading);
   color: var(--text-base);
 }
 
 .global-section-title,
 .brand-section-title {
-  @apply text-3xl sm:text-4xl lg:text-4xl font-extrabold leading-[1.15] tracking-tight;
+  @apply font-extrabold leading-[1.15] tracking-tight;
+  font-size: clamp(1.65rem, 6vw, 2.5rem);
   font-family: var(--font-family-page-heading);
   color: var(--text-base);
 }
@@ -169,7 +171,7 @@ body.theme-dark .proplay-icon-container {
 
 /* Proplay Spacing Standards - Premium & Spacious */
 .proplay-section {
-  @apply py-12 md:py-24 px-4 md:px-8 lg:px-12;
+  @apply py-12 md:py-24 px-5 md:px-8 lg:px-12;
 }
 
 .proplay-section-dense {

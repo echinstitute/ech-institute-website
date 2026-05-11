@@ -142,7 +142,7 @@ export default function RootLayout({
               url: "https://www.echinstitute.org",
               logo: "https://www.echinstitute.org/assets/logo/ECH Institute Logo - White.png",
               description:
-                "ECH Institute is a 501(c)(3) non-profit supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral public good.",
+                "ECH Institute is a 501(c)(3) non-profit supporting Ethereum's protocol governance, EIP coordination, and community education as a neutral public good. Founded July 11, 2024.",
               foundingDate: "2024-07-11",
               email: "team@ethcatherders.com",
               sameAs: [
@@ -177,9 +177,7 @@ export default function RootLayout({
         />
         <ThemeProvider>
           <Web3Provider>
-            <header>
-              <Navigation />
-            </header>
+            <Navigation />
             <main className="w-full">
               {children}
             </main>

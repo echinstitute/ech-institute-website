@@ -444,9 +444,6 @@ export default function Navigation() {
                       }}
                       onMouseEnter={() => handleMenuEnter(key)}
                       onMouseLeave={handleMenuLeave}
-                      aria-haspopup="true"
-                      aria-expanded={hoveredMenu === key}
-                      aria-label={`${item.title} menu`}
                       className={cn(
                         'font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center focus:outline-none focus-visible:outline-none focus:ring-0 no-underline whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
                         hoveredMenu === key
@@ -546,7 +543,6 @@ export default function Navigation() {
                       }}
                       data-nav-active={isActive ? 'true' : 'false'}
                       data-nav-hovered={isHovered ? 'true' : 'false'}
-                      aria-current={isActive ? 'page' : undefined}
                       className={cn(
                         'nav-link-item font-[family-name:var(--font-family-nav)] font-bold uppercase transition-colors rounded-lg px-2 xl:px-3 py-2 flex items-center no-underline focus:outline-none focus-visible:outline-none focus:ring-0 whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
                         isActive ? (mounted && !isDark ? 'bg-[#E0E0E0] text-black' : 'bg-[var(--surface-card-muted)] text-[var(--text-base)]') : '',

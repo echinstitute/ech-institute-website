@@ -553,9 +553,8 @@ export default function Navigation() {
               })}
             </div>
 
-            {/* RIGHT SIDE: Theme Toggle & Mobile Menu Button */}
-            <div className="flex items-center gap-4 ml-auto">
-              <div className="hidden lg:flex items-center">
+            <div className="flex items-center gap-2 sm:gap-4 ml-auto">
+              <div className="flex items-center">
                 <ThemeToggle />
               </div>
               {/* Mobile Menu Toggle Button - Only shows when navbar items are hidden (below lg breakpoint) */}

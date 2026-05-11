@@ -212,9 +212,9 @@ export default function FAQSection() {
                 data-tone={isActive ? t.tone : undefined}
                 className={cn(
                   "flex items-center gap-2 whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 border-2 flex-shrink-0",
-                  isActive
+                    isActive
                     ? "tone-badge shadow-sm"
-                    : "border-[var(--border-soft)] bg-[var(--surface-card-theme)] text-[var(--text-muted-theme)]"
+                    : "border-[var(--border-strong)] bg-[var(--surface-card-theme)] text-[var(--text-muted-theme)]"
                 )}
               >
                 <t.icon size={14} />
@@ -253,7 +253,7 @@ export default function FAQSection() {
                   "rounded-xl overflow-hidden border",
                   isOpen
                     ? "tone-card shadow-lg"
-                    : "border-[var(--border-soft)] bg-[var(--surface-card-theme)]"
+                    : "border-[var(--border-strong)] bg-[var(--surface-card-theme)]"
                 )}
               >
                 {/* Question button */}

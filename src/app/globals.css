@@ -2205,7 +2205,7 @@ h6 {
 p {
   margin: 0;
   line-height: var(--line-height-relaxed);
-  color: var(--text-soft);
+  color: var(--text-base);
 }
 
 /* Typography - Lists */
@@ -10112,6 +10112,7 @@ body.theme-light {
   --surface-card-muted: var(--surface-card-muted-light);
   --surface-card-highlight: var(--surface-card-highlight-light);
   --text-base: var(--text-base-light);
+  --text-primary: var(--text-base-light);
   --text-soft: var(--text-soft-light);
   --border-soft: var(--border-soft-light);
   --border-strong: var(--border-strong-light);
@@ -10126,6 +10127,7 @@ body.theme-dark {
   --surface-card-muted: var(--surface-card-muted-dark);
   --surface-card-highlight: var(--surface-card-highlight-dark);
   --text-base: var(--text-base-dark);
+  --text-primary: var(--text-base-dark);
   --text-soft: var(--text-soft-dark);
   --border-soft: var(--border-soft-dark);
   --border-strong: var(--border-strong-dark);
@@ -10219,6 +10221,11 @@ body.theme-dark .container {
   width: min(100%, 76rem);
   margin-inline: auto;
   padding-inline: clamp(1rem, 2vw, 2rem);
+}
+
+body.theme-light .btn-outline,
+body.theme-light a.btn-outline {
+  border-color: var(--border-strong) !important;
 }
 
 body.theme-light .title,
@@ -10443,6 +10450,45 @@ body.theme-light .nav-brand-name {
 
 .theme-hover-surface:hover {
   background: var(--accent-brand-soft) !important;
+}
+
+/* Tone Palette Definitions */
+:root {
+  --tone-brand-solid: #F5A51D;
+  --tone-brand-bg: rgba(245, 165, 29, 0.1);
+  --tone-brand-border: rgba(245, 165, 29, 0.2);
+
+  --tone-violet-solid: #8B5CF6;
+  --tone-violet-bg: rgba(139, 92, 246, 0.1);
+  --tone-violet-border: rgba(139, 92, 246, 0.2);
+
+  --tone-info-solid: #3B82F6;
+  --tone-info-bg: rgba(59, 130, 246, 0.1);
+  --tone-info-border: rgba(59, 130, 246, 0.2);
+
+  --tone-success-solid: #10B981;
+  --tone-success-bg: rgba(16, 185, 129, 0.1);
+  --tone-success-border: rgba(16, 185, 129, 0.2);
+
+  --tone-warning-solid: #F59E0B;
+  --tone-warning-bg: rgba(245, 158, 11, 0.1);
+  --tone-warning-border: rgba(245, 158, 11, 0.2);
+
+  --tone-neutral-solid: #9CA3AF;
+  --tone-neutral-bg: rgba(156, 163, 175, 0.1);
+  --tone-neutral-border: rgba(156, 163, 175, 0.2);
+  
+  --tone-ethereum-solid: #627EEA;
+  --tone-ethereum-bg: rgba(98, 126, 234, 0.1);
+  --tone-ethereum-border: rgba(98, 126, 234, 0.2);
+  
+  --tone-danger-solid: #EF4444;
+  --tone-danger-bg: rgba(239, 68, 68, 0.1);
+  --tone-danger-border: rgba(239, 68, 68, 0.2);
+  
+  --tone-pink-solid: #EC4899;
+  --tone-pink-bg: rgba(236, 72, 153, 0.1);
+  --tone-pink-border: rgba(236, 72, 153, 0.2);
 }
 
 [data-tone='neutral'],

@@ -170,8 +170,8 @@ export default function CardSlider() {
   const navBtnStyle: React.CSSProperties = {
     display: 'flex', alignItems: 'center', justifyContent: 'center',
     width: 44, height: 44, borderRadius: 12,
-    border: '2px solid #3a3a3a',
-    background: '#262626',
+    border: '2px solid var(--border-strong)',
+    background: 'var(--surface-card-theme)',
     cursor: 'pointer', transition: 'all 0.25s ease',
     flexShrink: 0, padding: 0,
   };
@@ -187,7 +187,7 @@ export default function CardSlider() {
         gap: 16,
         padding: '28px 28px 24px',
         borderRadius: 20,
-        border: featured ? '2px solid #F5A51D' : '2px solid var(--border-soft)',
+        border: featured ? '2px solid var(--accent-brand)' : '2px solid var(--border-soft)',
         background: 'var(--surface-card-theme)',
         textDecoration: 'none',
         color: 'inherit',
@@ -197,12 +197,12 @@ export default function CardSlider() {
         flex: 1,
       }}
       onMouseEnter={e => {
-        (e.currentTarget as HTMLAnchorElement).style.borderColor = '#F5A51D';
+        (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--accent-brand)';
         (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-4px)';
         (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 20px 48px -8px rgba(245,165,29,0.2)';
       }}
       onMouseLeave={e => {
-        (e.currentTarget as HTMLAnchorElement).style.borderColor = featured ? '#F5A51D' : 'var(--border-soft)';
+        (e.currentTarget as HTMLAnchorElement).style.borderColor = featured ? 'var(--accent-brand)' : 'var(--border-soft)';
         (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
         (e.currentTarget as HTMLAnchorElement).style.boxShadow = featured ? '0 8px 32px -4px rgba(245,165,29,0.15)' : 'none';
       }}
@@ -236,7 +236,7 @@ export default function CardSlider() {
             (e.target as HTMLImageElement).src = '/assets/logo/ECH Institute Logo - White.png';
             (e.target as HTMLImageElement).style.objectFit = 'contain';
             (e.target as HTMLImageElement).style.padding = '6px';
-            (e.target as HTMLImageElement).style.background = '#262626';
+            (e.target as HTMLImageElement).style.background = 'var(--surface-card-muted)';
           }}
         />
         <div>
@@ -246,7 +246,7 @@ export default function CardSlider() {
             color: 'var(--text-primary)', lineHeight: 1.2,
           }}>{card.name}</div>
           <div style={{
-            fontSize: '0.8125rem', color: '#F5A51D',
+            fontSize: '0.8125rem', color: 'var(--accent-brand)',
             fontWeight: 500, marginTop: 2,
           }}>{card.handle}</div>
         </div>
@@ -286,10 +286,10 @@ export default function CardSlider() {
               onClick={prev}
               aria-label="Previous testimonial"
               style={navBtnStyle}
-              onMouseEnter={e => { const b = e.currentTarget; b.style.background='#F5A51D'; b.style.borderColor='#F5A51D'; }}
-              onMouseLeave={e => { const b = e.currentTarget; b.style.background='#262626'; b.style.borderColor='#3a3a3a'; }}
+              onMouseEnter={e => { const b = e.currentTarget; b.style.background='#F5A51D'; b.style.borderColor='#F5A51D'; (b.querySelector('svg') as any).style.color='#151419'; }}
+              onMouseLeave={e => { const b = e.currentTarget; b.style.background='var(--surface-card-theme)'; b.style.borderColor='var(--border-strong)'; (b.querySelector('svg') as any).style.color='var(--text-primary)'; }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBFBFB" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-primary)' }}>
                 <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
@@ -304,10 +304,10 @@ export default function CardSlider() {
               onClick={next}
               aria-label="Next testimonial"
               style={navBtnStyle}
-              onMouseEnter={e => { const b = e.currentTarget; b.style.background='#F5A51D'; b.style.borderColor='#F5A51D'; }}
-              onMouseLeave={e => { const b = e.currentTarget; b.style.background='#262626'; b.style.borderColor='#3a3a3a'; }}
+              onMouseEnter={e => { const b = e.currentTarget; b.style.background='#F5A51D'; b.style.borderColor='#F5A51D'; (b.querySelector('svg') as any).style.color='#151419'; }}
+              onMouseLeave={e => { const b = e.currentTarget; b.style.background='var(--surface-card-theme)'; b.style.borderColor='var(--border-strong)'; (b.querySelector('svg') as any).style.color='var(--text-primary)'; }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBFBFB" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-primary)' }}>
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </button>
@@ -335,7 +335,7 @@ export default function CardSlider() {
                 height: 8,
                 width: i === currentIndex ? 28 : 8,
                 borderRadius: i === currentIndex ? 4 : '50%',
-                background: i === currentIndex ? '#F5A51D' : 'var(--border-soft)',
+                background: i === currentIndex ? 'var(--accent-brand)' : 'var(--border-soft)',
                 border: 'none',
                 padding: 0,
                 cursor: 'pointer',

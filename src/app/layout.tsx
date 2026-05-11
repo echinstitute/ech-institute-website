@@ -125,7 +125,7 @@ export default function RootLayout({
       >
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('ech-theme');var e=document.documentElement;var b=document.body;var dark=t!=='light';if(dark){e.classList.add('dark');b.classList.add('theme-dark','dark');b.classList.remove('theme-light');e.dataset.theme='dark';}else{e.classList.remove('dark');b.classList.add('theme-light');b.classList.remove('theme-dark','dark');e.dataset.theme='light';}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('ech-theme');var e=document.documentElement;var b=document.body;var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(dark){e.classList.add('dark');b.classList.add('theme-dark','dark');b.classList.remove('theme-light');e.dataset.theme='dark';}else{e.classList.remove('dark');b.classList.add('theme-light');b.classList.remove('theme-dark','dark');e.dataset.theme='light';}}catch(e){}})();`,
           }}
         />
         {/* Structured Data — Organization */}

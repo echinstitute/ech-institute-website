@@ -8,6 +8,7 @@ import {
   Users, CheckCircle2, Building2, Target, Heart, Sparkles,
   Video, Shield, Globe, Eye, Compass
 } from 'lucide-react';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const BOARD_MEMBERS = [
   {
@@ -180,6 +181,8 @@ const HERO_SPHERES = [
 ];
 
 export default function AboutPage() {
+  const { isDark, mounted } = useTheme();
+  
   useEffect(() => {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e: Event) {
@@ -242,18 +245,14 @@ export default function AboutPage() {
               <div className="relative group max-w-[220px] lg:max-w-full">
                 <div className="absolute -inset-4 bg-[var(--accent-brand)] opacity-[0.02] rounded-full blur-3xl group-hover:opacity-[0.05] transition-opacity duration-500" />
                 <Image
-                  src="/assets/logo/ECH Institute Logo - Black.png"
+                  src={mounted && !isDark 
+                    ? "/assets/logo/ECH Institute Logo - Black.png" 
+                    : "/assets/logo/ECH Institute Logo - White.png"
+                  }
                   alt="ECH Institute Logo"
                   width={280}
                   height={280}
-                  className="relative w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105 block dark:hidden"
-                />
-                <Image
-                  src="/assets/logo/ECH Institute Logo - White.png"
-                  alt="ECH Institute Logo"
-                  width={280}
-                  height={280}
-                  className="relative w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105 hidden dark:block"
+                  className="relative w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             </div>

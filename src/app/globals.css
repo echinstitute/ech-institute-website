@@ -83,8 +83,11 @@
 }
 
 body.theme-light .global-card {
-  border: none;
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08), 0 4px 12px -3px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.07),
+    0 16px 40px -8px rgba(0, 0, 0, 0.09);
 }
 
 .global-card:hover {
@@ -93,10 +96,29 @@ body.theme-light .global-card {
   box-shadow: none;
 }
 
+body.theme-light .global-card:hover {
+  border-color: var(--accent-brand);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.06),
+    0 12px 32px rgba(0, 0, 0, 0.1),
+    0 24px 56px -12px rgba(0, 0, 0, 0.12);
+}
+
 .global-card-title {
   @apply text-xl sm:text-2xl font-bold mb-3;
   font-family: var(--font-family-page-heading);
   color: var(--text-base);
+}
+
+/* Partner logo: inverts white/light logos to dark in light mode */
+.logo-invert-light {
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
+body.theme-light .logo-invert-light,
+html[data-theme="light"] .logo-invert-light {
+  filter: invert(1) !important;
 }
 
 /* Proplay Specialized Utilities */
@@ -497,6 +519,7 @@ body.theme-dark .proplay-icon-container {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
   }
 
   body {
@@ -507,6 +530,7 @@ body.theme-dark .proplay-icon-container {
     line-height: var(--line-height-normal);
     color: var(--text-primary);
     background-color: var(--background) !important;
+    overscroll-behavior: none;
   }
 
   /* ==========================================
@@ -2184,7 +2208,7 @@ h6 {
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   margin: 0;
-  
+
 }
 
 h1 {
@@ -3495,7 +3519,7 @@ div[role="dialog"] [data-rk]>div>div:last-child>section>div {
 
 .event-video-card {
   display: grid;
-  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 350px) minmax(0, 1fr);
   gap: 1.5rem;
   align-items: stretch;
   background: var(--surface-card-theme);
@@ -3758,6 +3782,8 @@ div[role="dialog"] [data-rk]>div>div:last-child>section>div {
   border-radius: 100px;
   font-family: var(--font-family-base);
   white-space: nowrap;
+  background: var(--card) !important;
+  color: var(--card-foreground) !important;
 }
 
 .badge-icon {
@@ -3774,9 +3800,14 @@ div[role="dialog"] [data-rk]>div>div:last-child>section>div {
 
 .badge-featured,
 .badge-upcoming {
-  background: var(--card) !important;
-  color: var(--card-foreground) !important;
+  background: #151419 !important;
+  color: #ffffff !important;
   border: 1px solid var(--accent-brand) !important;
+}
+
+.badge-featured .badge-icon,
+.badge-upcoming .badge-icon {
+  color: #ffffff !important;
 }
 
 .event-type-tags {
@@ -4021,17 +4052,21 @@ div[role="dialog"] [data-rk]>div>div:last-child>section>div {
   color: var(--card-foreground);
   font-family: var(--font-family-page-heading);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .recap-title-icon {
   width: 20px;
   height: 20px;
   color: var(--accent-brand) !important;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
 }
 
 .recap-channel-link {
@@ -4855,7 +4890,7 @@ section a:link,
 section a:visited,
 section a:active,
 section a:focus {
-  color: inherit !important;
+  /* color: inherit !important; */
   text-decoration: none !important;
 }
 
@@ -10084,37 +10119,40 @@ main .card-title,
   --proplay-white: #FBFBFB;
   --proplay-black: #151419;
   --proplay-yellow: #F5A51D;
-  --proplay-surface: #1B1B1E; /* Deep Surface */
-  --proplay-panel: #262626;   /* Panel Neutral */
-  --proplay-muted: #878787;   /* Muted Gray */
+  --proplay-surface: #1B1B1E;
+  /* Deep Surface */
+  --proplay-panel: #262626;
+  /* Panel Neutral */
+  --proplay-muted: #878787;
+  /* Muted Gray */
 
   /* Semantic Mappings - Standard */
   --surface-page-light: var(--proplay-white);
   --surface-page-dark: var(--proplay-black);
-  
+
   --surface-card-light: #FFFFFF;
   --surface-card-dark: var(--proplay-surface);
-  
+
   --surface-card-muted-light: #F5F5F5;
   --surface-card-muted-dark: var(--proplay-panel);
-  
+
   --surface-card-highlight-light: #EEEEEE;
   --surface-card-highlight-dark: var(--proplay-panel);
-  
+
   --text-base-light: var(--proplay-black);
   --text-base-dark: var(--proplay-white);
-  
+
   --text-soft-light: #52525B;
   --text-soft-dark: var(--proplay-muted);
 
   --border-soft-light: rgba(21, 20, 25, 0.08);
   --border-soft-dark: var(--proplay-panel);
-  
+
   --border-strong-light: rgba(21, 20, 25, 0.15);
   --border-strong-dark: var(--proplay-muted);
 
   --accent-brand: var(--proplay-yellow);
-  
+
   --footer-surface: var(--proplay-surface);
   --footer-text: var(--proplay-white);
   --footer-border: var(--proplay-panel);
@@ -10501,15 +10539,15 @@ body.theme-light .nav-brand-name {
   --tone-neutral-solid: #9CA3AF;
   --tone-neutral-bg: rgba(156, 163, 175, 0.1);
   --tone-neutral-border: rgba(156, 163, 175, 0.2);
-  
+
   --tone-ethereum-solid: #627EEA;
   --tone-ethereum-bg: rgba(98, 126, 234, 0.1);
   --tone-ethereum-border: rgba(98, 126, 234, 0.2);
-  
+
   --tone-danger-solid: #EF4444;
   --tone-danger-bg: rgba(239, 68, 68, 0.1);
   --tone-danger-border: rgba(239, 68, 68, 0.2);
-  
+
   --tone-pink-solid: #EC4899;
   --tone-pink-bg: rgba(236, 72, 153, 0.1);
   --tone-pink-border: rgba(236, 72, 153, 0.2);
@@ -10809,7 +10847,7 @@ body.theme-light .nav-brand-name {
   --brand-label-color: #6B7280;
   --brand-specimen-text: #151419;
   --brand-blueprint-line: rgba(21, 20, 25, 0.04);
-  
+
   background: var(--brand-bg);
   color: var(--brand-text);
 }
@@ -11582,16 +11620,6 @@ body.theme-dark [class*="drop-shadow"] {
   filter: drop-shadow(0 20px 34px #151419) !important;
 }
 
-body.theme-light [class*="bg-gradient"],
-body.theme-dark [class*="bg-gradient"],
-body.theme-light [class*="from-"],
-body.theme-dark [class*="from-"],
-body.theme-light [class*="to-"],
-body.theme-dark [class*="to-"] {
-  background-image: linear-gradient(135deg,
-      var(--gradient-start, var(--surface-card-muted)),
-      var(--gradient-end, var(--surface-card-theme))) !important;
-}
 
 .theme-toggle {
   position: relative;
@@ -11915,12 +11943,13 @@ footer.footer-main .footer-social-icon:hover {
 
 /* Responsive evo board */
 @media (max-width: 1024px) {
+
   .evo-top-row,
   .evo-bottom-row {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
-  
+
   .evo-path-row {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 2.5rem;
@@ -11931,7 +11960,7 @@ footer.footer-main .footer-social-icon:hover {
   .evo-main-title {
     font-size: 1.75rem !important;
   }
-  
+
   .evo-header {
     margin-bottom: 2.5rem;
   }
@@ -11976,16 +12005,16 @@ footer.footer-main .footer-social-icon:hover {
   .evo-main-title {
     font-size: 1.5rem !important;
   }
-  
+
   .evo-sub-year {
     font-size: 0.7rem;
   }
-  
+
   .evo-board {
     padding: 1.5rem 1rem;
     border-radius: 20px;
   }
-  
+
   .evo-diamond {
     width: 52px;
     height: 52px;
@@ -12551,7 +12580,8 @@ body.theme-light .activity-item .activity-title {
 
 body.theme-light .activity-description,
 body.theme-light .event-video-description {
-  color: #4B5563 !important; /* High contrast gray */
+  color: #4B5563 !important;
+  /* High contrast gray */
   opacity: 1 !important;
 }
 
@@ -12566,4 +12596,81 @@ body.theme-light .activity-item {
 
 body.theme-light .global-section-title {
   color: var(--text-base) !important;
+}
+
+/* Hero Radar Specific Overrides */
+.hero-radar-icon {
+  border: 2px solid var(--accent-brand) !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.theme-dark .hero-radar-icon,
+.dark .hero-radar-icon {
+  border-color: var(--border-soft) !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.hero-radar-pill {
+  border: 1px solid var(--accent-brand) !important;
+  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.theme-dark .hero-radar-pill,
+.dark .hero-radar-pill {
+  border-color: var(--border-soft) !important;
+  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Force Support Page to always render as Dark Theme, regardless of theme-toggle state */
+body.theme-light main.support-page-dark,
+body.theme-dark main.support-page-dark {
+  --background: #151419 !important;
+  --foreground: #FBFBFB !important;
+  --surface-page: #151419 !important;
+  --surface-card-theme: #1B1B1E !important;
+  --surface-card-muted: #262626 !important;
+  --surface-card-highlight: #262626 !important;
+  --text-base: #FBFBFB !important;
+  --text-primary: #FBFBFB !important;
+  --text-soft: #878787 !important;
+  --text-secondary: #878787 !important;
+  --text-muted: #878787 !important;
+  --card-foreground: #FBFBFB !important;
+  --border: #262626 !important;
+  --border-soft: #262626 !important;
+  --border-strong: #878787 !important;
+
+  background-color: #151419 !important;
+  color: #FBFBFB !important;
+}
+
+body.theme-light main.support-page-dark section,
+body.theme-dark main.support-page-dark section {
+  background-color: #151419 !important;
+}
+
+body.theme-light main.support-page-dark .global-card,
+body.theme-dark main.support-page-dark .global-card,
+body.theme-light main.support-page-dark .card,
+body.theme-dark main.support-page-dark .card {
+  background-color: #1B1B1E !important;
+  border-color: #262626 !important;
+  color: #FBFBFB !important;
+}
+
+body.theme-light main.support-page-dark .proplay-icon-container,
+body.theme-dark main.support-page-dark .proplay-icon-container {
+  background-color: #262626 !important;
+  border-color: #262626 !important;
+}
+
+body.theme-light main.support-page-dark .border-border,
+body.theme-dark main.support-page-dark .border-border,
+body.theme-light main.support-page-dark .border-t,
+body.theme-dark main.support-page-dark .border-t,
+body.theme-light main.support-page-dark .border-b,
+body.theme-dark main.support-page-dark .border-b,
+body.theme-light main.support-page-dark .border,
+body.theme-dark main.support-page-dark .border {
+  border-color: #262626 !important;
 }

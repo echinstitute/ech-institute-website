@@ -63,7 +63,7 @@ export default function Home() {
             <h1 className="global-hero-title animate-fade-up delay-1">ECH Institute</h1>
             <p className="hero-tagline animate-fade-up">Education, Community, Homesteading!</p>
             <p className="hero-subtitle animate-fade-up delay-2">
-              ECH Institute serves the Ethereum ecosystem by coordinating All Core Devs (ACD) calls, facilitating weekly EIP research meetings, and providing world-class protocol education. As a neutral 501(c)(3) nonprofit, we ensure the protocol remains accessible, coordinated, and resilient.
+              ECH Institute is uniquely positioned at the intersection of People, Process and Protocol. It operates to support Ethereum's governance participation, and protocol-coordination infrastructure. As a neutral public good, it ensures the protocol remains accessible and decentralized as it scales.
             </p>
             <div className="hero-buttons animate-fade-up delay-3 flex flex-wrap gap-4 justify-center md:justify-start">
               <Link href="#programs" className="btn btn-primary">Our Programs</Link>
@@ -94,13 +94,12 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
               <div className="global-section-tag">
-                <span className="bg-black"></span>
                 WHO WE ARE
               </div>
               <h2 className="global-section-title mb-6">
                 Built on <em>purpose,</em><br />driven by community.
               </h2>
-              <p className="global-body mb-12 max-w-xl">
+              <p className="global-body mb-12">
                 ECH Institute believes everyone deserves access to education and the opportunity to contribute regardless of race, gender &amp; background. We bridge gaps by empowering individuals with blockchain knowledge, strengthening communities, and supporting the Web3 ecosystem.
               </p>
               <div className="space-y-6 pt-4">
@@ -110,7 +109,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-lg font-syne font-bold text-[var(--text-base)] mb-1">People</h3>
-                    <p className="global-body text-sm leading-relaxed">Empowering a diverse, global community of core developers, researchers, and contributors through mentorship and inclusivity initiatives.</p>
+                    <p className="global-body text-sm leading-relaxed">Empowering a diverse global community of Ethereum contributors through education, mentorship, and inclusive participation.</p>
                   </div>
                 </div>
                 <div className="flex gap-6 group">
@@ -119,7 +118,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-lg font-syne font-bold text-[var(--text-base)] mb-1">Process</h3>
-                    <p className="global-body text-sm leading-relaxed">Streamlining Ethereum&apos;s governance through neutral coordination of All Core Devs calls, EIP reviews, and institutional transparency.</p>
+                    <p className="global-body text-sm leading-relaxed">Supporting open and transparent Ethereum governance through neutral coordination, EIP education, and community engagement.</p>
                   </div>
                 </div>
                 <div className="flex gap-6 group">
@@ -128,7 +127,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-lg font-syne font-bold text-[var(--text-base)] mb-1">Protocol</h3>
-                    <p className="global-body text-sm leading-relaxed">Ensuring the technical resilience and long-term scalability of the Ethereum protocol through expert communication and network upgrade readiness.</p>
+                    <p className="global-body text-sm leading-relaxed">Strengthening Ethereum&apos;s long-term resilience through protocol education, upgrade readiness, and ecosystem coordination.</p>
                   </div>
                 </div>
               </div>
@@ -284,6 +283,10 @@ export default function Home() {
                   <strong className="evo-blk-title">EVENT SUPPORT</strong>
                   <span className="evo-blk-body">Supporting Road to Devcon bringing the biggest festival of Ethereum to India.</span>
                 </div>
+                <div className="evo-text-block mt-2.5">
+                  <strong className="evo-blk-title">NEW BOARD MEMBER</strong>
+                  <span className="evo-blk-body">Hudson Jameson joins the ECH Institute Board to help steward the future of Ethereum education.</span>
+                </div>
               </div>
 
             </div>
@@ -379,7 +382,7 @@ export default function Home() {
               <div className="pgrid-overlay" />
               <div className="pgrid-content">
                 <span className="pgrid-badge pgrid-badge--grey">ECOSYSTEM FESTIVALS</span>
-                <h3 className="pgrid-title">Events &amp; Workshops</h3>
+                <h3 className="pgrid-title">Events &amp; Talks</h3>
                 <p className="pgrid-desc">Organizing roundtables and workshops that bring the ecosystem together for discussion around EIPs and emerging standards.</p>
                 <span className="pgrid-cta">View Program →</span>
               </div>
@@ -413,7 +416,7 @@ export default function Home() {
             {/* Card 2: Educational Podcasts */}
             <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-1">
               <div className="flex flex-col items-center text-center">
-                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">200+</span>
+                <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">150+</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Educational Podcasts</h3>
                 <p className="global-body text-sm text-[var(--text-soft)]">Inviting EIP authors to explain protocol changes in plain language for the ecosystem.</p>
               </div>
@@ -438,7 +441,7 @@ export default function Home() {
             </div>
 
             {/* Card 5: Community Members */}
-            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-4">
+            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-3">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">20,000+</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">Community Members</h3>
@@ -447,7 +450,7 @@ export default function Home() {
             </div>
 
             {/* Card 6: EIP Editing Hours */}
-            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-5">
+            <div className="bg-[var(--surface-card-theme)] p-6 md:p-8 xl:p-10 rounded-2xl border border-[var(--border-soft)] shadow-sm hover:shadow-lg hover:border-[var(--accent-brand)] transition-all duration-300 group animate-on-scroll delay-4">
               <div className="flex flex-col items-center text-center">
                 <span className="text-5xl md:text-6xl font-syne font-extrabold text-[var(--accent-brand)] leading-none mb-4 group-hover:scale-110 transition-transform duration-300">100+</span>
                 <h3 className="font-syne font-bold text-lg text-[var(--text-base)] mb-3">EIP Editing Hours</h3>
@@ -541,7 +544,7 @@ export default function Home() {
             <h2 className="global-section-title mb-8 text-[var(--text-base)] leading-[1.05] tracking-tight">
               Join us in building <br /><em>a better community.</em>
             </h2>
-            <p className="grow-0 global-body-lg mb-12 text-[var(--text-soft)] max-w-xl leading-relaxed">
+            <p className="grow-0 global-body-lg mb-12 text-[var(--text-soft)] leading-relaxed">
               Change doesn&apos;t happen alone. Whether you have time, skills, or resources to give there is a meaningful place for you at ECH Institute.
             </p>
             <div className="flex flex-wrap gap-6 items-center">

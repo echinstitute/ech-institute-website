@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Shield, Cpu, Network as NetworkIcon, Key, Zap, Globe, Radio } from 'lucide-react';
+import { ArrowLeft, Shield, Cpu, Network as NetworkIcon, Key, Zap, Globe, Radio, ExternalLink } from 'lucide-react';
 import { PodcastOriginSection } from '@/components/features/PodcastOriginSection';
 import { PodcastSeriesYoutubeSection } from '@/components/features/PodcastSeriesYoutubeSection';
 import { PODCAST_SERIES_PLAYLISTS } from '@/lib/podcast-youtube';
@@ -89,7 +89,7 @@ export default function FusakaFilesPage() {
               <h1 className="global-hero-title">
                 The <em className="not-italic text-[var(--accent-brand)]">Fusaka</em> Files
               </h1>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg">
                 A high-production limited series exploring Ethereum's strategic shift toward predictable, biannual engineering delivery — produced in collaboration with the Enterprise Ethereum Alliance.
               </p>
             </div>
@@ -148,9 +148,11 @@ export default function FusakaFilesPage() {
               href={fusaka.playlistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-accent hover:underline"
+              style={{ color: '#F5A51D' }}
+              className="font-bold hover:underline inline-flex items-center gap-1"
             >
               The Fusaka Files YouTube playlist
+              <ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" />
             </a>
             .
           </>
@@ -168,7 +170,7 @@ export default function FusakaFilesPage() {
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[var(--text-base)]">
           Key Technical <em className="not-italic text-accent">Topics</em>
         </h2>
-        <p className="text-sm mb-10 max-w-2xl text-[var(--text-base)]/50">
+        <p className="text-sm mb-10 max-w-none text-[var(--text-base)]/50">
           Each episode of The Fusaka Files ties directly to a foundational EIP shaping the next era of Ethereum. Here's what's covered in depth.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -201,7 +203,7 @@ export default function FusakaFilesPage() {
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[var(--text-base)]">
           Themes we <em className="not-italic text-accent">explore</em>
         </h2>
-        <p className="text-sm mb-8 max-w-xl text-[var(--text-base)]/50">
+        <p className="text-sm mb-8 max-w-none text-[var(--text-base)]/50">
           Connecting Fusaka changes to enterprise execution, resilience, and credible neutrality on the road to 2026.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

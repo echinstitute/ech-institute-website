@@ -87,7 +87,7 @@ const whySupportPillars = [
     detail:
       "ECH Institute produces educational content, structured learning programs, and coordination resources specifically designed to lower the barrier to entry for global participants. The WiEP (Women in Ethereum Protocol) program, the PEEPanEIP video series, and the Ecosystem Project Demo series are all built with accessibility as a design constraint. Protocol governance has historically been opaque to those without deep technical backgrounds. ECH Institute systematically translates complex governance decisions into accessible formats for the broadest possible audience.",
     highlights: [
-      "PEEPanEIP: 100+ accessible video episodes",
+      "PEEPanEIP: 150+ accessible video episodes",
       "WiEP: Structured onboarding for women",
       "Written guides for beginners to enterprises",
       "Meeting summaries for non-technical audiences",
@@ -118,7 +118,7 @@ const enablesItems = [
     title: "Educational Content for Global Audiences",
     description:
       "ECH Institute produces PEEPanEIP video deep-dives, written governance guides, structured learning tracks, and the Ecosystem Project Demo series. This content serves beginners learning about EIPs, contributors preparing to write proposals, and enterprises understanding protocol risk. Educational content is free, public, and permanently accessible.",
-    impact: "100+ PEEPanEIP episodes | 3 learning tracks",
+    impact: "150+ PEEPanEIP episodes | 3 learning tracks",
     tone: "violet",
   },
   {
@@ -310,7 +310,7 @@ export default function SupportPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black pt-16 lg:pt-24 text-white">
+    <main className="support-page-dark min-h-screen bg-black pt-16 lg:pt-24 text-white">
 
       {/* ── Hero "proplay" inner-page style ──────────────── */}
       <section className="page-hero">

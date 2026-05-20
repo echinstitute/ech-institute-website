@@ -41,7 +41,7 @@ const FAQ_TOPICS = [
       },
       {
         q: 'What programs does ECH Institute run?',
-        a: 'ECH Institute runs several programs: (1) PEEPanEIP a video series featuring 100+ deep-dives on specific EIPs with their authors. (2) WiEP (Women in Ethereum Protocol) structured classrooms, office hours, and mentorship for increasing gender diversity in protocol work. (3) EPD (Ecosystem Project Demo) live demonstrations of projects building on Ethereum infrastructure. (4) EIPIP Office Hours open calls where anyone can discuss EIP process improvements with editors and core developers. (5) Upgrade Communication publishing All Core Devs meeting notes, upgrade timelines, and node operator guides for each network hard fork.',
+        a: 'ECH Institute runs several programs: (1) PEEPanEIP a video series featuring 150+ deep-dives on specific EIPs with their authors. (2) WiEP (Women in Ethereum Protocol) structured classrooms, office hours, and mentorship for increasing gender diversity in protocol work. (3) EPD (Ecosystem Project Demo) live demonstrations of projects building on Ethereum infrastructure. (4) EIPIP Office Hours open calls where anyone can discuss EIP process improvements with editors and core developers. (5) Upgrade Communication publishing All Core Devs meeting notes, upgrade timelines, and node operator guides for each network hard fork.',
       },
       {
         q: 'How is ECH Institute funded?',
@@ -129,7 +129,7 @@ const FAQ_TOPICS = [
       },
       {
         q: 'Where can I watch discussions about upcoming upgrades?',
-        a: 'Several resources cover upgrade discussions: (1) YouTube ECH Institute publishes All Core Devs call recordings on the Ethereum Cat Herders channel. (2) PEEPanEIP ECH Institute\'s video series features 100+ EIP deep-dives with their authors, including EIPs targeted for upcoming upgrades. (3) EPD (Ecosystem Project Demo) live project demonstrations tied to upgrade features. (4) GitHub github.com/ethereum/pm has ACD call agendas and notes for every upgrade planning session. (5) Forkcast.org real-time visual upgrade tracker. (6) Ethereum Magicians primary forum for EIP authors and reviewers. ECH Institute also aggregates these resources on our Education page.',
+        a: 'Several resources cover upgrade discussions: (1) YouTube ECH Institute publishes All Core Devs call recordings on the Ethereum Cat Herders channel. (2) PEEPanEIP ECH Institute\'s video series features 150+ EIP deep-dives with their authors, including EIPs targeted for upcoming upgrades. (3) EPD (Ecosystem Project Demo) live project demonstrations tied to upgrade features. (4) GitHub github.com/ethereum/pm has ACD call agendas and notes for every upgrade planning session. (5) Forkcast.org real-time visual upgrade tracker. (6) Ethereum Magicians primary forum for EIP authors and reviewers. ECH Institute also aggregates these resources on our Education page.',
       },
     ],
   },

@@ -82,7 +82,7 @@ export function PodcastSeriesYoutubeSection({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
         <div className="mb-4 sm:mb-6">
           <h2 className="global-section-title mb-2 text-base">{title}</h2>
-          <div className="global-body-lg max-w-3xl text-soft">{description}</div>
+          <div className="global-body-lg max-w-none text-soft">{description}</div>
         </div>
         <PodcastVideoShowcase
           videos={videos}

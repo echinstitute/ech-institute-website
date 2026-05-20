@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Users, BookOpen, Heart, Star, GraduationCap, Globe, Shield, Cpu } from 'lucide-react';
+import { ArrowLeft, Users, BookOpen, Heart, GraduationCap, ExternalLink } from 'lucide-react';
 import { PodcastOriginSection } from '@/components/features/PodcastOriginSection';
 import { PodcastSeriesYoutubeSection } from '@/components/features/PodcastSeriesYoutubeSection';
 import { PODCAST_SERIES_PLAYLISTS } from '@/lib/podcast-youtube';
 
 const wiepPl = PODCAST_SERIES_PLAYLISTS.wiep;
+const WIEP_PLAYLIST_2_ID = 'PL4cwHXAawZxpbEZhQYgOW8mbQDbLoyQDT';
+const WIEP_PLAYLIST_2_URL = 'https://www.youtube.com/playlist?list=PL4cwHXAawZxpbEZhQYgOW8mbQDbLoyQDT';
 const WIEP_YOUTUBE_VIDEOS = 'https://www.youtube.com/@wiepteam/videos';
 const WIEP_GITHUB = 'https://github.com/wiepteam';
 const WIEP_EMAIL = 'mailto:wiepteam@gmail.com';
@@ -34,49 +36,13 @@ const studyGroupCards = [
   },
 ];
 
-const themes = [
-  {
-    icon: Cpu,
-    title: 'Scaling & Enterprise Ethereum',
-    desc: 'Build the contributor capacity that helps ship improvements enterprises can rely on as Ethereum scales toward a rollup-centric future.',
-  },
-  {
-    icon: Shield,
-    title: 'Resilience & Protocol Health',
-    desc: 'Mentorship and safer on-ramps improve review quality — supporting healthier protocol upgrades and operations through diverse perspectives.',
-  },
-  {
-    icon: Star,
-    title: 'Credible Neutrality',
-    desc: 'Focused learning without hype so participants can evaluate tradeoffs and contribute with aligned incentives — not as a side channel, but as core contributors.',
-  },
-  {
-    icon: Globe,
-    title: 'Road to 2026: What Comes Next',
-    desc: 'Use study group structure to follow roadmap-heavy work in context, preparing the next wave of builders for Verkle Trees, Statelessness, and beyond.',
-  },
-];
-
-const leaders = [
-  {
-    name: 'La Donna Higgins',
-    role: 'WiEP Co-Lead',
-    quote: 'Quiet work, consistency, and supportive networks are the foundations of sustainable protocol contribution.',
-  },
-  {
-    name: 'Simona Serban',
-    role: 'WiEP Co-Lead',
-    quote: 'Building the sociological infrastructure around the technical code is as critical as the code itself.',
-  },
-];
-
 import { HeroRadar } from '@/components/features/HeroRadar';
 
 const WIEP_SPHERES = [
-  { icon: BookOpen,    title: 'Curriculum',     desc: 'Structuring protocol learning from consensus rules to client implementation.' },
-  { icon: Heart,       title: 'Mentorship',     desc: 'Peer support and guidance from established core protocol contributors.' },
-  { icon: GraduationCap, title: 'EPF Alignment',  desc: 'Partnering with the Ethereum Protocol Fellowship for core role readiness.' },
-  { icon: Users,       title: 'Community',      desc: 'Building a supportive network for women protocol developers worldwide.' },
+  { icon: BookOpen, title: 'Curriculum', desc: 'Structuring protocol learning from consensus rules to client implementation.' },
+  { icon: Heart, title: 'Mentorship', desc: 'Peer support and guidance from established core protocol contributors.' },
+  { icon: GraduationCap, title: 'EPF Alignment', desc: 'Partnering with the Ethereum Protocol Fellowship for core role readiness.' },
+  { icon: Users, title: 'Community', desc: 'Building a supportive network for women protocol developers worldwide.' },
 ];
 
 export default function WiEPPage() {
@@ -101,9 +67,8 @@ export default function WiEPPage() {
               <h1 className="global-hero-title">
                 Women in Ethereum <em className="not-italic text-[var(--accent-brand)]">Protocol</em>
               </h1>
-              <p className="global-body-lg max-w-xl">
-                Community, study groups, and mentorship-aligned support for women contributing to Ethereum's core protocol — alongside the broader core dev and EPF ecosystem.
-              </p>
+              <p className="global-body-lg">
+                Community, study groups, and mentorship-driven support for women contributing to Ethereum’s core protocol and broader core development ecosystem, in association with the Ethereum Foundation.              </p>
               <div className="flex flex-wrap gap-3 pt-1">
                 <a
                   href={WIEP_EMAIL}
@@ -133,31 +98,30 @@ export default function WiEPPage() {
       {/* ── Origin Story ── */}
       <PodcastOriginSection
         title="Why WiEP started"
-        intro="Created so women interested in core protocol work don't have to navigate consensus specs and client codebases alone. Peer support, structured learning, and safer on-ramps matter as much as raw documentation."
+        intro="WiEP was created to make Ethereum core protocol contribution more accessible and less intimidating for women entering the ecosystem. Beyond documentation, the program offers structured learning, mentorship, peer support, and approachable on-ramps that help contributors confidently navigate Ethereum’s protocol and governance ecosystem together."
         purpose={
           <>
-            <strong className="font-semibold text-[var(--text-base)]">
-              Women in Ethereum Protocol (WiEP)
-            </strong>{' '}
-            exists to support women who want to contribute to Ethereum's core protocol with community backing, security-minded guidance, and pathways to grow as contributors — not as a side channel, but as part of how the protocol recruits and retains talent.
+            WiEP was created to make Ethereum core protocol contribution more accessible, approachable, and less intimidating for women entering the ecosystem. Learning consensus specs, client implementations, and Ethereum governance can feel overwhelming alone - especially for newcomers without direct guidance or community support.
           </>
         }
         goal={
           <>
-            <strong className="font-semibold text-[var(--text-base)]">
-              Widen who participates in protocol research and implementation
-            </strong>
-            , reduce isolation for underrepresented contributors, and make roadmap-heavy topics approachable through study groups aligned with programs like the Ethereum Protocol Fellowship (EPF) Study Group.
+            WiEP provides structured learning, peer support, mentorship, and approachable entry points so contributors can confidently explore Ethereum’s protocol layer step by step. Beyond documentation, the program focuses on human connection, collaborative learning, and creating a supportive environment where participants can ask questions, grow together, and meaningfully participate in Ethereum’s open-source ecosystem.
           </>
         }
         closing={
           <>
-            Session recordings and highlights are published in the{' '}
-            <span className="not-italic font-medium text-[var(--text-base)]">
-              Women Powering Web3
-            </span>{' '}
-            playlist on the ECH Institute channel, with additional updates on{' '}
-            <span className="not-italic font-medium text-[var(--text-base)]">@wiepteam</span>. Use the playlist section below to jump straight into recent talks and study-group content.
+            In addition, our Women Powering Web3 spotlight series is published on the ECH Institute YouTube channel, highlighting stories, experiences, and insights from women across the Ethereum ecosystem, with additional updates on{' '}
+            <a
+              href={WIEP_YOUTUBE_VIDEOS}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-[var(--accent-brand)] hover:underline inline-flex items-center gap-0.5"
+            >
+              @wiepteam
+              <ExternalLink className="h-3 w-3" />
+            </a>
+            . Explore the playlist section below to watch recent episodes, interviews, and study-group content.
           </>
         }
       />
@@ -175,18 +139,22 @@ export default function WiEPPage() {
               href={wiepPl.playlistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-accent hover:underline"
+              style={{ color: '#F5A51D' }}
+              className="font-bold hover:underline inline-flex items-center gap-1"
             >
               Women Powering Web3 YouTube playlist
+              <ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" />
             </a>{' '}
             (WiEP / ECH Institute). For more WiEP updates, follow{' '}
             <a
               href={WIEP_YOUTUBE_VIDEOS}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-accent hover:underline"
+              style={{ color: '#F5A51D' }}
+              className="font-bold hover:underline inline-flex items-center gap-1"
             >
               @wiepteam
+              <ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" />
             </a>
             .
           </>
@@ -195,40 +163,31 @@ export default function WiEPPage() {
         featuredBadge="Latest"
       />
 
-      {/* ── Sociological Infrastructure ── */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-12 md:py-16">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-1 h-8 rounded-full bg-accent" />
-          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-accent">Voices of WiEP</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[var(--text-base)]">
-          Sociological <em className="not-italic text-accent">Infrastructure</em>
-        </h2>
-        <p className="text-sm mb-10 max-w-2xl text-[var(--text-base)]/50">
-          The sociological infrastructure around the technical code is as critical as the code itself — ensuring a sustainable pipeline of contributors and preventing the centralization of protocol knowledge within a small, homogeneous group.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {leaders.map(({ name, role, quote }) => (
-            <div
-              key={name}
-              className="rounded-2xl border border-border p-6 md:p-8 transition-all duration-300 hover:border-accent/70 hover:shadow-[0_0_32px_rgba(245,165,29,0.08)]"
+      {/* ── WiEP Playlist 2 Videos ── */}
+      <PodcastSeriesYoutubeSection
+        playlistId={WIEP_PLAYLIST_2_ID}
+        browseUrl={WIEP_PLAYLIST_2_URL}
+        title="Women in Ethereum Protocol latest videos"
+        limit={5}
+        description={
+          <>
+            Newest videos from the second{' '}
+            <a
+              href={WIEP_PLAYLIST_2_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#F5A51D' }}
+              className="font-bold hover:underline inline-flex items-center gap-1"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/10 border border-accent/20">
-                  <Star className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm font-extrabold text-[var(--text-base)]">{name}</p>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-accent">{role}</p>
-                </div>
-              </div>
-              <blockquote className="text-sm italic leading-relaxed text-[var(--text-base)]/60 border-l-2 border-accent/40 pl-4">
-                &ldquo;{quote}&rdquo;
-              </blockquote>
-            </div>
-          ))}
-        </div>
-      </section>
+              Women in Ethereum Protocol YouTube playlist
+              <ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" />
+            </a>{' '}
+            (WiEP / ECH Institute).
+          </>
+        }
+        sideRailLabel="More from the playlist"
+        featuredBadge="Latest"
+      />
 
       {/* ── Study Groups ── */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-4 pb-12 md:pb-16">
@@ -239,41 +198,11 @@ export default function WiEPPage() {
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[var(--text-base)]">
           Study <em className="not-italic text-accent">Groups</em>
         </h2>
-        <p className="text-sm mb-8 max-w-2xl text-[var(--text-base)]/50">
+        <p className="text-sm mb-8 max-w-none text-[var(--text-base)]/50">
           WiEP study groups partner with the Ethereum Protocol Fellowship (EPF) Study Group model — structured, part-time, and designed to lower the barrier to entry for developers aiming at core protocol roles.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {studyGroupCards.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="rounded-2xl border border-border p-6 flex gap-4 transition-all duration-300 hover:border-accent/40"
-            >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 mt-0.5">
-                <Icon className="h-5 w-5 text-accent" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-[var(--text-base)] mb-1">{title}</p>
-                <p className="text-sm text-[var(--text-base)]/50 leading-relaxed">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Themes ── */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pb-20">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-1 h-8 rounded-full bg-accent" />
-          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-accent">Focus Areas</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[var(--text-base)]">
-          Themes we <em className="not-italic text-accent">explore</em>
-        </h2>
-        <p className="text-sm mb-8 max-w-xl text-[var(--text-base)]/50">
-          WiEP connects people, learning, and core protocol work — linking scaling, resilience, and credible neutrality through structured community.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {themes.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
               className="rounded-2xl border border-border p-6 flex gap-4 transition-all duration-300 hover:border-accent/40"
@@ -299,14 +228,22 @@ export default function WiEPPage() {
               <span className="text-[9px] font-black uppercase tracking-[0.25em] text-accent">Join WiEP</span>
             </div>
             <p className="text-xl font-extrabold text-[var(--text-base)] mb-1">Ready to contribute?</p>
-            <p className="text-sm text-[var(--text-base)]/50 max-w-md">
+            <p className="text-sm text-[var(--text-base)]/50">
               WiEP is active on Discord, X (Twitter), and email. For study group schedules and how to join, reach out to the WiEP team directly.
             </p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <a
-              href={WIEP_EMAIL}
+              href="https://discord.gg/Fn8qhnJ8re"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-black transition hover:bg-accent/90"
+            >
+              Join Discord
+            </a>
+            <a
+              href={WIEP_EMAIL}
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-soft)] bg-transparent px-5 py-2.5 text-sm font-bold text-[var(--text-base)] transition hover:bg-[var(--border-soft)]/20"
             >
               Email WiEP Team
             </a>
@@ -314,9 +251,11 @@ export default function WiEPPage() {
               href={wiepPl.playlistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-transparent px-5 py-2.5 text-sm font-bold text-[var(--text-base)] transition hover:border-accent/50"
+              style={{ color: '#F5A51D' }}
+              className="inline-flex items-center gap-2 rounded-xl border border-[#F5A51D]/30 bg-transparent px-5 py-2.5 text-sm font-bold transition hover:border-[#F5A51D] hover:bg-[#F5A51D]/5"
             >
               Women Powering Web3
+              <ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" />
             </a>
           </div>
         </div>

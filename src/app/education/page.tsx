@@ -34,13 +34,13 @@ const formats = [
     link: ROUTES.peepaneip,
     isInternal: true,
     description: 'In-depth video walkthroughs of Ethereum Improvement Proposals with EIP authors and core contributors.',
-    longDescription: 'PEEPanEIP (Peering into EIPs) is a long-running ECH Institute video series that features deep-dive conversations with the actual authors of Ethereum Improvement Proposals. Each episode breaks down a specific EIP its motivation, technical specification, and expected on-chain impact. With 100+ episodes, it covers everything from EIP-1559 (fee market reform) to proto-danksharding and beyond. The series is a primary educational resource for anyone wanting to understand exactly what changes are coming to Ethereum and why.',
-    highlights: ['100+ episodes', 'EIP authors featured', 'Technical deep-dives', 'Free to watch'],
+    longDescription: 'PEEPanEIP (Peering into EIPs) is a long-running ECH Institute video series that features deep-dive conversations with the actual authors of Ethereum Improvement Proposals. Each episode breaks down a specific EIP its motivation, technical specification, and expected on-chain impact. With 150+ episodes, it covers everything from EIP-1559 (fee market reform) to proto-danksharding and beyond. The series is a primary educational resource for anyone wanting to understand exactly what changes are coming to Ethereum and why.',
+    highlights: ['150+ episodes', 'EIP authors featured', 'Technical deep-dives', 'Free to watch'],
   },
   {
     icon: Users,
-    title: 'WiEP Classrooms',
-    subtitle: 'Women in Ethereum Protocol',
+    title: 'Women in Ethereum Protocol',
+    subtitle: 'Study Groups',
     tag: 'Podcast Page',
     link: ROUTES.wiep,
     isInternal: true,
@@ -181,9 +181,9 @@ const timelineCards = [
   },
   {
     year: '2024', quarter: 'Q4', icon: Video, tone: 'neutral',
-    badge: '100+ Episodes', badgeTone: 'neutral',
+    badge: '150+ Episodes', badgeTone: 'neutral',
     title: 'PEEPanEIP Reaches Milestone',
-    description: 'The PEEPanEIP video series crossed 100 episodes covering EIPs from EIP-1559 to the latest Pectra research.',
+    description: 'The PEEPanEIP video series crossed 150 episodes covering EIPs from EIP-1559 to the latest Pectra research.',
     highlight: 'Now a primary technical archive for Ethereum Improvement Proposals.',
   },
   {
@@ -279,7 +279,7 @@ export default function EducationPage() {
               <h1 className="global-hero-title">
                 Education &amp;<br />Protocol Learning.
               </h1>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg">
                 A structured learning hub for beginners, contributors, and enterprises — covering
                 Ethereum Improvement Proposals, network upgrades, and governance coordination.
               </p>
@@ -304,14 +304,14 @@ export default function EducationPage() {
 
 
       {/* ── Stats ────────────────────────────────────────────────────────── */}
-      <section className="border-b border-[var(--border-soft)] bg-[var(--surface-card-theme)] py-6 px-4 md:px-8">
+      {/* <section className="border-b border-[var(--border-soft)] bg-[var(--surface-card-theme)] py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { value: '100+', label: 'PEEPanEIP Episodes' },
-              { value: '50+', label: 'Technical Guides' },
+              { value: '150+', label: 'PEEPanEIP Episodes' },
+              { value: '100+ Hours', label: 'EIP Editing Support' },
               { value: '2024', label: 'Founded as Nonprofit' },
-              { value: '1100+', label: 'PRs Reviewed During Office Hours' },
+              { value: '1250+', label: 'PRs Reviewed During Office Hours' },
             ].map((s, i) => (
               <div key={i}>
                 <div className="global-section-title text-[var(--accent-brand)]">{s.value}</div>
@@ -320,7 +320,7 @@ export default function EducationPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── Two-col layout: sticky nav + content ─────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 flex gap-8 items-start">
@@ -347,10 +347,7 @@ export default function EducationPage() {
                 >
                   <div className="flex items-center gap-4">
                     <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                      <f.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        0{i + 1}
-                      </span>
+                      <f.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
@@ -393,10 +390,7 @@ export default function EducationPage() {
                       onClick={() => toggleGuide(i)}
                     >
                       <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                        <g.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                          0{i + 1}
-                        </span>
+                        <g.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
@@ -443,10 +437,7 @@ export default function EducationPage() {
                 <div key={s.stage} className="relative flex gap-4 items-start group">
                   {/* Proplay Icon */}
                   <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10">
-                    <s.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      0{i + 1}
-                    </span>
+                    <s.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   {/* Card */}
                   <div className="flex-1 global-card mb-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent-brand)] group-hover:shadow-xl">
@@ -485,10 +476,7 @@ export default function EducationPage() {
                 <div key={i} data-tone={card.tone} className="global-card flex flex-col gap-3 hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
                   <div className="flex items-start justify-between gap-2">
                     <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10">
-                      <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        0{i + 1}
-                      </span>
+                      <card.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                     </div>
                     <span data-tone={card.badgeTone} className="tone-badge text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border shrink-0">
                       {card.badge}
@@ -523,10 +511,7 @@ export default function EducationPage() {
               ].map((card, i) => (
                 <Link key={i} href={card.link} target="_blank" className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
                   <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                    <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      0{i + 1}
-                    </span>
+                    <card.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <div className="flex-1">
                     <h3 className="global-card-title mb-1">{card.title}</h3>

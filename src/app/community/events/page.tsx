@@ -131,23 +131,23 @@ export default function EventsPage() {
     {
       id: 'road-to-devcon-2026',
       year: '2026',
-      month: 'TBD',
+      month: 'Nov',
       badge: 'Upcoming',
       badgeType: 'upcoming',
       tags: ['DEVCON 2026', 'ROAD TO DEVCON', 'ROUNDTABLE', 'GOVERNANCE'],
       title: 'Road to Devcon 2026',
       subtitle: '(Roundtable Series)',
-      location: 'Global — Multiple Locations',
-      date: '2026 — Dates TBA',
-      echFootprint: 'Ongoing roundtable series',
+      location: 'Mumbai, India',
+      date: '3-6 November, 2026',
+      echFootprint: 'Roundtable Series',
       description:
-        'The Road to Devcon 2026 is ECH Institute\'s flagship pre-Devcon initiative — a series of community roundtables and technical coordination sessions designed to prepare the Ethereum community for Devcon 2026. Building on the momentum of Devconnect Argentina and the EIP Summit, this series will bring together core developers, researchers, and community builders to align on protocol priorities ahead of the world\'s largest Ethereum developer conference.',
+        'As an official community partner, ECH Institute supports the Road to Devcon and Devcon 2026 through ecosystem coordination, technical support, livestreaming, community promotion, and connecting contributors across the Ethereum ecosystem to make the journey more collaborative and impactful.',
       activities: [
         {
           icon: MessageSquare,
-          title: 'Community Roundtables',
+          title: 'Pre-Devcon Community Roundtable',
           description:
-            'Structured roundtable discussions on key Ethereum upgrade milestones, governance decisions, and ecosystem priorities — open to developers, researchers, and community contributors worldwide.',
+            'Watch the full roundtable video bringing diverse Indian Governance voices into the Ethereum conversation.',
         },
         {
           icon: Mic,
@@ -169,6 +169,9 @@ export default function EventsPage() {
         },
       ],
       recapVideo: 'https://www.youtube.com/live/4N4LHKReoV4?si=KYC7fve_K9PhNDTD',
+      recapLabel: 'Featured Video',
+      recapTitle: 'Pre-Devcon Community Roundtable2',
+      recapDesc: 'Watch the full roundtable video bringing diverse Indian Governance voices into the Ethereum conversation.',
       photos: [],
     },
     {
@@ -213,6 +216,9 @@ export default function EventsPage() {
         },
       ],
       recapVideo: 'https://youtu.be/N64FlANVK8U?si=Y9SBZ1I2R5EfeoVH',
+      recapLabel: 'Featured Video',
+      recapTitle: 'Devconnect Argentina Highlights',
+      recapDesc: 'Watch the full recap from ECH Institute\'s activations at Devconnect Argentina, including the first standalone EIP Summit, WiEP, and community hubs.',
       photos: [
         { src: '/assets/events/Devconnect Argentina 2025/IMG_3553.webp', alt: 'Devconnect Argentina 2025 - EIP Summit Opening' },
         { src: '/assets/events/Devconnect Argentina 2025/IMG_3576.webp', alt: 'Devconnect Argentina 2025 - EIP Summit Session' },
@@ -284,7 +290,10 @@ export default function EventsPage() {
             'Invited the broader Ethereum community to join ECH\'s first Community Call for a chance to win tickets to EDCON 2025, expanding access and engagement with the global protocol coordination ecosystem.',
         },
       ],
-      recapVideo: null,
+      recapVideo: 'https://youtu.be/MiYQ_P7vtEQ?si=ikg2lw6asXeoaRut',
+      recapLabel: 'Featured Video',
+      recapTitle: 'WiEP at EDCON 2025 Osaka',
+      recapDesc: 'Watch Pooja Ranjan\'s featured presentation and community activations onboarding the next wave of diverse protocol contributors at EDCON Osaka.',
       photos: [],
     },
     {
@@ -334,6 +343,9 @@ export default function EventsPage() {
         },
       ],
       recapVideo: 'https://youtu.be/rksdvA4oHWU?si=70QTp_dfsF57ybjh',
+      recapLabel: 'Featured Video',
+      recapTitle: 'Devcon 7 Bangkok Highlights',
+      recapDesc: 'Watch the full recap from Devcon 7 Southeast Asia in Bangkok, highlighting ECH Institute\'s activations across governance, EIPs, and the WiEP brunch.',
       photos: [
         { src: '/assets/events/Devcon 7 Bangkok/IMG_3780.webp', alt: 'Devcon 7 Bangkok - Main Conference Hall' },
         { src: '/assets/events/Devcon 7 Bangkok/IMG_3800.webp', alt: 'Devcon 7 Bangkok - ECH Impact Booth' },
@@ -377,6 +389,9 @@ export default function EventsPage() {
         },
       ],
       recapVideo: 'https://youtu.be/v9G684uz6Rk?si=RugRRy81ISBQIDJu',
+      recapLabel: 'Featured Video',
+      recapTitle: 'ETH Singapore 2024 Highlights',
+      recapDesc: 'Watch ECH Institute\'s highlights from ETH Singapore 2024, driving protocol standardization and bridging Southeast Asian builders with the global Ethereum roadmap.',
       photos: [
         { src: '/assets/events/ETH Singapore 2024/ech-event-1.webp', alt: 'ETH Singapore 2024 - Marina Bay Sands Conference' },
         { src: '/assets/events/ETH Singapore 2024/ech-event-2.jpg', alt: 'ETH Singapore 2024 - Keynote Presentation & WiEP Networking' },
@@ -402,8 +417,7 @@ export default function EventsPage() {
                 Events <span className="text-accent">& Talks</span>
               </h1>
               <p className="hero-subtitle animate-fade-up delay-2 mt-6 max-w-3xl">
-                From ETH Singapore 2024 and Devcon 7 Bangkok to Eth Tokyo & EDCON 2025, Devconnect Argentina 2025, and the Road to Devcon 2026 — ECH Institute shows up where the protocol meets the community: EIPs, governance education, WiEP, and hands-on activations that turn global events into lasting onboarding.
-              </p>
+                From ETH Singapore and Devcon Bangkok to EthTokyo, EDCON, Devconnect Argentina, and Road to Devcon, ECH Institute brings Ethereum governance, EIPs, WiEP, and protocol education directly to global communities through workshops, summits, roundtables, and hands-on onboarding experiences.  </p>
             </div>
           </div>
         </div>
@@ -422,19 +436,17 @@ export default function EventsPage() {
                   key={event.id}
                   type="button"
                   onClick={() => scrollToEvent(event.id)}
-                  className={`events-side-nav-item group w-full flex flex-col !items-start !text-left rounded-2xl border bg-surface-card-theme p-5 transition-all duration-300 relative overflow-hidden ${
-                    activeEventId === event.id 
-                      ? 'border-accent shadow-card-theme' 
+                  className={`events-side-nav-item group w-full flex flex-col !items-start !text-left rounded-2xl border bg-surface-card-theme p-5 transition-all duration-300 relative overflow-hidden ${activeEventId === event.id
+                      ? 'border-accent shadow-card-theme'
                       : 'border-soft hover:border-accent/50 hover:bg-surface-card-muted'
-                  }`}
+                    }`}
                 >
                   {activeEventId === event.id && (
                     <div className="absolute left-0 top-0 bottom-0 w-1 bg-accent" />
                   )}
                   <div className="flex justify-between items-center w-full mb-3">
-                    <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${
-                      activeEventId === event.id ? 'text-accent' : 'text-soft/60 group-hover:text-soft'
-                    }`}>
+                    <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeEventId === event.id ? 'text-accent' : 'text-soft/60 group-hover:text-soft'
+                      }`}>
                       {event.year}
                     </span>
                     {event.badge === 'Upcoming' && (
@@ -443,9 +455,8 @@ export default function EventsPage() {
                       </span>
                     )}
                   </div>
-                  <div className={`text-[15px] font-extrabold leading-snug mb-1 transition-colors ${
-                    activeEventId === event.id ? 'text-accent' : 'text-base group-hover:text-accent'
-                  }`}>
+                  <div className={`text-[15px] font-extrabold leading-snug mb-1 transition-colors ${activeEventId === event.id ? 'text-accent' : 'text-base group-hover:text-accent'
+                    }`}>
                     {event.title}
                   </div>
                   <div className="text-xs text-soft/60 font-medium">
@@ -480,7 +491,7 @@ export default function EventsPage() {
                       ))}
                     </div>
                   </div>
-                  <h2 className="global-section-title !text-left !text-base mb-6">
+                  <h2 className="global-section-title !text-left text-2xl md:text-3xl mb-6">
                     {event.title.split(' ').slice(0, -1).join(' ')} <span className="text-accent">{event.title.split(' ').slice(-1)}</span>
                   </h2>
                   <div className="event-meta-row">
@@ -508,13 +519,13 @@ export default function EventsPage() {
                     <div className="event-video-section">
                       <div className="event-video-card">
                         <div className="event-video-copy">
-                          <p className="event-video-label">Featured recap</p>
+                          <p className="event-video-label">{event.recapLabel ?? 'Featured recap'}</p>
                           <h3 className="recap-title">
                             <Video className="recap-title-icon" />
-                            Event Recap Video
+                            {event.recapTitle ?? 'Event Recap Video'}
                           </h3>
                           <p className="event-video-description">
-                            Watch the full recap from this ECH Institute event activation, including talks, community moments, and highlights from the venue.
+                            {event.recapDesc ?? 'Watch the full recap from this ECH Institute event activation, including talks, community moments, and highlights from the venue.'}
                           </p>
                           <a
                             href={event.recapVideo}
@@ -574,7 +585,7 @@ export default function EventsPage() {
 
                   {event.activities && event.activities.length > 0 && (
                     <div className="event-activities">
-                      <h3 className="global-section-title !text-left !text-base text-3xl mb-8 flex items-center gap-3">
+                      <h3 className="global-section-title !text-left text-2xl md:text-3xl mb-8 flex items-center gap-3">
                         <Sparkles className="text-accent w-8 h-8" />
                         Specific <span className="text-accent">ECH Activities</span>
                       </h3>
@@ -604,13 +615,13 @@ export default function EventsPage() {
                                 {activity.videoUrl ? (
                                   <a href={activity.videoUrl} target="_blank" rel="noopener noreferrer" className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border border-soft bg-surface-card-theme aspect-video group shadow-lg cursor-pointer block">
                                     {(activity.image || activity.videoUrl) && (
-                            <Image
-                              src={activity.image || getYouTubeThumbnailUrl(activity.playlistVideoId || activity.videoUrl)}
-                              alt={activity.title} 
-                              fill 
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
+                                      <Image
+                                        src={activity.image || getYouTubeThumbnailUrl(activity.playlistVideoId || activity.videoUrl)}
+                                        alt={activity.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                      />
                                     )}
                                     {activity.videoUrl && !activity.videoUrl.includes('playlist') && !activity.hidePlayIcon && (
                                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -623,10 +634,10 @@ export default function EventsPage() {
                                 ) : (
                                   <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden border border-soft bg-surface-card-theme aspect-video group shadow-lg">
                                     {activity.image && (
-                                      <Image 
-                                        src={activity.image} 
-                                        alt={activity.title} 
-                                        fill 
+                                      <Image
+                                        src={activity.image}
+                                        alt={activity.title}
+                                        fill
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                       />
@@ -635,7 +646,7 @@ export default function EventsPage() {
                                 )}
                                 <div className="w-full md:w-1/2 flex flex-col justify-center">
                                   <div className="w-12 h-1 bg-accent mb-5 rounded-full shadow-[0_0_10px_rgba(245,165,29,0.5)]"></div>
-                                  <h4 className="font-syne font-bold text-xl md:text-2xl text-base mb-4 leading-tight">{activity.title}</h4>
+                                  <h4 className="font-syne font-bold text-xl md:text-2xl mb-4 leading-tight">{activity.title}</h4>
                                   <p className="text-soft text-base leading-relaxed mb-6">{activity.description}</p>
                                 </div>
                               </div>
@@ -710,15 +721,15 @@ export default function EventsPage() {
           <div className="image-modal-container" onClick={(e) => e.stopPropagation()}>
             {modalImages.length > 1 && (
               <>
-                <button 
-                  className="image-modal-nav image-modal-prev" 
+                <button
+                  className="image-modal-nav image-modal-prev"
                   onClick={goToPreviousImage}
                   aria-label="Previous image"
                 >
                   <ChevronLeft />
                 </button>
-                <button 
-                  className="image-modal-nav image-modal-next" 
+                <button
+                  className="image-modal-nav image-modal-next"
                   onClick={goToNextImage}
                   aria-label="Next image"
                 >

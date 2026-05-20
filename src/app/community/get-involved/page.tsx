@@ -3,8 +3,8 @@
 import { useState } from "react";
 import {
   MessageSquare, Users, Code, Shield,
-  Heart, Github, ArrowRight, Zap, BookOpen, Globe,
-  Calendar, GitBranch, CheckCircle2
+  Github, ArrowRight, Zap, BookOpen, Globe,
+  Calendar, GitBranch
 } from "lucide-react";
 import Link from "next/link";
 import { HeroRadar } from "@/components/features/HeroRadar";
@@ -224,8 +224,8 @@ export default function GetInvolvedPage() {
               <h1 className="global-hero-title">
                 Get Involved
               </h1>
-              <p className="global-body-lg max-w-xl">
-                ECH Institute is trusted across the Ethereum ecosystem because we are neutral and nonprofit, deeply embedded in protocol processes, and focused on long-term public-good outcomes.
+              <p className="global-body-lg">
+                ECH Institute exists because of people who care about Ethereum’s long-term health, accessibility, and sustainability. Whether you are a developer, researcher, educator, student, enterprise contributor, community member, or supporter of public goods there are many ways to participate.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
                 <Link
@@ -260,7 +260,7 @@ export default function GetInvolvedPage() {
           <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8 items-start">
 
             {/* Left — Quote Banner */}
-            <div className="flex flex-col justify-between h-full">
+            <div className="flex flex-col justify-between">
               <div className="mb-5">
                 <p className="text-xs font-bold uppercase tracking-widest text-black mb-1">Direct Participation</p>
                 <h2 className="global-section-title">How To Get <em>Involved</em></h2>
@@ -268,13 +268,11 @@ export default function GetInvolvedPage() {
               <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] flex flex-col gap-4 flex-1">
                 <div className="text-5xl font-black leading-none text-[var(--accent-brand)] opacity-40">&ldquo;</div>
                 <blockquote className="text-lg sm:text-xl font-extrabold text-[var(--text-base)] leading-snug -mt-4">
-                  ECH is not just an organization.
-                  <br />
-                  It is the home, school, and gathering place for Ethereum governance.
+                  “Ethereum becomes stronger when more people understand it, participate in it, and help steward it as a public good.”
                 </blockquote>
                 <p className="text-xs font-bold uppercase tracking-widest text-[var(--accent-brand)] mt-1">ECH Institute Mission</p>
                 <div className="mt-auto pt-4 border-t border-[var(--accent-brand)]">
-                  <p className="global-body text-sm text-[var(--text-soft)]">Start participating in Ethereum governance today with these direct entry points curated by ECH Institute.</p>
+                  <p className="global-body text-sm text-[var(--text-soft)]">Start participating in Ethereum ecosystem today with these direct entry points curated by ECH Institute.</p>
                 </div>
               </div>
             </div>
@@ -290,17 +288,14 @@ export default function GetInvolvedPage() {
                     target="_blank"
                     className="global-card flex flex-col gap-4 no-underline text-inherit bg-[var(--surface-card-theme)] border-[var(--border-soft)] hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
                   >
-                    <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                      {/* Icon hides on hover */}
-                      <Icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                      {/* Number appears on hover */}
-                      <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        0{i + 1}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="global-card-title mb-1">{action.title}</h3>
-                      <p className="global-body text-sm">{action.desc}</p>
+                    <div className="flex flex-col gap-3 flex-1">
+                      <div className="flex items-center gap-3">
+                        <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
+                          <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                        </div>
+                        <h3 className="global-card-title mb-0 leading-tight">{action.title}</h3>
+                      </div>
+                      <p className="global-body text-sm flex-1">{action.desc}</p>
                     </div>
                     <div
                       className="flex items-center gap-1.5 text-sm font-bold pt-3 border-t border-black group-hover:gap-2 transition-all text-brand-yellow"
@@ -365,12 +360,7 @@ export default function GetInvolvedPage() {
                     {/* Icon row */}
                     <div className="flex items-center justify-between">
                       <span className="tone-icon relative overflow-hidden flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:border-[var(--accent-brand)]">
-                        {/* Icon hides on hover */}
-                        <Icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        {/* Number appears on hover */}
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                          0{i + 1}
-                        </span>
+                        <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                       </span>
                       <span className="tone-badge text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-muted)]">
                         {link.category.replace(" Client", "")}
@@ -403,61 +393,7 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto">
-          <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)]">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-              <div className="flex items-start gap-5 flex-1">
-                <span className="proplay-icon-container relative overflow-hidden h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20 group-hover:scale-110 transition-all duration-500">
-                  <Heart className="h-6 w-6 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                  <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-[var(--text-base)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    GO
-                  </span>
-                </span>
-                <div>
-                  <h3 className="global-card-title text-xl md:text-2xl">Ready to shape the <em>future?</em></h3>
-                  <p className="global-body text-sm mt-2 max-w-md text-[var(--text-soft)]">
-                    Every contribution, no matter how small, helps strengthen the Ethereum ecosystem. Join the ECH Institute community today.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 shrink-0">
-                <Link
-                  href="https://github.com/ethereum/pm/issues?q=is%3Aissue%20state%3Aopen%20office%20hour"
-                  target="_blank"
-                  className="btn btn-primary-white"
-                >
-                  <Calendar className="h-4 w-4" />
-                  Join Office Hours
-                </Link>
-                <Link
-                  href="https://github.com/ethereum/pm/issues?q=is%3Aissue%20state%3Aopen%20eipip"
-                  target="_blank"
-                  className="btn btn-outline"
-                >
-                  <GitBranch className="h-4 w-4" />
-                  Participate in Governance
-                </Link>
-              </div>
-            </div>
 
-            <div className="mt-8 pt-6 border-t border-[var(--border-soft)] grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                { label: 'Office Hours', href: 'https://github.com/ethereum/pm/issues?q=is%3Aissue%20state%3Aopen%20office%20hour' },
-                { label: 'EIPIP Governance', href: 'https://github.com/ethereum/pm/issues?q=is%3Aissue%20state%3Aopen%20eipip' },
-                { label: 'Discord Community', href: 'https://dsc.gg/ech' },
-                { label: 'GitHub Organization', href: 'https://github.com/echinstitute' },
-              ].map((item, i) => (
-                <Link key={i} href={item.href} target="_blank"
-                  className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest no-underline transition-all group text-[var(--accent-brand)] hover:scale-105 origin-left">
-                  <CheckCircle2 size={14} className="text-[var(--accent-brand)]" />
-                  <span>{item.label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
     </main>
   );

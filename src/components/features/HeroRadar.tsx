@@ -51,7 +51,7 @@ export function HeroRadar({ spheres, accentColor = 'var(--accent-brand)', classN
                   <div className="absolute inset-0 rounded-full border border-[var(--accent-brand)] opacity-0 group-hover/sphere:opacity-100 group-hover/sphere:animate-ping pointer-events-none" />
                 </div>
                 <div className="mt-3 px-3 py-1 rounded-full border border-[var(--border-soft)] bg-[var(--surface-card-theme)] opacity-80 group-hover/sphere:opacity-100 transition-opacity">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-base)]">0{index + 1} {title}</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-base)]">{title}</span>
                 </div>
                 {/* Tooltip */}
                 <div className={`absolute top-1/2 ${isRightSide ? 'right-full mr-4 sm:mr-6 translate-x-4' : 'left-full ml-4 sm:ml-6 -translate-x-4'} w-48 sm:w-56 pointer-events-none opacity-0 group-hover/sphere:opacity-100 bg-[var(--surface-card-theme)] border border-[var(--accent-brand)] p-4 rounded-xl shadow-2xl transition-all duration-300 group-hover/sphere:translate-x-0 z-[100] -translate-y-1/2`}>

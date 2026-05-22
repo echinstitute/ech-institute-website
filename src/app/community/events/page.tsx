@@ -142,32 +142,32 @@ export default function EventsPage() {
       echFootprint: 'Roundtable Series',
       description:
         'As an official community partner, ECH Institute supports the Road to Devcon and Devcon 2026 through ecosystem coordination, technical support, livestreaming, community promotion, and connecting contributors across the Ethereum ecosystem to make the journey more collaborative and impactful.',
-      activities: [
-        {
-          icon: MessageSquare,
-          title: 'Pre-Devcon Community Roundtable',
-          description:
-            'Watch the full roundtable video bringing diverse Indian Governance voices into the Ethereum conversation.',
-        },
-        {
-          icon: Mic,
-          title: 'Technical Briefings',
-          description:
-            'Pre-Devcon technical sessions covering the state of the EIP process, upcoming upgrade proposals, and what the community needs to know before Devcon 2026.',
-        },
-        {
-          icon: Users,
-          title: 'WiEP Road to Devcon',
-          description:
-            'Dedicated Women in Ethereum Protocol sessions as part of the Road to Devcon series — building community and mentorship pipelines in advance of the global conference.',
-        },
-        {
-          icon: Globe,
-          title: 'Global Coordination',
-          description:
-            'Coordinating with regional Ethereum communities worldwide to ensure diverse participation and broad ecosystem representation at Devcon 2026.',
-        },
-      ],
+      // activities: [
+      //   {
+      //     icon: MessageSquare,
+      //     title: 'Pre-Devcon Community Roundtable',
+      //     description:
+      //       'Watch the full roundtable video bringing diverse Indian Governance voices into the Ethereum conversation.',
+      //   },
+      //   {
+      //     icon: Mic,
+      //     title: 'Technical Briefings',
+      //     description:
+      //       'Pre-Devcon technical sessions covering the state of the EIP process, upcoming upgrade proposals, and what the community needs to know before Devcon 2026.',
+      //   },
+      //   {
+      //     icon: Users,
+      //     title: 'WiEP Road to Devcon',
+      //     description:
+      //       'Dedicated Women in Ethereum Protocol sessions as part of the Road to Devcon series — building community and mentorship pipelines in advance of the global conference.',
+      //   },
+      //   {
+      //     icon: Globe,
+      //     title: 'Global Coordination',
+      //     description:
+      //       'Coordinating with regional Ethereum communities worldwide to ensure diverse participation and broad ecosystem representation at Devcon 2026.',
+      //   },
+      // ],
       recapVideo: 'https://www.youtube.com/live/4N4LHKReoV4?si=KYC7fve_K9PhNDTD',
       recapLabel: 'Featured Video',
       recapTitle: 'Pre-Devcon Community Roundtable2',

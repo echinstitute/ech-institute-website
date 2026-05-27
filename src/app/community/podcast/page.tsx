@@ -3,15 +3,15 @@
 import Link from 'next/link';
 import {
   BookOpen, Radio, Code, ArrowRight, Play, Mic, FileText,
-  GraduationCap, Layers, Tag, Zap, Globe, Users, Video
+  GraduationCap, Layers, Tag, Zap, Globe, Users, Video, ExternalLink
 } from 'lucide-react';
 import { PodcastRecentHighlights } from '@/components/features/PodcastRecentHighlights';
 
 const PODCAST_LINKS = [
-  { name: 'Spotify',        href: 'https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA' },
+  { name: 'Spotify', href: 'https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA' },
   { name: 'Apple Podcasts', href: 'https://podcasts.apple.com/us/podcast/ech-institute-podcast/id1620565121' },
-  { name: 'Pocket Casts',   href: 'https://pocketcasts.com/podcast/ech-institute-podcast/07681030-5a48-013a-d70a-0acc26574db2' },
-  { name: 'Castbox',        href: 'https://castbox.fm/channel/7004180?country=gb' },
+  { name: 'Pocket Casts', href: 'https://pocketcasts.com/podcast/ech-institute-podcast/07681030-5a48-013a-d70a-0acc26574db2' },
+  { name: 'Castbox', href: 'https://castbox.fm/channel/7004180?country=gb' },
 ];
 
 function SpotifyIcon({ className }: { className?: string }) {
@@ -53,77 +53,45 @@ const PODCAST_ICONS: Record<string, React.ComponentType<{ className?: string }>>
 const mediaPillars = [
   {
     title: 'PEEPanEIP',
-    blurb: '160+ episodes of technical deep-dives into Ethereum Improvement Proposals — including foundational shifts like EIP-1559, The Merge, EIP-7706, and EIP-7702. Direct engagement with EIP authors.',
-    badge: '160+ Episodes',
-    href: '/podcast/peepaneip',
+    blurb: '150+ episodes of technical deep-dives into Ethereum Improvement Proposals — including foundational shifts like EIP-1559, The Merge, EIP-7706, and EIP-7702. Direct engagement with EIP authors.',
+    badge: '150+ Episodes',
+    href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F',
     icon: BookOpen,
     accent: '#F5A51D',
+    external: true,
   },
   {
     title: 'The Fusaka Files',
     blurb: "A high-production limited series on Ethereum's shift toward predictable biannual engineering delivery. Covers PeerDAS, secp256r1 support, and enterprise readiness for the Fusaka upgrade.",
     badge: 'Limited Series',
-    href: '/podcast/fusaka-files',
+    href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxpz-erUbKKUnnGoQNdF8s7Z',
     icon: Radio,
     accent: '#F5A51D',
+    external: true,
   },
   {
     title: 'Ecosystem Project Demo (EPD)',
     blurb: 'Live demos of open-source tools and public goods — from Dappnode (home staking) to Sourcify (contract verification). 30+ episodes showcasing the infrastructure strengthening Ethereum.',
     badge: '30+ Episodes',
-    href: '/podcast/epd',
+    href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxrhbMXuCqMsCiwx1lwu_cNs',
     icon: Code,
     accent: '#F5A51D',
+    external: true,
   },
   {
     title: 'Women in Ethereum Protocol (WiEP)',
     blurb: 'Study groups, mentorship, and peer support for women contributing to core protocol work. Structured learning aligned with the Ethereum Protocol Fellowship (EPF) Study Group.',
     badge: 'Study Groups',
-    href: '/wiep',
+    href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxrygka99hIDMXyhh_BDpZqR',
     icon: GraduationCap,
     accent: '#F5A51D',
-  },
-  {
-    title: 'ERC Series',
-    blurb: 'Specialized technical series focused exclusively on Ethereum Request for Comments (ERC) standards — tracing how token standards and interfaces evolve from draft to adoption.',
-    badge: 'Standards',
-    href: 'https://youtube.com/playlist?list=PL4cwHXAawZxqXee9EMQDIEz2CslTnsW0K',
-    icon: Tag,
-    accent: '#F5A51D',
     external: true,
-  },
-  {
-    title: 'NFT & Privacy Series',
-    blurb: 'Deep-dives into non-fungible tokens, privacy pools, and zero-knowledge application architectures — connecting specialized application layers to core protocol evolution.',
-    badge: 'Specialized',
-    href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpUmj2UjD4BtfgC1nAAyv3p',
-    icon: Layers,
-    accent: '#F5A51D',
-    external: true,
-  },
-];
-
-const acdCards = [
-  {
-    icon: Play,
-    title: 'Multimedia Integration',
-    desc: 'Embedded YouTube recording with timestamped chapters for easy navigation through All Core Devs meetings.',
-  },
-  {
-    icon: FileText,
-    title: 'Technical Summaries',
-    desc: 'AI-generated highlights and action items for client teams — translating complex decisions into accessible recaps.',
-  },
-  {
-    icon: Mic,
-    title: 'Meeting Coordination',
-    desc: 'Organizing and documenting ACDE, ACDC, and breakout rooms — providing a transparent record of the consensus-building process.',
   },
 ];
 
 const stats = [
   { label: 'Videos archived', value: '837+' },
-  { label: 'PEEPanEIP episodes', value: '160+' },
+  { label: 'PEEPanEIP episodes', value: '150+' },
   { label: 'EPD demos', value: '30+' },
   { label: 'Years of coverage', value: '6+' },
 ];
@@ -131,10 +99,10 @@ const stats = [
 import { HeroRadar } from '@/components/features/HeroRadar';
 
 const PODCAST_SPHERES = [
-  { icon: Play,         title: 'Multimedia',     desc: 'Organizing and publishing All Core Devs (ACD) calls and technical meetings.' },
-  { icon: Mic,          title: 'Coordination',   desc: 'The social and organizational operating system for Ethereum protocol work.' },
-  { icon: FileText,     title: 'Technical recaps', desc: 'Translating complex protocol decisions into accessible technical summaries.' },
-  { icon: GraduationCap, title: 'Public Archive',  desc: 'Maintaining a permanent, open-access record of Ethereum\'s evolution.' },
+  { icon: Play, title: 'Multimedia', desc: 'Organizing and publishing All Core Devs (ACD) calls and technical meetings.' },
+  { icon: Mic, title: 'Coordination', desc: 'The social and organizational operating system for Ethereum protocol work.' },
+  { icon: FileText, title: 'Technical recaps', desc: 'Translating complex protocol decisions into accessible technical summaries.' },
+  { icon: GraduationCap, title: 'Public Archive', desc: 'Maintaining a permanent, open-access record of Ethereum\'s evolution.' },
 ];
 
 export default function PodcastPage() {
@@ -155,31 +123,9 @@ export default function PodcastPage() {
               <h1 className="global-hero-title">
                 ECH <br /><em className="text-[var(--accent-brand)]">Podcast Hub</em>
               </h1>
-              <p className="global-body-lg max-w-xl">
-                The public archive for Ethereum&apos;s protocol evolution. Organizing and publishing All Core Devs (ACD) calls, EIP deep-dives, and technical coordination summaries in one central hub.
+              <p className="global-body-lg">
+                The public archive for Ethereum's protocol evolution. Streaming and publishing All Core Devs (ACD) calls, EIP deep-dives, and upgrade-specific information in one central hub.
               </p>
-
-              {/* Listen On */}
-              <div className="pt-2">
-                <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-soft)] mb-3">Also available on</p>
-                <div className="flex flex-wrap gap-3">
-                  {PODCAST_LINKS.map(({ name, href }) => {
-                    const Icon = PODCAST_ICONS[name];
-                    return (
-                      <a
-                        key={name}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-soft)] bg-[var(--surface-card-theme)] px-4 py-2 text-sm font-bold text-[var(--text-base)] transition hover:border-[var(--accent-brand)] group"
-                      >
-                        {Icon && <Icon className="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" />}
-                        {name}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
             </div>
 
             {/* Right — Interactive Radar */}
@@ -189,10 +135,110 @@ export default function PodcastPage() {
         </div>
       </section>
 
+      {/* ── PODCAST PLATFORMS HIGHLIGHT SECTION ───────────────── */}
+      <section id="podcast-platforms" className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-12 border-b border-[var(--border-soft)] scroll-mt-24">
+        <div className="rounded-[32px] border border-[var(--border-soft)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)] p-8 md:p-10 relative overflow-hidden shadow-xl">
+          {/* Ambient background glow */}
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[100px] opacity-[0.03] pointer-events-none bg-accent" />
+
+          <div className="flex flex-col gap-6 relative z-10">
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent mb-2 block">SUBSCRIBE & LISTEN</span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-base)] font-syne">
+                Also Available On <em className="not-italic text-accent">Your Favorite App</em>
+              </h2>
+              <p className="text-sm text-[var(--text-soft)] mt-2 max-w-none font-medium">
+                Subscribe to ECH Institute Podcast on all major streaming platforms to receive new episodes, consensus calls, and EIP updates automatically. Never miss a beat in Ethereum core development and network upgrades.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
+              {[
+                {
+                  name: 'Spotify',
+                  href: 'https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA',
+                  desc: 'Listen to technical episodes & consensus updates.',
+                  color: '#1DB954',
+                  glow: 'rgba(29, 185, 84, 0.15)',
+                  badge: 'Popular',
+                },
+                {
+                  name: 'Apple Podcasts',
+                  href: 'https://podcasts.apple.com/us/podcast/ech-institute-podcast/id1620565121',
+                  desc: 'Stream on Apple devices & smart speakers.',
+                  color: '#A83BF2',
+                  glow: 'rgba(168, 59, 242, 0.15)',
+                  badge: 'Native iOS',
+                },
+                {
+                  name: 'Pocket Casts',
+                  href: 'https://pocketcasts.com/podcast/ech-institute-podcast/07681030-5a48-013a-d70a-0acc26574db2',
+                  desc: 'Cross-platform sync across web and mobile.',
+                  color: '#F43E37',
+                  glow: 'rgba(244, 62, 55, 0.15)',
+                  badge: 'Premium UI',
+                },
+                {
+                  name: 'Castbox',
+                  href: 'https://castbox.fm/channel/7004180?country=gb',
+                  desc: 'Discover and learn from daily protocol feeds.',
+                  color: '#F5A51D',
+                  glow: 'rgba(245, 165, 29, 0.15)',
+                  badge: 'Top Pick',
+                },
+              ].map((plat) => {
+                const Icon = PODCAST_ICONS[plat.name];
+                return (
+                  <a
+                    key={plat.name}
+                    href={plat.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ '--hover-glow': plat.glow } as React.CSSProperties}
+                    className="group relative flex flex-col gap-4 rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-card-theme)] p-6 transition-all duration-300 hover:scale-[1.03] hover:border-transparent hover:shadow-[0_8px_30px_var(--hover-glow)]"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div
+                        className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--surface-card-muted)] border border-[var(--border-soft)] transition-all duration-300 group-hover:scale-110 group-hover:bg-white/5"
+                      >
+                        {Icon && <Icon className="h-6 w-6" />}
+                      </div>
+                      <span
+                        style={{ color: plat.color, borderColor: `${plat.color}30`, backgroundColor: `${plat.color}10` }}
+                        className="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border"
+                      >
+                        {plat.badge}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <span className="text-lg font-extrabold text-[var(--text-base)] group-hover:text-accent transition-colors">
+                        {plat.name}
+                      </span>
+                      <span className="text-xs text-[var(--text-soft)] font-medium leading-relaxed">
+                        {plat.desc}
+                      </span>
+                    </div>
+
+                    <div className="mt-auto pt-4 border-t border-[var(--border-soft)]/40 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-accent">
+                      <span>LISTEN NOW</span>
+                      <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
       {/* ── Recent Highlights ── */}
       <PodcastRecentHighlights />
 
-      
+
       {/* ── Media Pillars ── */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-12 md:py-16">
         <div className="flex items-center gap-3 mb-2">
@@ -203,9 +249,6 @@ export default function PodcastPage() {
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-[var(--text-base)]">
             The Media <em className="not-italic text-accent">Pillars</em>
           </h2>
-          <p className="text-sm text-[var(--text-base)]/40 max-w-sm sm:text-right">
-            Six distinct series, each mapped to a specific stakeholder need.
-          </p>
         </div>
 
         {/* Bento-style grid */}
@@ -228,8 +271,16 @@ export default function PodcastPage() {
                   <h3 className="text-lg font-extrabold text-[var(--text-base)] mb-3 leading-snug group-hover:text-accent transition-colors duration-300">{title}</h3>
                   <p className="text-sm text-[var(--text-base)]/45 leading-relaxed flex-1">{blurb}</p>
                   <div className="mt-6 pt-5 border-t border-border flex items-center justify-between">
-                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-[var(--text-base)]/25">
-                      {external ? 'YouTube Playlist' : 'Explore Series'}
+                    <span
+                      style={external ? { color: '#F5A51D' } : undefined}
+                      className={`text-[9px] font-black uppercase tracking-[0.2em] ${external ? 'inline-flex items-center gap-1.5' : 'text-[var(--text-base)]/25'}`}
+                    >
+                      {external ? (
+                        <>
+                          YouTube Playlist
+                          <ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" />
+                        </>
+                      ) : 'Explore Series'}
                     </span>
                     <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#3a3a3a] text-[var(--text-soft)] group-hover:text-accent group-hover:border-accent/50 group-hover:bg-accent/10 transition-all duration-300">
                       <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -258,7 +309,7 @@ export default function PodcastPage() {
             {/* Ambient glows */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-[0.05] pointer-events-none" style={{ background: 'var(--accent-brand)' }} />
             <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full blur-[100px] opacity-[0.03] pointer-events-none" style={{ background: 'var(--accent-brand)' }} />
-            
+
             <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8">
               <div className="flex-1 max-w-3xl">
                 <div className="flex items-center gap-3 mb-4">
@@ -269,36 +320,18 @@ export default function PodcastPage() {
                   All Core Devs <span className="text-[var(--accent-brand)] italic">Archive</span>
                 </h2>
                 <p className="text-base md:text-lg text-[var(--text-soft)] mt-5 leading-relaxed font-medium">
-                  The ECH Institute organizes ACDE, ACDC, and breakout sessions — providing a transparent, permanent record of Ethereum&apos;s consensus-building process.
+                  The ECH Institute organizes ACDE, ACDC, and breakout sessions providing a transparent, permanent record of Ethereum&apos;s consensus-building process.
                 </p>
               </div>
               <a
-                href="https://www.youtube.com/@echinstitute/streams"
+                href="https://open.spotify.com/show/7dgxKMkSyy3HWtQW7OfqXA"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-3 rounded-2xl bg-[var(--accent-brand)] px-8 py-4 text-sm font-black uppercase tracking-widest text-black transition-all hover:scale-[1.05] hover:shadow-[0_0_32px_rgba(var(--accent-brand-rgb),0.3)] shadow-lg shadow-[var(--accent-brand)]/10 self-start lg:self-auto"
               >
-                <Video className="h-5 w-5" /> Watch Archive
+                <Radio className="h-5 w-5" /> Audio Archive
               </a>
             </div>
-          </div>
-
-          {/* Feature cards — divide columns */}
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--border-soft)]">
-            {acdCards.map(({ icon: Icon, title, desc }) => (
-              <div
-                key={title}
-                className="group p-10 md:p-12 flex flex-col gap-6 transition-all duration-500 hover:bg-[var(--accent-brand)]/[0.02]"
-              >
-                <div className="flex h-16 w-16 items-center justify-center rounded-[20px] bg-[var(--background)] border border-[var(--border-soft)] shadow-inner transition-all duration-500 group-hover:scale-110 group-hover:border-[var(--accent-brand)] group-hover:shadow-[0_0_20px_rgba(var(--accent-brand-rgb),0.2)]">
-                  <Icon className="h-8 w-8 text-[var(--accent-brand)] transition-transform duration-500 group-hover:rotate-12" />
-                </div>
-                <div>
-                  <p className="text-lg md:text-xl font-black text-[var(--text-base)] mb-3 tracking-tight group-hover:text-[var(--accent-brand)] transition-colors font-syne">{title}</p>
-                  <p className="text-sm md:text-base text-[var(--text-soft)] leading-relaxed font-medium">{desc}</p>
-                </div>
-              </div>
-            ))}
           </div>
 
           {/* Bottom stat strip */}
@@ -306,7 +339,7 @@ export default function PodcastPage() {
             {[
               { v: '837+', l: 'Videos archived' },
               { v: '200+', l: 'ACD calls recorded' },
-              { v: '6+',   l: 'Years of coverage' },
+              { v: '6+', l: 'Years of coverage' },
               { v: '100%', l: 'Public & open' },
             ].map(({ v, l }) => (
               <div key={l} className="flex flex-col items-center justify-center py-6 px-4 text-center">
@@ -321,28 +354,24 @@ export default function PodcastPage() {
       {/* ── Mission Banner ── */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pb-20">
         <div
-          className="rounded-3xl border border-[var(--border-soft)] p-8 md:p-12 relative overflow-hidden bg-[var(--surface-card-theme)] shadow-2xl"
+          className="rounded-3xl border border-[var(--border-soft)] p-8 md:p-12 relative overflow-hidden bg-[var(--surface-card-theme)] shadow-2xl flex flex-col md:flex-row gap-8 items-stretch"
         >
           {/* Accent glow */}
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-[0.08] blur-3xl pointer-events-none" style={{ background: 'var(--accent-brand)' }} />
           <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full opacity-[0.05] blur-3xl pointer-events-none" style={{ background: 'var(--accent-brand)' }} />
-          
-          <div className="relative">
+
+          <div className="relative z-10 flex-1 flex flex-col justify-center py-2 md:py-4">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-1.5 h-6 rounded-full bg-[var(--accent-brand)]" />
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--accent-brand)]">Our Mission</span>
             </div>
-            
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-base)] leading-[1.1] mb-6 max-w-3xl tracking-tighter font-syne">
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-base)] leading-[1.1] mb-10 max-w-3xl tracking-tighter font-syne">
               Homesteading Ethereum through{' '}
               <span className="text-[var(--accent-brand)] italic">technical transparency</span> and educational accessibility.
             </h2>
-            
-            <p className="text-base md:text-lg text-[var(--text-soft)] max-w-2xl leading-relaxed mb-10 font-medium">
-              The ECH Institute — a US-based 501(c)(3) non-profit — serves as the institutional home for community-led protocol support. Originally emerging as the Ethereum Cat Herders in 2019, we provide the connective tissue that allows the decentralized Ethereum protocol to thrive as a global public good.
-            </p>
-            
-            <div className="flex flex-wrap gap-4">
+
+            <div className="flex flex-wrap gap-4 mt-2">
               <Link
                 href="/about"
                 className="inline-flex items-center gap-3 rounded-xl bg-[var(--accent-brand)] px-7 py-3.5 text-sm font-black uppercase tracking-widest text-black transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[var(--accent-brand)]/20"
@@ -355,6 +384,16 @@ export default function PodcastPage() {
               >
                 Support our work
               </Link>
+            </div>
+          </div>
+
+          <div className="relative z-10 w-full md:w-[35%] shrink-0 min-h-[200px] md:min-h-0 flex items-center justify-center md:justify-end mt-4 md:mt-0">
+            <div className="relative w-full h-full md:absolute md:inset-0 flex items-center justify-center">
+              <img
+                src="/assets/logo/cat5.png"
+                alt="ECH Institute Cat Mascot"
+                className="object-contain w-auto h-full max-h-[300px] md:max-h-full drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)]"
+              />
             </div>
           </div>
         </div>

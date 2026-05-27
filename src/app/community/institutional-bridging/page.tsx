@@ -6,7 +6,7 @@ import {
   BookOpen, Globe
 } from 'lucide-react';
 import Link from 'next/link';
-import { ROUTES } from '@/config/routes';
+import { ROUTES, EXTERNAL_LINKS } from '@/config/routes';
 import { HeroRadar } from '@/components/features/HeroRadar';
 
 // ─── Hero Radar Data ─────────────────────────────────────────────────────────
@@ -107,14 +107,14 @@ export default function InstitutionalBridgingPage() {
               <h1 className="global-hero-title">
                 Institutional <em style={{ fontStyle: 'normal', color: 'var(--color-yellow)' }}>Bridging</em>
               </h1>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg">
                 ECH Institute equips enterprise stakeholders with the knowledge and context needed to understand Ethereum governance — translating complex protocol changes into clear, actionable intelligence.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
-                <Link href={ROUTES.getInvolved} className="btn btn-primary">
+                <a href={EXTERNAL_LINKS.email} className="btn btn-primary">
                   <Handshake className="h-4 w-4" />
                   Connect With Us
-                </Link>
+                </a>
                 <Link
                   href="https://github.com/ethereum/pm/issues?q=is%3Aissue+state%3Aopen+office+hour"
                   target="_blank"
@@ -154,7 +154,7 @@ export default function InstitutionalBridgingPage() {
           <div className="mb-10">
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--accent-brand)] mb-2">ECH Institute Programs</p>
             <h2 className="global-section-title">What ECH Does for <em>Institutional Bridging</em></h2>
-            <p className="global-body-lg mt-3 max-w-2xl">
+            <p className="global-body-lg mt-3">
               Ethereum governance can appear opaque to organizations accustomed to centralized planning. ECH Institute acts as a reliable informational bridge — providing clear translation of technical roadmaps and creating direct channels for institutional dialogue.
             </p>
           </div>
@@ -196,9 +196,9 @@ export default function InstitutionalBridgingPage() {
               <p className="global-body-lg">
                 As a neutral nonprofit deeply embedded in Ethereum&apos;s governance ecosystem, ECH Institute is uniquely positioned to translate between the worlds of protocol development and institutional enterprise.
               </p>
-              <Link href={ROUTES.getInvolved} className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent-brand)] hover:gap-3 transition-all mt-2">
+              <a href={EXTERNAL_LINKS.email} className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent-brand)] hover:gap-3 transition-all mt-2">
                 Connect With Us <ArrowRight size={14} />
-              </Link>
+              </a>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -253,56 +253,6 @@ export default function InstitutionalBridgingPage() {
                   Enterprise teams have successfully engaged with Ethereum governance through ECH Institute briefings, office hours, and developer dialogue programs.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA Banner ────────────────────────────────────────────────────────── */}
-      <section className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
-        <div className="max-w-7xl mx-auto">
-          <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)]">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-              <div className="flex items-start gap-5 flex-1">
-                <span className="proplay-icon-container h-12 w-12 flex-shrink-0 shadow-lg shadow-[var(--accent-brand)]/20">
-                  <Heart className="h-6 w-6" />
-                </span>
-                <div>
-                  <h3 className="global-card-title text-xl md:text-2xl">Is your organization <em>ready for Ethereum?</em></h3>
-                  <p className="global-body text-sm mt-2 max-w-md text-[var(--text-soft)]">
-                    Connect with ECH Institute today. We provide the briefings, dialogue, and readiness support your enterprise needs to confidently engage with Ethereum governance.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 shrink-0">
-                <Link href={ROUTES.getInvolved} className="btn btn-primary">
-                  <Handshake className="h-4 w-4" />
-                  Connect With Us
-                </Link>
-                <Link
-                  href="https://github.com/ethereum/pm/issues?q=is%3Aissue+state%3Aopen+office+hour"
-                  target="_blank"
-                  className="btn btn-outline"
-                >
-                  <Calendar className="h-4 w-4" />
-                  Join Office Hours
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-[var(--border-soft)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                { label: 'Get Involved',         href: ROUTES.getInvolved },
-                { label: 'Community Partnerships', href: ROUTES.communityPartnerships },
-                { label: 'EIP Support',           href: ROUTES.eipSupport },
-                { label: 'Discord Community',     href: 'https://dsc.gg/ech' },
-              ].map((item, i) => (
-                <Link key={i} href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined}
-                  className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest no-underline transition-all group text-[var(--accent-brand)] hover:scale-105 origin-left">
-                  <CheckCircle2 size={14} className="text-[var(--accent-brand)]" />
-                  <span>{item.label}</span>
-                </Link>
-              ))}
             </div>
           </div>
         </div>

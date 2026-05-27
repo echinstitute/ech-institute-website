@@ -3,18 +3,19 @@
 import {
   Users, Globe, Handshake, Network as NetworkIcon, MessageSquare,
   ArrowRight, GitBranch, CheckCircle2, Heart, Calendar,
-  Building2, Radio, Layers
+  Building2, Radio, Layers, ExternalLink
 } from 'lucide-react';
 import Link from 'next/link';
 import { ROUTES } from '@/config/routes';
 import { HeroRadar } from '@/components/features/HeroRadar';
+import { useTheme } from '@/providers/ThemeProvider';
 
 // ─── Hero Radar Data ─────────────────────────────────────────────────────────
 const radarNodes = [
-  { icon: Users,      title: 'DAO Alliances',        desc: 'Building formal relationships with developer DAOs and community-run collectives across the ecosystem.' },
-  { icon: Globe,      title: 'Regional Hubs',         desc: 'Connecting with Ethereum community groups worldwide to amplify local voices in global governance.' },
-  { icon: Handshake,  title: 'Protocol Partners',     desc: 'Coordinating with client teams and protocol contributors to align on shared upgrade timelines.' },
-  { icon: NetworkIcon,    title: 'Cross-Org Bridges',     desc: 'Establishing communication channels between previously siloed organizations for unified advocacy.' },
+  { icon: Users, title: 'DAO Alliances', desc: 'Building formal relationships with developer DAOs and community-run collectives across the ecosystem.' },
+  { icon: Globe, title: 'Regional Hubs', desc: 'Connecting with Ethereum community groups worldwide to amplify local voices in global governance.' },
+  { icon: Handshake, title: 'Protocol Partners', desc: 'Coordinating with client teams and protocol contributors to align on shared upgrade timelines.' },
+  { icon: NetworkIcon, title: 'Cross-Org Bridges', desc: 'Establishing communication channels between previously siloed organizations for unified advocacy.' },
 ];
 
 // ─── What ECH Does Section ────────────────────────────────────────────────────
@@ -55,24 +56,18 @@ const programs = [
   },
 ];
 
-// ─── Impact Stats ─────────────────────────────────────────────────────────────
-const stats = [
-  { value: '20+', label: 'Active Partner Organizations' },
-  { value: '50+', label: 'Ecosystem Communities Reached' },
-  { value: '100+', label: 'Coordination Calls Facilitated' },
-  { value: '5+', label: 'Regional Hubs Connected' },
-];
 
 // ─── Partner Types ─────────────────────────────────────────────────────────────
 const partnerTypes = [
-  { icon: Layers,     title: 'Developer DAOs',          desc: 'Developer collectives and DAOs contributing to protocol tooling, testing, and governance research.' },
-  { icon: Globe,      title: 'Regional Communities',    desc: 'Local Ethereum meetup groups and regional hubs in Asia, Africa, Europe, and the Americas.' },
-  { icon: Building2,  title: 'Academic Institutions',   desc: 'Universities and research labs exploring Ethereum governance, economics, and protocol design.' },
-  { icon: NetworkIcon,    title: 'Client Teams',            desc: 'Consensus and execution client developers who shape the technical direction of Ethereum.' },
+  { icon: Layers, title: 'Developer DAOs', desc: 'Developer collectives and DAOs contributing to protocol tooling, testing, and governance research.' },
+  { icon: Globe, title: 'Regional Communities', desc: 'Local Ethereum meetup groups and regional hubs in Asia, Africa, Europe, and the Americas.' },
+  { icon: Building2, title: 'Academic Institutions', desc: 'Universities and research labs exploring Ethereum governance, economics, and protocol design.' },
+  { icon: NetworkIcon, title: 'Client Teams', desc: 'Consensus and execution client developers who shape the technical direction of Ethereum.' },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function CommunityPartnershipsPage() {
+  const { isDark } = useTheme();
   return (
     <main className="min-h-screen pt-16 lg:pt-24 bg-[var(--background)] text-[var(--text-primary)] transition-colors duration-300">
 
@@ -90,11 +85,11 @@ export default function CommunityPartnershipsPage() {
               <h1 className="global-hero-title">
                 Community <em style={{ fontStyle: 'normal', color: 'var(--color-yellow)' }}>Partnerships</em>
               </h1>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg">
                 ECH Institute builds bridges between diverse ecosystem communities, developer DAOs, and Ethereum governance structures — ensuring broad representation and coordinated participation.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
-                <Link href={ROUTES.getInvolved} className="btn btn-primary">
+                <Link href="/#contact" className="btn btn-primary">
                   <Handshake className="h-4 w-4" />
                   Partner With Us
                 </Link>
@@ -115,16 +110,173 @@ export default function CommunityPartnershipsPage() {
         </div>
       </section>
 
-      {/* ── Impact Stats ──────────────────────────────────────────────────────── */}
-      <section className="py-10 px-4 md:py-14 md:px-8 border-b border-[var(--border-soft)] bg-[var(--surface-card-theme)]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-1 py-4">
-                <span className="text-4xl sm:text-5xl font-black" style={{ color: 'var(--color-yellow)', fontFamily: 'var(--font-family-page-heading)' }}>
-                  {stat.value}
-                </span>
-                <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">{stat.label}</span>
+      {/* ── Partners / Supported By ── */}
+      <section className="py-14 md:py-20 border-b border-[var(--border-soft)] relative overflow-hidden bg-[var(--background)]">
+
+        {/* subtle decorative radial glow */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 60% 50% at 50% 0%, var(--accent-brand, #f59e0b)14, transparent 70%)',
+          }}
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+          {/* ── Section Header ── */}
+          <div className="text-center mb-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-[var(--accent-brand)] mb-3">Backed By The Best</p>
+            <h2 className="global-section-title mb-4">
+              Our <em>Trusted Partners</em> &amp; Supporters
+            </h2>
+            <p className="global-body-lg max-w-2xl mx-auto">
+              ECH Institute is proud to be supported by leading organisations across the Ethereum ecosystem — from protocol research bodies to regional developer communities.
+            </p>
+          </div>
+
+          {/* ── Partner Cards Grid ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                id: 'ef',
+                name: 'Ethereum Foundation',
+                src: '/assets/Supported by logo//ethereum-foundation-logo.svg',
+                desc: 'The non-profit organisation at the heart of Ethereum — funding protocol research, client development, and ecosystem public goods to keep Ethereum open, secure, and decentralised.',
+                relation: 'Protocol Research & R&D Support',
+                href: 'https://ethereum.org',
+                logoH: '200px',
+              },
+              {
+                id: 'gitcoin',
+                name: 'Gitcoin',
+                src: '/assets/Supported by logo//gitcoin.svg',
+                desc: 'Gitcoin enables communities to fund their shared needs through Quadratic Funding grants, empowering open-source developers and public goods builders across the web3 ecosystem.',
+                relation: 'Public Goods Funding & Grants',
+                href: 'https://gitcoin.co',
+              },
+              {
+                id: 'eipsinsight',
+                name: 'EIPs Insight',
+                src: '/assets/Supported by logo//EIPsInsights.gif',
+                desc: 'EIPs Insight is a data-driven analytics platform tracking the lifecycle of Ethereum Improvement Proposals — offering transparency and visibility into governance activity across all EIP categories.',
+                relation: 'EIP Analytics & Data Tracking',
+                href: 'https://eipsinsight.com/',
+                invertLight: true,
+                logoH: '76px',
+              },
+              {
+                id: 'optimism',
+                name: 'Optimism',
+                src: '/assets/Supported by logo//Optimism-logo.png',
+                desc: 'Optimism is an EVM-equivalent L2 scaling solution committed to funding public goods through its Retroactive Public Goods Funding (RetroPGF) programme, rewarding impactful contributors.',
+                relation: 'Retroactive Public Goods Funding',
+                href: 'https://optimism.io',
+              },
+              {
+                id: 'ethpune',
+                name: 'ETH Pune',
+                src: '/assets/Supported by logo//ETH Pune.png',
+                desc: 'ETH Pune is a thriving regional Ethereum community in India, organising developer workshops, hackathons, and grassroots onboarding events to grow the local web3 ecosystem.',
+                relation: 'Regional Developer Onboarding & Community',
+                href: 'https://www.ethpune.com/',
+                invertLight: true,
+                logoH: '200px',
+              },
+              {
+                id: 'octant',
+                name: 'Octant',
+                src: '/assets/Supported by logo//octant-logo.svg',
+                desc: 'Octant, built by Golem Foundation, allocates staking rewards from locked ETH to public goods projects chosen by the community — creating a sustainable, participatory funding model.',
+                relation: 'Public Goods Staking Rewards',
+                href: 'https://octant.app',
+              },
+              {
+                id: 'magicians',
+                name: 'Ethereum Magicians',
+                src: '/assets/Supported by logo//ethereum magicians logo.png',
+                desc: 'Ethereum Magicians is the long-standing community forum where EIP authors, client developers, and researchers debate, iterate, and build consensus around protocol-level changes.',
+                relation: 'Governance Forum & Community Discussion',
+                href: 'https://ethereum-magicians.org',
+                logoH: '200px',
+              },
+              {
+                id: 'ethcluj',
+                name: 'EthCluj',
+                src: '/assets/Supported by logo//EthCluj-logo.png',
+                desc: 'EthCluj is Romania\'s leading Ethereum community, hosting developer education events, meetups, and conferences to foster local blockchain talent and regional ecosystem growth.',
+                relation: 'Regional Developer Education & Events',
+                href: 'https://ethcluj.ro',
+                logoH: '75px',
+              },
+              {
+                id: 'edcon',
+                name: 'EDCON',
+                src: '/assets/Supported by logo//EDCON-logo.png',
+                desc: 'EDCON (Community Ethereum Development Conference) is a global developer conference series bringing together builders, researchers, and enthusiasts to share knowledge and onboard the next wave of Ethereum contributors.',
+                relation: 'Global Developer Conference & Onboarding',
+                href: 'https://edcon.io',
+              },
+              {
+                id: 'eea',
+                name: 'Enterprise Ethereum Alliance',
+                src: '/assets/Supported by logo//enterpriseethereumalliance_logo.png',
+                desc: 'The EEA is the world\'s largest open-source blockchain initiative, connecting enterprises with Ethereum experts to drive interoperability standards and accelerate business adoption.',
+                relation: 'Enterprise Standards & Integration',
+                href: 'https://entethalliance.org',
+                invertLight: true,
+                logoH: '75px',
+              },
+
+            ].map((p) => (
+              <div
+                key={p.id}
+                className="group flex flex-col gap-0 rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 overflow-hidden"
+              >
+                {/* Logo banner — per-logo sizing, always contain */}
+                <div className="flex items-center justify-center h-28 border-b border-[var(--border-soft)] bg-[var(--surface-card-muted,var(--surface-card-theme))] px-4 py-3">
+                  <img
+                    src={p.src}
+                    alt={p.name}
+                    className="transition-transform duration-300 group-hover:scale-105"
+                    style={{
+                      height: (p as any).logoH ?? '35px',
+                      width: (p as any).logoW ?? 'auto',
+                      maxWidth: '100%',
+                      objectFit: 'contain',
+                      filter: (p as any).invertLight && !isDark ? 'invert(1)' : 'none',
+                    }}
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col gap-3 p-5 flex-1">
+                  {/* Name + relation badge */}
+                  <div className="flex flex-col gap-1.5">
+                    <h3 className="font-syne font-bold text-base text-[var(--text-primary)] leading-tight">
+                      {p.name}
+                    </h3>
+                    <span className="inline-flex items-center gap-1.5 self-start text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border border-[var(--accent-brand)]/40 text-[var(--accent-brand)] bg-[var(--accent-brand)]/8">
+                      {p.relation}
+                    </span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-xs text-[var(--text-soft)] leading-relaxed flex-1">
+                    {p.desc}
+                  </p>
+
+                  {/* Visit link */}
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--accent-brand)] mt-1 hover:gap-2.5 transition-all duration-200 group/link"
+                  >
+                    Visit Website
+                    <ExternalLink size={11} className="shrink-0 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                  </a>
+                </div>
               </div>
             ))}
           </div>
@@ -137,7 +289,7 @@ export default function CommunityPartnershipsPage() {
           <div className="mb-10">
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--accent-brand)] mb-2">ECH Institute Programs</p>
             <h2 className="global-section-title">What ECH Does for <em>Community Partnerships</em></h2>
-            <p className="global-body-lg mt-3 max-w-2xl">
+            <p className="global-body-lg mt-3">
               ECH Institute is the neutral connective tissue between Ethereum&apos;s many communities, providing structure, access, and amplification for groups that want to participate in governance.
             </p>
           </div>
@@ -174,48 +326,10 @@ export default function CommunityPartnershipsPage() {
         </div>
       </section>
 
-      {/* ── Partner Types ─────────────────────────────────────────────────────── */}
-      <section className="py-10 px-4 md:py-16 md:px-8 border-b border-[var(--border-soft)]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-10 items-start">
-            {/* Left — heading */}
-            <div className="flex flex-col gap-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-[var(--accent-brand)]">Who We Work With</p>
-              <h2 className="global-section-title">Types of <em>Partner Organizations</em></h2>
-              <p className="global-body-lg">
-                ECH Institute works with a diverse spectrum of organizations — from grassroots developer collectives to academic institutions — all united by their commitment to Ethereum&apos;s public-good future.
-              </p>
-              <Link
-                href={ROUTES.getInvolved}
-                className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent-brand)] hover:gap-3 transition-all mt-2"
-              >
-                Become a Partner <ArrowRight size={14} />
-              </Link>
-            </div>
 
-            {/* Right — cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {partnerTypes.map((type, i) => {
-                const Icon = type.icon;
-                return (
-                  <div key={i} className="global-card group hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="proplay-icon-container h-10 w-10">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <h3 className="global-card-title mb-0">{type.title}</h3>
-                    </div>
-                    <p className="global-body text-sm">{type.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── CTA Banner ────────────────────────────────────────────────────────── */}
-      <section className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
+      {/* <section className="border-t border-[var(--border-soft)] py-12 px-4 md:px-8 bg-[var(--background)]">
         <div className="max-w-7xl mx-auto">
           <div className="global-card border-[var(--border-yellow)] bg-gradient-to-br from-[var(--surface-card-theme)] to-[var(--surface-card-muted)]">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
@@ -225,7 +339,7 @@ export default function CommunityPartnershipsPage() {
                 </span>
                 <div>
                   <h3 className="global-card-title text-xl md:text-2xl">Ready to <em>Partner</em> with ECH?</h3>
-                  <p className="global-body text-sm mt-2 max-w-md text-[var(--text-soft)]">
+                  <p className="global-body text-sm mt-2 text-[var(--text-soft)]">
                     Whether you represent a developer DAO, a regional hub, or an academic institution — ECH Institute is here to connect you with the Ethereum governance ecosystem.
                   </p>
                 </div>
@@ -262,7 +376,7 @@ export default function CommunityPartnershipsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </main>
   );

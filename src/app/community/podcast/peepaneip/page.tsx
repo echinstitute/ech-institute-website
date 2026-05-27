@@ -4,10 +4,11 @@ import Link from 'next/link';
 import {
   ArrowLeft, ExternalLink, PlayCircle, ChevronRight,
   Zap, Layers, GitBranch, Cpu, Globe, BookOpen,
-  Tag, Users, Shield, Code, Activity, Boxes, Network as NetworkIcon,
+  Tag, Users, Shield, Code, Activity, Boxes, Network as NetworkIcon, Radio
 } from 'lucide-react';
 import { PodcastOriginSection } from '@/components/features/PodcastOriginSection';
 import { PodcastSeriesYoutubeSection } from '@/components/features/PodcastSeriesYoutubeSection';
+import { PodcastVideoShowcase, YoutubeThumb } from '@/components/features/PodcastVideoShowcase';
 import { HeroRadar } from '@/components/features/HeroRadar';
 import { PODCAST_SERIES_PLAYLISTS } from '@/lib/podcast-youtube';
 
@@ -18,34 +19,53 @@ const overlayStyle = {
   backgroundImage: 'linear-gradient(to top, rgba(21,20,25,0.92) 0%, rgba(21,20,25,0.35) 55%, transparent 100%)',
 } as const;
 
-// ── Topic playlists — all ECH Institute PEEPanEIP YouTube playlists ─────
 const resourcePlaylists = [
-  // ── NEW: Core EIP / Interface EIP / EVM / MEV ──
-  { label: 'Core EIPs',             href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F', icon: Boxes,    firstVideoId: 'ome47qtvuU0' },
-  { label: 'Interface EIPs',        href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqXee9EMQDIEz2CslTnsW0K', icon: Code,     firstVideoId: 'pCu4WuMaAPo' },
-  { label: 'EVM (Ethereum VM)',      href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxpnKFDl1KzGOKqwux5JaLlv', icon: Cpu,      firstVideoId: 'CswFnsZTXmI' },
-  { label: 'MEV & Fee Markets',      href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqzFC6fGsHi79lyXJlPCtUl', icon: Activity, firstVideoId: 'CswFnsZTXmI' },
-  // ── Existing topic playlists ──
-  { label: 'Rollup Proposals (RIPs)',   href: 'https://youtube.com/playlist?list=PL4cwHXAawZxqzFC6fGsHi79lyXJlPCtUl', icon: Layers,    firstVideoId: 'CswFnsZTXmI' },
-  { label: 'Account Abstraction',       href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpUmj2UjD4BtfgC1nAAyv3p', icon: Zap,       firstVideoId: 'o0K10L6u0l0' },
-  { label: 'Verge & Statelessness',     href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpby7LszzOnyuAyQl8WLLvh', icon: Globe,     firstVideoId: 'Vl9su1ZOi-Q' },
-  { label: 'Beacon Chain Improvements', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxoEw29YmqJtNoFaENUUAREn', icon: Cpu,       firstVideoId: 'rnAWvLQ4uag' },
-  { label: 'ERCs & Standards',          href: 'https://youtube.com/playlist?list=PL4cwHXAawZxqXee9EMQDIEz2CslTnsW0K', icon: Tag,       firstVideoId: 'pCu4WuMaAPo' },
-  { label: 'Privacy & ZK-EIPs',         href: 'https://youtube.com/playlist?list=PL4cwHXAawZxoliK_lEjyks7ogHsjp2uEE', icon: Shield,    firstVideoId: 'MuBxmqDyw_c' },
-  { label: 'Governance & EIP-1',        href: 'https://youtube.com/playlist?list=PL4cwHXAawZxrR3Z0I0eubH2fx_4Rej794', icon: Users,     firstVideoId: 'E5oZqplTsKM' },
-  { label: 'Ecosystem Demos',           href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpUmj2UjD4BtfgC1nAAyv3p', icon: PlayCircle, firstVideoId: 'o0K10L6u0l0' },
-  { label: 'Non-EIP Technicals',        href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpby7LszzOnyuAyQl8WLLvh', icon: Globe,     firstVideoId: 'Vl9su1ZOi-Q' },
+  { label: 'PEEPanEIP', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F', icon: Boxes, firstVideoId: 'CswFnsZTXmI' },
+  { label: 'Core EIPs', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqFPeJ7sAYXfD-81Vmuj3dI', icon: Boxes, firstVideoId: 'fUiyE52KluM' },
+  { label: 'ERCs', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqXee9EMQDIEz2CslTnsW0K', icon: Tag, firstVideoId: 'Vl9su1ZOi-Q' },
+  { label: 'NFT', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxpUmj2UjD4BtfgC1nAAyv3p', icon: Zap, firstVideoId: 'yNRm8mK789I' },
+  { label: 'Research Proposals on PEEPanEIP', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxpby7LszzOnyuAyQl8WLLvh', icon: Globe, firstVideoId: 'dZU-Ch22MKY' },
+  { label: 'Consensus Layer Proposals', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxoEw29YmqJtNoFaENUUAREn', icon: Cpu, firstVideoId: 'c3TV6OhjSfc' },
+  { label: 'Rollup Improvement Proposals (RIPs)', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqzFC6fGsHi79lyXJlPCtUl', icon: Layers, firstVideoId: 'rE-P1W6XEq4' },
+  { label: 'Ecosystem Project Demo', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxrhbMXuCqMsCiwx1lwu_cNs', icon: PlayCircle, firstVideoId: '0HEIO9wq7Ak' },
+  { label: 'Meta EIPs', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxrXkRcCu_IBZBgCECYFzVfJ', icon: GitBranch, firstVideoId: 'Ay6-RywzZQg' },
+  { label: 'Informational EIPs', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxo1DfkadxyJppKTdpO6yVCi', icon: BookOpen, firstVideoId: 'Q58Wm5gtiJY' },
+  { label: 'Interface EIPs', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxq2ibfY-PKTNFnojTqWANsZ', icon: Code, firstVideoId: 'GzQSVdTwAa0' },
+  { label: 'Meet The Herders', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqFcgyfjAcUAeoanC2RgUbF', icon: Users, firstVideoId: 'XCOdX5UmtU4' },
+  { label: 'Ethereum Layer 2', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxoAJJOfkYNRkRefy2AYJSp6', icon: Layers, firstVideoId: 'VUita9Yl9gY' },
+  { label: 'EVM', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxol9byqFxx_-mdfpZRehRks', icon: Cpu, firstVideoId: 'rlZwPuF149U' },
+  { label: 'EELS Workshop', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxrhhUB4lSXHlRVDL_ijOafg', icon: PlayCircle, firstVideoId: 'QIcw_DGSy3s' },
+  { label: 'Verkle Implementers Meeting', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxpzxfiXGTOfAz263sQB1D2F', icon: NetworkIcon, firstVideoId: 'xOpaP_OyYPc' },
+  { label: 'AllERCDev', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqF_gL0CXz9RgjEbSXQhX70', icon: Users, firstVideoId: 'U60bIJhndOs' },
+  { label: 'EIP Editing', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxong9j6g5Hd0tM-oC22WLh1', icon: Tag, firstVideoId: 'FFl1HxbZ-K8' },
+  { label: 'MEV', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqntSgAaYHrV3NjAUMyzk7X', icon: Zap, firstVideoId: '-xY1EEzcp0s' },
+  { label: 'DeFi', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxo53PGQDXBw_aRm8vpndx0D', icon: Activity, firstVideoId: 'XxRVBZ-7pts' },
+  { label: 'EOF Implementers Meetings', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxpxjx7t3Aqo01pZYfHjaqG0', icon: Layers, firstVideoId: 'dN4tDo7Cm4k' },
+  { label: 'EIP Editing Office Hour', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqnDHxOyuwMpyt5s8F8gdmO', icon: Globe, firstVideoId: 'TxSVSZfs330' },
+  { label: 'KnowYourClient', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F', icon: Shield, firstVideoId: 'CswFnsZTXmI' },
+  { label: 'Stateless Ethereum', href: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F', icon: Globe, firstVideoId: 'CswFnsZTXmI' },
 ];
 
-const upgradePlaylists = [
-  { label: 'Pectra',        year: '2025', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxqOHV_F40AJbzcl8b6tG8xw', firstVideoId: 'ome47qtvuU0', icon: Zap },
-  { label: 'Dencun',        year: '2024', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpnKFDl1KzGOKqwux5JaLlv', firstVideoId: 'CswFnsZTXmI', icon: Layers },
-  { label: 'Shapella',      year: '2023', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpok0smGmq-dFGVHQzW84a2', firstVideoId: 'pCu4WuMaAPo', icon: GitBranch },
-  { label: 'The Merge',     year: '2022', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxqoLxXqZqT4hcYhoHoP6w12', firstVideoId: 'rnAWvLQ4uag', icon: Cpu },
-  { label: 'Arrow Glacier', year: '2021', href: 'https://www.youtube.com/watch?v=qy81t7bZ-4Q',                            firstVideoId: 'qy81t7bZ-4Q', icon: Globe },
-  { label: 'Altair',        year: '2021', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxoliK_lEjyks7ogHsjp2uEE', firstVideoId: 'Vl9su1ZOi-Q', icon: BookOpen },
-  { label: 'London',        year: '2021', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxppsQYazgJ3EWWWjY2vNxVp', firstVideoId: 'E5oZqplTsKM', icon: Tag },
-  { label: 'Berlin',        year: '2021', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxrR3Z0I0eubH2fx_4Rej794', firstVideoId: 'MuBxmqDyw_c', icon: Users },
+interface UpgradePlaylist {
+  label: string;
+  year: string;
+  href: string;
+  firstVideoId: string;
+  icon: React.ElementType;
+  forceQuality?: 'hqdefault' | 'maxresdefault';
+}
+
+const upgradePlaylists: UpgradePlaylist[] = [
+  { label: 'Fusaka', year: 'Series', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxoIenfk7OJry4rxcqX-eqBt', firstVideoId: 'LSjSwsnpxyo', icon: Radio },
+  { label: 'Pectra (Prague-Electra)', year: '2025', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxqOHV_F40AJbzcl8b6tG8xw', firstVideoId: 'ome47qtvuU0', icon: Zap },
+  { label: 'Dencun', year: '2024', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpnKFDl1KzGOKqwux5JaLlv', firstVideoId: 'VUita9Yl9gY', icon: Layers },
+  { label: 'Shanghai - Capella Upgrade', year: '2023', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpok0smGmq-dFGVHQzW84a2', firstVideoId: 'Mgld_3JjFXQ', icon: GitBranch },
+  { label: 'The Merge', year: '2022', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxqoLxXqZqT4hcYhoHoP6w12', firstVideoId: 'YTWaZ-NBpbM', icon: Cpu },
+  { label: 'Arrow Glacier', year: '2021', href: 'https://www.youtube.com/watch?v=qy81t7bZ-4Q', firstVideoId: 'qy81t7bZ-4Q', icon: Globe },
+  { label: 'Altair', year: '2021', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxoliK_lEjyks7ogHsjp2uEE', firstVideoId: '92BeeDr1Nhw', icon: BookOpen },
+  { label: 'London EIPs', year: '2021', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxppsQYazgJ3EWWWjY2vNxVp', firstVideoId: 'QwCPrw-4d98', icon: Tag },
+  { label: 'Berlin EIPs', year: '2021', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxrR3Z0I0eubH2fx_4Rej794', firstVideoId: 'qQpvkxKso2E', icon: Users },
+  { label: 'Glamsterdam', year: 'Series', href: 'https://youtube.com/playlist?list=PL4cwHXAawZxpwaNmIQKUI3zmglVzZt9M5', firstVideoId: 'CswFnsZTXmI', icon: Radio },
 ];
 
 // ── Updated themes: Core EIP / Interface EIP / EVM / MEV ────────────────
@@ -85,12 +105,10 @@ function PlaylistCard({
       className="flex flex-col rounded-3xl overflow-hidden border border-[var(--border-soft)] bg-[var(--surface-card-theme)]"
     >
       <div className="relative w-full overflow-hidden bg-[var(--background)]" style={{ aspectRatio: '16/9' }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`https://img.youtube.com/vi/${firstVideoId}/hqdefault.jpg`}
-          alt={label}
+        <YoutubeThumb
+          videoId={firstVideoId}
+          title={label}
           className="absolute inset-0 w-full h-full object-cover"
-          crossOrigin="anonymous"
         />
       </div>
 
@@ -101,15 +119,15 @@ function PlaylistCard({
           </div>
           <span className="font-bold text-sm tracking-tight text-[var(--text-base)] truncate">{label}</span>
         </div>
-        <ExternalLink className="h-3.5 w-3.5 text-[var(--text-soft)]" />
+        <ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" />
       </div>
     </a>
   );
 }
 
 function UpgradeCard({
-  label, year, href, firstVideoId,
-}: { label: string; year: string; href: string; firstVideoId: string }) {
+  label, year, href, firstVideoId, forceQuality
+}: { label: string; year: string; href: string; firstVideoId: string; forceQuality?: 'hqdefault' | 'maxresdefault' }) {
   return (
     <a
       href={href}
@@ -118,14 +136,13 @@ function UpgradeCard({
       className="group relative flex flex-col rounded-3xl overflow-hidden border border-[var(--border-soft)] bg-[var(--surface-card-theme)] hover:border-accent/50 hover:shadow-[0_0_40px_rgba(var(--accent-brand-rgb),0.1)] transition-all duration-500"
     >
       <div className="relative w-full overflow-hidden bg-[var(--background)]" style={{ aspectRatio: '16/9' }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`https://img.youtube.com/vi/${firstVideoId}/hqdefault.jpg`}
-          alt={label}
+        <YoutubeThumb
+          videoId={firstVideoId}
+          title={label}
           className="absolute inset-0 w-full h-full object-cover"
-          crossOrigin="anonymous"
+          forceQuality={forceQuality}
         />
-        
+
         {/* Year badge */}
         <div className="absolute top-4 right-4 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-accent text-black shadow-lg">
           {year}
@@ -137,10 +154,10 @@ function UpgradeCard({
 
       <div className="flex items-center justify-between gap-2 px-6 py-4 bg-[var(--surface-card-muted)]/50 backdrop-blur-sm border-t border-[var(--border-soft)]">
         <div className="flex flex-col">
-          <span className="text-lg font-black font-syne tracking-tight text-[var(--text-base)] group-hover:text-accent transition-colors leading-tight">{label}</span>
-          <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[var(--text-soft)]">EXPLORE SERIES</span>
+          <span className="text-base font-black font-syne tracking-tight text-[var(--text-base)] group-hover:text-accent transition-colors leading-tight line-clamp-2">{label}</span>
+          <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[var(--text-soft)] mt-1">EXPLORE SERIES</span>
         </div>
-        <ExternalLink className="h-4 w-4 text-[var(--text-soft)] group-hover:text-accent transition-all duration-500 group-hover:translate-x-1" />
+        <ExternalLink className="h-4 w-4 shrink-0 text-[var(--text-soft)] group-hover:text-accent transition-all duration-500 group-hover:translate-x-1" />
       </div>
     </a>
   );
@@ -149,10 +166,10 @@ function UpgradeCard({
 // ── Page ─────────────────────────────────────────────────────────────────
 
 const PEEP_SPHERES = [
-  { icon: Boxes,    title: 'Core EIPs',     desc: 'Deep-dives into consensus rules and protocol behavior changes.' },
-  { icon: GitBranch, title: 'Upgrade Path',   desc: 'Tracing the technical journey toward upcoming network upgrades.' },
-  { icon: Zap,      title: 'Abstraction',    desc: 'Exploring Account Abstraction and user experience standards.' },
-  { icon: NetworkIcon,  title: 'PeerDAS',        desc: 'Scaling data availability to support Ethereum\'s rollup-centric future.' },
+  { icon: Boxes, title: 'Core EIPs', desc: 'Deep-dives into consensus rules and protocol behavior changes.' },
+  { icon: GitBranch, title: 'Upgrade Path', desc: 'Tracing the technical journey toward upcoming network upgrades.' },
+  { icon: Zap, title: 'Abstraction', desc: 'Exploring Account Abstraction and user experience standards.' },
+  { icon: NetworkIcon, title: 'PeerDAS', desc: 'Scaling data availability to support Ethereum\'s rollup-centric future.' },
 ];
 
 export default function PEEPanEIPPage() {
@@ -179,7 +196,7 @@ export default function PEEPanEIPPage() {
                 Educational Video Series · 150+ Episodes
               </div>
               <h1 className="global-hero-title">PEEPanEIP</h1>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg max-w-none w-full">
                 An educational video series on Ethereum Improvement Proposals and key features of upcoming
                 network upgrades — built for client teams, researchers, and the broader ecosystem.
               </p>
@@ -206,7 +223,7 @@ export default function PEEPanEIPPage() {
       {/* ── Why PEEPanEIP ── */}
       <PodcastOriginSection
         title="Why PEEPanEIP started"
-        intro="Built for client teams and contributors who need signal before the next All Core Devs call — not a slide deck, but plain-language protocol context from the authors themselves."
+        intro="Built for client teams, contributors, students, researchers, and ecosystem participants who need clear signal before the next All Core Devs call -  not a slide deck, but plain-language protocol context directly from the people shaping Ethereum. "
         purpose={<>The series was created to give client teams a <strong className="font-semibold text-[var(--text-base)]">dedicated overview of new EIPs</strong> ahead of All Core Dev (ACD) meetings so proposals aren&apos;t first heard only on the call. By engaging directly with EIP authors — including Vitalik Buterin on EIP-7706 (multidimensional gas) — PEEPanEIP ensures the broader community understands the &ldquo;why&rdquo; behind foundational protocol changes.</>}
         goal={<>Raise visibility for <strong className="font-semibold text-[var(--text-base)]">&quot;Last Call&quot; and &quot;Draft&quot;</strong> work by translating it into ELI5-style explanations — making it easier to align on upgrades and build consensus across the ecosystem. From EIP-1559 and The Merge to EIP-7702 (account abstraction), PEEPanEIP has been present at every major inflection point in Ethereum&apos;s history.</>}
         closing={<>Every episode pairs a concrete EIP or ERC with <span className="not-italic font-medium text-[var(--text-base)]">guest experts</span> — core devs, researchers, and implementers — so you can trace how ideas travel from draft to mainnet. The series is distinguished by its direct engagement with EIP authors, providing the first public discussion of many foundational protocol changes.</>}
@@ -217,7 +234,7 @@ export default function PEEPanEIPPage() {
         playlistId={peep.playlistId}
         browseUrl={peep.playlistUrl}
         title="Latest PEEPanEIP videos"
-        description={<>Newest entries from the official <a href={peep.playlistUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-accent hover:underline">PEEPanEIP YouTube playlist</a> (feed order: most recent first).</>}
+        description={<>Newest entries from the official <a href={peep.playlistUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#F5A51D' }} className="font-bold hover:underline inline-flex items-center gap-1">PEEPanEIP YouTube playlist<ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" /></a> (feed order: most recent first).</>}
         limit={5}
         sideRailLabel="More from the playlist"
         featuredBadge="Latest"
@@ -233,7 +250,7 @@ export default function PEEPanEIPPage() {
           <h2 className="brand-section-title mb-2">
             Playlist <em>Resources</em>
           </h2>
-          <p className="global-body mb-10 max-w-2xl">
+          <p className="global-body mb-10 max-w-none">
             All ECH Institute PEEPanEIP playlists — browse by topic. Each card links directly to the YouTube playlist.
           </p>
 
@@ -257,13 +274,13 @@ export default function PEEPanEIPPage() {
           <div className="w-1 h-6 bg-accent" />
           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">By Network Upgrade</span>
         </div>
-        
+
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
-          <div className="max-w-3xl">
+          <div className="max-w-none w-full">
             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter leading-[1.1] text-[var(--text-base)] font-syne mb-4">
               Upgrade <em className="not-italic text-accent">Series</em>
             </h2>
-            <p className="text-base text-[var(--text-soft)] font-medium max-w-xl">
+            <p className="text-base text-[var(--text-soft)] font-medium max-w-none">
               Deep-dives by Ethereum upgrade — each card shows the first episode thumbnail. Select a fork to watch the full cycle.
             </p>
           </div>
@@ -271,7 +288,7 @@ export default function PEEPanEIPPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {upgradePlaylists.map((pl) => (
-            <UpgradeCard key={pl.label} label={pl.label} year={pl.year} href={pl.href} firstVideoId={pl.firstVideoId} />
+            <UpgradeCard key={pl.label} label={pl.label} year={pl.year} href={pl.href} firstVideoId={pl.firstVideoId} forceQuality={pl.forceQuality} />
           ))}
         </div>
       </section>
@@ -287,7 +304,7 @@ export default function PEEPanEIPPage() {
           <h2 className="text-5xl sm:text-7xl font-black lowercase text-accent font-syne tracking-tighter">
             explore
           </h2>
-          <p className="text-sm mt-4 text-[rgba(251,251,251,0.5)] font-medium max-w-xl">
+          <p className="text-sm mt-4 text-[rgba(251,251,251,0.5)] font-medium max-w-none">
             Every episode maps to one of four core protocol dimensions — from low-level EVM mechanics to market design.
           </p>
         </div>

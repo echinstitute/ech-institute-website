@@ -286,7 +286,7 @@ export function PodcastRecentHighlights() {
               </h2>
               <p className="text-sm mt-2 max-w-2xl text-white/50">
                 {activeTab === 'video'
-                  ? <>Latest uploads from <a href={CHANNEL_VIDEOS_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-accent hover:underline">@echinstitute on YouTube</a>.</>
+                  ? <>Latest uploads from <a href={CHANNEL_VIDEOS_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#F5A51D' }} className="font-bold hover:underline inline-flex items-center gap-1">@echinstitute on YouTube<ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" /></a>.</>
                   : <>Latest episodes on the ECH Institute <a href={SPOTIFY_SHOW_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-[#1DB954] hover:underline">Spotify podcast</a>.</>
                 }
               </p>

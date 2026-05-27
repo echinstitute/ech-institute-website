@@ -398,7 +398,7 @@ const echRoleItems = [
     summary: 'Making Ethereum governance concepts accessible through video, blog, and structured learning.',
     detail: 'Through the PEEPanEIP video series, WiEP classrooms, Ecosystem Project Demo (EPD) series, and blog content, ECH Institute produces educational resources that help beginners, contributors, and enterprises understand how Ethereum works and how to participate in its governance. The Education section of this website provides structured learning tracks for each audience type.',
     points: [
-      'PEEPanEIP: 100+ video deep-dives on specific EIPs with their authors',
+      'PEEPanEIP: 150+ video deep-dives on specific EIPs with their authors',
       'WiEP: Structured classrooms for women entering Ethereum protocol work',
       'EPD: Live demos of ecosystem projects building Ethereum infrastructure',
       'Blog: Technical governance analysis and upgrade communication',
@@ -576,7 +576,7 @@ export default function HomesteadPage() {
               <p className="global-body-lg text-[var(--accent-brand)] font-bold text-[1.1rem]">
                 ECH is the steward of major initiatives documented at Homestead.
               </p>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg">
                 Supporting the processes, coordination, and participation that help Ethereum evolve responsibly as open, public infrastructure.
               </p>
             </div>
@@ -590,7 +590,7 @@ export default function HomesteadPage() {
 
 
       {/* ── Stats ────────────────────────────────────────────────────────── */}
-      <section className="border-b border-border py-6 px-4 md:px-8">
+      {/* <section className="border-b border-border py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
@@ -606,7 +606,7 @@ export default function HomesteadPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── Two-col layout: sticky nav + content ─────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 flex gap-8 items-start">
@@ -621,12 +621,6 @@ export default function HomesteadPage() {
 
           {/* ── Section 1: What is Ethereum Governance ───────────────────── */}
           <section id="what-is-governance">
-            <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
-                <Globe className="h-4 w-4 text-[var(--accent-brand)]" />
-              </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 1</p>
-            </div>
             <h2 className="global-section-title mb-2">What is Ethereum Governance?</h2>
             <p className="global-body-lg mb-5">
               A simple explanation of how Ethereum makes decisions the upgrade selection process, the EIP framework, and where to track it live.
@@ -642,10 +636,7 @@ export default function HomesteadPage() {
                       onClick={() => toggle(setOpenGov, i)}
                     >
                       <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                        <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
-                          0{i + 1}
-                        </span>
+                        <item.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-[var(--text-base)]">{item.title}</div>
@@ -715,12 +706,6 @@ export default function HomesteadPage() {
 
           {/* ── Section 2: The EIP Process (Lifecycle) ───────────────────── */}
           <section id="eip-process">
-            <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
-                <GitBranch className="h-4 w-4 text-[var(--accent-brand)]" />
-              </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 2</p>
-            </div>
             <h2 className="global-section-title mb-2">The EIP Process</h2>
             <p className="global-body-lg mb-5">
               What EIPs are, how they&apos;re structured, and the lifecycle every proposal passes through from concept to mainnet deployment.
@@ -745,10 +730,7 @@ export default function HomesteadPage() {
                 <div key={s.stage} className="relative flex gap-4 items-start group">
                   {/* Proplay Icon */}
                   <div className="proplay-icon-container h-11 w-11 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500 z-10">
-                    <s.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      0{i + 1}
-                    </span>
+                    <s.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   {/* Card */}
                   <div className="flex-1 global-card mb-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent-brand)] group-hover:shadow-xl">
@@ -771,12 +753,6 @@ export default function HomesteadPage() {
 
           {/* ── Section 3: Network Upgrades ──────────────────────────────── */}
           <section id="network-upgrades">
-            <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
-                <Layers className="h-4 w-4 text-[var(--accent-brand)]" />
-              </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 3</p>
-            </div>
             <h2 className="global-section-title mb-2">Network Upgrades</h2>
             <p className="global-body-lg mb-5">
               How Ethereum coordinates hard forks, the formal inclusion stages from EIP-7723, and an overview of recent and upcoming upgrades.
@@ -792,10 +768,7 @@ export default function HomesteadPage() {
                       onClick={() => toggle(setOpenUpgrades, i)}
                     >
                       <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                        <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
-                          0{i + 1}
-                        </span>
+                        <item.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-[var(--text-base)]">{item.title}</div>
@@ -838,12 +811,7 @@ export default function HomesteadPage() {
 
           {/* ── Section 4: Role of ECH Institute ────────────────────────── */}
           <section id="ech-role">
-            <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
-                <Award className="h-4 w-4 text-[var(--accent-brand)]" />
-              </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 4</p>
-            </div>
+
             <h2 className="global-section-title mb-2">Role of ECH Institute</h2>
             <p className="global-body-lg mb-5">
               ECH Institute is the neutral coordination and education infrastructure for Ethereum governance. Here is how the Institute contributes across four pillars.
@@ -859,10 +827,7 @@ export default function HomesteadPage() {
                       onClick={() => toggle(setOpenEch, i)}
                     >
                       <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                        <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
-                          0{i + 1}
-                        </span>
+                        <item.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-[var(--text-base)]">{item.title}</div>
@@ -905,12 +870,7 @@ export default function HomesteadPage() {
 
           {/* ── Section 5: Why It Matters ────────────────────────────────── */}
           <section id="why-it-matters">
-            <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
-                <Target className="h-4 w-4 text-[var(--accent-brand)]" />
-              </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Section 5</p>
-            </div>
+   
             <h2 className="global-section-title mb-2">Why This Matters</h2>
             <p className="global-body-lg mb-5">
               Ethereum&apos;s decentralization is not self-sustaining. It requires active governance infrastructure, clear processes, and broad participation.
@@ -926,10 +886,7 @@ export default function HomesteadPage() {
                       onClick={() => toggle(setOpenWhy, i)}
                     >
                       <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                        <item.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
-                          0{i + 1}
-                        </span>
+                        <item.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-base text-[var(--text-base)]">{item.title}</div>
@@ -962,12 +919,6 @@ export default function HomesteadPage() {
 
           {/* ── Section 6: Get Involved ──────────────────────────────────── */}
           <section id="get-involved">
-            <div className="flex items-center gap-3 mb-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--surface-card-muted)] border border-[var(--border-soft)]">
-                <Users className="h-4 w-4 text-[var(--accent-brand)]" />
-              </span>
-              <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-soft)]">Take the Next Step</p>
-            </div>
             <h2 className="global-section-title mb-5">Get Involved in Governance</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -979,10 +930,7 @@ export default function HomesteadPage() {
                 <Link key={i} href={card.link} target={card.external ? '_blank' : '_self'}
                   className="global-card flex flex-col gap-3 no-underline text-inherit hover:border-[var(--accent-brand)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
                   <div className="proplay-icon-container h-10 w-10 flex-shrink-0 relative overflow-hidden group-hover:border-[var(--accent-brand)] transition-all duration-500">
-                    <card.icon className="h-5 w-5 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300" />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-inherit opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      0{i + 1}
-                    </span>
+                    <card.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <div className="flex-1">
                     <h3 className="global-card-title mb-1">{card.title}</h3>

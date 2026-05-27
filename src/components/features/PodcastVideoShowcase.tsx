@@ -13,18 +13,20 @@ export type FeedVideo = {
   published: string;
 };
 
-function YoutubeThumb({
+export function YoutubeThumb({
   videoId,
   title,
   className = '',
+  forceQuality,
 }: {
   videoId: string;
   title: string;
   className?: string;
+  forceQuality?: 'maxresdefault' | 'hqdefault' | 'mqdefault';
 }) {
   const [tier, setTier] = useState(0);
   const qualities = ['maxresdefault', 'hqdefault', 'mqdefault'] as const;
-  const q = qualities[Math.min(tier, qualities.length - 1)];
+  const q = forceQuality || qualities[Math.min(tier, qualities.length - 1)];
   const src = `https://img.youtube.com/vi/${videoId}/${q}.jpg`;
 
   return (
@@ -33,7 +35,16 @@ function YoutubeThumb({
       alt={title}
       className={className}
       loading="lazy"
-      onError={() => setTier((t) => Math.min(t + 1, qualities.length - 1))}
+      onLoad={(e) => {
+        if (!forceQuality && e.currentTarget.naturalWidth === 120 && tier < qualities.length - 1) {
+          setTier((t) => t + 1);
+        }
+      }}
+      onError={() => {
+        if (!forceQuality && tier < qualities.length - 1) {
+          setTier((t) => t + 1);
+        }
+      }}
     />
   );
 }

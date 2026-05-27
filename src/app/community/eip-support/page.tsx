@@ -90,7 +90,7 @@ export default function EipSupportPage() {
               <h1 className="global-hero-title">
                 EIP <em style={{ fontStyle: 'normal', color: 'var(--color-yellow)' }}>Support</em>
               </h1>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg">
                 ECH Institute strengthens the Ethereum Improvement Proposal process through structured coordination, technical reviews, and ecosystem-wide communication — ensuring proposals move from Draft to Final.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
@@ -137,7 +137,7 @@ export default function EipSupportPage() {
           <div className="mb-10">
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--accent-brand)] mb-2">ECH Institute Programs</p>
             <h2 className="global-section-title">What ECH Does for <em>EIP Support</em></h2>
-            <p className="global-body-lg mt-3 max-w-2xl">
+            <p className="global-body-lg mt-3">
               From documentation to podcast interviews, ECH Institute covers the full spectrum of EIP support — making Ethereum&apos;s governance process more accessible, efficient, and transparent for everyone.
             </p>
           </div>
@@ -222,28 +222,37 @@ export default function EipSupportPage() {
                   <Heart className="h-6 w-6" />
                 </span>
                 <div>
-                  <h3 className="global-card-title text-xl md:text-2xl">Have an EIP you&apos;re <em>working on?</em></h3>
-                  <p className="global-body text-sm mt-2 max-w-md text-[var(--text-soft)]">
+                  <h3 className="global-card-title text-xl md:text-2xl hover:text-[var(--accent-brand)] transition-colors">
+                    <Link href="/community/podcast/peepaneip">
+                      Have an EIP you&apos;re <em>working on?</em>
+                    </Link>
+                  </h3>
+                  <p className="global-body text-sm mt-2 text-[var(--text-soft)]">
                     ECH Institute can help connect you with reviewers, document your process, and amplify your proposal to the broader Ethereum community.
                   </p>
+                  <div className="flex items-center gap-2 mt-4 text-xs font-bold text-[var(--text-soft)]">
+                    <span className="text-accent uppercase tracking-widest text-[10px]">Email Us:</span>
+                    <a href="mailto:team@ethcatherders.com" className="text-[var(--text-base)] hover:text-accent transition-colors underline decoration-accent/20">
+                      team@ethcatherders.com
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-3 shrink-0">
+               <div className="flex flex-wrap gap-3 shrink-0">
+                <Link
+                  href="/#contact"
+                  className="btn btn-primary"
+                >
+                  <FileText className="h-4 w-4" />
+                  Request EIP Support
+                </Link>
                 <Link
                   href="https://github.com/ethereum/pm/issues?q=is%3Aissue+state%3Aopen+office+hour"
                   target="_blank"
-                  className="btn btn-primary"
+                  className="btn btn-outline"
                 >
                   <Calendar className="h-4 w-4" />
                   Join Office Hours
-                </Link>
-                <Link
-                  href="https://github.com/ethereum/pm/issues?q=is%3Aissue+state%3Aopen+eipip"
-                  target="_blank"
-                  className="btn btn-outline"
-                >
-                  <GitBranch className="h-4 w-4" />
-                  EIPIP Governance
                 </Link>
               </div>
             </div>

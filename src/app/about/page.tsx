@@ -216,7 +216,7 @@ export default function AboutPage() {
               <h1 className="global-hero-title">
                 About <em>ECH</em><br />Institute
               </h1>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg">
                 ECH Institute Inc. is a 501(c)(3) non-profit organization that transitioned to a
                 formalized institutional steward on July 11, 2024 supporting the Ethereum ecosystem
                 through decentralized project management, coordination, and technical education as a
@@ -294,7 +294,7 @@ export default function AboutPage() {
           <div className="text-center mb-16">
             <div className="global-section-tag justify-center">Leadership & Team</div>
             <h2 className="global-section-title">The People Behind <em>ECH Institute</em></h2>
-            <p className="global-body-lg mt-4 max-w-2xl mx-auto">Meet the dedicated individuals steering ECH Institute&apos;s mission of open, transparent Ethereum governance.</p>
+            <p className="global-body-lg mt-4">Meet the dedicated individuals steering ECH Institute&apos;s mission of open, transparent Ethereum governance.</p>
           </div>
           
           <TeamSlider members={BOARD_MEMBERS} />
@@ -366,7 +366,7 @@ export default function AboutPage() {
           <div className="global-section-tag">Operational Mandate</div>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
             <h2 className="global-section-title">Core <em>Operations</em></h2>
-            <p className="global-body-lg max-w-md text-[var(--text-soft)]">Our programs span education, coordination, and community building across Ethereum&apos;s ecosystem.</p>
+            <p className="global-body-lg text-[var(--text-soft)]">Our programs span education, coordination, and community building across Ethereum&apos;s ecosystem.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {OPERATIONS.map((item, i) => (
@@ -421,7 +421,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="global-section-tag">Our Community</div>
           <h2 className="global-section-title mb-4">People Behind <em>ECH Institute</em></h2>
-          <p className="global-body-lg mb-12 max-w-2xl text-[var(--text-soft)]">ECH Institute is powered by a diverse group of dedicated individuals who contribute their time, expertise, and passion to support the Ethereum ecosystem.</p>
+          <p className="global-body-lg mb-12 text-[var(--text-soft)]">ECH Institute is powered by a diverse group of dedicated individuals who contribute their time, expertise, and passion to support the Ethereum ecosystem.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {PEOPLE_CARDS.map((item) => (
@@ -472,7 +472,7 @@ export default function AboutPage() {
             <h3 className="text-2xl sm:text-3xl font-extrabold font-syne text-[var(--text-base)] mb-4">
               Ready to <em className="not-italic text-[var(--accent-brand)]">contribute?</em>
             </h3>
-            <p className="global-body-lg mb-8 max-w-xl mx-auto">
+            <p className="global-body-lg mb-8">
               ECH Institute is the social and organizational &ldquo;operating system&rdquo; for Ethereum. Join us through documentation, content creation, community outreach, and incentivized bounties.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

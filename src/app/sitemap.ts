@@ -18,5 +18,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}${ROUTES.wiep}`,        lastModified: now, changeFrequency: "weekly",  priority: 0.7 },
     { url: `${base}${ROUTES.support}`,     lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}${ROUTES.getInvolved}`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}${ROUTES.brand}`,       lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}${ROUTES.eipSupport}`,  lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}${ROUTES.communityPartnerships}`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}${ROUTES.institutionalBridging}`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
   ];
 }

@@ -647,34 +647,18 @@ export default function Navigation() {
                                 onMouseEnter={() => handleSubItemEnter(hoveredMenu, index)}
                                 onMouseLeave={handleSubItemLeave}
                                 onClick={() => handleSubItemClick(hoveredMenu, index)}
-                                className={cn(
-                                  'w-full flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border cursor-pointer focus:outline-none focus-visible:outline-none',
-                                  isHovered || clickedSection === `${hoveredMenu}-${index}`
-                                    ? 'bg-[var(--surface-card-theme)] border-[var(--accent-brand)] shadow-md'
-                                    : 'bg-[var(--surface-card-theme)] border-transparent shadow-sm hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md'
-                                )}
+                                className="w-full flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-300 group border-2 border-[var(--border-soft)] shadow-sm bg-[var(--surface-card-theme)] hover:!border-[var(--accent-brand)] hover:!shadow-md focus:outline-none focus-visible:outline-none cursor-pointer"
                               >
-                                <div className={cn(
-                                  'flex-shrink-0 w-10 h-10 rounded-md flex items-center justify-center transition-colors bg-transparent',
-                                  isHovered || clickedSection === `${hoveredMenu}-${index}`
-                                    ? 'text-white'
-                                    : 'text-white'
-                                )}>
+                                <div className="flex-shrink-0 w-10 h-10 rounded-md flex items-center justify-center transition-colors bg-transparent text-[var(--text-soft)] group-hover:text-[var(--text-base)]">
                                   <subItem.icon className="h-5 w-5" />
                                 </div>
                                 <div className="flex-1 text-left">
-                                  <div className={cn(
-                                    'font-medium text-base',
-                                    isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-[var(--text-base)]' : 'text-[var(--text-soft)]'
-                                  )}>{subItem.title}</div>
+                                  <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)] transition-colors">{subItem.title}</div>
                                   <div className="text-sm text-[var(--text-soft)] mt-0.5">
                                     {subItem.description}
                                   </div>
                                 </div>
-                                <ChevronRight className={cn(
-                                  'h-5 w-5 flex-shrink-0 transition-colors',
-                                  isHovered || clickedSection === `${hoveredMenu}-${index}` ? 'text-white' : 'text-white'
-                                )}/>
+                                <ChevronRight className="h-5 w-5 flex-shrink-0 text-[var(--text-soft)] group-hover:text-[var(--accent-brand)] transition-colors" />
                               </div>
                             ) : (
                               (() => {
@@ -691,17 +675,18 @@ export default function Navigation() {
                                       onMouseEnter={() => {
                                         setHoveredSection(null);
                                       }}
-                                      className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-transparent shadow-sm bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                      className="w-full flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-300 group border-2 border-[var(--border-soft)] shadow-sm bg-[var(--surface-card-theme)] hover:!border-[var(--accent-brand)] hover:!shadow-md hover:opacity-100 focus:outline-none focus-visible:outline-none no-underline"
                                     >
-                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors">
+                                      <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-soft)] flex items-center justify-center group-hover:text-[var(--text-base)] transition-colors">
                                         <subItem.icon className="h-5 w-5" />
                                       </div>
                                       <div className="flex-1 text-left">
-                                        <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)]">{subItem.title}</div>
+                                        <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)] transition-colors">{subItem.title}</div>
                                         <div className="text-sm text-[var(--text-soft)] mt-0.5">
                                           {subItem.description}
                                         </div>
                                       </div>
+                                      <ChevronRight className="h-5 w-5 flex-shrink-0 text-[var(--text-soft)] group-hover:text-[var(--accent-brand)] transition-colors" />
                                     </a>
                                   );
                                 }
@@ -715,17 +700,18 @@ export default function Navigation() {
                                       // Clear hovered section when hovering non-nested items
                                       setHoveredSection(null);
                                     }}
-                                    className="flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-200 group border border-transparent shadow-sm bg-[var(--surface-card-theme)] hover:bg-[var(--surface-card-theme)] hover:border-[var(--accent-brand)] hover:shadow-md focus:outline-none focus-visible:outline-none no-underline"
+                                    className="w-full flex items-center gap-4 p-4 my-2 rounded-lg transition-all duration-300 group border-2 border-[var(--border-soft)] shadow-sm bg-[var(--surface-card-theme)] hover:!border-[var(--accent-brand)] hover:!shadow-md hover:opacity-100 focus:outline-none focus-visible:outline-none no-underline"
                                   >
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-white flex items-center justify-center group-hover:text-white transition-colors">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-md bg-transparent text-[var(--text-soft)] flex items-center justify-center group-hover:text-[var(--text-base)] transition-colors">
                                       <subItem.icon className="h-5 w-5" />
                                     </div>
                                     <div className="flex-1 text-left">
-                                      <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)]">{subItem.title}</div>
+                                      <div className="font-medium text-base text-[var(--text-soft)] group-hover:text-[var(--text-base)] transition-colors">{subItem.title}</div>
                                       <div className="text-sm text-[var(--text-soft)] mt-0.5">
                                         {subItem.description}
                                       </div>
                                     </div>
+                                    <ChevronRight className="h-5 w-5 flex-shrink-0 text-[var(--text-soft)] group-hover:text-[var(--accent-brand)] transition-colors" />
                                   </Link>
                                 );
                               })()

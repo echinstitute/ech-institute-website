@@ -39,7 +39,7 @@ const antonio = Antonio({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.echinstitute.org"),
   title: {
-    default: "ECH Institute Ethereum Protocol Governance & Coordination",
+    default: "ECH Institute | People - Process - Protocol",
     template: "%s | ECH Institute",
   },
   description:
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.echinstitute.org",
     siteName: "ECH Institute",
-    title: "ECH Institute Ethereum Protocol Governance & Coordination",
+    title: "ECH Institute | People - Process - Protocol",
     description:
       "Supporting Ethereum's protocol governance and coordination — helping the ecosystem scale responsibly and sustainably.",
     images: [
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
         url: "/assets/logo/ECH Institute Logo - White.png",
         width: 1200,
         height: 630,
-        alt: "ECH Institute Ethereum Protocol Governance & Coordination",
+        alt: "ECH Institute | People - Process - Protocol",
       },
     ],
   },

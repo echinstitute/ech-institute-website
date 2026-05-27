@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Server, ShieldCheck, Search, Code, Zap, Globe, Terminal } from 'lucide-react';
+import { ArrowLeft, Server, ShieldCheck, Search, Code, Zap, Globe, Terminal, ExternalLink } from 'lucide-react';
 import { PodcastOriginSection } from '@/components/features/PodcastOriginSection';
 import { PodcastSeriesYoutubeSection } from '@/components/features/PodcastSeriesYoutubeSection';
 import { PODCAST_SERIES_PLAYLISTS } from '@/lib/podcast-youtube';
@@ -79,7 +79,7 @@ export default function EPDPage() {
               <h1 className="global-hero-title">
                 Ecosystem <em className="not-italic text-[var(--accent-brand)]">Project</em> Demo
               </h1>
-              <p className="global-body-lg max-w-xl">
+              <p className="global-body-lg">
                 Live demos of open-source tools and public goods strengthening Ethereum — from ZK and governance to observability and funding, hosted by the builders who ship them.
               </p>
             </div>
@@ -138,9 +138,11 @@ export default function EPDPage() {
               href={epd.playlistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-accent hover:underline"
+              style={{ color: '#F5A51D' }}
+              className="font-bold hover:underline inline-flex items-center gap-1"
             >
               Ecosystem Project Demo YouTube playlist
+              <ExternalLink className="h-3.5 w-3.5 text-[#F5A51D]" />
             </a>
             .
           </>
@@ -158,7 +160,7 @@ export default function EPDPage() {
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[var(--text-base)]">
           Featured <em className="not-italic text-accent">Projects</em>
         </h2>
-        <p className="text-sm mb-10 max-w-2xl text-[var(--text-base)]/50">
+        <p className="text-sm mb-10 max-w-none text-[var(--text-base)]/50">
           EPD creates a discovery layer for the Ethereum ecosystem. Here are two projects the series has helped surface — tools that strengthen decentralization and security at a foundational level.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -192,7 +194,7 @@ export default function EPDPage() {
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2 text-[var(--text-base)]">
           Themes we <em className="not-italic text-accent">explore</em>
         </h2>
-        <p className="text-sm mb-8 max-w-xl text-[var(--text-base)]/50">
+        <p className="text-sm mb-8 max-w-none text-[var(--text-base)]/50">
           EPD shows how real public goods connect to protocol direction — through hands-on demos, not slides.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
